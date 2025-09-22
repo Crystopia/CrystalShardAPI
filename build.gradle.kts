@@ -1,7 +1,11 @@
 plugins {
     kotlin("jvm") version "2.0.20-Beta1"
     kotlin("plugin.serialization") version "2.1.0"
+    id("maven-publish")
 }
+
+group = "net.crystopia"
+version = "0.0.2"
 
 repositories {
     mavenCentral()
@@ -22,4 +26,28 @@ kotlin {
 }
 
 tasks.build {
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Reposilite"
+            url = uri("https://repo.xyzhub.link/releases")
+            credentials {
+                username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
+                password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
+            }
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("reposilite") {
+            from(components["java"])
+            artifactId = "crystalshard"
+            groupId = group as String
+            version = version
+        }
+    }
 }
