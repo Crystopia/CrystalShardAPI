@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.crystopia"
-version = "0.0.2"
+version = "0.0.3"
 
 repositories {
     mavenCentral()
@@ -18,14 +18,26 @@ repositories {
 
 dependencies {
     // Paper
-    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
+    implementation("gg.flyte:twilight:1.1.22")
+
+    implementation("org.ktorm:ktorm-core:4.1.1")
+
 }
 
 kotlin {
     jvmToolchain(21)
 }
 
+tasks.create<Copy>("repleaceData") {
+    filter { line: String ->
+        line.replace("{version}", version.toString())
+    }
+}
+
+
 tasks.build {
+
 }
 
 publishing {
