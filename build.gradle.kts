@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.crystopia"
-version = "0.0.3"
+version = "0.0.4"
 
 repositories {
     mavenCentral()
@@ -19,7 +19,6 @@ repositories {
 dependencies {
     // Paper
     compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
-    implementation("gg.flyte:twilight:1.1.22")
 
     implementation("org.ktorm:ktorm-core:4.1.1")
 
