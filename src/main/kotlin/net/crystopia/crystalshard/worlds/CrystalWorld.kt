@@ -6,6 +6,13 @@ import org.bukkit.World
 import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 
+
+/**
+ *
+ * Shorter Methods to interact with a World.
+ * More Methods will follow!!!
+ *
+ */
 class CrystalWorld(
     private val handle: World,
 ) {

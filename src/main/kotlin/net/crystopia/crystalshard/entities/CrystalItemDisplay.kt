@@ -5,6 +5,13 @@ import org.bukkit.entity.Display
 import org.bukkit.entity.ItemDisplay
 import org.bukkit.inventory.ItemStack
 
+
+/**
+ *
+ * Better work with the Item Displays from Minecraft.
+ *
+ */
+
 class CrystalItemDisplay(val handle: ItemDisplay) : CrystalEntity(handle = handle) {
 
     fun blockDisplay(block: CrystalItemDisplay.() -> Unit = {}) {

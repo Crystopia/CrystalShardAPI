@@ -4,6 +4,12 @@ import net.crystopia.crystalshard.api.Log
 import java.text.SimpleDateFormat
 import java.util.*
 
+
+/**
+ * 
+ * CrystalShard Logger (Basic)
+ *
+ */
 object Log : Log {
 
     override fun getTimestamp(): String {

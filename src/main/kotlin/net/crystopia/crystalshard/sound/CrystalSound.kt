@@ -4,6 +4,12 @@ import org.bukkit.Location
 import org.bukkit.World
 import org.bukkit.entity.Player
 
+
+/**
+ *
+ * Short Sound API to simply interact with the sounds in Minecraft.
+ *
+ */
 class CrystalSound(val sound: String, val volume: Float, val pitch: Float) {
     fun player(player: Player) {
         player.playSound(player.location, sound, volume, pitch)

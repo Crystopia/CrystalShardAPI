@@ -3,16 +3,31 @@ package net.crystopia.crystalshard.utils
 import net.crystopia.crystalshard.entities.CrystalPlayer
 import org.bukkit.NamespacedKey
 
+/**
+ * 
+ * Utility Methods to send and get cookies from a Player on a Minecraft Server.
+ *
+ */
 object Cookie {
 
 
+    /**
+     * 
+     * Store a Cookie in the Player with you plugin
+     *
+     */
     fun storeCookie(cookie: String, player: CrystalPlayer, key: NamespacedKey) {
         val cookieBytes = cookie.toByteArray(Charsets.UTF_8)
-        player.player.storeCookie(key, cookieBytes)
+        player.handle.storeCookie(key, cookieBytes)
     }
 
+    /**
+     *
+     * Get your custom Cookie from the Player
+     *
+     */
     fun getCookie(player: CrystalPlayer, key: NamespacedKey, callback: (String?) -> Unit) {
-        player.player.retrieveCookie(key).thenAccept { bytes ->
+        player.handle.retrieveCookie(key).thenAccept { bytes ->
             if (bytes == null) {
                 return@thenAccept
             }

@@ -3,6 +3,11 @@ package net.crystopia.crystalshard.api
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * 
+ * Interface for the Logger of CrystalShard to make your own one.
+ *
+ */
 interface Log {
 
     fun getTimestamp(): String {

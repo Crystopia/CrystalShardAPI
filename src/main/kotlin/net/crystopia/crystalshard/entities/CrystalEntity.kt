@@ -3,6 +3,12 @@ package net.crystopia.crystalshard.entities
 import org.bukkit.entity.Damageable
 import org.bukkit.entity.Entity
 
+
+/**
+ *
+ * Cleaner Entities from Minecraft with simpler Methods.
+ *
+ */
 open class CrystalEntity(
     private var handle: Entity
 ) {

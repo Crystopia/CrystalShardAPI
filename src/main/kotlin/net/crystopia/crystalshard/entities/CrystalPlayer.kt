@@ -4,16 +4,22 @@ import net.kyori.adventure.bossbar.BossBar
 import net.kyori.adventure.text.Component
 import org.bukkit.entity.Player
 
-class CrystalPlayer(val player: Player) {
+
+/**
+ *
+ * Extended Player from Bukkit to be more flexible.
+ *
+ */
+class CrystalPlayer(val handle: Player) {
     
     fun transfer(ip: String, port: Int, message: Component?) {
         if (message != null) {
-            player.sendMessage(message)
+            handle.sendMessage(message)
         }
-        player.transfer(ip, port)
+        handle.transfer(ip, port)
     }
 
     fun sendBossBar(text: Component, process: Float, color: BossBar.Color, overlay: BossBar.Overlay) {
-        player.showBossBar(BossBar.bossBar(text, process, color, overlay))
+        handle.showBossBar(BossBar.bossBar(text, process, color, overlay))
     }
 }

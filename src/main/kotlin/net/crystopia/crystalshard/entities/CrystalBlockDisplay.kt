@@ -1,10 +1,15 @@
 package net.crystopia.crystalshard.entities
 
-import net.kyori.adventure.text.Component
 import org.bukkit.block.BlockType
 import org.bukkit.entity.BlockDisplay
 import org.bukkit.entity.Display
 
+
+/**
+ *
+ * Better work with the Block Displays from Minecraft.
+ *
+ */
 class CrystalBlockDisplay(val handle: BlockDisplay) : CrystalEntity(handle = handle) {
 
     fun blockDisplay(block: CrystalBlockDisplay.() -> Unit = {}) {
