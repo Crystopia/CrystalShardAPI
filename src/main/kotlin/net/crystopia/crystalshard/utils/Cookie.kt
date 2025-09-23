@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.utils
 
-import net.crystopia.crystalshard.extension.CrystalPlayer
 import org.bukkit.NamespacedKey
+import org.bukkit.entity.Player
 
 /**
  * 
@@ -16,9 +16,9 @@ object Cookie {
      * Store a Cookie in the Player with you plugin
      *
      */
-    fun storeCookie(cookie: String, player: CrystalPlayer, key: NamespacedKey) {
+    fun storeCookie(cookie: String, player: Player, key: NamespacedKey) {
         val cookieBytes = cookie.toByteArray(Charsets.UTF_8)
-        player.handle.storeCookie(key, cookieBytes)
+        player.storeCookie(key, cookieBytes)
     }
 
     /**
@@ -26,8 +26,8 @@ object Cookie {
      * Get your custom Cookie from the Player
      *
      */
-    fun getCookie(player: CrystalPlayer, key: NamespacedKey, callback: (String?) -> Unit) {
-        player.handle.retrieveCookie(key).thenAccept { bytes ->
+    fun getCookie(player: Player, key: NamespacedKey, callback: (String?) -> Unit) {
+        player.retrieveCookie(key).thenAccept { bytes ->
             if (bytes == null) {
                 return@thenAccept
             }
