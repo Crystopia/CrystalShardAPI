@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.utils
 
-import net.crystopia.crystalshard.entities.CrystalPlayer
+import net.crystopia.crystalshard.extension.CrystalPlayer
 import org.bukkit.NamespacedKey
 
 /**

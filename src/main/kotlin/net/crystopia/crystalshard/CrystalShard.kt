@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard
 
-import net.crystopia.crystalshard.entities.CrystalEntity
-import net.crystopia.crystalshard.entities.CrystalPlayer
+import net.crystopia.crystalshard.extension.CrystalEntity
+import net.crystopia.crystalshard.extension.CrystalPlayer
 import net.crystopia.crystalshard.worlds.CrystalWorld
 import org.bukkit.Bukkit
 import java.util.*
