@@ -17,12 +17,21 @@ interface Log {
 
     val RESET: String
         get() = "\u001B[0m"
+
+    val GRAY: String
+        get() = "\\033[1;30m"
+
+    val WHITE: String
+        get() = "\\033[1;37m"
     
     val RED: String
         get() = "\u001B[31m"
     
     val GREEN: String
         get() = "\u001B[32m"
+
+    val LIGHTGREEN: String
+        get() = "\\033[1;32m"
 
     val YELLOW: String
          get() = "\u001B[33m"

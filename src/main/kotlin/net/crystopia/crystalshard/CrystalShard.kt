@@ -1,5 +1,8 @@
 package net.crystopia.crystalshard
 
+import net.crystopia.crystalshard.config.Config
+import java.io.File
+
 /**
  * CrystalShard API v.{version}
  * 
@@ -8,7 +11,20 @@ package net.crystopia.crystalshard
  * This is the main Class to interact with the API.
  * 
  */
+
+data class Test(
+    val test: String = "Test",
+)
+
 object CrystalShard {
 
+    fun test() {
+        val config = Config(File("plugin/test/ttt.json"), Test::class.java)
 
+        config.load
+
+        config.save()
+        config.reload()
+    }
+    
 }

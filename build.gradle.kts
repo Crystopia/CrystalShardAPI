@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.crystopia"
-version = "0.1.3"
+version = "0.1.4"
 
 repositories {
     mavenCentral()
@@ -20,7 +20,12 @@ dependencies {
     // Paper
     compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
 
-    implementation("org.ktorm:ktorm-core:4.1.1")
+    // Kotlin
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    // kaml
+    implementation("com.charleskorn.kaml:kaml:0.96.0")
 }
 
 kotlin {

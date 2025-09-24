@@ -9,7 +9,7 @@ import org.bukkit.persistence.PersistentDataType
 object CrystalEvents : Listener {
 
     val key: NamespacedKey
-        get() = NamespacedKey("crystalshard", "UUID")
+        get() = NamespacedKey("crystalshard", "uuid")
 
     var interactEvent = mutableMapOf<String, PlayerInteractEvent.() -> Unit>()
 
