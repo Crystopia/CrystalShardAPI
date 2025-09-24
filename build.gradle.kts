@@ -21,7 +21,6 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
 
     implementation("org.ktorm:ktorm-core:4.1.1")
-
 }
 
 kotlin {
