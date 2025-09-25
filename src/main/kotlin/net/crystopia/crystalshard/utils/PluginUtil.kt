@@ -1,6 +1,8 @@
 package net.crystopia.crystalshard.utils
 
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
+import java.io.File
 
 object PluginUtil {
 
@@ -28,6 +30,43 @@ object PluginUtil {
             return false
         }
     }
+
+    /**
+     *
+     * **WARNING** - Only use this if you have no other method to load a plugin.
+     *
+     */
+    fun loadPlugin(file: File) {
+        Log.info("Loading plugin ${file.name}...")
+        try {
+            Bukkit.getPluginManager().loadPlugin(file)
+        } catch (e: Exception) {
+            Log.error("Error white loading plugin! \n${e.stackTraceToString()}")
+        }
+        Log.info("Loaded plugin ${file.name}")
+    }
+
+    /**
+     *
+     * **WARNING** - Only use this if you have no other method to enable the plugin.
+     *
+     */
+    fun enablePlugin(name: String) {
+        Log.info("Loading plugin ${name}...")
+        try {
+            val plugin = Bukkit.getPluginManager().getPlugin(name)
+            if (plugin == null) {
+                Log.error("Could not enable plugin $name")
+            } else {
+                Bukkit.getPluginManager().enablePlugin(plugin)
+            }
+        } catch (e: Exception) {
+            Log.error("Error white loading plugin! \n${e.stackTraceToString()}")
+        }
+        Log.info("Loaded plugin $name")
+    }
+    
+    
 
     fun printPluginInfo(plugin: JavaPlugin) {
         val meta = plugin.pluginMeta

@@ -6,30 +6,18 @@ class Config(
     val file: File, val type: ConfigType? = ConfigType.JSON
 ) {
 
-    // TODO: Change data to a type.
-
-    var data: Any
-        get() = data
-        set(value) {
-            if (type == ConfigType.JSON) {
-                file.loadJSONConfig(value)
-            } else if (type == ConfigType.YAML) {
-                file.loadYAMLConfig(value)
-            }
-        }
-
     inline fun <reified T : Any> load(default: T): T {
         return when (type) {
             ConfigType.JSON -> {
-                data = file.loadJSONConfig(default)
+                file.loadJSONConfig(default)
             }
 
             ConfigType.YAML -> {
-                data = file.loadYAMLConfig(default)
+                file.loadYAMLConfig(default)
             }
 
             null -> throw Exception("Please define a ConfigType!")
-        } as T
+        }
     }
 
     inline fun <reified T : Any> save(default: T) {
@@ -47,13 +35,13 @@ class Config(
     }
 
     fun reload() {
-        data = when (type) {
+        return when (type) {
             ConfigType.JSON -> {
-                loadJSONFromFile(file)
+                load(loadJSONFromFile(file))
             }
 
             ConfigType.YAML -> {
-                loadYAMLFromFile(file)
+                load(loadYAMLFromFile(file))
             }
 
             null -> throw Exception("Please define a ConfigType!")

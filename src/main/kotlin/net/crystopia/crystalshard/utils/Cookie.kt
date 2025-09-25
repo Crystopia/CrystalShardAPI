@@ -16,7 +16,7 @@ object Cookie {
      * Store a Cookie in the Player with you plugin
      *
      */
-    fun storeCookie(cookie: String, player: Player, key: NamespacedKey) {
+    fun set(cookie: String, player: Player, key: NamespacedKey) {
         val cookieBytes = cookie.toByteArray(Charsets.UTF_8)
         player.storeCookie(key, cookieBytes)
     }
@@ -26,7 +26,7 @@ object Cookie {
      * Get your custom Cookie from the Player
      *
      */
-    fun getCookie(player: Player, key: NamespacedKey, callback: (String?) -> Unit) {
+    fun get(player: Player, key: NamespacedKey, callback: (String?) -> Unit) {
         player.retrieveCookie(key).thenAccept { bytes ->
             if (bytes == null) {
                 return@thenAccept

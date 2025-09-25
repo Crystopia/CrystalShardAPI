@@ -7,7 +7,7 @@ import org.ktorm.database.Database
  * Small Database Manager to create Database connections and use of ktorm.
  *
  */
-class DatabaseManager(
+class SQLDatabaseManager(
     url: String = "jdbc:mysql://localhost:3306/ktorm",
     username: String,
     password: String,

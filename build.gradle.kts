@@ -25,6 +25,7 @@ dependencies {
 
     // Database
     implementation("org.ktorm:ktorm-core:4.1.1")
+    implementation("eu.vendeli:rethis:0.3.2")
 
     // Kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
