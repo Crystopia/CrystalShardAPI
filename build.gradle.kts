@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.0.20-Beta1"
-    kotlin("plugin.serialization") version "2.1.0"
+    kotlin("jvm") version "2.2.20"
+    kotlin("plugin.serialization") version "2.2.20"
     id("maven-publish")
 }
 
@@ -9,6 +9,9 @@ version = "0.1.4"
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://repo.xyzhub.link/releases")
+    }
     maven {
         name = "papermc"
         url = uri("https://repo.papermc.io/repository/maven-public/")
@@ -19,6 +22,9 @@ repositories {
 dependencies {
     // Paper
     compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
+
+    // Database
+    implementation("org.ktorm:ktorm-core:4.1.1")
 
     // Kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")

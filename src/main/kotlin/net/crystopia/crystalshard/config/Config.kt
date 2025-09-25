@@ -1,51 +1,62 @@
-package net.crystopia.crystalshard.config
+﻿package net.crystopia.crystalshard.config
 
-import com.charleskorn.kaml.Yaml
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.SerializationStrategy
 import java.io.File
 
 class Config(
-    private val file: File,
-    private val dataClass: SerializationStrategy<Serializable>,
-    val type: ConfigType = ConfigType.JSON
+    val file: File, val type: ConfigType? = ConfigType.JSON
 ) {
 
-    /**
-     * JSON Functions to use .json Configs.
-     */
-    var loadJSON = file.loadConfig(dataClass)
+    // TODO: Change data to a type.
 
-    /**
-     * YAML Functions to use .yaml Configs.
-     */
-    var loadYAML = Yaml.default.parseToYamlNode(file.readText())
-    fun save() {
-        when (type) {
+    var data: Any
+        get() = data
+        set(value) {
+            if (type == ConfigType.JSON) {
+                file.loadJSONConfig(value)
+            } else if (type == ConfigType.YAML) {
+                file.loadYAMLConfig(value)
+            }
+        }
+
+    inline fun <reified T : Any> load(default: T): T {
+        return when (type) {
             ConfigType.JSON -> {
-                file.writeText(json.encodeToString(loadJSON))
+                data = file.loadJSONConfig(default)
             }
 
             ConfigType.YAML -> {
-                file.writeText(
-                    Yaml.default.encodeToString(
-                        dataClass,
-                        Yaml.default.decodeFromYamlNode(loadYAML)
-                    )
-                )
+                data = file.loadYAMLConfig(default)
             }
+
+            null -> throw Exception("Please define a ConfigType!")
+        } as T
+    }
+
+    inline fun <reified T : Any> save(default: T) {
+        when (type) {
+            ConfigType.JSON -> {
+                file.saveJSONConfig(default)
+            }
+
+            ConfigType.YAML -> {
+                file.saveYAMLConfig(default)
+            }
+
+            null -> throw Exception("Please define a ConfigType!")
         }
     }
 
     fun reload() {
-        when (type) {
+        data = when (type) {
             ConfigType.JSON -> {
-                loadJSON = loadFromFile(file)
+                loadJSONFromFile(file)
             }
 
             ConfigType.YAML -> {
-                loadYAML = Yaml.default.parseToYamlNode(file.readText())
+                loadYAMLFromFile(file)
             }
+
+            null -> throw Exception("Please define a ConfigType!")
         }
     }
 }
