@@ -46,8 +46,14 @@ tasks.create<Copy>("repleaceData") {
 }
 
 
-tasks.build {
+tasks {
+    build {
 
+    }
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
 }
 
 publishing {
