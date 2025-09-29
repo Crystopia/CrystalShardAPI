@@ -10,7 +10,7 @@ data class Test(
 )
 
 /**
- * CrystalShard API v.{version}
+ * CrystalShard API
  *
  * Welcome to CrystalShard! Currently, the API is in beta.
  * We will add more Features in the future to make many things easy.
