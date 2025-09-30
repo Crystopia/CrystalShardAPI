@@ -55,14 +55,13 @@ object RedisDatabaseManager {
     }
 
     suspend fun transaction(block: ReThis.() -> Unit = {}): List<RType>? {
-
         return client.transaction {
-            block()
+            block(this)
         }
     }
 
     suspend fun pipeline(block: ReThis.() -> Unit = {}): List<RType> {
-        return client.pipeline { block() }
+        return client.pipeline { block(this) }
     }
 
     suspend fun subscribe(

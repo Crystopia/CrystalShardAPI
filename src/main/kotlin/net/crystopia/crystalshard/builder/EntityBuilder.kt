@@ -9,7 +9,6 @@ import org.bukkit.Location
 import org.bukkit.World
 import org.bukkit.craftbukkit.CraftServer
 import org.bukkit.craftbukkit.CraftWorld
-import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 import java.util.*
 
@@ -25,16 +24,17 @@ object EntityBuilder {
         return entity as T
     }
 
-    inline fun <reified T : Entity> spawnNpc(
-        world: World,
-        location: Location,
-        type: EntityType,
-    ) {
+    fun spawnNpc(
+        world: World, callback: ServerPlayer.() -> Unit = {}
+    ): ServerPlayer {
         var npc: ServerPlayer? = null
         val minecraftServer: MinecraftServer = (Bukkit.getServer() as CraftServer).server
-        val gameProfile = GameProfile(UUID.randomUUID(), UUID.randomUUID().toString())
+        val gameProfile = GameProfile(UUID.randomUUID(), UUID.randomUUID().toString().split("-")[0])
         npc =
             ServerPlayer(minecraftServer, (world as CraftWorld).handle, GameProfile(UUID.randomUUID(), ""), ClientInformation.createDefault())
         npc.gameProfile = gameProfile
+
+        callback(npc)
+        return npc
     }
 }

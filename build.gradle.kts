@@ -2,12 +2,12 @@ plugins {
     kotlin("jvm") version "2.2.20"
     kotlin("plugin.serialization") version "2.2.20"
     id("com.gradleup.shadow") version "8.3.+"
-    id("io.papermc.paperweight.userdev") version "1.7.3"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
     id("maven-publish")
 }
 
 group = "net.crystopia"
-version = "0.2.4"
+version = "0.2.8"
 
 repositories {
     mavenCentral()
@@ -23,8 +23,8 @@ repositories {
 
 dependencies {
     // Paper
-    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
-    compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.8-R0.1-SNAPSHOT")
+    // compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
 
     // AuthLib
     implementation("com.mojang:authlib:3.13.56")
@@ -59,6 +59,7 @@ tasks {
         }
 
         relocate("com.charleskorn.kaml", "net.crystopia.libs.kaml")
+        relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
         relocate("org.ktorm.ktorm-core", "net.crystopia.libs.ktorm")
         relocate("eu.vendeli.rethis", "net.crystopia.libs.rethis")
         relocate("gg.flyte.twilight", "net.crystopia.libs.twilight")
