@@ -30,7 +30,7 @@ object EntityBuilder {
         var npc: ServerPlayer? = null
         val minecraftServer: MinecraftServer = (Bukkit.getServer() as CraftServer).server
         val gameProfile = GameProfile(UUID.randomUUID(), UUID.randomUUID().toString().split("-")[0])
-        npc =
+        npc = 
             ServerPlayer(minecraftServer, (world as CraftWorld).handle, GameProfile(UUID.randomUUID(), ""), ClientInformation.createDefault())
         npc.gameProfile = gameProfile
 
