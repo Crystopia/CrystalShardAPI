@@ -18,15 +18,15 @@ object Log : Log {
     }
 
     override fun warn(message: String) {
-        println("${YELLOW}[Log] $message$RESET")
+        println("${YELLOW}[WARN] $message$RESET")
     }
 
     override fun error(message: String) {
-        println("${RED}[Log] $message$RESET")
+        println("${RED}[ERROR] $message$RESET")
     }
 
     override fun info(message: String) {
-        println("${BLUE}[Log] $message$RESET")
+        println("${BLUE}[INFO] $message$RESET")
     }
 
     override fun log(message: String) {
@@ -34,6 +34,6 @@ object Log : Log {
     }
 
     override fun debug(message: String) {
-        println("${MAGENTA}[Log] $message$RESET")
+        println("${MAGENTA}[DEBUG] $message$RESET")
     }
 }
