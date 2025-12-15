@@ -7,4 +7,4 @@ pluginManagement {
 
 include("crystalshard-test")
 
-rootProject.name = "CrystalShardAPI"
+rootProject.name = "CrystalShardAPITest"

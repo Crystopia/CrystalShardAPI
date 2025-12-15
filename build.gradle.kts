@@ -1,13 +1,13 @@
 plugins {
-    kotlin("jvm") version "2.2.20"
-    kotlin("plugin.serialization") version "2.2.20"
-    id("com.gradleup.shadow") version "8.3.+"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.18"
+    kotlin("jvm") version "2.+"
+    kotlin("plugin.serialization") version "2.+"
+    id("com.gradleup.shadow") version "9.+"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.19"
     id("maven-publish")
 }
 
 group = "net.crystopia"
-version = "0.2.8"
+version = "0.2.9"
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     // Paper
-    paperweight.paperDevBundle("1.21.8-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
     // compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
 
     // AuthLib
@@ -40,8 +40,16 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+    // ENV
+    implementation("io.github.cdimascio:dotenv-kotlin:6.5.1")
+    
     // kaml
     implementation("com.charleskorn.kaml:kaml:0.96.0")
+
+    // Command API
+    compileOnly("dev.jorel:commandapi-paper-core:11.0.0")
+    implementation("dev.jorel:commandapi-paper-shade:11.0.0")
+    implementation("dev.jorel:commandapi-kotlin-paper:11.0.0")
 }
 
 kotlin {
@@ -58,11 +66,16 @@ tasks {
             attributes["paperweight-mappings-namespace"] = "mojang"
         }
 
+        relocate("org.jetbrains.kotlinx.kotlinx-serialization-json", "net.crystopia.libs.kotlinx")
         relocate("com.charleskorn.kaml", "net.crystopia.libs.kaml")
         relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
         relocate("org.ktorm.ktorm-core", "net.crystopia.libs.ktorm")
         relocate("eu.vendeli.rethis", "net.crystopia.libs.rethis")
+        relocate("dev.jorel.commandapi-paper-core", "net.crystopia.libs.commandapi-paper-core")
+        relocate("dev.jorel.commandapi-paper-shade", "net.crystopia.libs.commandapi-paper-shade")
+        relocate("dev.jorel.commandapi-kotlin-paper", "net.crystopia.libs.commandapi-kotlin-paper")
         relocate("gg.flyte.twilight", "net.crystopia.libs.twilight")
+        relocate("io.github.cdimascio.dotenv-kotlin", "net.crystopia.libs.dotenv")
     }
     build {
     }

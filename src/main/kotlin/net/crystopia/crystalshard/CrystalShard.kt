@@ -1,13 +1,6 @@
 package net.crystopia.crystalshard
 
-import kotlinx.serialization.Serializable
-import net.crystopia.crystalshard.database.RedisDatabaseManager
-
-
-@Serializable
-data class Test(
-    val test: String = "Test",
-)
+import org.bukkit.plugin.java.JavaPlugin
 
 /**
  * CrystalShard API
@@ -19,6 +12,13 @@ data class Test(
  */
 
 object CrystalShard {
-    
 
+    lateinit var plugin: JavaPlugin
+
+    /**
+     * Init Function to set up CrystalShard easily...
+     */
+    fun init(plugin: JavaPlugin) {
+        this.plugin = plugin
+    }
 }
