@@ -10,30 +10,30 @@ import org.bukkit.Bukkit
  *
  */
 
-object NMSManager {
+@Suppress("UNCHECKED_CAST")
+class EasyNMSManager<T : Any> : INMSManager<T> {
 
-    val mcVersion: String
+    override val mcVersion: String
         get() = Bukkit.getServer().minecraftVersion
 
-    val classVersion: String
+    override val classVersion: String
         get() = Bukkit.getServer().minecraftVersion.replace(".", "_")
 
-    var handler: NMSHandler? = null
+    override lateinit var handler: T
 
-    fun setup(classPattern: String) {
+    override fun setup(classPattern: String) {
         try {
             handler = Class.forName(classPattern.replace("{version}", classVersion))
-                .getConstructor().newInstance() as NMSHandler
+                .getConstructor().newInstance() as T
             Log.info("Loaded NMS for Minecraft Version ${mcVersion}.")
             Log.info("CrystalShard Loaded your NMS Handler!")
-            return
         } catch (e: Exception) {
             Log.error("Cant setup NMS for your Plugin")
         }
     }
 
 
-    fun software(): SoftwareType {
+    override fun software(): SoftwareType {
         return when {
             isClass("com.destroystokyo.paper.PaperConfig") ||
                     isClass("io.papermc.paper.configuration.Configuration") -> SoftwareType.PAPER
@@ -48,7 +48,7 @@ object NMSManager {
         }
     }
 
-    private fun isClass(className: String): Boolean {
+    override fun isClass(className: String): Boolean {
         return try {
             Class.forName(className)
             true

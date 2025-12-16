@@ -11,7 +11,6 @@ import org.bukkit.entity.Display
  *
  */
 
-
 fun BlockDisplay.setBlock(blockType: BlockType) {
     val block = blockType.createBlockData()
     this.block = block

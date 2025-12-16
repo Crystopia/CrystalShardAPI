@@ -25,11 +25,13 @@ object EntityBuilder {
     }
 
     fun spawnNpc(
-        world: World, callback: ServerPlayer.() -> Unit = {}
+        world: World,
+        name: String?,
+        callback: ServerPlayer.() -> Unit = {}
     ): ServerPlayer {
         var npc: ServerPlayer? = null
         val minecraftServer: MinecraftServer = (Bukkit.getServer() as CraftServer).server
-        val gameProfile = GameProfile(UUID.randomUUID(), UUID.randomUUID().toString().split("-")[0])
+        val gameProfile = GameProfile(UUID.randomUUID(), name ?: UUID.randomUUID().toString().split("-")[0])
         npc = 
             ServerPlayer(minecraftServer, (world as CraftWorld).handle, GameProfile(UUID.randomUUID(), ""), ClientInformation.createDefault())
         npc.gameProfile = gameProfile

@@ -2,6 +2,7 @@ package net.crystopia.crystalshard.extra.npc
 
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
+import com.mojang.datafixers.util.Pair
 import net.crystopia.crystalshard.CrystalShard
 import net.crystopia.crystalshard.builder.EntityBuilder
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
@@ -13,39 +14,25 @@ import net.minecraft.world.phys.Vec3
 import org.bukkit.Material
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.craftbukkit.inventory.CraftItemStack
-import org.bukkit.entity.EntityType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import org.bukkit.event.player.PlayerInteractAtEntityEvent
-import org.bukkit.event.player.PlayerInteractEntityEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import java.util.*
 
-object NPCEvent : Listener {
+object NpcEvents : Listener {
 
     @EventHandler
-    fun onPlayerInteractEntityEvent(event: PlayerInteractEntityEvent) {
-        if (event.rightClicked.type == EntityType.PLAYER) {
-            event.player.sendMessage("sdf ds")
-        }
-    }
-
-    @EventHandler
-    fun onPlayerInteractAtEntityEvent(event: PlayerInteractAtEntityEvent) {
-        if (event.rightClicked.type == EntityType.PLAYER) {
-            event.player.sendMessage("sdf ds")
-        }
-    }
-
-    @EventHandler
-    fun onPlayerJoin(event: PlayerJoinEvent) {
-        EntityBuilder.spawnNpc(CrystalShard.plugin.server.worlds.first()) {
+    fun addNPCsOnJoin(event: PlayerJoinEvent) {
+        EntityBuilder.spawnNpc(
+            CrystalShard.plugin.server.worlds.first(),
+            name = "I'm a NPC"
+        ) {
             setRot(0.0F, 0.0F)
             setYHeadRot(0.0F)
             xRot = 0.0F
             yRot = 0.0F
             setPos(0.0, 0.0, 0.0)
-
+            
             val actions = EnumSet.noneOf(ClientboundPlayerInfoUpdatePacket.Action::class.java)
             actions.add(ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER)
             actions.add(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_DISPLAY_NAME)
@@ -64,7 +51,10 @@ object NPCEvent : Listener {
 
             gameProfile = updatedGameProfile
 
-            val playerInfoPacket = ClientboundPlayerInfoUpdatePacket(actions, NPCBuilder.getEntry(this, updatedGameProfile))
+            val playerInfoPacket = ClientboundPlayerInfoUpdatePacket(
+                actions,
+                NpcPackets.getPlayerInfoUpdatePacketEntry(this, updatedGameProfile)
+            )
             CrystalShard.plugin.server.onlinePlayers.forEach { player ->
                 val serverPlayer = (player as CraftPlayer).handle
                 serverPlayer.connection.send(playerInfoPacket)
@@ -80,10 +70,10 @@ object NPCEvent : Listener {
                 serverPlayer.connection.send(addEntityPacket)
             }
 
-            val equipmentList: MutableList<com.mojang.datafixers.util.Pair<EquipmentSlot?, ItemStack?>?> =
-                ArrayList<com.mojang.datafixers.util.Pair<EquipmentSlot?, ItemStack?>?>()
+            val equipmentList: MutableList<Pair<EquipmentSlot?, ItemStack?>?> =
+                ArrayList<Pair<EquipmentSlot?, ItemStack?>?>()
             equipmentList.add(
-                com.mojang.datafixers.util.Pair(
+                Pair(
                     EquipmentSlot.MAINHAND, CraftItemStack.asNMSCopy(
                         org.bukkit.inventory.ItemStack(Material.STONE_SHOVEL)
                     )
@@ -99,7 +89,7 @@ object NPCEvent : Listener {
                 serverPlayer.connection.send(setEquipmentPacket)
             }
 
-            NPCBuilder.inject(event.player)
+            NPCUtil.injectToPLayer(event.player)
         }
     }
 
