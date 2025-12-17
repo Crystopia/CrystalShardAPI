@@ -5,9 +5,6 @@ package net.crystopia.crystalshard.extra.npc.config
 
 import com.google.common.collect.HashMultimap
 import net.crystopia.crystalshard.extra.npc.INpc
-import net.crystopia.crystalshard.extra.npc.config.NpcVisibility.ManualNpcVisibility.addDistantViewer
-import net.crystopia.crystalshard.extra.npc.config.NpcVisibility.ManualNpcVisibility.remove
-import net.crystopia.crystalshard.extra.npc.config.NpcVisibility.ManualNpcVisibility.removeDistantViewer
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import java.util.*
@@ -25,7 +22,7 @@ enum class NpcVisibility(private val predicate: VisibilityPredicate) {
     PERMISSION_REQUIRED(
         VisibilityPredicate { player: Player?, npc: INpc? ->
             player!!.hasPermission(
-                npc!!.permission
+                npc!!.permission ?: ""
             )
         }
     ),
