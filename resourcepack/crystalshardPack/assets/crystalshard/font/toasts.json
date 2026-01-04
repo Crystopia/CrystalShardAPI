@@ -1,0 +1,60 @@
+{
+  "providers": [
+    {
+      "type": "reference",
+      "id": "minecraft:default"
+    },
+    {
+      "type": "space",
+      "advances": {
+        "\uF101": -1,
+        "\uF102": -2,
+        "\uF103": -3,
+        "\uF104": -4,
+        "\uF105": -5,
+        "\uF106": -6,
+        "\uF107": -7,
+        "\uF108": -8,
+        "\uF109": -9,
+        "\uF111": 1,
+        "\uF112": 2,
+        "\uF113": 3
+      }
+    },
+    {
+      "type": "bitmap",
+      "file": "crystalshard:toasts/advancement.png",
+      "ascent": 20,
+      "height": 32,
+      "chars": ["\uF001"]
+    },
+    {
+      "type": "bitmap",
+      "file": "crystalshard:toasts/background.png",
+      "ascent": 20,
+      "height": 32,
+      "chars": ["\uF002"]
+    },
+    {
+      "type": "bitmap",
+      "file": "crystalshard:toasts/recipe.png",
+      "ascent": 20,
+      "height": 32,
+      "chars": ["\uF003"]
+    },
+    {
+      "type": "bitmap",
+      "file": "crystalshard:toasts/system.png",
+      "ascent": 20,
+      "height": 32,
+      "chars": ["\uF004"]
+    },
+    {
+      "type": "bitmap",
+      "file": "crystalshard:toasts/tutorial.png",
+      "ascent": 20,
+      "height": 32,
+      "chars": ["\uF005"]
+    }
+  ]
+}

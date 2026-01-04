@@ -16,6 +16,11 @@ dependencies {
 
     // Twilight
     implementation("gg.flyte:twilight:1.1.22")
+
+    // Command API
+    compileOnly("dev.jorel:commandapi-paper-core:11.0.0")
+    implementation("dev.jorel:commandapi-paper-shade:11.0.0")
+    implementation("dev.jorel:commandapi-kotlin-paper:11.0.0")
     
     // Crystalshard
     implementation(project(":"))

@@ -11,6 +11,7 @@ import net.crystopia.crystalshard.extras.factories.EntityFactory
 import net.crystopia.crystalshard.extras.factories.PacketFactory
 import net.crystopia.crystalshard.extras.resourcepacks.TextHeads
 import net.crystopia.crystalshard.extras.resourcepacks.toGuiRow
+import net.crystopia.crystalshard.extras.toasts.toast
 import net.crystopia.crystalshardtest.Main
 import net.kyori.adventure.nbt.api.BinaryTagHolder
 import net.kyori.adventure.text.Component
@@ -90,8 +91,6 @@ object PlayerJoin : Listener {
     @EventHandler
     fun addNPCsOnJoin(event: PlayerJoinEvent) {
         
-        Bukkit.getUnsafe().loadAdvancement(NamespacedKey("crystalshardtest", "join"), """""")
-        
         val head = TextHeads.generateHead(
             UUID.fromString("f6f3a530-6c39-4098-96a0-6bdf4f3afc70"), true
         )
@@ -102,6 +101,11 @@ object PlayerJoin : Listener {
 
         // event.player.sendMessage(message)
 
+
+        // event.player.sendMessage(
+        //   MINI_MESSAGE.deserialize("\uF001 \uF002 \uF003 \uF004 \uF005").font(Key.key("crystalshard:toasts"))
+        // )
+        
         val values: MutableMap<net.kyori.adventure.key.Key, DataComponentValue> = mutableMapOf()
 
         values[net.kyori.adventure.key.Key.key("minecraft:custom_name")] = BinaryTagHolder.binaryTagHolder("Cool")
@@ -113,8 +117,8 @@ object PlayerJoin : Listener {
             }.build()
         )
 
-        event.player.openInventory(basicGui(3))
-
+        // event.player.openInventory(basicGui(3))
+        // event.player.toast("Cool")
 
         EntityFactory.createDisPlayEntity<PTextDisplay>(
             NamespacedKey("sdfds", "dfgdf"),

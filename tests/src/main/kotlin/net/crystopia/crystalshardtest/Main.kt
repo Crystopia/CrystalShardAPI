@@ -1,5 +1,7 @@
 package net.crystopia.crystalshardtest
 
+import dev.jorel.commandapi.CommandAPI
+import dev.jorel.commandapi.CommandAPIPaperConfig
 import gg.flyte.twilight.twilight
 import net.crystopia.crystalshard.common.CrystalShard
 import net.crystopia.crystalshard.common.custom.CrystalEvents
@@ -17,15 +19,16 @@ class Main: JavaPlugin() {
     }
     
     override fun onLoad() {
-
+        CommandAPI.onLoad(CommandAPIPaperConfig(this).silentLogs(true))
         CrystalShard.init(this)
         
     }
     
     override fun onEnable() {
-
+        CommandAPI.onEnable();
         val twilight = twilight(this)
-        
+
+        TestyCommand
         server.pluginManager.registerEvents(PlayerJoin, this)
         server.pluginManager.registerEvents(CrystalEvents, this)
 

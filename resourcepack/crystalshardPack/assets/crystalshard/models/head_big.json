@@ -1,0 +1,15 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "builtin/entity",
+	"textures": {
+		"particle": "block/soul_sand"
+	},
+	"display": {
+		"gui": {
+			"rotation": [25, 45, 0],
+			"translation": [0, 22, 0],
+			"scale": [3.5, 3.5, 3.5]
+		}
+	}
+}
