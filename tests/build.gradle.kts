@@ -17,6 +17,10 @@ dependencies {
     // Twilight
     implementation("gg.flyte:twilight:1.1.22")
 
+    // Kotlin
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
     // Command API
     compileOnly("dev.jorel:commandapi-paper-core:11.0.0")
     implementation("dev.jorel:commandapi-paper-shade:11.0.0")

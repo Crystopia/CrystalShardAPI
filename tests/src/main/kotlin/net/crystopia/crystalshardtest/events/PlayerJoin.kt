@@ -11,7 +11,6 @@ import net.crystopia.crystalshard.extras.factories.EntityFactory
 import net.crystopia.crystalshard.extras.factories.PacketFactory
 import net.crystopia.crystalshard.extras.resourcepacks.TextHeads
 import net.crystopia.crystalshard.extras.resourcepacks.toGuiRow
-import net.crystopia.crystalshard.extras.toasts.toast
 import net.crystopia.crystalshardtest.Main
 import net.kyori.adventure.nbt.api.BinaryTagHolder
 import net.kyori.adventure.text.Component
@@ -86,7 +85,6 @@ object PlayerJoin : Listener {
     fun reopenInv(player: Player) {
         player.openInventory(basicGui(currentPage))
     }
-    
     
     @EventHandler
     fun addNPCsOnJoin(event: PlayerJoinEvent) {

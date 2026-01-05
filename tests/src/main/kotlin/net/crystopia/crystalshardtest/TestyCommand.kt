@@ -11,7 +11,7 @@ object TestyCommand {
     val command = commandTree("crystal", "crystalshard") {
         literalArgument("toast") {
             playerExecutor { player, arguments ->
-                player.toast("Joining minigame...", Toast.ToastTypes.TUTORIAL)
+                player.toast("Joining minigame...", Toast.ToastTypes.ADVANCEMENT)
             }
         }
     }
