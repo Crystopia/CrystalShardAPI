@@ -1,9 +1,11 @@
 ﻿package net.crystopia.crystalshard.common.custom
 
+import com.destroystokyo.paper.event.player.PlayerAdvancementCriterionGrantEvent
 import org.bukkit.NamespacedKey
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.CraftItemEvent
+import org.bukkit.event.player.PlayerAdvancementDoneEvent
 import org.bukkit.event.player.PlayerInteractAtEntityEvent
 import org.bukkit.event.player.PlayerInteractEntityEvent
 import org.bukkit.event.player.PlayerInteractEvent
@@ -23,8 +25,20 @@ object CrystalEvents : Listener {
 
     var interactEvent = mutableMapOf<String, PlayerInteractEvent.() -> Unit>()
     var craftItemEvent = mutableMapOf<String, CraftItemEvent.() -> Unit>()
-
     var displayEvents = mutableMapOf<String, PlayerInteractEntityEvent.() -> Unit>()
+    var advancementCriterionGrantEvent = mutableMapOf<NamespacedKey, PlayerAdvancementCriterionGrantEvent.() -> Unit>()
+    var playerAdvancementDoneEvent = mutableMapOf<NamespacedKey, PlayerAdvancementDoneEvent.() -> Unit>()
+
+
+    @EventHandler
+    fun onPlayerAdvancementDoneEvent(event: PlayerAdvancementDoneEvent) {
+        playerAdvancementDoneEvent[event.advancement.key]!!.invoke(event)
+    }
+
+    @EventHandler
+    fun onPlayerAdvancementCriterionGrantEvent(event: PlayerAdvancementCriterionGrantEvent) {
+        advancementCriterionGrantEvent[event.advancement.key]!!.invoke(event)
+    }
 
     @EventHandler
     fun onInteractDisplay(event: PlayerInteractAtEntityEvent) {

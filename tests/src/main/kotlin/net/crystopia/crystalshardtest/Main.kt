@@ -3,11 +3,11 @@ package net.crystopia.crystalshardtest
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIPaperConfig
 import gg.flyte.twilight.twilight
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
 import net.crystopia.crystalshard.common.CrystalShard
 import net.crystopia.crystalshard.common.custom.CrystalEvents
+import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.extras.advancements.Advancement
 import net.crystopia.crystalshard.extras.advancements.models.AdvancementModel
 import net.crystopia.crystalshard.extras.advancements.models.criteria.AdvancementCriteria
@@ -40,6 +40,8 @@ class Main: JavaPlugin() {
         CrystalShard.init(this)
         
     }
+
+    lateinit var adv: Advancement
     
     override fun onEnable() {
         CommandAPI.onEnable();
@@ -64,34 +66,7 @@ class Main: JavaPlugin() {
             ),
             trigger = CriteriaTrigger.PLAYER_KILLED_ENTITY.type,
         )
-
-        println(
-            Json.encodeToString(
-                AdvancementModel(
-                    display = AdvancementDisplay(
-                        icon = AdvancementDisplayIcon(
-                            id = Material.COMPASS.key.toString(),
-                            count = 1,
-                            // component = JSONComponentSerializer.builder().build().serialize(Component.text("Cool"))
-                        ),
-                        title = JSONComponentSerializer.builder().build().serialize(Component.text("Cool")),
-                        description = JSONComponentSerializer.builder().build().serialize(Component.text("Cool")),
-                        frame = io.papermc.paper.advancement.AdvancementDisplay.Frame.TASK,
-                        show_toast = true,
-                        announce_to_chat = true,
-                        hidden = true
-                    ),
-                    criteria = list,
-                    requirements = mutableListOf(mutableListOf("test")),
-                    rewards = AdvancementRewards(
-                        experience = 500,
-                    ),
-                    sends_telemetry_event = true,
-                )
-            )
-        )
-
-        Advancement(
+        adv = Advancement(
             NamespacedKey(
                 "crystalshard", "testy",
             ),
@@ -105,8 +80,8 @@ class Main: JavaPlugin() {
                     title = JSONComponentSerializer.builder().build().serialize(Component.text("Cool")),
                     description = JSONComponentSerializer.builder().build().serialize(Component.text("Cool")),
                     frame = io.papermc.paper.advancement.AdvancementDisplay.Frame.TASK,
-                    show_toast = true,
-                    announce_to_chat = true,
+                    show_toast = false,
+                    announce_to_chat = false,
                     hidden = true
                 ),
                 criteria = list,
@@ -116,7 +91,13 @@ class Main: JavaPlugin() {
                 ),
                 sends_telemetry_event = true,
             )
-        ).load()
+        ).doneEvent {
+            player.sendMessage(
+                Component.text().text("Cool du bist fertig mit ").append(this.advancement.display!!.title())
+            )
+        }.criterionGrantEvent {
+            println("Only Cool... $criterion")
+        }
 
         /*
                 val entity = Bukkit.getWorld("world")!!.spawnEntity(

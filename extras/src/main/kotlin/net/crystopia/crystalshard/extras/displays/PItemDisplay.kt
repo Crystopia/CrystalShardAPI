@@ -19,15 +19,4 @@ class PItemDisplay(
 ) : IDisplay, DisplayInteraction(entity) {
     var data = CustomItemDisplayData()
     lateinit var item: ItemStack
-
-    fun onInteract(
-        key: NamespacedKey,
-        plugin: JavaPlugin,
-        player: Player,
-        callback: (clickType: ClickActionType, msg: ServerboundInteractPacket) -> Unit
-    ) {
-        ServerboundInteractPacketUtil.attach("${key.namespace}:${key.key}", plugin, player) { clickType, msg ->
-            callback(clickType, msg)
-        }
-    }
 }

@@ -83,7 +83,9 @@ open class DisplayInteraction(open var entity: Display) {
         }
 
         ServerboundInteractPacketUtil.attach("${key.namespace}:${key.key}", plugin, player) { clickType, msg ->
-            callback(clickType, msg)
+            if (msg.entityId == interaction.id) {
+                callback(clickType, msg)
+            }
         }
     }
 }

@@ -53,6 +53,8 @@ object ServerboundInteractPacketUtil {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundInteractPacket, out: MutableList<Any>
                 ) {
+                    out.add(msg)
+
                     plugin.server.scheduler.runTaskLater(
                         plugin,
                         Runnable {

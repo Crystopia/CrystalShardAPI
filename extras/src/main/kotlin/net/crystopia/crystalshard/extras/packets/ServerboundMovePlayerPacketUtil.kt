@@ -31,6 +31,8 @@ object ServerboundMovePlayerPacketUtil {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundMovePlayerPacket, out: MutableList<Any>
                 ) {
+                    out.add(msg)
+
                     plugin.server.scheduler.runTaskLater(
                         plugin, Runnable {
                             callback(msg)

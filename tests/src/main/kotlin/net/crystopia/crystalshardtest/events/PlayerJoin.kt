@@ -1,7 +1,13 @@
 package net.crystopia.crystalshardtest.events
 
+import com.google.common.collect.ImmutableList
+import com.google.common.collect.ImmutableMultimap
+import com.mojang.authlib.GameProfile
+import com.mojang.authlib.properties.Property
+import com.mojang.authlib.properties.PropertyMap
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
+import net.crystopia.crystalshard.common.CrystalShard
 import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
 import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
@@ -9,8 +15,11 @@ import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.extras.displays.PTextDisplay
 import net.crystopia.crystalshard.extras.factories.EntityFactory
 import net.crystopia.crystalshard.extras.factories.PacketFactory
+import net.crystopia.crystalshard.extras.npc.Npc
+import net.crystopia.crystalshard.extras.packets.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.extras.resourcepacks.TextHeads
 import net.crystopia.crystalshard.extras.resourcepacks.toGuiRow
+import net.crystopia.crystalshard.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshardtest.Main
 import net.kyori.adventure.nbt.api.BinaryTagHolder
 import net.kyori.adventure.text.Component
@@ -24,10 +33,12 @@ import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.world.entity.Display
 import net.minecraft.world.entity.EntityType
+import net.minecraft.world.phys.Vec3
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -88,7 +99,11 @@ object PlayerJoin : Listener {
     
     @EventHandler
     fun addNPCsOnJoin(event: PlayerJoinEvent) {
-        
+
+        Main.instance.adv.complete(event.player) {
+
+        }
+
         val head = TextHeads.generateHead(
             UUID.fromString("f6f3a530-6c39-4098-96a0-6bdf4f3afc70"), true
         )
@@ -179,111 +194,111 @@ object PlayerJoin : Listener {
 
         }
 
-        /*
-                EntityFactory.createNpc<Npc>(
+
+        EntityFactory.createNpc<Npc>(
                     Location(CrystalShard.plugin.server.worlds.first(), 0.0, 0.0, 0.0),
                     NamespacedKey("test", "test"),
                     "I'm a NPC"
                 ) {
-        
-                    val actions = EnumSet.noneOf(InfoUpdateAction::class.java)
-                    actions.add(InfoUpdateAction.ADD_PLAYER)
-                    actions.add(InfoUpdateAction.UPDATE_DISPLAY_NAME)
-                    actions.add(InfoUpdateAction.UPDATE_LISTED)
-        
-        
-                    val value: String =
-                        "ewogICJ0aW1lc3RhbXAiIDogMTc0MjA2NTk1NzMxOCwKICAicHJvZmlsZUlkIiA6ICIzYjBmNTM5MmRlNzM0YmZjYmJkOTMxYzMxYmFkODMxMCIsCiAgInByb2ZpbGVOYW1lIiA6ICJjYXRhbmRCIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzIxNjNhNjNiMDliNTE4MzY4YmU0ZDhlYTA5ODg0NTM4ZGUxNTRlYjU0Y2ZlYjA4ZjA5NmE2Y2Y0NDdjZWZkMzUiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ=="
-                    val signature: String =
-                        "ElfmMCz1IPrR4+PdwXRk0AbV5CO3/jrSU4ciTq8DdrYgQW1KMM3OVYyz8dig6P4dWaCaQpOUMMEdyNuqaTKCqO4Jjznk95DTziOlCU0aPVjRCdWElE0oU3xP3nGYIWw/O/jUPD1z+0bkFE0l4gwEL+QBKYjV/tOTNZAWuNuOSRc/lnrpxFPmpVCypq5Mk/e34ZAcQFZPn+MjTrLyBTJfl7A6PrKEKg5zXBIRGOYZ8qCfJtLZOzJPmKF9gtTUmFM7WzmrJTD8+dD66JEbeoSIMOdw0AC8EMm9HL2Ahmd8/1NqtT9WlHvQGb8ItL/JtuygusnA+o5bVnzXLK4i+DXy5dojlJOMNKJJg8AULhrBQNH2ZUGIvJ9mR8re6HFOVqiRtJfXoVYhzJR0PFekb9JgCH0ZKBewPtYjHhviSscxd735c0BeVVli0AqB0POcMkGkEefYTFcVMxKSC2epKbwTqn5vvxF5j18cYBgyUzxIMF1QNH06CAH4Hj60LUbBfcJdtq2A43xmrXRNb8Hp/+9t4tXtyoUWnFfDSjS4vem6JRZ5qaMHzxfeD4e0ejqG7D7zscDEA5+SYTqOazLJPjfbucTVkeyH1Ec6kUHJmoOcf7lmryCHVilZQVLyWEpV0a7aPf9AOzB/tjJSKYzpovWlybF9X3MDNOUPKaGoSyYTj6I="
-        
-                    val properties = PropertyMap(
-                        ImmutableMultimap.Builder<String, Property>().put(
-                            "textures", Property(
-                                "textures", value, signature
-                            )
-                        ).build()
+
+            val actions = EnumSet.noneOf(InfoUpdateAction::class.java)
+            actions.add(InfoUpdateAction.ADD_PLAYER)
+            actions.add(InfoUpdateAction.UPDATE_DISPLAY_NAME)
+            actions.add(InfoUpdateAction.UPDATE_LISTED)
+
+
+            val value: String =
+                "ewogICJ0aW1lc3RhbXAiIDogMTc0MjA2NTk1NzMxOCwKICAicHJvZmlsZUlkIiA6ICIzYjBmNTM5MmRlNzM0YmZjYmJkOTMxYzMxYmFkODMxMCIsCiAgInByb2ZpbGVOYW1lIiA6ICJjYXRhbmRCIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzIxNjNhNjNiMDliNTE4MzY4YmU0ZDhlYTA5ODg0NTM4ZGUxNTRlYjU0Y2ZlYjA4ZjA5NmE2Y2Y0NDdjZWZkMzUiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ=="
+            val signature: String =
+                "ElfmMCz1IPrR4+PdwXRk0AbV5CO3/jrSU4ciTq8DdrYgQW1KMM3OVYyz8dig6P4dWaCaQpOUMMEdyNuqaTKCqO4Jjznk95DTziOlCU0aPVjRCdWElE0oU3xP3nGYIWw/O/jUPD1z+0bkFE0l4gwEL+QBKYjV/tOTNZAWuNuOSRc/lnrpxFPmpVCypq5Mk/e34ZAcQFZPn+MjTrLyBTJfl7A6PrKEKg5zXBIRGOYZ8qCfJtLZOzJPmKF9gtTUmFM7WzmrJTD8+dD66JEbeoSIMOdw0AC8EMm9HL2Ahmd8/1NqtT9WlHvQGb8ItL/JtuygusnA+o5bVnzXLK4i+DXy5dojlJOMNKJJg8AULhrBQNH2ZUGIvJ9mR8re6HFOVqiRtJfXoVYhzJR0PFekb9JgCH0ZKBewPtYjHhviSscxd735c0BeVVli0AqB0POcMkGkEefYTFcVMxKSC2epKbwTqn5vvxF5j18cYBgyUzxIMF1QNH06CAH4Hj60LUbBfcJdtq2A43xmrXRNb8Hp/+9t4tXtyoUWnFfDSjS4vem6JRZ5qaMHzxfeD4e0ejqG7D7zscDEA5+SYTqOazLJPjfbucTVkeyH1Ec6kUHJmoOcf7lmryCHVilZQVLyWEpV0a7aPf9AOzB/tjJSKYzpovWlybF9X3MDNOUPKaGoSyYTj6I="
+
+            val properties = PropertyMap(
+                ImmutableMultimap.Builder<String, Property>().put(
+                    "textures", Property(
+                        "textures", value, signature
                     )
-        
-                    playerEntity.gameProfile = GameProfile(playerEntity.uuid, playerEntity.displayName, properties)
-                    
-        
-                    CrystalShard.plugin.server.onlinePlayers.forEach { player ->
-                        PacketFactory.playerInfoUpdatePacket(
-                            playerEntity,
-                            playerEntity.gameProfile,
-                            actions,
-                        ) { packet ->
-                            PacketFactory.sendPacket(packet, mutableListOf(player))
-                        }
-                    }
-        
-                    playerEntity.setPos(0.0, 0.0, 0.0)
-        
-                    PacketFactory.addEntitiesPacket(
-                        entityId = playerEntity.id,
-                        entityUUID = playerEntity.uuid,
-                        location = Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0, 0.0F, 0.0F),
-                        entityType = playerEntity.type,
-                        data = 0,
-                        deltaMovement = Vec3.ZERO,
-                        yHeadRot = 0.0,
-                    ) { packet ->
-                        PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
-                    }
-        
-                    val equipmentList: MutableList<Pair<EquipmentSlot, ItemStack>> = mutableListOf()
-                    equipmentList.add(
-                        Pair(
-                            EquipmentSlot.MAINHAND, CraftItemStack.asNMSCopy(
-                                org.bukkit.inventory.ItemStack(Material.STONE_SHOVEL)
-                            )
-                        )
-                    )
-        
-        
-                    PacketFactory.createEquipmentPacket(
-                        playerEntity.id, equipmentList
-                    ) { equipmentPacket ->
-                        PacketFactory.sendPacket(equipmentPacket, CrystalShard.plugin.server.onlinePlayers.toMutableList())
-                    }
-        
-                    PacketFactory.setEntityDataPacket(
-                        playerEntity.id, mutableListOf(
-                            SynchedEntityData.DataValue.create(
-                                Player.DATA_PLAYER_MODE_CUSTOMISATION,
-                                (0x01 or 0x02 or 0x04 or 0x08 or 0x10 or 0x20 or 0x40).toByte()
-                            )
-                        )
-                    ) { packet ->
-                        PacketFactory.sendPacket(packet, CrystalShard.plugin.server.onlinePlayers.toMutableList())
-                    }
-        
-                    ServerboundInteractPacketUtil.attach("TestNPCInteraction", Main.instance, event.player) { clickType, msg ->
-        
-                        val entity = Display.TextDisplay(EntityType.TEXT_DISPLAY, playerEntity.level())
-        
-                        entity.setPos(location!!.x, location!!.y, location!!.z)
-                        PacketFactory.addEntitiesPacket(
-                            entity.id, entity.uuid,
-                            location = location!!,
-                            entityType = EntityType.TEXT_DISPLAY,
-                            data = 0,
-                            deltaMovement = Vec3.ZERO,
-                            yHeadRot = 0.0,
-                        ) { packet ->
-                            PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
-                        }
-        
-                        entity.passengers = ImmutableList.of(playerEntity);
-        
-                        PacketFactory.setPassengersPacket(entity) { packet ->
-                            PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
-                        }
-                    }
+                ).build()
+            )
+
+            playerEntity.gameProfile = GameProfile(playerEntity.uuid, playerEntity.displayName, properties)
+
+
+            CrystalShard.plugin.server.onlinePlayers.forEach { player ->
+                PacketFactory.playerInfoUpdatePacket(
+                    playerEntity,
+                    playerEntity.gameProfile,
+                    actions,
+                ) { packet ->
+                    PacketFactory.sendPacket(packet, mutableListOf(player))
                 }
-         */
+            }
+
+            playerEntity.setPos(0.0, 0.0, 0.0)
+
+            PacketFactory.addEntitiesPacket(
+                entityId = playerEntity.id,
+                entityUUID = playerEntity.uuid,
+                location = Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0, 0.0F, 0.0F),
+                entityType = playerEntity.type,
+                data = 0,
+                deltaMovement = Vec3.ZERO,
+                yHeadRot = 0.0,
+            ) { packet ->
+                PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
+            }
+
+            val equipmentList: MutableList<com.mojang.datafixers.util.Pair<net.minecraft.world.entity.EquipmentSlot, net.minecraft.world.item.ItemStack>> =
+                mutableListOf()
+            equipmentList.add(
+                com.mojang.datafixers.util.Pair(
+                    net.minecraft.world.entity.EquipmentSlot.MAINHAND, CraftItemStack.asNMSCopy(
+                        org.bukkit.inventory.ItemStack(Material.STONE_SHOVEL)
+                    )
+                )
+            )
+
+
+            PacketFactory.createEquipmentPacket(
+                playerEntity.id, equipmentList
+            ) { equipmentPacket ->
+                PacketFactory.sendPacket(equipmentPacket, CrystalShard.plugin.server.onlinePlayers.toMutableList())
+            }
+
+            PacketFactory.setEntityDataPacket(
+                playerEntity.id, mutableListOf(
+                    SynchedEntityData.DataValue.create(
+                        net.minecraft.world.entity.player.Player.DATA_PLAYER_MODE_CUSTOMISATION,
+                        (0x01 or 0x02 or 0x04 or 0x08 or 0x10 or 0x20 or 0x40).toByte()
+                    )
+                )
+            ) { packet ->
+                PacketFactory.sendPacket(packet, CrystalShard.plugin.server.onlinePlayers.toMutableList())
+            }
+
+            ServerboundInteractPacketUtil.attach("TestNPCInteraction", Main.instance, event.player) { clickType, msg ->
+
+                val entity = Display.TextDisplay(EntityType.TEXT_DISPLAY, playerEntity.level())
+
+                entity.setPos(location!!.x, location!!.y, location!!.z)
+                PacketFactory.addEntitiesPacket(
+                    entity.id, entity.uuid,
+                    location = location!!,
+                    entityType = EntityType.TEXT_DISPLAY,
+                    data = 0,
+                    deltaMovement = Vec3.ZERO,
+                    yHeadRot = 0.0,
+                ) { packet ->
+                    PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
+                }
+
+                entity.passengers = ImmutableList.of(playerEntity);
+
+                PacketFactory.setPassengersPacket(entity) { packet ->
+                    PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
+                }
+            }
         }
+    }
     }
 
 

@@ -33,6 +33,8 @@ object ServerboundCustomClickActionPacketUtil {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundCustomClickActionPacket, out: MutableList<Any>
                 ) {
+                    out.add(msg)
+
                     plugin.server.scheduler.runTaskLater(
                         plugin,
                         Runnable {
