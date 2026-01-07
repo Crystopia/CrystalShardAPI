@@ -1,7 +1,9 @@
 package net.crystopia.crystalshardtest.events
 
+import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMultimap
+import com.google.common.io.ByteStreams
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
 import com.mojang.authlib.properties.PropertyMap
@@ -15,6 +17,9 @@ import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.extras.displays.PTextDisplay
 import net.crystopia.crystalshard.extras.factories.EntityFactory
 import net.crystopia.crystalshard.extras.factories.PacketFactory
+import net.crystopia.crystalshard.extras.messaging.ChannelType
+import net.crystopia.crystalshard.extras.messaging.MessageType
+import net.crystopia.crystalshard.extras.messaging.PluginMessage
 import net.crystopia.crystalshard.extras.npc.Npc
 import net.crystopia.crystalshard.extras.packets.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.extras.resourcepacks.TextHeads
@@ -96,7 +101,32 @@ object PlayerJoin : Listener {
     fun reopenInv(player: Player) {
         player.openInventory(basicGui(currentPage))
     }
-    
+
+    @EventHandler
+    fun addNPCsOnJoin(event: PlayerJumpEvent) {
+        PluginMessage(
+            channelType = ChannelType.IN,
+            plugin = Main.instance,
+            channel = "BungeeCord",
+            messageType = MessageType.PLAYER_COUNT.channel,
+            onMessage = fun(
+                channel: String,
+                player: Player,
+                message: ByteArray,
+            ) {
+                val data = ByteStreams.newDataInput(message);
+                val subchannel = data.readUTF();
+                if (subchannel.equals("PlayerCount")) {
+                    // This is our response to the PlayerCount request
+                    val server = data.readUTF();
+                    val playerCount = data.readInt();
+                    player.sendMessage("Player count of server $server is $playerCount")
+                }
+
+            }
+        ).register().send("lobby")
+    }
+
     @EventHandler
     fun addNPCsOnJoin(event: PlayerJoinEvent) {
 

@@ -11,7 +11,7 @@ paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArt
 
 allprojects {
     group = "net.crystopia"
-    version = "0.2.17"
+    version = "0.2.18"
 
     repositories {
         mavenCentral()

@@ -40,6 +40,13 @@ class Advancement {
         return this
     }
 
+    fun completeCriteria(player: Player, criteria: String, callback: AdvancementProgress.() -> Unit): Advancement {
+        val process = player.getAdvancementProgress(advancement!!)
+        process.awardCriteria(criteria)
+        callback(process)
+        return this
+    }
+
     fun progress(player: Player, callback: AdvancementProgress.() -> Unit): Advancement {
         callback(player.getAdvancementProgress(advancement!!))
         return this
