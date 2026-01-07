@@ -4,14 +4,13 @@ plugins {
     id("java-library")
     id("maven-publish")
     id("com.gradleup.shadow") version "9.2.2"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.19"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.19" apply false
+    kotlin("kapt") version "2.3.0" apply false
 }
-
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 allprojects {
     group = "net.crystopia"
-    version = "0.2.18"
+    version = "0.2.19"
 
     repositories {
         mavenCentral()
@@ -28,20 +27,16 @@ allprojects {
 }
 
 dependencies {
-    // Paper
-    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
-    
+
     implementation(project(":common"))
-    implementation(project(":extras"))
+    implementation(project(":paper"))
+    implementation(project(":velocity"))
     implementation(project(":implementations:1_21_1"))
     implementation(project(":implementations:1_21_10"))
 
     /**
      * Extra Implementations
      */
-
-    // Twilight
-    implementation("gg.flyte:twilight:1.1.22")
 
     // Database
     implementation("org.ktorm:ktorm-core:4.1.1")
@@ -54,11 +49,6 @@ dependencies {
     // ENV
     implementation("io.github.cdimascio:dotenv-kotlin:6.5.1")
 
-    // Command API
-    compileOnly("dev.jorel:commandapi-paper-core:11.0.0")
-    implementation("dev.jorel:commandapi-paper-shade:11.0.0")
-    implementation("dev.jorel:commandapi-kotlin-paper:11.0.0")
-
     // kaml
     implementation("com.charleskorn.kaml:kaml:0.96.0")
 }
@@ -68,17 +58,10 @@ tasks {
         dependsOn(shadowJar)
     }
     shadowJar {
-        manifest {
-            attributes["paperweight-mappings-namespace"] = "mojang"
-        }
-
-        relocate("org.jetbrains.kotlinx.kotlinx-serialization-json", "net.crystopia.libs.kotlinx")
+        relocate("org.jetbrains.kotlinx", "net.crystopia.libs.kotlinx")
         relocate("com.charleskorn.kaml", "net.crystopia.libs.kaml")
-        relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
         relocate("org.ktorm.ktorm-core", "net.crystopia.libs.ktorm")
         relocate("eu.vendeli.rethis", "net.crystopia.libs.rethis")
-        relocate("dev.jorel.commandapi", "net.crystopia.libs.commandapi")
-        relocate("gg.flyte.twilight", "net.crystopia.libs.twilight")
         relocate("io.github.cdimascio.dotenv-kotlin", "net.crystopia.libs.dotenv")
     }
     java {

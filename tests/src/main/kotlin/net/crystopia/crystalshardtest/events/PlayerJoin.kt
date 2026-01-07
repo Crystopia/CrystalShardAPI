@@ -9,11 +9,11 @@ import com.mojang.authlib.properties.Property
 import com.mojang.authlib.properties.PropertyMap
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
-import net.crystopia.crystalshard.common.CrystalShard
-import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
-import net.crystopia.crystalshard.common.extension.copyToClipboard
-import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.common.extension.textTooltip
+import net.crystopia.crystalshard.paper.CrystalShard
+import net.crystopia.crystalshard.paper.extension.MINI_MESSAGE
+import net.crystopia.crystalshard.paper.extension.copyToClipboard
+import net.crystopia.crystalshard.paper.extension.text
+import net.crystopia.crystalshard.paper.extension.textTooltip
 import net.crystopia.crystalshard.extras.displays.PTextDisplay
 import net.crystopia.crystalshard.extras.factories.EntityFactory
 import net.crystopia.crystalshard.extras.factories.PacketFactory

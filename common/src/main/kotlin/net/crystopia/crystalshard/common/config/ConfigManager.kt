@@ -1,6 +1,5 @@
 package net.crystopia.crystalshard.common.config
 
-import com.google.common.base.Preconditions
 import kotlinx.serialization.ExperimentalSerializationApi
 
 import java.io.File
@@ -13,8 +12,8 @@ object ConfigManager {
     inline fun <reified T : Any> load(key: String, default: T, type: ConfigType?, file: File?): T? {
 
         if (!configs.contains(key)) {
-            Preconditions.checkArgument(type == null, "No ConfigType is defined!");
-            Preconditions.checkArgument(file == null, "No FIle location is defined!");
+            requireNotNull(type)
+            requireNotNull(file)
             configs[key] = Pair(type!!, file!!)
         }
 

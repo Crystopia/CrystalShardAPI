@@ -7,7 +7,8 @@ pluginManagement {
 
 include(":shared")
 include(":common")
-include(":extras")
+include(":paper")
+include(":velocity")
 include(":implementations")
 include(":implementations:1_21_1")
 include(":implementations:1_21_10")

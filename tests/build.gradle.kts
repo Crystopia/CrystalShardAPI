@@ -30,7 +30,7 @@ dependencies {
     implementation(project(":"))
     implementation(project(":shared"))
     implementation(project(":common"))
-    implementation(project(":extras"))
+    implementation(project(":paper"))
     implementation(project(":implementations:1_21_1"))
     implementation(project(":implementations:1_21_10"))
 }

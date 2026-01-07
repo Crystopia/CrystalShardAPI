@@ -5,9 +5,9 @@ import dev.jorel.commandapi.CommandAPIPaperConfig
 import gg.flyte.twilight.twilight
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
-import net.crystopia.crystalshard.common.CrystalShard
-import net.crystopia.crystalshard.common.custom.CrystalEvents
-import net.crystopia.crystalshard.common.extension.text
+import net.crystopia.crystalshard.paper.CrystalShard
+import net.crystopia.crystalshard.paper.custom.CrystalEvents
+import net.crystopia.crystalshard.paper.extension.text
 import net.crystopia.crystalshard.extras.advancements.Advancement
 import net.crystopia.crystalshard.extras.advancements.models.AdvancementModel
 import net.crystopia.crystalshard.extras.advancements.models.criteria.AdvancementCriteria
@@ -15,9 +15,6 @@ import net.crystopia.crystalshard.extras.advancements.models.criteria.CriteriaTr
 import net.crystopia.crystalshard.extras.advancements.models.display.AdvancementDisplay
 import net.crystopia.crystalshard.extras.advancements.models.display.AdvancementDisplayIcon
 import net.crystopia.crystalshard.extras.advancements.models.rewards.AdvancementRewards
-import net.crystopia.crystalshard.extras.messaging.ChannelType
-import net.crystopia.crystalshard.extras.messaging.MessageType
-import net.crystopia.crystalshard.extras.messaging.PluginMessage
 import net.crystopia.crystalshardtest.events.PlayerJoin
 import net.crystopia.crystalshardtest.models.PlayerKilledEntity
 import net.crystopia.crystalshardtest.models.PlayerKilledEntityEntity
@@ -26,7 +23,6 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.json.JSONComponentSerializer
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
-import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 
 class Main: JavaPlugin() {
