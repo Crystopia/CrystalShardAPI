@@ -10,12 +10,15 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/common" />
-            <option value="$PROJECT_DIR$/implementations" />
-            <option value="$PROJECT_DIR$/implementations/1_21_1" />
-            <option value="$PROJECT_DIR$/implementations/1_21_10" />
             <option value="$PROJECT_DIR$/paper" />
-            <option value="$PROJECT_DIR$/shared" />
+            <option value="$PROJECT_DIR$/paper/core" />
+            <option value="$PROJECT_DIR$/paper/implementations" />
+            <option value="$PROJECT_DIR$/paper/implementations/1_21_1" />
+            <option value="$PROJECT_DIR$/paper/implementations/1_21_10" />
+            <option value="$PROJECT_DIR$/paper/shared" />
             <option value="$PROJECT_DIR$/tests" />
+            <option value="$PROJECT_DIR$/tests/papertest" />
+            <option value="$PROJECT_DIR$/tests/velocitytest" />
             <option value="$PROJECT_DIR$/velocity" />
           </set>
         </option>

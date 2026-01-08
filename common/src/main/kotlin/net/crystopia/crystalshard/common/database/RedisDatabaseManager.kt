@@ -25,13 +25,15 @@ object RedisDatabaseManager {
         port: Int,
         username: String,
         password: String,
-    ) {
+    ): RedisDatabaseManager {
         this.ip = ip
         this.port = port
         this.username = username
         this.password = password
+
+        return this
     }
-    
+
     val client = ReThis(
         host = ip,
         port = port,

@@ -17,11 +17,11 @@ object SQLDatabaseManager {
         url: String = "jdbc:mysql://localhost:3306/ktorm",
         username: String,
         password: String,
-    ) {
+    ): SQLDatabaseManager {
         this.url = url
         this.username = username
         this.password = password
-
+        return this
     }
 
     var database = Database.connect(
@@ -36,7 +36,7 @@ object SQLDatabaseManager {
      * Setup Method to execute SQL Queries
      *
      */
-    fun init(command: String) {
+    fun init(command: String): SQLDatabaseManager {
         try {
         database.useConnection { conn ->
             conn.createStatement().use { statement ->
@@ -46,6 +46,12 @@ object SQLDatabaseManager {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        return this
+    }
+
+    fun preload(callback: Database.() -> Unit): SQLDatabaseManager {
+        callback(database)
+        return this
     }
     
     

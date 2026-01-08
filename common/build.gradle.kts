@@ -2,6 +2,7 @@ plugins {
     id("java-library")
     kotlin("jvm") version "2.+"
     kotlin("plugin.serialization")
+    id("com.gradleup.shadow") version "9.2.2"
 }
 
 dependencies {
@@ -19,4 +20,17 @@ dependencies {
 
     // kaml
     implementation("com.charleskorn.kaml:kaml:0.96.0")
+}
+
+tasks {
+    assemble {
+        dependsOn(shadowJar)
+    }
+    shadowJar {
+        relocate("org.jetbrains.kotlinx", "net.crystopia.libs.kotlinx")
+        relocate("com.charleskorn.kaml", "net.crystopia.libs.kaml")
+        relocate("org.ktorm.ktorm-core", "net.crystopia.libs.ktorm")
+        relocate("eu.vendeli.rethis", "net.crystopia.libs.rethis")
+        relocate("io.github.cdimascio.dotenv-kotlin", "net.crystopia.libs.dotenv")
+    }
 }
