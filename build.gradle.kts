@@ -3,15 +3,16 @@ plugins {
     kotlin("plugin.serialization") version "2.+" apply false
     id("java-library")
     id("maven-publish")
+    id("xyz.jpenilla.run-velocity") version "3.+" apply false 
+    id("xyz.jpenilla.run-paper") version "3.+" apply false 
     id("com.gradleup.shadow") version "9.2.2" apply false
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.19" apply false
     kotlin("kapt") version "2.3.0" apply false
-    id("org.jetbrains.dokka") version "2.1.0"
 }
 
 allprojects {
     group = "net.crystopia"
-    version = "0.2.20"
+    version = "0.2.24"
 
     repositories {
         mavenCentral()
@@ -25,8 +26,4 @@ allprojects {
         }
         maven("https://repo.flyte.gg/releases")
     }
-}
-
-subprojects {
-    apply(plugin = "org.jetbrains.dokka")
 }
