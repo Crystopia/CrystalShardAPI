@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.core.toasts
 
-import net.crystopia.crystalshard.paper.core.extension.font
+import net.crystopia.crystalshard.common.extension.font
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.ComponentBuilder
 import org.bukkit.entity.Player

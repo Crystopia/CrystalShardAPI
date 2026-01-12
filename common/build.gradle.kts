@@ -7,6 +7,10 @@ plugins {
 
 dependencies {
 
+    // Minimessage
+    implementation("net.kyori:adventure-api:4.25.0")
+    implementation("net.kyori:adventure-text-minimessage:4.25.0")
+
     // Database
     implementation("org.ktorm:ktorm-core:4.1.1")
     implementation("eu.vendeli:rethis:0.3.2")

@@ -3,27 +3,25 @@ package net.crystopia.crystalshard.tests.paper.events
 import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableMultimap
-import com.google.common.io.ByteStreams
 import com.mojang.authlib.GameProfile
 import com.mojang.authlib.properties.Property
 import com.mojang.authlib.properties.PropertyMap
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
-import net.crystopia.crystalshard.paper.core.CrystalShard
+import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
+import net.crystopia.crystalshard.common.extension.copyToClipboard
+import net.crystopia.crystalshard.common.extension.text
+import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.core.displays.PTextDisplay
-import net.crystopia.crystalshard.paper.core.extension.MINI_MESSAGE
-import net.crystopia.crystalshard.paper.core.extension.copyToClipboard
-import net.crystopia.crystalshard.paper.core.extension.text
-import net.crystopia.crystalshard.paper.core.extension.textTooltip
+import net.crystopia.crystalshard.paper.core.extension.clientMods
 import net.crystopia.crystalshard.paper.core.factories.EntityFactory
 import net.crystopia.crystalshard.paper.core.factories.PacketFactory
-import net.crystopia.crystalshard.paper.core.messaging.ChannelType
-import net.crystopia.crystalshard.paper.core.messaging.MessageType
-import net.crystopia.crystalshard.paper.core.messaging.PluginMessage
 import net.crystopia.crystalshard.paper.core.npc.Npc
 import net.crystopia.crystalshard.paper.core.packets.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.core.resourcepacks.TextHeads
 import net.crystopia.crystalshard.paper.core.resourcepacks.toGuiRow
+import net.crystopia.crystalshard.paper.core.toasts.Toast
+import net.crystopia.crystalshard.paper.core.toasts.toast
 import net.crystopia.crystalshard.paper.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.tests.paper.Main
 import net.kyori.adventure.key.Key
@@ -38,8 +36,10 @@ import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.world.entity.Display
+import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.EquipmentSlot
+import net.minecraft.world.entity.ai.attributes.AttributeInstance
 import net.minecraft.world.phys.Vec3
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -51,6 +51,8 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.player.PlayerMoveEvent
+import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
 import org.joml.Vector3f
 import java.util.*
@@ -104,39 +106,58 @@ object PlayerJoin : Listener {
         player.openInventory(basicGui(currentPage))
     }
 
+    val checked = mutableListOf<UUID>()
+
     @EventHandler
-    fun addNPCsOnJoin(event: PlayerJumpEvent) {
+    fun onMove(event: PlayerQuitEvent) {
+        checked.remove(event.player.uniqueId)
+    }
 
-        PluginMessage(
-            channelType = ChannelType.IN,
-            plugin = Main.instance,
-            channel = "BungeeCord",
-            messageType = MessageType.PLAYER_COUNT.channel,
-            onMessage = fun(
-                channel: String,
-                player: Player,
-                message: ByteArray,
+    @EventHandler
+    fun onMove(event: PlayerMoveEvent) {
+
+        if (!checked.contains(event.player.uniqueId)) {
+            checked.add(event.player.uniqueId)
+            event.player.clientMods(
+                Main.instance
             ) {
-                val data = ByteStreams.newDataInput(message);
-                val subchannel = data.readUTF();
-                if (subchannel.equals("PlayerCount")) {
-                    // This is our response to the PlayerCount request
-                    val server = data.readUTF();
-                    val playerCount = data.readInt();
-                    player.sendMessage("Player count of server $server is $playerCount")
-                }
+                onMod("text.skinlayers.title") {
+                    check { hasMod ->
 
+                        println(hasMod)
+
+                        if (hasMod)
+                            disconnect()
+                    }
+                }
             }
-        ).register().send("lobby")
+        }
+
+    }
+
+    var player: Entity? = null
+
+    @EventHandler
+    fun onMove(event: PlayerJumpEvent) {
+
+        PacketFactory.updateAttributesPacket(
+            player!!.id,
+            mutableListOf(
+                AttributeInstance(
+                    "", true
+                )
+            )
+        ) { packet ->
+            PacketFactory.sendPacket(packet, mutableListOf(event.player))
+        }
+
     }
 
     @EventHandler
     fun addNPCsOnJoin(event: PlayerJoinEvent) {
-
         Main.instance.adv.complete(event.player) {
 
         }
-
         val head = TextHeads.generateHead(
             UUID.fromString("f6f3a530-6c39-4098-96a0-6bdf4f3afc70"), true
         )
@@ -164,7 +185,7 @@ object PlayerJoin : Listener {
         )
 
         // event.player.openInventory(basicGui(3))
-        // event.player.toast("Cool")
+        event.player.toast("Cool", Toast.ToastTypes.ADVANCEMENT)
 
         EntityFactory.createDisPlayEntity<PTextDisplay>(
             NamespacedKey("sdfds", "dfgdf"),
@@ -229,10 +250,12 @@ object PlayerJoin : Listener {
 
 
         EntityFactory.createNpc<Npc>(
-                    Location(CrystalShard.plugin.server.worlds.first(), 0.0, 0.0, 0.0),
+            Location(Main.instance.server.worlds.first(), 0.0, 0.0, 0.0),
                     NamespacedKey("test", "test"),
                     "I'm a NPC"
                 ) {
+
+            player = playerEntity
 
             val actions = EnumSet.noneOf(InfoUpdateAction::class.java)
             actions.add(InfoUpdateAction.ADD_PLAYER)
@@ -256,7 +279,7 @@ object PlayerJoin : Listener {
             playerEntity.gameProfile = GameProfile(playerEntity.uuid, playerEntity.displayName, properties)
 
 
-            CrystalShard.plugin.server.onlinePlayers.forEach { player ->
+            Main.instance.server.onlinePlayers.forEach { player ->
                 PacketFactory.playerInfoUpdatePacket(
                     playerEntity,
                     playerEntity.gameProfile,
@@ -294,7 +317,7 @@ object PlayerJoin : Listener {
             PacketFactory.createEquipmentPacket(
                 playerEntity.id, equipmentList
             ) { equipmentPacket ->
-                PacketFactory.sendPacket(equipmentPacket, CrystalShard.plugin.server.onlinePlayers.toMutableList())
+                PacketFactory.sendPacket(equipmentPacket, Main.instance.server.onlinePlayers.toMutableList())
             }
 
             PacketFactory.setEntityDataPacket(
@@ -305,7 +328,7 @@ object PlayerJoin : Listener {
                     )
                 )
             ) { packet ->
-                PacketFactory.sendPacket(packet, CrystalShard.plugin.server.onlinePlayers.toMutableList())
+                PacketFactory.sendPacket(packet, Main.instance.server.onlinePlayers.toMutableList())
             }
 
             ServerboundInteractPacketUtil.attach("TestNPCInteraction", Main.instance, event.player) { clickType, msg ->
@@ -332,7 +355,8 @@ object PlayerJoin : Listener {
             }
         }
     }
-    }
+
+}
 
 
 

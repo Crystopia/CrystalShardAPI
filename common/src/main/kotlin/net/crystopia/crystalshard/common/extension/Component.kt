@@ -1,6 +1,5 @@
-package net.crystopia.crystalshard.paper.core.extension
+package net.crystopia.crystalshard.common.extension
 
-import io.papermc.paper.dialog.Dialog
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.text.BuildableComponent
@@ -69,12 +68,6 @@ fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<
     file: String
 ): B {
     return clickEvent(ClickEvent.openFile(file))
-}
-
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.openDialog(
-    dialog: Dialog
-): B {
-    return clickEvent(ClickEvent.showDialog(dialog))
 }
 
 fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.openUrl(

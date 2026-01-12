@@ -7,13 +7,18 @@ import net.crystopia.crystalshard.paper.shared.data.packets.*
 import net.crystopia.crystalshard.paper.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.versions.v1_21_10.general.PacketBuilder
+import net.minecraft.core.BlockPos
+import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.EquipmentSlot
+import net.minecraft.world.entity.ai.attributes.AttributeInstance
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.level.block.entity.BlockEntityType
+import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.phys.Vec3
 import org.bukkit.Location
 import org.bukkit.craftbukkit.entity.CraftPlayer
@@ -22,6 +27,237 @@ import java.util.*
 
 object PacketFactory {
 
+    fun updateAttributesPacket(
+        entityId: Int,
+        /**
+         * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
+         */
+        attributes: MutableList<AttributeInstance>,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundUpdateAttributesPacketData(
+            entityId, attributes
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.updateAttributesPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.updateAttributesPacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun sendEntityEventPacket(
+        entity: Entity,
+        /**
+         * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
+         */
+        status: Byte,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundEntityEventPacketData(
+            entity, status
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.entityEventPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.entityEventPacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun createAnimatePacket(
+        entity: Entity,
+        animationId: Int,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundAnimatePacketData(
+            entity, animationId
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.animatePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.animatePacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun createBlockDestroyStagePacket(
+        entityId: Int, pos: BlockPos,
+        /**
+         * Read more: [Packets#Block_Entity_Data](https://minecraft.wiki/w/Java_Edition_protocol/Packets#Block_Entity_Data)
+         */
+        progress: Int,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundBlockDestructionPacketData(
+            entityId, pos, progress
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setBlockDestroyStagePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.setBlockDestroyStagePacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun createOpenSignEditorPacket(
+        blockPos: BlockPos,
+        isFrontText: Boolean,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundOpenSignEditorPacketData(
+            blockPos, isFrontText
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.openSignEditorPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.openSignEditorPacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun createBlockEntityDataPacket(
+        blockPos: BlockPos,
+        type: BlockEntityType<*>,
+        nbt: CompoundTag,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundBlockEntityDataPacketData(
+            blockPos, type, nbt
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.blockEntityDataPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.blockEntityDataPacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun createBlockUpdatePacket(
+        pos: BlockPos, state: BlockState, callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundBlockUpdatePacketData(
+            pos, state
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.blockUpdatePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.blockUpdatePacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
 
     fun createEquipmentPacket(
         entityId: Int, equipmentList: MutableList<Pair<EquipmentSlot, ItemStack>>, callback: (packet: Packet<*>) -> Unit

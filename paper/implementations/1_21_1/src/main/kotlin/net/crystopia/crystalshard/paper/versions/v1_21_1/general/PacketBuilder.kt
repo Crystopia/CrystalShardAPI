@@ -1,21 +1,41 @@
 package net.crystopia.crystalshard.paper.versions.v1_21_1.general
 
 
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundAddEntityPacket
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundPlayerInfoRemovePacket
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundPlayerInfoUpdatePacket
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundRemoveEntitiesPacket
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundRotateHeadPacket
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundSetEntityDataPacket
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundSetEquipmentPacket
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundSetPassengersPacket
-import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.Shard_ClientboundTeleportEntityPacket
 import net.crystopia.crystalshard.paper.shared.data.packets.*
 import net.crystopia.crystalshard.paper.shared.interfaces.packets.IPacketBuilder
 import net.crystopia.crystalshard.paper.versions.v1_21_1.packets.*
+import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
+
+    override fun updateAttributesPacket(data: ClientboundUpdateAttributesPacketData): Packet<*> {
+        return Shard_ClientboundUpdateAttributesPacket().createPacket(data)
+    }
+
+    override fun entityEventPacket(data: ClientboundEntityEventPacketData): Packet<*> {
+        return Shard_ClientboundEntityEventPacket().createPacket(data)
+    }
+
+    override fun animatePacket(data: ClientboundAnimatePacketData): Packet<*> {
+        return Shard_ClientboundAnimatePacket().createPacket(data)
+    }
+
+    override fun setBlockDestroyStagePacket(data: ClientboundBlockDestructionPacketData): Packet<*> {
+        return Shard_ClientboundBlockDestructionPacket().createPacket(data)
+    }
+
+    override fun openSignEditorPacket(data: ClientboundOpenSignEditorPacketData): Packet<*> {
+        return Shard_ClientboundOpenSignEditorPacket().createPacket(data)
+    }
+
+    override fun blockEntityDataPacket(data: ClientboundBlockEntityDataPacketData): Packet<*> {
+        return Shard_ClientboundBlockEntityDataPacket().createPacket(data)
+    }
+
+    override fun blockUpdatePacket(data: ClientboundBlockUpdatePacketData): Packet<*> {
+        return Shard_ClientboundBlockUpdatePacket().createPacket(data)
+    }
 
     override fun equipmentPacket(
         data: ClientboundSetEquipmentPacketData

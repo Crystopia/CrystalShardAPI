@@ -7,15 +7,15 @@ import gg.flyte.twilight.twilight
 import io.papermc.paper.advancement.AdvancementDisplay
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
-import net.crystopia.crystalshard.paper.core.CrystalShard
+import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.core.advancements.Advancement
 import net.crystopia.crystalshard.paper.core.advancements.models.AdvancementModel
 import net.crystopia.crystalshard.paper.core.advancements.models.criteria.AdvancementCriteria
 import net.crystopia.crystalshard.paper.core.advancements.models.criteria.CriteriaTrigger
 import net.crystopia.crystalshard.paper.core.advancements.models.display.AdvancementDisplayIcon
 import net.crystopia.crystalshard.paper.core.advancements.models.rewards.AdvancementRewards
+import net.crystopia.crystalshard.paper.core.crystalshard
 import net.crystopia.crystalshard.paper.core.custom.CrystalEvents
-import net.crystopia.crystalshard.paper.core.extension.text
 import net.crystopia.crystalshard.paper.core.messaging.ChannelType
 import net.crystopia.crystalshard.paper.core.messaging.PluginMessage
 import net.crystopia.crystalshard.paper.core.utils.Log
@@ -25,12 +25,15 @@ import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntityEntity
 import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntityPlayer
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.json.JSONComponentSerializer
+import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
+import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
 
-class Main: JavaPlugin() {
+
+class Main : JavaPlugin(), Listener {
 
     companion object {
         lateinit var instance: Main
@@ -42,13 +45,14 @@ class Main: JavaPlugin() {
     
     override fun onLoad() {
         CommandAPI.onLoad(CommandAPIPaperConfig(this).silentLogs(true))
-        CrystalShard.init(this)
-        
+        crystalshard(this)
     }
 
     lateinit var adv: Advancement
     
     override fun onEnable() {
+
+        Bukkit.getPluginManager().registerEvents(this, this);
         CommandAPI.onEnable();
         val twilight = twilight(this)
 
@@ -141,5 +145,4 @@ class Main: JavaPlugin() {
     override fun onDisable() {
         
     }
-    
 }

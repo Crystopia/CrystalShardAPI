@@ -1,14 +1,28 @@
-package net.crystopia.crystalshard.paper.core.builder
+package net.crystopia.crystalshard.paper.core.custom
 
-import org.bukkit.*
+import org.bukkit.Bukkit
+import org.bukkit.Location
+import org.bukkit.Material
+import org.bukkit.NamespacedKey
+import org.bukkit.World
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Villager
-import org.bukkit.inventory.*
+import org.bukkit.inventory.BlastingRecipe
+import org.bukkit.inventory.CampfireRecipe
+import org.bukkit.inventory.FurnaceRecipe
+import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.MerchantRecipe
+import org.bukkit.inventory.Recipe
+import org.bukkit.inventory.RecipeChoice
+import org.bukkit.inventory.ShapedRecipe
+import org.bukkit.inventory.SmithingTransformRecipe
+import org.bukkit.inventory.SmithingTrimRecipe
+import org.bukkit.inventory.SmokingRecipe
+import org.bukkit.inventory.StonecuttingRecipe
 import org.bukkit.inventory.meta.trim.TrimPattern
-import java.util.*
+import java.util.UUID
 
-
-object RecipeBuilder {
+object CrystalRecipe {
 
 
     fun getRecipes(itemStack: ItemStack): Collection<Recipe> {
