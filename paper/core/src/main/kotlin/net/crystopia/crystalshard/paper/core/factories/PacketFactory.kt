@@ -32,7 +32,7 @@ object PacketFactory {
         /**
          * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
          */
-        attributes: MutableList<AttributeInstance>,
+        attributes: MutableList<Attribute>,
         callback: (packet: Packet<*>) -> Unit
     ): Packet<*> {
 
@@ -325,11 +325,11 @@ object PacketFactory {
     }
 
     fun teleportEntityPacket(
-        entityId: Int, location: Location, callback: (packet: Packet<*>) -> Unit
+        entityId: Int, location: Location, onGround: Boolean, callback: (packet: Packet<*>) -> Unit
     ): Packet<*> {
 
         val data = ClientboundTeleportEntityPacketData(
-            entityId, location
+            entityId, location, onGround
         )
 
         val packet = when (ServerUtil.currentVersion()) {

@@ -24,10 +24,10 @@ jobs:
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
       - name: Call my Gradle Task
-        run: ./gradlew dokkaGenerateHtml
+        run: ./gradlew :paper:dokkaGenerateHtml
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/dokka/htmlMultiModule
+          publish_dir: paper/build/html/

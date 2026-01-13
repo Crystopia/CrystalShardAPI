@@ -31,4 +31,11 @@ allprojects {
         }
         maven("https://repo.flyte.gg/releases")
     }
+
+    dokka {
+        pluginsConfiguration.html {
+            footerMessage.set("(c)  2026 | xy-z.org - crystopia.net")
+        }
+    }
+
 }
