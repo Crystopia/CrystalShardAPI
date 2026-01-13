@@ -39,7 +39,6 @@ import net.minecraft.world.entity.Display
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.entity.ai.attributes.AttributeInstance
 import net.minecraft.world.phys.Vec3
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -140,17 +139,30 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onMove(event: PlayerJumpEvent) {
 
-        PacketFactory.updateAttributesPacket(
+        PacketFactory.teleportEntityPacket(
             player!!.id,
-            mutableListOf(
-                AttributeInstance(
-                    "", true
-                )
-            )
+            Location(Bukkit.getWorld("world"), 1.0, 1.0, 1.0),
+            false
         ) { packet ->
             PacketFactory.sendPacket(packet, mutableListOf(event.player))
         }
 
+        PacketFactory.openScreenPacket(
+            3243443,
+            Component.text().text("<rainbow>Nice Small GUI</rainbow>").build(),
+            net.minecraft.world.inventory.MenuType.GENERIC_9x3
+        ) { packet ->
+            PacketFactory.sendPacket(packet, mutableListOf(event.player))
+        }
+
+        PacketFactory.setContainerSlot(
+            3243443,
+            0,
+            0,
+            ItemStack(Material.ARROW)
+        ) { packet ->
+            PacketFactory.sendPacket(packet, mutableListOf(event.player))
+        }
     }
 
     @EventHandler

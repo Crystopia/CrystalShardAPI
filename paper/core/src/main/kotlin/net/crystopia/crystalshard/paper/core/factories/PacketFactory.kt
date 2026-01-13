@@ -7,6 +7,7 @@ import net.crystopia.crystalshard.paper.shared.data.packets.*
 import net.crystopia.crystalshard.paper.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.versions.v1_21_10.general.PacketBuilder
+import net.kyori.adventure.text.Component
 import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
@@ -15,7 +16,7 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.Entity
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.entity.ai.attributes.AttributeInstance
+import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.minecraft.world.level.block.state.BlockState
@@ -26,6 +27,104 @@ import org.bukkit.entity.Player
 import java.util.*
 
 object PacketFactory {
+
+    fun setContainerSlot(
+        id: Int,
+        revision: Int,
+        slot: Int,
+        item: org.bukkit.inventory.ItemStack,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundContainerSetSlotPacketData(
+            id, revision, slot, item
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setContainerSlot(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.setContainerSlot(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun closeContainerPacket(
+        id: Int,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundContainerClosePacketData(
+            id
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.closeContainerPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.closeContainerPacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun openScreenPacket(
+        id: Int,
+        title: Component,
+        type: MenuType<*>,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundOpenScreenPacketData(
+            id, type, title
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.openScreenPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.versions.v1_21_1.general.PacketBuilder.openScreenPacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
 
     fun updateAttributesPacket(
         entityId: Int,

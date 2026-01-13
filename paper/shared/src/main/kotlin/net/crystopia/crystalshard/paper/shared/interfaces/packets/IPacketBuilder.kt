@@ -5,6 +5,9 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun setContainerSlot(data: ClientboundContainerSetSlotPacketData): Packet<*>
+    fun closeContainerPacket(data: ClientboundContainerClosePacketData): Packet<*>
+    fun openScreenPacket(data: ClientboundOpenScreenPacketData): Packet<*>
     fun updateAttributesPacket(data: ClientboundUpdateAttributesPacketData): Packet<*>
     fun entityEventPacket(data: ClientboundEntityEventPacketData): Packet<*>
     fun animatePacket(data: ClientboundAnimatePacketData): Packet<*>

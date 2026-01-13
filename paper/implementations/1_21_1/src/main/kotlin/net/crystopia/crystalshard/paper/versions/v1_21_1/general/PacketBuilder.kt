@@ -9,6 +9,18 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun setContainerSlot(data: ClientboundContainerSetSlotPacketData): Packet<*> {
+        return Shard_ClientboundContainerSetSlotPacket().createPacket(data)
+    }
+
+    override fun closeContainerPacket(data: ClientboundContainerClosePacketData): Packet<*> {
+        return Shard_ClientboundContainerClosePacket().createPacket(data)
+    }
+
+    override fun openScreenPacket(data: ClientboundOpenScreenPacketData): Packet<*> {
+        return Shard_ClientboundOpenScreenPacket().createPacket(data)
+    }
+
     override fun updateAttributesPacket(data: ClientboundUpdateAttributesPacketData): Packet<*> {
         return Shard_ClientboundUpdateAttributesPacket().createPacket(data)
     }
