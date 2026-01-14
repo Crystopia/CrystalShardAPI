@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - master
-  #  release:
-  #   types: [created]
-
+    tags:
+      - v.*
 jobs:
   publish:
     runs-on: ubuntu-latest
