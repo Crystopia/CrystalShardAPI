@@ -9,7 +9,11 @@ on:
 
 jobs:
   publish:
+    strategy:
+      matrix:
+        tasks: [ box, core, custom, dhl, pack, panic, simulacrum ]
     runs-on: ubuntu-latest
+
 
     steps:
       - name: Checkout Repository
@@ -23,5 +27,5 @@ jobs:
 
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
-      - name: Call my Gradle Task
-        run: ./gradlew paper publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}
+      - name: Build PaperCore
+        run: ./gradlew paper:${{ matrix.tasks }} publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}

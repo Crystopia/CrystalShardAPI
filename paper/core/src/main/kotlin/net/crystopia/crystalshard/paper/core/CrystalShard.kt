@@ -11,7 +11,7 @@ var plugin: JavaPlugin
 
         return plugin
     }
-    internal set(value) {
+    set(value) {
         plugin = value
     }
 

@@ -8,17 +8,17 @@ import io.papermc.paper.advancement.AdvancementDisplay
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
 import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.core.advancements.Advancement
-import net.crystopia.crystalshard.paper.core.advancements.models.AdvancementModel
-import net.crystopia.crystalshard.paper.core.advancements.models.criteria.AdvancementCriteria
-import net.crystopia.crystalshard.paper.core.advancements.models.criteria.CriteriaTrigger
-import net.crystopia.crystalshard.paper.core.advancements.models.display.AdvancementDisplayIcon
-import net.crystopia.crystalshard.paper.core.advancements.models.rewards.AdvancementRewards
 import net.crystopia.crystalshard.paper.core.crystalshard
-import net.crystopia.crystalshard.paper.core.custom.CrystalEvents
-import net.crystopia.crystalshard.paper.core.messaging.ChannelType
-import net.crystopia.crystalshard.paper.core.messaging.PluginMessage
 import net.crystopia.crystalshard.paper.core.utils.Log
+import net.crystopia.crystalshard.paper.custom.advancements.Advancement
+import net.crystopia.crystalshard.paper.custom.advancements.models.AdvancementModel
+import net.crystopia.crystalshard.paper.custom.advancements.models.criteria.AdvancementCriteria
+import net.crystopia.crystalshard.paper.custom.advancements.models.criteria.CriteriaTrigger
+import net.crystopia.crystalshard.paper.custom.advancements.models.display.AdvancementDisplayIcon
+import net.crystopia.crystalshard.paper.custom.advancements.models.rewards.AdvancementRewards
+import net.crystopia.crystalshard.paper.custom.crystal.CrystalEvents
+import net.crystopia.crystalshard.paper.custom.messaging.ChannelType
+import net.crystopia.crystalshard.paper.custom.messaging.PluginMessage
 import net.crystopia.crystalshard.tests.paper.events.PlayerJoin
 import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntity
 import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntityEntity
@@ -45,12 +45,13 @@ class Main : JavaPlugin(), Listener {
     
     override fun onLoad() {
         CommandAPI.onLoad(CommandAPIPaperConfig(this).silentLogs(true))
-        crystalshard(this)
+
     }
 
     lateinit var adv: Advancement
     
     override fun onEnable() {
+        crystalshard(this)
 
         Bukkit.getPluginManager().registerEvents(this, this);
         CommandAPI.onEnable();
@@ -63,7 +64,7 @@ class Main : JavaPlugin(), Listener {
 
         PluginMessage(
             channelType = ChannelType.IN,
-            plugin = Main.instance,
+            plugin = instance,
             channel = "testy:testy",
             messageType = "testy",
             onMessage = fun(
@@ -100,7 +101,7 @@ class Main : JavaPlugin(), Listener {
                 "crystalshard", "testy",
             ),
             advancementModel = AdvancementModel(
-                display = net.crystopia.crystalshard.paper.core.advancements.models.display.AdvancementDisplay(
+                display = net.crystopia.crystalshard.paper.custom.advancements.models.display.AdvancementDisplay(
                     icon = AdvancementDisplayIcon(
                         id = Material.COMPASS.key.toString(),
                         count = 1,

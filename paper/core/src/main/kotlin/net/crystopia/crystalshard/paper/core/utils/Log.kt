@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.core.utils
 
-import net.crystopia.crystalshard.paper.shared.interfaces.utils.Log
+import net.crystopia.crystalshard.paper.core.types.interfaces.Log
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -3,8 +3,8 @@ package net.crystopia.crystalshard.tests.paper
 import dev.jorel.commandapi.kotlindsl.commandTree
 import dev.jorel.commandapi.kotlindsl.literalArgument
 import dev.jorel.commandapi.kotlindsl.playerExecutor
-import net.crystopia.crystalshard.paper.core.toasts.Toast
-import net.crystopia.crystalshard.paper.core.toasts.toast
+import net.crystopia.crystalshard.paper.pack.toasts.Toast
+import net.crystopia.crystalshard.paper.pack.toasts.toast
 
 object TestyCommand {
 
