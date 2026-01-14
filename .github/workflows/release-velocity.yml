@@ -23,5 +23,5 @@ jobs:
 
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
-      - name: Call my Gradle Task
-        run: ./gradlew velocity publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}
+      - name: Build crystalshard-velocity
+        run: ./gradlew :velocity:publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}

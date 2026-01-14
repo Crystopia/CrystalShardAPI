@@ -17,7 +17,7 @@ subprojects {
 
 allprojects {
     group = "net.crystopia"
-    version = "0.2.26-SNAPSHOT"
+    version = "0.3.0"
 
     repositories {
         mavenCentral()
