@@ -1,4 +1,4 @@
-﻿name: Publish to GitHub Pages (DOKKA)
+﻿name: Generate Dokka CrystalShard-Paper
 
 on:
   push:
