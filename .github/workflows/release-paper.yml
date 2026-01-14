@@ -11,7 +11,7 @@ jobs:
   publish:
     strategy:
       matrix:
-        tasks: [ box, core, custom, dhl, pack, panic, simulacrum ]
+        tasks: [box,core,custom,dhl,pack,panic,simulacrum]
     runs-on: ubuntu-latest
 
 
@@ -27,5 +27,5 @@ jobs:
 
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
-      - name: Build PaperCore
-        run: ./gradlew paper ${{ matrix.tasks }} publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}
+      - name: Build crystalshard-paper-${{ matrix.tasks }}
+        run: ./gradlew paper:${{ matrix.tasks }}:publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}

@@ -26,11 +26,17 @@ dependencies {
     implementation("com.charleskorn.kaml:kaml:0.96.0")
 }
 
+kotlin {
+    jvmToolchain(22)
+}
+
 tasks {
     assemble {
         dependsOn(shadowJar)
     }
     shadowJar {
+        relocate("net.kyori.adventure", "net.crystopia.libs.adventure")
+        relocate("org.jetbrains.kotlinx", "net.crystopia.libs.kotlinx")
         relocate("org.jetbrains.kotlinx", "net.crystopia.libs.kotlinx")
         relocate("com.charleskorn.kaml", "net.crystopia.libs.kaml")
         relocate("org.ktorm.ktorm-core", "net.crystopia.libs.ktorm")

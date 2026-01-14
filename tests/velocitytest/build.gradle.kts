@@ -14,6 +14,10 @@ dependencies {
     kapt("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
 }
 
+kotlin {
+    jvmToolchain(22)
+}
+
 tasks {
     assemble {
         dependsOn(shadowJar)

@@ -16,6 +16,10 @@ dependencies {
     implementation(project(":paper:dhl"))
 }
 
+kotlin {
+    jvmToolchain(22)
+}
+
 tasks {
     tasks {
         assemble {

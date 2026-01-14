@@ -14,6 +14,10 @@ dependencies {
     implementation(project(":common"))
 }
 
+kotlin {
+    jvmToolchain(22)
+}
+
 tasks {
     tasks {
         assemble {

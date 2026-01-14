@@ -18,6 +18,10 @@ dependencies {
     implementation(project(":paper:core"))
 }
 
+kotlin {
+    jvmToolchain(22)
+}
+
 tasks {
     tasks {
         assemble {

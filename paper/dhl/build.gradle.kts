@@ -35,6 +35,10 @@ tasks {
     }
 }
 
+kotlin {
+    jvmToolchain(22)
+}
+
 publishing {
     repositories {
         maven {
