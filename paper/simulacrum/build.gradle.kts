@@ -57,7 +57,7 @@ publishing {
     publications {
         create<MavenPublication>("reposilite") {
             from(components["java"])
-            artifactId = "crystalshard-paper-simulacrum"
+            artifactId = "paper-simulacrum"
             groupId = group as String
             version = version
         }
