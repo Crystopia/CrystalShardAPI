@@ -38,16 +38,15 @@ jobs:
         run: ../../gradlew dokkaGenerate --no-daemon --stacktrace
         working-directory: ${{ matrix.projects }}
 
-      - name: Set UUID
-        id: generate-uuid
-        uses: filipstefansson/uuid-action@v1
-        with:
-          name: ${{ github.sha }}
+      - name: Sanitize project name
+        id: sanitize
+        run: |
+          echo "safe_name=${{ matrix.projects }}" | sed 's|/|-|g' >> $GITHUB_OUTPUT
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ steps.generate-uuid.outputs.uuid }}"
+          name: "${{ steps.sanitize.outputs.safe_name }}"
           path: "${{ matrix.projects }}/build/dokka"
 
 
