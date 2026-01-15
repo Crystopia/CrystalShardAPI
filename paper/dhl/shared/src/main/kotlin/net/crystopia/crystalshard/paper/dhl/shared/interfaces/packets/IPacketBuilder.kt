@@ -5,6 +5,9 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*>
+    fun setContainerData(data: ClientboundContainerSetDataPacketData): Packet<*>
+    fun setContainerContent(data: ClientboundContainerSetContentPacketData): Packet<*>
     fun setContainerSlot(data: ClientboundContainerSetSlotPacketData): Packet<*>
     fun closeContainerPacket(data: ClientboundContainerClosePacketData): Packet<*>
     fun openScreenPacket(data: ClientboundOpenScreenPacketData): Packet<*>

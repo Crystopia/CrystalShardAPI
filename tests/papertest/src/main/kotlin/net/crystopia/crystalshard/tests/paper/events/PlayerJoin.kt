@@ -13,7 +13,12 @@ import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
-import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
+import net.crystopia.crystalshard.paper.dhl.server.*
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.TrackedWaypoint
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.WaypointDataVec3i
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.WaypointIcon
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.WaypointOperation
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.WaypointType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.pack.font.TextHeads
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
@@ -136,7 +141,7 @@ object PlayerJoin : Listener {
     }
 
     var player: Entity? = null
-
+    var waypointUUID = UUID.randomUUID()
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
 
@@ -148,10 +153,33 @@ object PlayerJoin : Listener {
             PacketFactory.sendPacket(packet, mutableListOf(event.player))
         }
 
+        ServerboundContainerClickPacketUtil.attach(
+            "sdffds",
+            Main.instance,
+            event.player,
+        ) {
+            event.player.sendMessage(Component.text().text("${this.clickType} - $containerId").build())
+
+        }
+
+        ServerboundUseItemPacketUtil.attach("sdsdf", Main.instance, event.player) {
+            this.hand
+            event.player.sendMessage(this.sequence.toString())
+        }
+
+        ServerboundUseItemOnPacketUtil.attach("sdfsdfgfgdfgdfgdf", Main.instance, event.player) {
+            this.hand
+            event.player.sendMessage(this.hitResult.type.toString())
+        }
+
+        ServerboundSelectTradePacketUtil.attach("sdgdfgdgdgdsfgdfgfdgdfgdfgdfg", Main.instance, event.player) {
+            event.player.sendMessage(this.item.toString())
+        }
+
         PacketFactory.openScreenPacket(
             3243443,
             Component.text().text("<rainbow>Nice Small GUI</rainbow>").build(),
-            MenuType.GENERIC_9x3
+            MenuType.GENERIC_9x6
         ) { packet ->
             PacketFactory.sendPacket(packet, mutableListOf(event.player))
         }
@@ -164,6 +192,24 @@ object PlayerJoin : Listener {
         ) { packet ->
             PacketFactory.sendPacket(packet, mutableListOf(event.player))
         }
+
+        PacketFactory.sendWaypoint(
+            WaypointOperation.TRACK,
+            TrackedWaypoint(
+                identifier = waypointUUID,
+                icon = WaypointIcon(
+                    style = "default",
+                    color = 10
+                ),
+                type = WaypointType.VEC3I,
+                data = WaypointDataVec3i(
+                    10, 10, 10
+                )
+            )
+        ) { packet ->
+            PacketFactory.sendPacket(packet, mutableListOf(event.player))
+        }
+
     }
 
     @EventHandler

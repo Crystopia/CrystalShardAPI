@@ -38,6 +38,7 @@ object CrystalEvents : Listener {
 
     @EventHandler
     fun onPlayerAdvancementCriterionGrantEvent(event: PlayerAdvancementCriterionGrantEvent) {
+        if (!advancementCriterionGrantEvent.contains(event.advancement.key)) return
         advancementCriterionGrantEvent[event.advancement.key]!!.invoke(event)
     }
 

@@ -2,18 +2,7 @@ package net.crystopia.crystalshard.paper.core
 
 import org.bukkit.plugin.java.JavaPlugin
 
-var plugin: JavaPlugin
-    get() {
-
-        require(plugin != null) {
-            "Please init CrystalShard first. Use crystalshard()"
-        }
-
-        return plugin
-    }
-    set(value) {
-        plugin = value
-    }
+var plugin: JavaPlugin? = null
 
 fun crystalshard(plugin: JavaPlugin) {
     net.crystopia.crystalshard.paper.core.plugin = plugin

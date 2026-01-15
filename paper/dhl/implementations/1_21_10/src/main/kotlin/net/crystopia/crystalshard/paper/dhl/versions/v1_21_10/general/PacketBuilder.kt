@@ -9,6 +9,18 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*> {
+        return Shard_ClientboundTrackedWaypointPacket().createPacket(data)
+    }
+
+    override fun setContainerData(data: ClientboundContainerSetDataPacketData): Packet<*> {
+        return Shard_ClientboundContainerSetDataPacket().createPacket(data)
+    }
+
+    override fun setContainerContent(data: ClientboundContainerSetContentPacketData): Packet<*> {
+        return Shard_ClientboundContainerSetContentPacket().createPacket(data)
+    }
+
     override fun setContainerSlot(data: ClientboundContainerSetSlotPacketData): Packet<*> {
         return Shard_ClientboundContainerSetSlotPacket().createPacket(data)
     }

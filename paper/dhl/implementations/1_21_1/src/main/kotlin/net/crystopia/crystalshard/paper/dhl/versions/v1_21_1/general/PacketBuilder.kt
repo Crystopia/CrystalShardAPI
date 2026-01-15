@@ -9,6 +9,18 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*> {
+        throw Exception("Waypoints are not supported in 1.21.1")
+    }
+
+    override fun setContainerData(data: ClientboundContainerSetDataPacketData): Packet<*> {
+        return Shard_ClientboundContainerSetDataPacket().createPacket(data)
+    }
+
+    override fun setContainerContent(data: ClientboundContainerSetContentPacketData): Packet<*> {
+        return Shard_ClientboundContainerSetContentPacket().createPacket(data)
+    }
+
     override fun setContainerSlot(data: ClientboundContainerSetSlotPacketData): Packet<*> {
         return Shard_ClientboundContainerSetSlotPacket().createPacket(data)
     }

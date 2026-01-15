@@ -2,26 +2,7 @@ package net.crystopia.crystalshard.paper.dhl
 
 import com.mojang.authlib.GameProfile
 import com.mojang.datafixers.util.Pair
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.Attribute
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundAddEntityPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundAnimatePacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundBlockDestructionPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundBlockEntityDataPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundBlockUpdatePacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundContainerClosePacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundContainerSetSlotPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundEntityEventPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundOpenScreenPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundOpenSignEditorPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerInfoRemovePacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerInfoUpdatePacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundRemoveEntitiesPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundRotateHeadPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetEntityDataPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetEquipmentPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetPassengersPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundTeleportEntityPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundUpdateAttributesPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
@@ -42,10 +23,106 @@ import org.bukkit.Location
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
-import java.util.EnumSet
-import java.util.UUID
+import java.util.*
 
 object PacketFactory {
+
+    fun sendWaypoint(
+        operation: WaypointOperation,
+        waypoints: TrackedWaypoint<*>,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundTrackedWaypointPacketData(
+            operation, waypoints
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.sendWaypointPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                throw Exception("Waypoint Packets are not implemented in this Version!")
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun setContainerData(
+        id: Int,
+        property: Short,
+        value: Short,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundContainerSetDataPacketData(
+            id, property, value
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setContainerData(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setContainerData(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
+
+    fun setContainerContent(
+        id: Int,
+        stateId: Int,
+        items: MutableList<ItemStack>,
+        carriedItem: ItemStack,
+        callback: (packet: Packet<*>) -> Unit
+    ): Packet<*> {
+
+        val data = ClientboundContainerSetContentPacketData(
+            id, stateId, items, carriedItem
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setContainerContent(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setContainerContent(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(packet)
+        return packet
+    }
 
     fun setContainerSlot(
         id: Int,
