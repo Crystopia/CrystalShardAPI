@@ -1,11 +1,9 @@
-﻿name: Deploy examples to GitHub Pages
+﻿name: Deploy crystalshard to GitHub Pages
 
 on:
   push:
     branches:
       - master
-    paths:
-      - 'examples/**'
 
 jobs:
   build-examples:
@@ -40,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.projects }}
-          path: examples/gradle/${{ matrix.projects }}/build/dokka
+          path: ${{ matrix.projects }}/build/dokka
 
 
 
