@@ -38,7 +38,6 @@ allprojects {
     dokka {
         pluginsConfiguration.html {
             footerMessage.set("(c)  2026 | xy-z.org - crystopia.net")
-            inc
         }
     }
 
