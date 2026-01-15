@@ -31,12 +31,11 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
 
-      - name: Build html
-        run: chmod +x ./gradlew
-        working-directory: ${{ matrix.projects }}
+      - name: Grant execute permission for Gradle
+        run: chmod +x gradlew
 
       - name: Build html
-        run: ./gradlew dokkaGenerate --no-daemon --stacktrace
+        run: gradlew dokkaGenerate --no-daemon --stacktrace
         working-directory: ${{ matrix.projects }}
 
       - name: Upload artifact
