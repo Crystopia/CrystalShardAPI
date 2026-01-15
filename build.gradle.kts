@@ -1,3 +1,6 @@
+import org.jetbrains.dokka.gradle.formats.DokkaFormatPlugin
+import org.jetbrains.dokka.gradle.internal.InternalDokkaGradlePluginApi
+
 plugins {
     kotlin("jvm") version "2.+"
     kotlin("plugin.serialization") version "2.+" apply false
@@ -35,6 +38,7 @@ allprojects {
     dokka {
         pluginsConfiguration.html {
             footerMessage.set("(c)  2026 | xy-z.org - crystopia.net")
+            inc
         }
     }
 
