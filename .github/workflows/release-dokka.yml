@@ -38,10 +38,16 @@ jobs:
         run: ../../gradlew dokkaGenerate --no-daemon --stacktrace
         working-directory: ${{ matrix.projects }}
 
+      - name: Set UUID
+        id: generate-uuid
+        uses: filipstefansson/uuid-action@v1
+        with:
+          name: ${{ gihub.sha }}
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ github.run_number }}${{ github.run_attempt }}"
+          name: "${{ steps.generate-uuid.outputs.uuid }}"
           path: "${{ matrix.projects }}/build/dokka"
 
 
