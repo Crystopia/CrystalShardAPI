@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         projects: [
-          common,
+          # common,
           paper/box,
           paper/core,
           paper/custom,
@@ -19,23 +19,23 @@ jobs:
           paper/pack,
           paper/pnaic,
           paper/simulacrum,
-          velocity
+          # velocity
         ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: 17
+          java-version: 22
       - uses: gradle/actions/setup-gradle@v4
         with:
           develocity-access-key: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
 
       - name: Grant execute permission for Gradle
-        run: chmod +x gradlew
+        run: chmod +x ../../gradlew
 
       - name: Build html
-        run: ./gradlew dokkaGenerate --no-daemon --stacktrace
+        run: ../../gradlew dokkaGenerate --no-daemon --stacktrace
         working-directory: ${{ matrix.projects }}
 
       - name: Upload artifact
