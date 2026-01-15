@@ -31,7 +31,7 @@ jobs:
         with:
           develocity-access-key: ${{ secrets.DEVELOCITY_ACCESS_KEY }}
       - name: Build html
-        run: ./gradlew dokkaHtml --no-daemon --stacktrace
+        run: ./gradlew dokkaGenerate --no-daemon --stacktrace
         working-directory: ${{ matrix.projects }}
 
       - name: Upload artifact
