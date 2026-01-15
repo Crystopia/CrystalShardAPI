@@ -35,7 +35,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build html
-        run: gradlew dokkaGenerate --no-daemon --stacktrace
+        run: ./gradlew dokkaGenerate --no-daemon --stacktrace
         working-directory: ${{ matrix.projects }}
 
       - name: Upload artifact
