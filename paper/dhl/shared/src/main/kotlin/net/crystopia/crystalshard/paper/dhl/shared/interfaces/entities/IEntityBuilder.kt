@@ -6,11 +6,16 @@ import net.minecraft.world.entity.EntityType
 import org.bukkit.Location
 import org.bukkit.NamespacedKey
 import org.bukkit.World
+import org.bukkit.entity.Entity
 
 interface IEntityBuilder {
 
+    fun createEntityInstance(
+        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType, location: Location
+    ): net.minecraft.world.entity.Entity
+
     fun createServerPlayer(
-        world: World, key: NamespacedKey, name: String
+        world: World, name: String
     ): ServerPlayer
 
     fun createDisplayEntity(

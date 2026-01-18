@@ -2,12 +2,10 @@ package net.crystopia.crystalshard.paper.simulacrum.npc
 
 import com.mojang.authlib.GameProfile
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
-import net.crystopia.crystalshard.paper.simulacrum.types.config.npc.NpcSkinData
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
+import net.crystopia.crystalshard.paper.simulacrum.types.config.npc.NpcSkinData
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
-import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.phys.Vec3
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.NamespacedKey
@@ -23,7 +21,7 @@ import java.util.*
 class Npc(
     override var id: NamespacedKey,
     override val name: String? = null,
-    override var playerEntity: ServerPlayer,
+    override var playerEntity: Player,
     override var gameProfile: GameProfile,
     override val mirrorSkin: Boolean = false,
     override val location: Location,
@@ -52,15 +50,14 @@ class Npc(
      */
     override fun spawn(player: Player) {
         PacketFactory.addEntitiesPacket(
-            entityId = playerEntity.id,
-            entityUUID = playerEntity.uuid,
+            entityId = playerEntity.entityId,
+            entityUUID = playerEntity.uniqueId,
             location = location,
-            entityType = playerEntity.type,
+            entityType = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.PLAYER,
             data = 0,
-            deltaMovement = Vec3.ZERO,
             yHeadRot = 0.0,
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
     }
 
@@ -69,15 +66,14 @@ class Npc(
      */
     override fun spawnAll() {
         PacketFactory.addEntitiesPacket(
-            entityId = playerEntity.id,
-            entityUUID = playerEntity.uuid,
+            entityId = playerEntity.entityId,
+            entityUUID = playerEntity.uniqueId,
             location = location,
-            entityType = playerEntity.type,
+            entityType = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.PLAYER,
             data = 0,
-            deltaMovement = Vec3.ZERO,
             yHeadRot = 0.0,
         ) { packet ->
-            PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
+            packet.send(Bukkit.getServer().onlinePlayers.toMutableList())
         }
     }
 
@@ -86,14 +82,14 @@ class Npc(
      */
     override fun remove(player: Player) {
         PacketFactory.removeEntitiesPacket(
-            mutableListOf(playerEntity.id)
+            mutableListOf(playerEntity.entityId)
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
         PacketFactory.playerInfoRemovePacket(
-            mutableListOf(playerEntity.uuid)
+            mutableListOf(playerEntity.uniqueId)
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
     }
 
@@ -102,14 +98,14 @@ class Npc(
      */
     override fun removeAll() {
         PacketFactory.removeEntitiesPacket(
-            mutableListOf(playerEntity.id)
+            mutableListOf(playerEntity.entityId)
         ) { packet ->
-            PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
+            packet.send(Bukkit.getServer().onlinePlayers.toMutableList())
         }
         PacketFactory.playerInfoRemovePacket(
-            mutableListOf(playerEntity.uuid)
+            mutableListOf(playerEntity.uniqueId)
         ) { packet ->
-            PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
+            packet.send(Bukkit.getServer().onlinePlayers.toMutableList())
         }
     }
 }

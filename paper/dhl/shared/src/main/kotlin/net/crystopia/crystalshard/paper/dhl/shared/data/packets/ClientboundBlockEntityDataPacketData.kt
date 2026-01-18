@@ -1,11 +1,10 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.packets
 
-import net.minecraft.core.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockEntityType
 import net.minecraft.nbt.CompoundTag
-import net.minecraft.world.level.block.entity.BlockEntityType
 
 data class ClientboundBlockEntityDataPacketData(
-    var blockPos: BlockPos,
-    var type: BlockEntityType<*>,
+    var blockPos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
+    var type: BlockEntityType,
     var nbt: CompoundTag
 )

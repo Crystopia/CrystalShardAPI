@@ -14,7 +14,7 @@ class Shard_ClientboundOpenScreenPacket : IPacket<ClientboundOpenScreenPacketDat
     ): ClientboundOpenScreenPacket {
         return ClientboundOpenScreenPacket(
             packetObj.id,
-            packetObj.type,
+            packetObj.type.type,
             PaperAdventure.asVanilla(packetObj.title)
         )
     }

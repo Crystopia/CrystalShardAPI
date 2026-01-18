@@ -3,14 +3,11 @@ package net.crystopia.crystalshard.paper.simulacrum.displays
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil.ClickActionType
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
 import net.minecraft.network.protocol.game.ServerboundInteractPacket
-import net.minecraft.network.syncher.EntityDataAccessor
-import net.minecraft.network.syncher.EntityDataSerializers
-import net.minecraft.network.syncher.SynchedEntityData
-import net.minecraft.world.entity.Display
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.Interaction
-import net.minecraft.world.phys.Vec3
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.craftbukkit.entity.CraftPlayer
@@ -18,7 +15,7 @@ import org.bukkit.entity.Player
 import org.bukkit.persistence.PersistentDataType
 import org.bukkit.plugin.java.JavaPlugin
 
-open class DisplayInteraction(open var entity: Display) {
+open class DisplayInteraction<T : org.bukkit.entity.Display>(open var entity: T) {
     lateinit var interaction: Interaction
 
     fun onHover(plugin: JavaPlugin, player: Player, detectScalar: Double? = 0.99, callback: (lock: Boolean) -> Unit) {
@@ -44,42 +41,48 @@ open class DisplayInteraction(open var entity: Display) {
     ) {
 
         // Register event for the Display
-        entity.bukkitEntity.persistentDataContainer.set(key, PersistentDataType.STRING, entity.uuid.toString())
+        entity.persistentDataContainer.set(key, PersistentDataType.STRING, entity.uniqueId.toString())
 
         // Add the key to the interaction...
         interaction = Interaction(EntityType.INTERACTION, (player as CraftPlayer).handle.level())
         interaction.bukkitEntity.persistentDataContainer.set(
             key,
             PersistentDataType.STRING,
-            entity.uuid.toString()
+            entity.uniqueId.toString()
         )
 
         PacketFactory.addEntitiesPacket(
             entityId = interaction.id,
             entityUUID = interaction.uuid,
-            location = entity.bukkitEntity.location,
-            entityType = interaction.type,
+            location = entity.location,
+            entityType = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.INTERACTION,
             data = 0,
-            deltaMovement = Vec3.ZERO,
             yHeadRot = 0.0,
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
-        val width = EntityDataAccessor(8, EntityDataSerializers.FLOAT)
-        val height = EntityDataAccessor(9, EntityDataSerializers.FLOAT)
-        val responsive = EntityDataAccessor(10, EntityDataSerializers.BOOLEAN)
+
+
         PacketFactory.setEntityDataPacket(
-            entityId = interaction.id, entityData = mutableListOf(
-                SynchedEntityData.DataValue.create(
-                    width, size.first
-                ), SynchedEntityData.DataValue.create(
-                    height, size.second
-                ), SynchedEntityData.DataValue.create(
-                    responsive, true
+            interaction.id, mutableListOf(
+                EntityMetadata(
+                    index = 8,
+                    type = EntityDataSerializerType.FLOAT,
+                    value = size.first
+                ),
+                EntityMetadata(
+                    index = 9,
+                    type = EntityDataSerializerType.FLOAT,
+                    value = size.second
+                ),
+                EntityMetadata(
+                    index = 10,
+                    type = EntityDataSerializerType.BOOLEAN,
+                    value = true
                 )
             )
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
 
         ServerboundInteractPacketUtil.attach("${key.namespace}:${key.key}", plugin, player) { clickType, msg ->

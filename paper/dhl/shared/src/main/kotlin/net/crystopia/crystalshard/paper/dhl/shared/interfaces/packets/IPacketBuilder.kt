@@ -1,6 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
+import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
 import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {

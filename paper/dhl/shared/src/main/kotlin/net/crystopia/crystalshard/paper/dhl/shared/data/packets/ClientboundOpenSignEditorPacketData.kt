@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.packets
 
-import net.minecraft.core.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos
 
 data class ClientboundOpenSignEditorPacketData(
     var blockPos: BlockPos,

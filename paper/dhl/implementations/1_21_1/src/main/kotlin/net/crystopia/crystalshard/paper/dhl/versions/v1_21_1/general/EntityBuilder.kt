@@ -17,13 +17,23 @@ import java.util.*
 
 object EntityBuilder : IEntityBuilder {
 
+    override fun createEntityInstance(
+        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType,
+        location: Location
+    ): net.minecraft.world.entity.Entity {
+        val instance = type.type.create(
+            (location.world as CraftWorld).handle,
+        )
+        return instance!!
+    }
+
     override fun createServerPlayer(
-        world: World, key: NamespacedKey, name: String
+        world: World, name: String
     ): ServerPlayer {
         val uuid = UUID.randomUUID()
         val minecraftServer: MinecraftServer = (Bukkit.getServer() as CraftServer).server
         val serverPlayer = ServerPlayer(
-            minecraftServer, (world as CraftWorld).handle, GameProfile(uuid, ""), ClientInformation.createDefault()
+            minecraftServer, (world as CraftWorld).handle, GameProfile(uuid, name), ClientInformation.createDefault()
         )
 
         return serverPlayer

@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlaye
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket
 import net.minecraft.server.level.ServerPlayer
+import org.bukkit.craftbukkit.entity.CraftPlayer
 import java.util.*
 
 class Shard_ClientboundPlayerInfoUpdatePacket : IPacket<ClientboundPlayerInfoUpdatePacketData> {
@@ -13,19 +14,18 @@ class Shard_ClientboundPlayerInfoUpdatePacket : IPacket<ClientboundPlayerInfoUpd
     override fun createPacket(
         packetObj: ClientboundPlayerInfoUpdatePacketData
     ): ClientboundPlayerInfoUpdatePacket {
-
-        val serverPlayer = packetObj.serverPlayer
-
+        val serverPlayer = (packetObj.serverPlayer as CraftPlayer).handle
         val vanillaActions =
             EnumSet.noneOf<ClientboundPlayerInfoUpdatePacket.Action?>(ClientboundPlayerInfoUpdatePacket.Action::class.java)
-        for (action in packetObj.actions) {
-            vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.valueOf(action.toString()))
+        packetObj.actions.forEach { infoUpdateAction ->
+            vanillaActions.add(infoUpdateAction.action)
         }
 
-
         return ClientboundPlayerInfoUpdatePacket(
-            vanillaActions, makeEntry(
-                serverPlayer, packetObj.gameProfile
+            vanillaActions,
+            makeEntry(
+                serverPlayer,
+                serverPlayer.gameProfile
             )
         )
     }

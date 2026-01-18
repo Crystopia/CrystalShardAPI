@@ -2,22 +2,46 @@ package net.crystopia.crystalshard.paper.simulacrum
 
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.ServerUtil
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.displays.IDisplay
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.EntityBuilder
 import net.crystopia.crystalshard.paper.simulacrum.displays.PBlockDisplay
 import net.crystopia.crystalshard.paper.simulacrum.displays.PItemDisplay
 import net.crystopia.crystalshard.paper.simulacrum.displays.PTextDisplay
 import net.crystopia.crystalshard.paper.simulacrum.npc.Npc
+import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.displays.IDisplay
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
-import net.minecraft.world.entity.Display
-import net.minecraft.world.phys.Vec3
 import org.bukkit.Location
 import org.bukkit.NamespacedKey
-import org.bukkit.entity.EntityType
-import org.bukkit.entity.Player
+import org.bukkit.entity.*
 
 object SimulacrumFactory {
+
+    fun <T : Entity> createEntityInstance(
+        type: EntityType, location: Location, callback: T.() -> Unit
+    ): T {
+
+        val instance = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                EntityBuilder.createEntityInstance(
+                    type, location
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.EntityBuilder.createEntityInstance(
+                    type, location
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        callback(instance.bukkitEntity as T)
+        return instance.bukkitEntity as T
+    }
 
     fun <T : INpc> createNpc(
         location: Location, key: NamespacedKey, name: String, callback: T.() -> Unit
@@ -26,13 +50,13 @@ object SimulacrumFactory {
         val serverplayer = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createServerPlayer(
-                    location.world, key, name
+                    location.world, name
                 )
             }
 
             ServerVersion.v1_21_1 -> {
                 net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.EntityBuilder.createServerPlayer(
-                    location.world, key, name
+                    location.world, name
                 )
             }
 
@@ -46,7 +70,7 @@ object SimulacrumFactory {
             id = key,
             name = name,
             location = location,
-            playerEntity = serverplayer,
+            playerEntity = serverplayer.bukkitEntity,
             entityId = serverplayer.id,
         )
 
@@ -54,24 +78,24 @@ object SimulacrumFactory {
         return npc
     }
 
-    fun <T : IDisplay> createDisPlayEntity(
+    fun <T : IDisplay<*>> createDisPlayEntity(
         key: NamespacedKey,
-        type: net.minecraft.world.entity.EntityType<*>,
+        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType,
         location: Location,
         players: MutableList<Player>,
         callback: T.() -> Unit
-    ): IDisplay {
+    ): IDisplay<*> {
 
         val displayEntity = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createDisplayEntity(
-                    type, location
+                    type.type, location
                 )
             }
 
             ServerVersion.v1_21_1 -> {
                 net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.EntityBuilder.createDisplayEntity(
-                    type, location
+                    type.type, location
                 )
             }
 
@@ -82,32 +106,31 @@ object SimulacrumFactory {
 
         PacketFactory.addEntitiesPacket(
             displayEntity!!.id, displayEntity.uuid, location,
-            entityType = displayEntity.type,
+            entityType = type,
             data = 0,
-            deltaMovement = Vec3.ZERO,
             yHeadRot = 0.0,
         ) { packet ->
-            PacketFactory.sendPacket(packet, players)
+            packet.send(players)
         }
 
 
         val obj = when (displayEntity.type) {
             net.minecraft.world.entity.EntityType.TEXT_DISPLAY -> {
                 PTextDisplay(
-                    id = key, type = displayEntity.type, entity = displayEntity as Display.TextDisplay
+                    id = key, type = type, entity = displayEntity.bukkitEntity as TextDisplay
                 )
             }
 
             net.minecraft.world.entity.EntityType.ITEM_DISPLAY -> {
 
                 PItemDisplay(
-                    id = key, type = displayEntity.type, entity = displayEntity as Display.ItemDisplay
+                    id = key, type = type, entity = displayEntity.bukkitEntity as ItemDisplay
                 )
             }
 
             net.minecraft.world.entity.EntityType.BLOCK_DISPLAY -> {
                 PBlockDisplay(
-                    id = key, type = displayEntity.type, entity = displayEntity as Display.BlockDisplay
+                    id = key, type = type, entity = displayEntity.bukkitEntity as BlockDisplay
                 )
             }
 

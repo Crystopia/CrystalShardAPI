@@ -1,7 +1,7 @@
-package net.crystopia.crystalshard.paper.dhl.shared.data.packets
+package net.crystopia.crystalshard.paper.dhl.shared.data.packetsid
 
-import net.minecraft.world.entity.Entity
+import org.bukkit.entity.Entity
 
 data class ClientboundSetPassengersPacketData(
-    var entity: Entity
+    var entity: Entity, var passengers : MutableList<Entity>
 )

@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":paper:core"))
     implementation(project(":paper:dhl"))
+    implementation(project(":paper:dhl:shared"))
 }
 
 kotlin {

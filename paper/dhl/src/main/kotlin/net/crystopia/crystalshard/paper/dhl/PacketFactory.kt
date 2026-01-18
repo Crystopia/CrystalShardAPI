@@ -1,26 +1,22 @@
 package net.crystopia.crystalshard.paper.dhl
 
-import com.mojang.authlib.GameProfile
-import com.mojang.datafixers.util.Pair
+import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundTeleportEntityPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockType
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets.Shard_ClientboundRemoveEntitiesPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
 import net.kyori.adventure.text.Component
-import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
-import net.minecraft.network.syncher.SynchedEntityData
-import net.minecraft.server.level.ServerPlayer
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityType
-import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.inventory.MenuType
-import net.minecraft.world.level.block.entity.BlockEntityType
-import net.minecraft.world.level.block.state.BlockState
-import net.minecraft.world.phys.Vec3
+import net.minecraft.server.packs.repository.Pack
 import org.bukkit.Location
 import org.bukkit.craftbukkit.entity.CraftPlayer
+import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import java.util.*
@@ -30,8 +26,8 @@ object PacketFactory {
     fun sendWaypoint(
         operation: WaypointOperation,
         waypoints: TrackedWaypoint<*>,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundTrackedWaypointPacketData>) -> Unit
+    ): Shard_Packet<ClientboundTrackedWaypointPacketData> {
 
         val data = ClientboundTrackedWaypointPacketData(
             operation, waypoints
@@ -53,16 +49,19 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundTrackedWaypointPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun setContainerData(
         id: Int,
         property: Short,
         value: Short,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundContainerSetDataPacketData>) -> Unit
+    ): Shard_Packet<ClientboundContainerSetDataPacketData> {
 
         val data = ClientboundContainerSetDataPacketData(
             id, property, value
@@ -86,8 +85,11 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundContainerSetDataPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun setContainerContent(
@@ -95,8 +97,8 @@ object PacketFactory {
         stateId: Int,
         items: MutableList<ItemStack>,
         carriedItem: ItemStack,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundContainerSetContentPacketData>) -> Unit
+    ): Shard_Packet<ClientboundContainerSetContentPacketData> {
 
         val data = ClientboundContainerSetContentPacketData(
             id, stateId, items, carriedItem
@@ -120,8 +122,11 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundContainerSetContentPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun setContainerSlot(
@@ -129,8 +134,8 @@ object PacketFactory {
         revision: Int,
         slot: Int,
         item: ItemStack,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundContainerSetSlotPacketData>) -> Unit
+    ): Shard_Packet<ClientboundContainerSetSlotPacketData> {
 
         val data = ClientboundContainerSetSlotPacketData(
             id, revision, slot, item
@@ -154,14 +159,17 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundContainerSetSlotPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun closeContainerPacket(
         id: Int,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundContainerClosePacketData>) -> Unit
+    ): Shard_Packet<ClientboundContainerClosePacketData> {
 
         val data = ClientboundContainerClosePacketData(
             id
@@ -185,16 +193,19 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundContainerClosePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun openScreenPacket(
         id: Int,
         title: Component,
-        type: MenuType<*>,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.MenuType,
+        callback: (packet: Shard_Packet<ClientboundOpenScreenPacketData>) -> Unit
+    ): Shard_Packet<ClientboundOpenScreenPacketData> {
 
         val data = ClientboundOpenScreenPacketData(
             id, type, title
@@ -218,8 +229,11 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundOpenScreenPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun updateAttributesPacket(
@@ -228,8 +242,8 @@ object PacketFactory {
          * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
          */
         attributes: MutableList<Attribute>,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundUpdateAttributesPacketData>) -> Unit
+    ): Shard_Packet<ClientboundUpdateAttributesPacketData> {
 
         val data = ClientboundUpdateAttributesPacketData(
             entityId, attributes
@@ -253,21 +267,24 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundUpdateAttributesPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun sendEntityEventPacket(
-        entity: Entity,
+        entityId: Int,
         /**
          * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
          */
         status: Byte,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundEntityEventPacketData>) -> Unit
+    ): Shard_Packet<ClientboundEntityEventPacketData> {
 
         val data = ClientboundEntityEventPacketData(
-            entity, status
+            entityId, status
         )
 
         val packet = when (ServerUtil.currentVersion()) {
@@ -288,18 +305,21 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundEntityEventPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun createAnimatePacket(
-        entity: Entity,
+        entityId: Int,
         animationId: Int,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundAnimatePacketData>) -> Unit
+    ): Shard_Packet<ClientboundAnimatePacketData> {
 
         val data = ClientboundAnimatePacketData(
-            entity, animationId
+            entityId, animationId
         )
 
         val packet = when (ServerUtil.currentVersion()) {
@@ -320,18 +340,21 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundAnimatePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun createBlockDestroyStagePacket(
-        entityId: Int, pos: BlockPos,
+        entityId: Int, pos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
         /**
          * Read more: [Packets#Block_Entity_Data](https://minecraft.wiki/w/Java_Edition_protocol/Packets#Block_Entity_Data)
          */
         progress: Int,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundBlockDestructionPacketData>) -> Unit
+    ): Shard_Packet<ClientboundBlockDestructionPacketData> {
 
         val data = ClientboundBlockDestructionPacketData(
             entityId, pos, progress
@@ -355,15 +378,18 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundBlockDestructionPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun createOpenSignEditorPacket(
-        blockPos: BlockPos,
+        blockPos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
         isFrontText: Boolean,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundOpenSignEditorPacketData>) -> Unit
+    ): Shard_Packet<ClientboundOpenSignEditorPacketData> {
 
         val data = ClientboundOpenSignEditorPacketData(
             blockPos, isFrontText
@@ -387,16 +413,19 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundOpenSignEditorPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun createBlockEntityDataPacket(
-        blockPos: BlockPos,
-        type: BlockEntityType<*>,
+        blockPos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
+        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockEntityType,
         nbt: CompoundTag,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundBlockEntityDataPacketData>) -> Unit
+    ): Shard_Packet<ClientboundBlockEntityDataPacketData> {
 
         val data = ClientboundBlockEntityDataPacketData(
             blockPos, type, nbt
@@ -420,13 +449,18 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundBlockEntityDataPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun createBlockUpdatePacket(
-        pos: BlockPos, state: BlockState, callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        pos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
+        state: BlockType,
+        callback: (packet: Shard_Packet<ClientboundBlockUpdatePacketData>) -> Unit
+    ): Shard_Packet<ClientboundBlockUpdatePacketData> {
 
         val data = ClientboundBlockUpdatePacketData(
             pos, state
@@ -450,13 +484,18 @@ object PacketFactory {
             }
         }
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundBlockUpdatePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun createEquipmentPacket(
-        entityId: Int, equipmentList: MutableList<Pair<EquipmentSlot, net.minecraft.world.item.ItemStack>>, callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        entityId: Int,
+        equipmentList: MutableList<kotlin.Pair<net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EquipmentSlot, ItemStack>>,
+        callback: (packet: Shard_Packet<ClientboundSetEquipmentPacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetEquipmentPacketData> {
 
         val data = ClientboundSetEquipmentPacketData(
             entityId, equipmentList
@@ -481,19 +520,21 @@ object PacketFactory {
         }
 
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundSetEquipmentPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun playerInfoUpdatePacket(
-        serverPlayer: ServerPlayer,
-        gameProfile: GameProfile,
+        serverPlayer: Player,
         actions: EnumSet<InfoUpdateAction>,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundPlayerInfoUpdatePacketData>) -> Unit
+    ): Shard_Packet<ClientboundPlayerInfoUpdatePacketData> {
 
         val data = ClientboundPlayerInfoUpdatePacketData(
-            serverPlayer, gameProfile, actions
+            serverPlayer, actions
         )
 
         val packet = when (ServerUtil.currentVersion()) {
@@ -515,13 +556,16 @@ object PacketFactory {
         }
 
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundPlayerInfoUpdatePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun teleportEntityPacket(
-        entityId: Int, location: Location, onGround: Boolean, callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        entityId: Int, location: Location, onGround: Boolean, callback: (packet: Shard_Packet<ClientboundTeleportEntityPacketData>) -> Unit
+    ): Shard_Packet<ClientboundTeleportEntityPacketData> {
 
         val data = ClientboundTeleportEntityPacketData(
             entityId, location, onGround
@@ -546,13 +590,16 @@ object PacketFactory {
         }
 
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundTeleportEntityPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun playerInfoRemovePacket(
-        uuids: MutableList<UUID>, callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        uuids: MutableList<UUID>, callback: (packet: Shard_Packet<ClientboundPlayerInfoRemovePacketData>) -> Unit
+    ): Shard_Packet<ClientboundPlayerInfoRemovePacketData> {
 
         val data = ClientboundPlayerInfoRemovePacketData(
             uuids
@@ -577,13 +624,16 @@ object PacketFactory {
         }
 
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundPlayerInfoRemovePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun removeEntitiesPacket(
-        entityIds: List<Int>, callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        entityIds: List<Int>, callback: (packet: Shard_Packet<ClientboundRemoveEntitiesPacketData>) -> Unit
+    ): Shard_Packet<ClientboundRemoveEntitiesPacketData> {
 
         val data = ClientboundRemoveEntitiesPacketData(
             entityIds
@@ -608,23 +658,25 @@ object PacketFactory {
         }
 
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundRemoveEntitiesPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun addEntitiesPacket(
         entityId: Int,
         entityUUID: UUID,
         location: Location,
-        entityType: EntityType<*>,
+        entityType: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType,
         data: Int,
-        deltaMovement: Vec3 = Vec3.ZERO,
         yHeadRot: Double = 0.0,
-        callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        callback: (packet: Shard_Packet<ClientboundAddEntityPacketData>) -> Unit
+    ): Shard_Packet<ClientboundAddEntityPacketData> {
 
         val data = ClientboundAddEntityPacketData(
-            entityId, entityUUID, location, entityType, data, deltaMovement, yHeadRot
+            entityId, entityUUID, location, entityType, data, yHeadRot
         )
 
         val packet = when (ServerUtil.currentVersion()) {
@@ -645,17 +697,19 @@ object PacketFactory {
             }
         }
 
-
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundAddEntityPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun rotateHeadPacket(
-        entity: Entity, yaw: Float, callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        entityId: Int, yaw: Float, callback: (packet: Shard_Packet<ClientboundRotateHeadPacketData>) -> Unit
+    ): Shard_Packet<ClientboundRotateHeadPacketData> {
 
         val data = ClientboundRotateHeadPacketData(
-            entity, yaw
+            entityId, yaw
         )
 
         val packet = when (ServerUtil.currentVersion()) {
@@ -676,33 +730,20 @@ object PacketFactory {
             }
         }
 
-
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundRotateHeadPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     /**
      * Read more about [Entity_Metadata_Format](https://minecraft.wiki/w/Java_Edition_protocol/Entity_metadata#Entity_Metadata_Format)
      *
-     * ```
-     * // Use the 6 for the Index.
-     * val accessor = EntityDataAccessor<Pose>(6, EntityDataSerializers.POSE)
-     *                 PacketFactory.setEntityDataPacket(
-     *                     playerEntity.id, mutableListOf(
-     *                         SynchedEntityData.DataValue.create(
-     *                             accessor,
-     *                             Pose.SLEEPING
-     *                         )
-     *                     )
-     *                 ) { packet ->
-     *                     PacketFactory.sendPacket(packet, CrystalShard.plugin.server.onlinePlayers.toMutableList())
-     *                 }
-     * ```
      */
-
     fun setEntityDataPacket(
-        entityId: Int, entityData: MutableList<SynchedEntityData.DataValue<*>>, callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        entityId: Int, entityData: MutableList<EntityMetadata<*>>, callback: (packet:  Shard_Packet<ClientboundSetEntityDataPacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetEntityDataPacketData> {
 
         val data = ClientboundSetEntityDataPacketData(
             entityId, entityData
@@ -727,16 +768,20 @@ object PacketFactory {
         }
 
 
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundSetEntityDataPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun setPassengersPacket(
-        entity: Entity, callback: (packet: Packet<*>) -> Unit
-    ): Packet<*> {
+        entity: Entity, passengers: MutableList<Entity>, callback: (packet: Shard_Packet<ClientboundSetPassengersPacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetPassengersPacketData> {
 
         val data = ClientboundSetPassengersPacketData(
-            entity
+            entity, passengers
         )
 
         val packet = when (ServerUtil.currentVersion()) {
@@ -757,11 +802,16 @@ object PacketFactory {
             }
         }
 
-
-        callback(packet)
-        return packet
+        val shardPacket = Shard_Packet<ClientboundSetPassengersPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
+    /**
+     *
+     */
     fun sendPacket(packet: Packet<*>, players: MutableList<Player>) {
         players.forEach { player ->
             val serverPlayer = (player as CraftPlayer).handle

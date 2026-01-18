@@ -1,10 +1,8 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.packets
 
-import com.mojang.datafixers.util.Pair
-import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.item.ItemStack
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EquipmentSlot
 
 data class ClientboundSetEquipmentPacketData(
     var entityId: Int,
-    var equipmentList: MutableList<Pair<EquipmentSlot, ItemStack>>
+    var equipmentList: MutableList<Pair<EquipmentSlot, org.bukkit.inventory.ItemStack>>
 ) 

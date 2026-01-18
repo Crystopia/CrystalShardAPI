@@ -1,24 +1,31 @@
 package net.crystopia.crystalshard.paper.panic.experimental
 
 import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
+import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundSignUpdatePacketUtil
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockType
 import net.kyori.adventure.text.Component
-import net.minecraft.core.BlockPos
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
-import net.minecraft.world.level.block.Blocks
-import net.minecraft.world.level.block.entity.BlockEntityType
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
 
 class ClientMods(val player: Player, val plugin: JavaPlugin) {
     val listenerKey = UUID.fromString("173c9e65-66a5-44c7-b21d-b307bdb06423").toString()
-    private val blockPos = BlockPos(player.location.x.toInt(), player.location.y.toInt(), player.location.z.toInt())
+    private val blockPos = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos(
+        player.location.x.toInt(),
+        player.location.y.toInt(),
+        player.location.z.toInt()
+    )
 
-    class Mod(var player: Player, val plugin: JavaPlugin, val blockPos: BlockPos, val listenerKey: String) {
+    class Mod(
+        var player: Player,
+        val plugin: JavaPlugin,
+        val blockPos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
+        val listenerKey: String
+    ) {
         private var component: Component? = null
 
         fun message(message: Component): Mod {
@@ -58,31 +65,31 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
     fun detectPacketsSender(key: String) {
         PacketFactory.createBlockUpdatePacket(
             blockPos,
-            Blocks.OAK_SIGN.defaultBlockState()
+            net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockType.OAK_SIGN
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
 
         PacketFactory.createBlockEntityDataPacket(
             blockPos,
-            BlockEntityType.SIGN,
+            net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockEntityType.SIGN,
             buildNBT(key)
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
 
         PacketFactory.createOpenSignEditorPacket(
             blockPos,
             true
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
 
         PacketFactory.createBlockUpdatePacket(
             blockPos,
-            Blocks.AIR.defaultBlockState()
+            BlockType.AIR
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(player))
+            packet.send(mutableListOf(player))
         }
 
         player.closeInventory()

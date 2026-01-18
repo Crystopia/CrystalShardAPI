@@ -2,10 +2,12 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general
 
 import com.mojang.authlib.GameProfile
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.entities.IEntityBuilder
+import net.minecraft.core.BlockPos
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.level.ClientInformation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.Display
+import net.minecraft.world.entity.EntitySpawnReason
 import net.minecraft.world.entity.EntityType
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -13,12 +15,25 @@ import org.bukkit.NamespacedKey
 import org.bukkit.World
 import org.bukkit.craftbukkit.CraftServer
 import org.bukkit.craftbukkit.CraftWorld
+import org.bukkit.entity.Entity
+import org.bukkit.event.entity.CreatureSpawnEvent
 import java.util.*
 
 object EntityBuilder : IEntityBuilder {
 
+    override fun createEntityInstance(
+        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType,
+        location: Location
+    ): net.minecraft.world.entity.Entity {
+        val instance = type.type.create(
+            (location.world as CraftWorld).handle,
+            EntitySpawnReason.COMMAND,
+        )
+        return instance!!
+    }
+
     override fun createServerPlayer(
-        world: World, key: NamespacedKey, name: String
+        world: World, name: String
     ): ServerPlayer {
         val uuid = UUID.randomUUID()
         val minecraftServer: MinecraftServer = (Bukkit.getServer() as CraftServer).server

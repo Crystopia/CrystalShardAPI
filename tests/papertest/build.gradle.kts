@@ -3,7 +3,7 @@ plugins {
     kotlin("plugin.serialization") version "2.+"
     id("xyz.jpenilla.run-paper") version "3.+"
     id("com.gradleup.shadow")
-    id("io.papermc.paperweight.userdev")
+    // id("io.papermc.paperweight.userdev")
     id("maven-publish")
 }
 
@@ -11,8 +11,8 @@ group = "net.crystopia"
 
 dependencies {
     // Paper
-    
-    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    // paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
 
     // Twilight
     implementation("gg.flyte:twilight:1.1.22")
@@ -47,7 +47,7 @@ kotlin {
 tasks {
     assemble {
         dependsOn(shadowJar)
-        dependsOn(reobfJar)
+        // dependsOn(reobfJar)
     }
     runServer {
         // Configure the Minecraft version for our task.

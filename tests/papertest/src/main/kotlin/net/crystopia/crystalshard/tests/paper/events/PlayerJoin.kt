@@ -1,11 +1,7 @@
 package net.crystopia.crystalshard.tests.paper.events
 
 import com.destroystokyo.paper.event.player.PlayerJumpEvent
-import com.google.common.collect.ImmutableList
-import com.google.common.collect.ImmutableMultimap
-import com.mojang.authlib.GameProfile
-import com.mojang.authlib.properties.Property
-import com.mojang.authlib.properties.PropertyMap
+import com.destroystokyo.paper.profile.ProfileProperty
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
 import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
@@ -13,18 +9,15 @@ import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
-import net.crystopia.crystalshard.paper.dhl.server.*
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.TrackedWaypoint
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.WaypointDataVec3i
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.WaypointIcon
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.WaypointOperation
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.WaypointType
+import net.crystopia.crystalshard.paper.dhl.server.ServerboundContainerClickPacketUtil
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.pack.font.TextHeads
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.paper.pack.toasts.Toast
 import net.crystopia.crystalshard.paper.pack.toasts.toast
-import net.crystopia.crystalshard.paper.panic.extension.clientMods
 import net.crystopia.crystalshard.paper.simulacrum.SimulacrumFactory
 import net.crystopia.crystalshard.paper.simulacrum.displays.PTextDisplay
 import net.crystopia.crystalshard.paper.simulacrum.npc.Npc
@@ -37,21 +30,12 @@ import net.kyori.adventure.text.event.DataComponentValue
 import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
-import net.minecraft.network.syncher.EntityDataAccessor
-import net.minecraft.network.syncher.EntityDataSerializers
-import net.minecraft.network.syncher.SynchedEntityData
-import net.minecraft.world.entity.Display
-import net.minecraft.world.entity.Entity
-import net.minecraft.world.entity.EntityType
-import net.minecraft.world.entity.EquipmentSlot
-import net.minecraft.world.inventory.MenuType
-import net.minecraft.world.phys.Vec3
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
-import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.entity.Player
+import org.bukkit.entity.TextDisplay
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryType
@@ -59,12 +43,12 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
-import org.joml.Vector3f
+import org.bukkit.persistence.PersistentDataType
 import java.util.*
 
 object PlayerJoin : Listener {
 
-    lateinit var display: Display.TextDisplay
+    lateinit var display: TextDisplay
 
     var currentPage = 1
     fun title(page: Int) = Component.text().toGuiRow(1, null) {
@@ -121,6 +105,7 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onMove(event: PlayerMoveEvent) {
 
+        /*
         if (!checked.contains(event.player.uniqueId)) {
             checked.add(event.player.uniqueId)
             event.player.clientMods(
@@ -137,31 +122,49 @@ object PlayerJoin : Listener {
                 }
             }
         }
+         */
 
     }
 
-    var player: Entity? = null
+    var player: Player? = null
     var waypointUUID = UUID.randomUUID()
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
 
         PacketFactory.teleportEntityPacket(
-            player!!.id,
+            player!!.entityId,
             Location(Bukkit.getWorld("world"), 1.0, 1.0, 1.0),
             false
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(event.player))
+            packet.send(mutableListOf(event.player))
         }
 
+        // ITEMS
+        val item = ItemStack(Material.ARROW)
+        val meta = item.itemMeta
+        meta.displayName(MINI_MESSAGE.deserialize("<blue>CLICK ME FOR FREE VBUGS</blue>"))
+        meta.persistentDataContainer.set(NamespacedKey("testy", "text"), PersistentDataType.STRING, "COOL")
+        item.itemMeta = meta
+
+        val item2 = ItemStack(Material.ARROW)
+        val meta2 = item2.itemMeta
+        meta2.displayName(MINI_MESSAGE.deserialize("<blue>CLICK MEadsad FOR FREE VBUGS</blue>"))
+        meta2.persistentDataContainer.set(NamespacedKey("testy", "text"), PersistentDataType.STRING, "TTTTTTTTTTT")
+        item2.itemMeta = meta2
+
+        // TODO: HERE
         ServerboundContainerClickPacketUtil.attach(
             "sdffds",
             Main.instance,
             event.player,
+            mutableListOf(item, item2)
         ) {
-            event.player.sendMessage(Component.text().text("${this.clickType} - $containerId").build())
-
+            event.player.sendMessage(
+                Component.text().text("${this.clickType} - $containerId - ${this.slotNum}").build()
+            )
         }
 
+        /*
         ServerboundUseItemPacketUtil.attach("sdsdf", Main.instance, event.player) {
             this.hand
             event.player.sendMessage(this.sequence.toString())
@@ -175,22 +178,34 @@ object PlayerJoin : Listener {
         ServerboundSelectTradePacketUtil.attach("sdgdfgdgdgdsfgdfgfdgdfgdfgdfg", Main.instance, event.player) {
             event.player.sendMessage(this.item.toString())
         }
+         */
 
         PacketFactory.openScreenPacket(
             3243443,
             Component.text().text("<rainbow>Nice Small GUI</rainbow>").build(),
-            MenuType.GENERIC_9x6
+            net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.MenuType.GENERIC_9x6
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(event.player))
+            packet.send(mutableListOf(event.player))
         }
+
+
 
         PacketFactory.setContainerSlot(
             3243443,
             0,
             0,
-            ItemStack(Material.ARROW)
+            item
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(event.player))
+            packet.send(mutableListOf(event.player))
+        }
+
+        PacketFactory.setContainerSlot(
+            3243443,
+            0,
+            1,
+            item2
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
         }
 
         PacketFactory.sendWaypoint(
@@ -199,7 +214,7 @@ object PlayerJoin : Listener {
                 identifier = waypointUUID,
                 icon = WaypointIcon(
                     style = "default",
-                    color = 10
+                    color = 0x60008000
                 ),
                 type = WaypointType.VEC3I,
                 data = WaypointDataVec3i(
@@ -207,13 +222,14 @@ object PlayerJoin : Listener {
                 )
             )
         ) { packet ->
-            PacketFactory.sendPacket(packet, mutableListOf(event.player))
+            packet.send(mutableListOf(event.player))
         }
 
     }
 
     @EventHandler
     fun addNPCsOnJoin(event: PlayerJoinEvent) {
+        if (event.player.name != "xyzjesper") return
         Main.instance.adv.complete(event.player) {
 
         }
@@ -248,50 +264,60 @@ object PlayerJoin : Listener {
 
         SimulacrumFactory.createDisPlayEntity<PTextDisplay>(
             NamespacedKey("sdfds", "dfgdf"),
-            EntityType<*>.TEXT_DISPLAY,
+            net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.TEXT_DISPLAY,
             Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0),
             mutableListOf(event.player)
         ) {
-            entity as Display.TextDisplay
-
-            display = entity as Display.TextDisplay
+            display = entity as TextDisplay
 
             text(
                 message, mutableListOf(event.player)
             )
 
-            val accessor = EntityDataAccessor(12, EntityDataSerializers.VECTOR3)
+            /*
             onHover(Main.instance, event.player, 0.90) { isLockingAt ->
 
 
                 if (isLockingAt) {
                     // println("Lock: ${event.player.name}")
 
+
                     PacketFactory.setEntityDataPacket(
-                        entity.id, mutableListOf(
-                            SynchedEntityData.DataValue.create(
-                                accessor, Vector3f(2.0F, 2.0F, 2.0F)
+                        entity.entityId, mutableListOf(
+                            EntityMetadata(
+                                index = 12,
+                                type = EntityDataSerializerType.VECTOR3,
+                                value = Vector3f(2.0F, 2.0F, 2.0F)
                             )
                         )
                     ) { packet ->
-                        PacketFactory.sendPacket(packet, mutableListOf(event.player))
+                        packet.send(mutableListOf(event.player))
                     }
+
+
                 } else {
                     // println("NotLock: ${event.player.name}")
 
+
                     PacketFactory.setEntityDataPacket(
-                        entity.id, mutableListOf(
-                            SynchedEntityData.DataValue.create(
-                                accessor, Vector3f(1.0F, 1.0F, 1.0F)
+                        entity.entityId, mutableListOf(
+                            EntityMetadata(
+                                index = 12,
+                                type = EntityDataSerializerType.VECTOR3,
+                                value = Vector3f(1.0F, 1.0F, 1.0F)
                             )
                         )
                     ) { packet ->
-                        PacketFactory.sendPacket(packet, mutableListOf(event.player))
+                        packet.send(mutableListOf(event.player))
                     }
+
+
                 }
 
             }
+             */
 
+            /*
             onInteract(
                 NamespacedKey("crystalshardtest", "playerjoindisplaydetect"),
                 Main.instance,
@@ -301,12 +327,9 @@ object PlayerJoin : Listener {
                 event.player.sendMessage(
                     data.text!!
                 )
-
             }
-
-
+             */
         }
-
 
         SimulacrumFactory.createNpc<Npc>(
             Location(Main.instance.server.worlds.first(), 0.0, 0.0, 0.0),
@@ -315,6 +338,15 @@ object PlayerJoin : Listener {
                 ) {
 
             player = playerEntity
+            playerEntity.playerListName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
+            event.player.playerListName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
+            playerEntity.displayName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
+            event.player.displayName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
+            playerEntity.customName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
+            event.player.customName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
+
+            playerEntity.isCustomNameVisible = true
+            event.player.isCustomNameVisible = true
 
             val actions = EnumSet.noneOf(InfoUpdateAction::class.java)
             actions.add(InfoUpdateAction.ADD_PLAYER)
@@ -322,96 +354,95 @@ object PlayerJoin : Listener {
             actions.add(InfoUpdateAction.UPDATE_LISTED)
 
 
-            val value: String =
-                "ewogICJ0aW1lc3RhbXAiIDogMTc0MjA2NTk1NzMxOCwKICAicHJvZmlsZUlkIiA6ICIzYjBmNTM5MmRlNzM0YmZjYmJkOTMxYzMxYmFkODMxMCIsCiAgInByb2ZpbGVOYW1lIiA6ICJjYXRhbmRCIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzIxNjNhNjNiMDliNTE4MzY4YmU0ZDhlYTA5ODg0NTM4ZGUxNTRlYjU0Y2ZlYjA4ZjA5NmE2Y2Y0NDdjZWZkMzUiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ=="
-            val signature: String =
-                "ElfmMCz1IPrR4+PdwXRk0AbV5CO3/jrSU4ciTq8DdrYgQW1KMM3OVYyz8dig6P4dWaCaQpOUMMEdyNuqaTKCqO4Jjznk95DTziOlCU0aPVjRCdWElE0oU3xP3nGYIWw/O/jUPD1z+0bkFE0l4gwEL+QBKYjV/tOTNZAWuNuOSRc/lnrpxFPmpVCypq5Mk/e34ZAcQFZPn+MjTrLyBTJfl7A6PrKEKg5zXBIRGOYZ8qCfJtLZOzJPmKF9gtTUmFM7WzmrJTD8+dD66JEbeoSIMOdw0AC8EMm9HL2Ahmd8/1NqtT9WlHvQGb8ItL/JtuygusnA+o5bVnzXLK4i+DXy5dojlJOMNKJJg8AULhrBQNH2ZUGIvJ9mR8re6HFOVqiRtJfXoVYhzJR0PFekb9JgCH0ZKBewPtYjHhviSscxd735c0BeVVli0AqB0POcMkGkEefYTFcVMxKSC2epKbwTqn5vvxF5j18cYBgyUzxIMF1QNH06CAH4Hj60LUbBfcJdtq2A43xmrXRNb8Hp/+9t4tXtyoUWnFfDSjS4vem6JRZ5qaMHzxfeD4e0ejqG7D7zscDEA5+SYTqOazLJPjfbucTVkeyH1Ec6kUHJmoOcf7lmryCHVilZQVLyWEpV0a7aPf9AOzB/tjJSKYzpovWlybF9X3MDNOUPKaGoSyYTj6I="
+            val playerProfile = playerEntity.playerProfile
 
-            val properties = PropertyMap(
-                ImmutableMultimap.Builder<String, Property>().put(
-                    "textures", Property(
-                        "textures", value, signature
-                    )
-                ).build()
+            playerProfile.setProperty(
+                ProfileProperty(
+                    "textures",
+                    "ewogICJ0aW1lc3RhbXAiIDogMTc0MjA2NTk1NzMxOCwKICAicHJvZmlsZUlkIiA6ICIzYjBmNTM5MmRlNzM0YmZjYmJkOTMxYzMxYmFkODMxMCIsCiAgInByb2ZpbGVOYW1lIiA6ICJjYXRhbmRCIiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzIxNjNhNjNiMDliNTE4MzY4YmU0ZDhlYTA5ODg0NTM4ZGUxNTRlYjU0Y2ZlYjA4ZjA5NmE2Y2Y0NDdjZWZkMzUiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==",
+                    "ElfmMCz1IPrR4+PdwXRk0AbV5CO3/jrSU4ciTq8DdrYgQW1KMM3OVYyz8dig6P4dWaCaQpOUMMEdyNuqaTKCqO4Jjznk95DTziOlCU0aPVjRCdWElE0oU3xP3nGYIWw/O/jUPD1z+0bkFE0l4gwEL+QBKYjV/tOTNZAWuNuOSRc/lnrpxFPmpVCypq5Mk/e34ZAcQFZPn+MjTrLyBTJfl7A6PrKEKg5zXBIRGOYZ8qCfJtLZOzJPmKF9gtTUmFM7WzmrJTD8+dD66JEbeoSIMOdw0AC8EMm9HL2Ahmd8/1NqtT9WlHvQGb8ItL/JtuygusnA+o5bVnzXLK4i+DXy5dojlJOMNKJJg8AULhrBQNH2ZUGIvJ9mR8re6HFOVqiRtJfXoVYhzJR0PFekb9JgCH0ZKBewPtYjHhviSscxd735c0BeVVli0AqB0POcMkGkEefYTFcVMxKSC2epKbwTqn5vvxF5j18cYBgyUzxIMF1QNH06CAH4Hj60LUbBfcJdtq2A43xmrXRNb8Hp/+9t4tXtyoUWnFfDSjS4vem6JRZ5qaMHzxfeD4e0ejqG7D7zscDEA5+SYTqOazLJPjfbucTVkeyH1Ec6kUHJmoOcf7lmryCHVilZQVLyWEpV0a7aPf9AOzB/tjJSKYzpovWlybF9X3MDNOUPKaGoSyYTj6I="
+                )
             )
+            playerEntity.playerProfile = playerProfile
 
-            playerEntity.gameProfile = GameProfile(playerEntity.uuid, playerEntity.displayName, properties)
 
-
-            Main.instance.server.onlinePlayers.forEach { player ->
-                PacketFactory.playerInfoUpdatePacket(
+            PacketFactory.playerInfoUpdatePacket(
                     playerEntity,
-                    playerEntity.gameProfile,
                     actions,
                 ) { packet ->
-                    PacketFactory.sendPacket(packet, mutableListOf(player))
+                packet.send(mutableListOf(event.player))
                 }
-            }
 
-            playerEntity.setPos(0.0, 0.0, 0.0)
+
+            playerEntity.location.x = 5.0
+            playerEntity.location.y = 0.0
+            playerEntity.location.z = 0.0
 
             PacketFactory.addEntitiesPacket(
-                entityId = playerEntity.id,
-                entityUUID = playerEntity.uuid,
-                location = Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0, 0.0F, 0.0F),
-                entityType = playerEntity.type,
+                entityId = playerEntity.entityId,
+                entityUUID = playerEntity.uniqueId,
+                location = playerEntity.location,
+                entityType = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.PLAYER,
                 data = 0,
-                deltaMovement = Vec3.ZERO,
                 yHeadRot = 0.0,
             ) { packet ->
-                PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
+                packet.send(mutableListOf(event.player))
             }
 
-            val equipmentList: MutableList<com.mojang.datafixers.util.Pair<EquipmentSlot, net.minecraft.world.item.ItemStack>> =
+            val equipmentList: MutableList<Pair<net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EquipmentSlot, ItemStack>> =
                 mutableListOf()
             equipmentList.add(
-                com.mojang.datafixers.util.Pair(
-                    EquipmentSlot.MAINHAND, CraftItemStack.asNMSCopy(
-                        ItemStack(Material.STONE_SHOVEL)
-                    )
+                Pair(
+                    net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EquipmentSlot.MAINHAND,
+                    ItemStack(Material.STONE_SHOVEL)
                 )
             )
 
-
             PacketFactory.createEquipmentPacket(
-                playerEntity.id, equipmentList
-            ) { equipmentPacket ->
-                PacketFactory.sendPacket(equipmentPacket, Main.instance.server.onlinePlayers.toMutableList())
+                playerEntity.entityId, equipmentList
+            ) { packet ->
+                packet.send(mutableListOf(event.player))
             }
 
             PacketFactory.setEntityDataPacket(
-                playerEntity.id, mutableListOf(
-                    SynchedEntityData.DataValue.create(
-                        net.minecraft.world.entity.player.Player.DATA_PLAYER_MODE_CUSTOMISATION,
-                        (0x01 or 0x02 or 0x04 or 0x08 or 0x10 or 0x20 or 0x40).toByte()
+                playerEntity.entityId, mutableListOf(
+                    EntityMetadata<Byte>(
+                        index = 16,
+                        type = EntityDataSerializerType.BYTE,
+                        value = (0x01 or 0x02 or 0x04 or 0x08 or 0x10 or 0x20 or 0x40).toByte()
                     )
                 )
             ) { packet ->
-                PacketFactory.sendPacket(packet, Main.instance.server.onlinePlayers.toMutableList())
+                packet.send(mutableListOf(event.player))
             }
 
-            ServerboundInteractPacketUtil.attach("TestNPCInteraction", Main.instance, event.player) { clickType, msg ->
+            /*
+             ServerboundInteractPacketUtil.attach("TestNPCInteraction", Main.instance, event.player) { clickType, msg ->
 
-                val entity = Display.TextDisplay(EntityType.TEXT_DISPLAY, playerEntity.level())
+                 event.player.sendMessage("COOL")
 
-                entity.setPos(location!!.x, location!!.y, location!!.z)
-                PacketFactory.addEntitiesPacket(
-                    entity.id, entity.uuid,
-                    location = location!!,
-                    entityType = EntityType.TEXT_DISPLAY,
-                    data = 0,
-                    deltaMovement = Vec3.ZERO,
-                    yHeadRot = 0.0,
-                ) { packet ->
-                    PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
-                }
+                 val fakeDisplay = SimulacrumFactory.createEntityInstance<ItemDisplay>(
+                     EntityType.ITEM_DISPLAY,
+                     Location(Bukkit.getWorld("world"), 1.0, 1.0, 1.0)
+                 ) {
 
-                entity.passengers = ImmutableList.of(playerEntity);
+                     PacketFactory.addEntitiesPacket(
+                         this.entityId,
+                         this.uniqueId,
+                         location,
+                         EntityType.ITEM_DISPLAY,
+                         0,
+                         0.0
+                     ) { packet ->
+                         packet.send(mutableListOf(event.player))
+                     }
+                 }
 
-                PacketFactory.setPassengersPacket(entity) { packet ->
-                    PacketFactory.sendPacket(packet, Bukkit.getServer().onlinePlayers.toMutableList())
-                }
-            }
+                 PacketFactory.setPassengersPacket(fakeDisplay, mutableListOf(playerEntity)) { packet ->
+                     packet.send(mutableListOf(event.player))
+                 }
+             }
+             */
         }
     }
 

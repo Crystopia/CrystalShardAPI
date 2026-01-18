@@ -1,8 +1,8 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.packets
 
-import net.minecraft.core.BlockPos
-import net.minecraft.world.level.block.state.BlockState
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockType
 
 data class ClientboundBlockUpdatePacketData(
-    var blockPos: BlockPos, var state: BlockState
+    var blockPos: BlockPos, var state: BlockType
 )

@@ -18,7 +18,7 @@ import java.util.*
 interface INpc {
 
     var gameProfile: GameProfile
-    var playerEntity: ServerPlayer
+    var playerEntity: Player
     var isTeamCreated: MutableMap<UUID?, Boolean?>?
     var isVisibleForPlayer: MutableMap<UUID?, Boolean?>?
     var isLookingAtPlayer: MutableMap<UUID?, Boolean?>?
