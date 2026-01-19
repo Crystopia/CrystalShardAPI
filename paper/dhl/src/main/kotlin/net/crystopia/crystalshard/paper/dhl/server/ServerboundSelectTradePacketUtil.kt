@@ -12,6 +12,11 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 object ServerboundSelectTradePacketUtil {
 
+
+    data class SelectTradeEvent(
+        var item: Int
+    )
+
     /**
      * Attach the Event to the Player.
      */
@@ -19,7 +24,7 @@ object ServerboundSelectTradePacketUtil {
         name: String,
         plugin: JavaPlugin,
         player: Player,
-        callback: ServerboundSelectTradePacket.() -> Unit
+        callback: SelectTradeEvent.() -> Unit
     ): Boolean {
         val serverPlayer = (player as CraftPlayer).handle
         val channel = serverPlayer.connection.connection.channel
@@ -38,7 +43,11 @@ object ServerboundSelectTradePacketUtil {
                     plugin.server.scheduler.runTaskLater(
                         plugin,
                         Runnable {
-                            callback(msg)
+                            callback(
+                                SelectTradeEvent(
+                                    item = msg.item
+                                )
+                            )
                         },
                         1L
                     )

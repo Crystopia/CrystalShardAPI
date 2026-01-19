@@ -2,19 +2,17 @@ package net.crystopia.crystalshard.paper.dhl
 
 import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundTeleportEntityPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets.Shard_ClientboundRemoveEntitiesPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
-import net.minecraft.server.packs.repository.Pack
 import org.bukkit.Location
+import org.bukkit.Material
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
@@ -22,6 +20,76 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun applyCooldown(
+        item: Material,
+        duration: Int,
+        callback: (packet: Shard_Packet<ClientboundCooldownPacketData>) -> Unit
+    ): Shard_Packet<ClientboundCooldownPacketData> {
+
+        val data = ClientboundCooldownPacketData(
+            item, duration
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.applyCooldown(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.applyCooldown(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundCooldownPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun sendPlayerCombatKillPacket(
+        entityId: Int,
+        message: Component,
+        callback: (packet: Shard_Packet<ClientboundPlayerCombatKillPacketData>) -> Unit
+    ): Shard_Packet<ClientboundPlayerCombatKillPacketData> {
+
+        val data = ClientboundPlayerCombatKillPacketData(
+            entityId, message
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.sendPlayerCombatKillPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.sendPlayerCombatKillPacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundPlayerCombatKillPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun sendWaypoint(
         operation: WaypointOperation,

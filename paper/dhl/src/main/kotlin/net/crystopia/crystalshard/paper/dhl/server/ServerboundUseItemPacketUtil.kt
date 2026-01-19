@@ -2,7 +2,6 @@ package net.crystopia.crystalshard.paper.dhl.server
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
-import net.minecraft.network.protocol.game.ServerboundUseItemOnPacket
 import net.minecraft.network.protocol.game.ServerboundUseItemPacket
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Player
@@ -13,6 +12,14 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 object ServerboundUseItemPacketUtil {
 
+    data class UseItemEvent(
+        var hand: ServerboundSwingPacketUtil.InteractionHand,
+        var sequence: Int,
+        var yRot: Float,
+        var xRot: Float,
+        var timestamp: Long
+    )
+
     /**
      * Attach the Event to the Player.
      */
@@ -20,7 +27,7 @@ object ServerboundUseItemPacketUtil {
         name: String,
         plugin: JavaPlugin,
         player: Player,
-        callback: ServerboundUseItemPacket.() -> Unit
+        callback: UseItemEvent.() -> Unit
     ): Boolean {
         val serverPlayer = (player as CraftPlayer).handle
         val channel = serverPlayer.connection.connection.channel
@@ -39,7 +46,15 @@ object ServerboundUseItemPacketUtil {
                     plugin.server.scheduler.runTaskLater(
                         plugin,
                         Runnable {
-                            callback(msg)
+                            callback(
+                                UseItemEvent(
+                                    hand = ServerboundSwingPacketUtil.InteractionHand.interactionHand(msg.hand)!!,
+                                    sequence = msg.sequence,
+                                    yRot = msg.yRot,
+                                    xRot = msg.xRot,
+                                    timestamp = msg.timestamp
+                                )
+                            )
                         },
                         1L
                     )

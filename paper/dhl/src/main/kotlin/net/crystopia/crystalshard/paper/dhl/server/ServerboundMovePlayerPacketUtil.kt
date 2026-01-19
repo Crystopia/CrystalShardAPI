@@ -13,11 +13,23 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 object ServerboundMovePlayerPacketUtil {
 
+    data class MovePlayerEvent(
+        var x: Double,
+        var y: Double,
+        var z: Double,
+        var yRot: Float,
+        var xRot: Float,
+        var onGround: Boolean,
+        var horizontalCollision: Boolean,
+        var hasPos: Boolean,
+        var hasRot: Boolean
+    )
+
     /**
      * Attach the Event to the Player.
      */
     fun attach(
-        name: String, plugin: JavaPlugin, player: Player, callback: (msg: ServerboundMovePlayerPacket) -> Unit
+        name: String, plugin: JavaPlugin, player: Player, callback: MovePlayerEvent.() -> Unit
     ): Boolean {
         val serverPlayer = (player as CraftPlayer).handle
         val channel = serverPlayer.connection.connection.channel
@@ -35,7 +47,17 @@ object ServerboundMovePlayerPacketUtil {
 
                     plugin.server.scheduler.runTaskLater(
                         plugin, Runnable {
-                            callback(msg)
+                            callback(MovePlayerEvent(
+                                x = msg.x,
+                                y = msg.y,
+                                z = msg.z,
+                                yRot = msg.yRot,
+                                xRot = msg.xRot,
+                                onGround = msg.isOnGround,
+                                horizontalCollision = msg.horizontalCollision(),
+                                hasPos = msg.hasPos,
+                                hasRot = msg.hasRot
+                            ))
                         }, 1L
                     )
                 }

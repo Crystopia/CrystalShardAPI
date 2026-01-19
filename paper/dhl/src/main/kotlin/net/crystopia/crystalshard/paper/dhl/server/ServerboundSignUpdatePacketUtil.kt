@@ -12,6 +12,14 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 object ServerboundSignUpdatePacketUtil {
 
+    data class SignUpdateEvent(
+        var x: Int,
+        var y: Int,
+        var z: Int,
+        var lines: MutableList<String>,
+        var isFrontText: Boolean
+    )
+
     /**
      * Attach the Event to the Player.
      */
@@ -19,7 +27,7 @@ object ServerboundSignUpdatePacketUtil {
         name: String,
         plugin: JavaPlugin,
         player: Player,
-        callback: ServerboundSignUpdatePacket.() -> Unit
+        callback: SignUpdateEvent.() -> Unit
     ): Boolean {
         val serverPlayer = (player as CraftPlayer).handle
         val channel = serverPlayer.connection.connection.channel
@@ -38,7 +46,15 @@ object ServerboundSignUpdatePacketUtil {
                     plugin.server.scheduler.runTaskLater(
                         plugin,
                         Runnable {
-                            callback(msg)
+                            callback(
+                                SignUpdateEvent(
+                                    x = msg.pos.x,
+                                    y = msg.pos.y,
+                                    z = msg.pos.z,
+                                    lines = msg.lines.toMutableList(),
+                                    isFrontText = msg.isFrontText
+                                )
+                            )
                         },
                         1L
                     )

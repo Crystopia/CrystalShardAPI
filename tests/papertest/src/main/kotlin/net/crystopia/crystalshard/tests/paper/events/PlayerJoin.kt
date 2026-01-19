@@ -1,6 +1,5 @@
 package net.crystopia.crystalshard.tests.paper.events
 
-import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent
 import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import com.destroystokyo.paper.profile.ProfileProperty
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
@@ -11,15 +10,17 @@ import io.papermc.paper.registry.data.dialog.DialogBase
 import io.papermc.paper.registry.data.dialog.action.DialogAction
 import io.papermc.paper.registry.data.dialog.input.DialogInput
 import io.papermc.paper.registry.data.dialog.type.DialogType
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.internal.encodeByWriter
 import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
 import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
-import net.crystopia.crystalshard.paper.dhl.server.ServerboundContainerClickPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundCustomClickActionPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
+import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
+import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil.Direction
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
@@ -36,7 +37,6 @@ import net.kyori.adventure.nbt.api.BinaryTagHolder
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.event.DataComponentValue
-import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
@@ -53,7 +53,7 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
-import org.bukkit.persistence.PersistentDataType
+import org.joml.Vector3f
 import java.util.*
 
 object PlayerJoin : Listener {
@@ -115,6 +115,15 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onMove(event: PlayerMoveEvent) {
 
+        PacketFactory.applyCooldown(
+            Material.PAPER,
+            1000
+        ) {
+            packet -> packet.send(mutableListOf(event.player))
+        }
+
+
+
         /*
         if (!checked.contains(event.player.uniqueId)) {
             checked.add(event.player.uniqueId)
@@ -145,6 +154,12 @@ object PlayerJoin : Listener {
         ServerboundCustomClickActionPacketUtil.attach(
             "sdfsdfsddfsd", Main.instance, event.player
         ) {
+
+            println(key)
+            println(this.payload.id)
+            println(this.payload.type.name)
+            println(this.payload.type.prettyName)
+            println(this.payload.type.data)
 
         }
 
@@ -202,7 +217,7 @@ object PlayerJoin : Listener {
         val map = mutableMapOf<Int, ItemStack>()
         map.put(0, item)
         map.put(1, item2)
-
+f
         // TODO: HERE
         ServerboundContainerClickPacketUtil.attach(
             "sdffds",
@@ -292,13 +307,32 @@ object PlayerJoin : Listener {
         Main.instance.adv.complete(event.player) {
 
         }
+
+        ServerboundPlayerActionPacketUtil.attach(
+            "fsdfsdfsd",
+            Main.instance,
+            event.player,
+        ) {
+
+            println(this.sequence)
+            println(this.action)
+            println(this.direction)
+            println(this.z)
+            println(this.x)
+            println(this.y)
+        }
+
         val head = TextHeads.generateHead(
             UUID.fromString("f6f3a530-6c39-4098-96a0-6bdf4f3afc70"), true
         )
         val message = Component.text("Dein Code: ", NamedTextColor.GRAY).append(
-            Component.text("ABC-123", NamedTextColor.GREEN).clickEvent(ClickEvent.copyToClipboard("ABC-123"))
-                .hoverEvent(HoverEvent.showText(Component.text("Klicken zum Kopieren")))
+            Component.text().text("ABC-123").clickEvent(ClickEvent.callback { audience ->
+                audience.sendMessage(Component.text("COOl"))
+            })
         )
+
+        event.player.sendMessage(message)
+
 
         ServerboundInteractPacketUtil.attach(
             "cosdfsfgdfgfs",
@@ -341,7 +375,7 @@ object PlayerJoin : Listener {
                 message, mutableListOf(event.player)
             )
 
-            /*
+
             onHover(Main.instance, event.player, 0.90) { isLockingAt ->
 
 
@@ -382,20 +416,19 @@ object PlayerJoin : Listener {
                 }
 
             }
-             */
 
-            /*
+
+
             onInteract(
                 NamespacedKey("crystalshardtest", "playerjoindisplaydetect"),
                 Main.instance,
                 Pair(2.0F, 2.0F),
                 event.player
-            ) { clickType, msg ->
+            ) {
                 event.player.sendMessage(
                     data.text!!
                 )
             }
-             */
         }
 
         SimulacrumFactory.createNpc<Npc>(

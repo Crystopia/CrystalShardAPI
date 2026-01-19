@@ -2,7 +2,6 @@ package net.crystopia.crystalshard.paper.dhl.server
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
-import net.minecraft.network.protocol.game.ServerboundContainerButtonClickPacket
 import net.minecraft.network.protocol.game.ServerboundSwingPacket
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Player
@@ -13,6 +12,29 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 object ServerboundSwingPacketUtil {
 
+    data class SwingArmEvent(
+        var hand: InteractionHand
+    )
+
+    enum class InteractionHand(val id: net.minecraft.world.InteractionHand) {
+        MAIN_HAND(net.minecraft.world.InteractionHand.MAIN_HAND),
+        OFF_HAND(net.minecraft.world.InteractionHand.OFF_HAND);
+
+        companion object {
+            var entries = InteractionHand.entries
+
+            fun interactionHand(id: net.minecraft.world.InteractionHand): InteractionHand? {
+                entries.forEach { interactionHand ->
+                    if (interactionHand.id == id)
+                        return interactionHand
+                }
+                return null
+            }
+
+        }
+
+    }
+
     /**
      * Attach the Event to the Player.
      */
@@ -20,7 +42,7 @@ object ServerboundSwingPacketUtil {
         name: String,
         plugin: JavaPlugin,
         player: Player,
-        callback: ServerboundSwingPacket.() -> Unit
+        callback: SwingArmEvent.() -> Unit
     ): Boolean {
         val serverPlayer = (player as CraftPlayer).handle
         val channel = serverPlayer.connection.connection.channel
@@ -39,7 +61,11 @@ object ServerboundSwingPacketUtil {
                     plugin.server.scheduler.runTaskLater(
                         plugin,
                         Runnable {
-                            callback(msg)
+                            callback(
+                                SwingArmEvent(
+                                    hand = InteractionHand.interactionHand(msg.hand)!!
+                                )
+                            )
                         },
                         1L
                     )

@@ -6,6 +6,8 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun applyCooldown(data: ClientboundCooldownPacketData): Packet<*>
+    fun sendPlayerCombatKillPacket(data: ClientboundPlayerCombatKillPacketData): Packet<*>
     fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*>
     fun setContainerData(data: ClientboundContainerSetDataPacketData): Packet<*>
     fun setContainerContent(data: ClientboundContainerSetContentPacketData): Packet<*>

@@ -6,7 +6,8 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundRemov
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket
 
-class Shard_ClientboundRemoveEntitiesPacket : IPacket<ClientboundRemoveEntitiesPacketData> {
+class
+Shard_ClientboundRemoveEntitiesPacket : IPacket<ClientboundRemoveEntitiesPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundRemoveEntitiesPacketData

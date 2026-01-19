@@ -1,14 +1,23 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general
 
 
-import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets.*
 import net.minecraft.network.protocol.Packet
+import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket
 import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
+
+    override fun applyCooldown(data: ClientboundCooldownPacketData): Packet<*> {
+        return Shard_ClientboundCooldownPacket().createPacket(data)
+    }
+
+    override fun sendPlayerCombatKillPacket(data: ClientboundPlayerCombatKillPacketData): Packet<*> {
+        return Shard_ClientboundPlayerCombatKillPacket().createPacket(data)
+    }
 
     override fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*> {
         return Shard_ClientboundTrackedWaypointPacket().createPacket(data)

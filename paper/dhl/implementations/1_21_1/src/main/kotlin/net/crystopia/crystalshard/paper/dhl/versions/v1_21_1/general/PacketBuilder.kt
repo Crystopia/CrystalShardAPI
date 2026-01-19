@@ -10,6 +10,14 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun applyCooldown(data: ClientboundCooldownPacketData): Packet<*> {
+        return Shard_ClientboundCooldownPacket().createPacket(data)
+    }
+
+    override fun sendPlayerCombatKillPacket(data: ClientboundPlayerCombatKillPacketData): Packet<*> {
+        return Shard_ClientboundPlayerCombatKillPacket().createPacket(data)
+    }
+
     override fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*> {
         throw Exception("Waypoints are not supported in 1.21.1")
     }

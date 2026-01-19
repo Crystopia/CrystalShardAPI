@@ -29,9 +29,6 @@ object ServerboundInteractPacketUtil {
         var clickActionType: ClickActionType
     )
 
-    /**
-     * Custom Click Type parser for the ServerboundInteractPacket
-     */
     enum class ClickActionType(name: String) {
 
         RIGHT_CLICK("rightClick"), LEFT_CLICK("leftClick"), SHIFT_RIGHT_CLICK("shiftRightClick"), SHIFT_LEFT_CLICK("shiftLeftClick"), UNKNOWN(
