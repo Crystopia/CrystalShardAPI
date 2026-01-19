@@ -1,15 +1,24 @@
 package net.crystopia.crystalshard.tests.paper.events
 
+import com.destroystokyo.paper.event.player.PlayerArmorChangeEvent
 import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import com.destroystokyo.paper.profile.ProfileProperty
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
+import io.papermc.paper.dialog.Dialog
+import io.papermc.paper.registry.data.dialog.ActionButton
+import io.papermc.paper.registry.data.dialog.DialogBase
+import io.papermc.paper.registry.data.dialog.action.DialogAction
+import io.papermc.paper.registry.data.dialog.input.DialogInput
+import io.papermc.paper.registry.data.dialog.type.DialogType
 import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
 import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundContainerClickPacketUtil
+import net.crystopia.crystalshard.paper.dhl.server.ServerboundCustomClickActionPacketUtil
+import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
@@ -29,6 +38,7 @@ import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.event.DataComponentValue
 import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.format.NamedTextColor
+import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -128,9 +138,46 @@ object PlayerJoin : Listener {
 
     var player: Player? = null
     var waypointUUID = UUID.randomUUID()
+
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
 
+        ServerboundCustomClickActionPacketUtil.attach(
+            "sdfsdfsddfsd", Main.instance, event.player
+        ) {
+
+        }
+
+        val dialog = Dialog.create({ builder ->
+            builder.empty().base(
+                DialogBase.builder(Component.text("Configure your new experience value")).inputs(
+                    mutableListOf(
+                        DialogInput.numberRange("level", Component.text("Level", NamedTextColor.GREEN), 0f, 100f)
+                            .step(1f).initial(0f).width(300).build(), DialogInput.numberRange(
+                            "experience", Component.text("Experience", NamedTextColor.GREEN), 0f, 100f
+                        ).step(1f).initial(0f).labelFormat("%s: %s percent to the next level").width(300).build()
+                    )
+                ).build()
+            ).type(
+                DialogType.confirmation(
+                    ActionButton.create(
+                        Component.text("Confirm", TextColor.color(0xAEFFC1)),
+                        Component.text("Click to confirm your input."),
+                        100,
+                        DialogAction.customClick(Key.key("papermc:user_input/confirm"), null)
+                    ), ActionButton.create(
+                        Component.text("Discard", TextColor.color(0xFFA0B1)),
+                        Component.text("Click to discard your input."),
+                        100,
+                        null // If we set the action to null, it doesn't do anything and closes the dialog
+                    )
+                )
+            )
+        })
+
+        event.player.showDialog(dialog)
+
+        /*
         PacketFactory.teleportEntityPacket(
             player!!.entityId,
             Location(Bukkit.getWorld("world"), 1.0, 1.0, 1.0),
@@ -152,15 +199,27 @@ object PlayerJoin : Listener {
         meta2.persistentDataContainer.set(NamespacedKey("testy", "text"), PersistentDataType.STRING, "TTTTTTTTTTT")
         item2.itemMeta = meta2
 
+        val map = mutableMapOf<Int, ItemStack>()
+        map.put(0, item)
+        map.put(1, item2)
+
         // TODO: HERE
         ServerboundContainerClickPacketUtil.attach(
             "sdffds",
             Main.instance,
             event.player,
-            mutableListOf(item, item2)
+            map
         ) {
             event.player.sendMessage(
-                Component.text().text("${this.clickType} - $containerId - ${this.slotNum}").build()
+                Component.text().text("${this.clickType} - $containerId - ${this.slotNum} ").build()
+            )
+
+            event.player.sendMessage(
+                Component.text().text("carriedItem: ").append(carriedItem?.displayName() ?: Component.text("NONE")).build()
+            )
+
+            event.player.sendMessage(
+                Component.text().text("changedSlots: ").append(changedSlots.first().displayName()).build()
             )
         }
 
@@ -224,7 +283,7 @@ object PlayerJoin : Listener {
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
-
+         */
     }
 
     @EventHandler
@@ -240,6 +299,14 @@ object PlayerJoin : Listener {
             Component.text("ABC-123", NamedTextColor.GREEN).clickEvent(ClickEvent.copyToClipboard("ABC-123"))
                 .hoverEvent(HoverEvent.showText(Component.text("Klicken zum Kopieren")))
         )
+
+        ServerboundInteractPacketUtil.attach(
+            "cosdfsfgdfgfs",
+            Main.instance,
+            event.player,
+        ) {
+
+        }
 
         // event.player.sendMessage(message)
 
@@ -332,10 +399,8 @@ object PlayerJoin : Listener {
         }
 
         SimulacrumFactory.createNpc<Npc>(
-            Location(Main.instance.server.worlds.first(), 0.0, 0.0, 0.0),
-                    NamespacedKey("test", "test"),
-                    "I'm a NPC"
-                ) {
+            Location(Main.instance.server.worlds.first(), 0.0, 0.0, 0.0), NamespacedKey("test", "test"), "I'm a NPC"
+        ) {
 
             player = playerEntity
             playerEntity.playerListName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
@@ -367,11 +432,11 @@ object PlayerJoin : Listener {
 
 
             PacketFactory.playerInfoUpdatePacket(
-                    playerEntity,
-                    actions,
-                ) { packet ->
+                playerEntity,
+                actions,
+            ) { packet ->
                 packet.send(mutableListOf(event.player))
-                }
+            }
 
 
             playerEntity.location.x = 5.0

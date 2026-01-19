@@ -21,24 +21,22 @@ import org.bukkit.plugin.java.JavaPlugin
  */
 object ServerboundContainerClickPacketUtil {
 
-    class ContainerClickEvent(
+    data class ContainerClickEvent(
         var containerId: Int,
         var stateId: Int,
         var slotNum: Short,
         var buttonNum: Byte,
         var clickType: ClickType,
-        // var changedSlots: MutableList<ItemStack>,
-        // var carriedItem: ItemStack
+        var changedSlots: MutableList<org.bukkit.inventory.ItemStack>,
+        var carriedItem: org.bukkit.inventory.ItemStack?,
+        var selectedItem : org.bukkit.inventory.ItemStack?
     )
 
     enum class ClickType(open var id: Int) {
-        PICKUP(0),
-        QUICK_MOVE(1),
-        SWAP(2),
-        CLONE(3),
-        THROW(4),
-        QUICK_CRAFT(5),
-        PICKUP_ALL(6);
+        PICKUP(0), QUICK_MOVE(1), SWAP(2), CLONE(3), THROW(4), QUICK_CRAFT(5), PICKUP_ALL(6),
+
+        // OWN
+        SET_DOWN(7);
 
         companion object {
             private val map = ClickType.entries
@@ -55,7 +53,7 @@ object ServerboundContainerClickPacketUtil {
         name: String,
         plugin: JavaPlugin,
         player: Player,
-        items: MutableList<org.bukkit.inventory.ItemStack>,
+        items: MutableMap<Int, org.bukkit.inventory.ItemStack>,
         callback: ContainerClickEvent.() -> Unit
     ): Boolean {
         val serverPlayer = (player as CraftPlayer).handle
@@ -72,83 +70,58 @@ object ServerboundContainerClickPacketUtil {
                     out.add(msg)
 
                     plugin.server.scheduler.runTaskLater(
-                        plugin,
-                        Runnable {
+                        plugin, Runnable {
+                            var clickType = msg.clickType.id()
 
                             var carried: org.bukkit.inventory.ItemStack? = null
                             if (msg.carriedItem is HashedStack.ActualItem) {
                                 if (!items.isEmpty()) {
-
-                                    items.forEach { stack ->
-                                        val dataComponentPatch = DataComponentPatch.builder()
-                                        val mcStack = CraftItemStack.asNMSCopy(stack)
-
-                                        (msg.carriedItem as HashedStack.ActualItem).components.addedComponents.forEach { (type, i) ->
-                                            val value = mcStack.get(type)
-                                            if (value != null)
-                                                dataComponentPatch.set(TypedDataComponent.createUnchecked(type, value))
-                                        }
-                                        (msg.carriedItem as HashedStack.ActualItem).components.removedComponents.forEach { type ->
-                                            dataComponentPatch.remove(type)
-                                        }
-                                        val bukkitStack = CraftItemStack.asBukkitCopy(
-                                            ItemStack(
-                                                (msg.carriedItem as HashedStack.ActualItem).item,
-                                                (msg.carriedItem as HashedStack.ActualItem).count,
-                                                dataComponentPatch.build()
-                                            )
-                                        )
-
-                                        if (bukkitStack.hashCode() == stack.hashCode()) {
+                                    items.forEach { (i, stack) ->
+                                        if (i == msg.slotNum.toInt()) {
                                             carried = stack
+                                        }
+                                    }
+                                }
+                            } else {
+                                if (msg.clickType.id() == 0) {
+                                    clickType = 7
+                                }
+                            }
+
+                            val changed: MutableList<org.bukkit.inventory.ItemStack> = mutableListOf()
+                            if (!msg.changedSlots.isEmpty()) {
+                                msg.changedSlots.forEach { (i, stack) ->
+                                    if (stack is HashedStack.ActualItem) {
+                                        items.forEach { (slot, stack) ->
+                                            if (i == slot) {
+                                                changed.add(stack)
+                                            }
                                         }
                                     }
                                 }
                             }
 
-                            println(carried!!.displayName())
-
-                            msg.changedSlots.forEach { (i, stack) ->
-                                if (stack !is HashedStack.ActualItem) return@forEach
-                                val item = stack.item
-                                val count = stack.count
-                                val dataComponentPatch = DataComponentPatch.builder()
-
-                                stack.components.addedComponents.forEach { (type, value) ->
-                                    println(type)
-                                    println(value)
-
+                            var selectedItem : org.bukkit.inventory.ItemStack? = null
+                            if (!items.isEmpty()) {
+                            items.forEach { (i, stack) ->
+                                if (i == msg.slotNum.toInt()) {
+                                    selectedItem = stack
                                 }
-
-                                Component.translatable()
-
-                                stack.components.removedComponents.forEach { type ->
-                                    dataComponentPatch.remove(type)
-                                }
-
-                                val itemStack =
-                                    CraftItemStack.asBukkitCopy(ItemStack(item, count, dataComponentPatch.build()))
-                                player.sendMessage(itemStack.toString())
-                                println(
-                                    "I: $i - TAG: ${
-                                        itemStack.persistentDataContainer.get(
-                                            NamespacedKey("testy", "text"),
-                                            PersistentDataType.STRING
-                                        )
-                                    }"
-                                )
-                            }
+                            }}
+                            else selectedItem = null
 
                             val event = ContainerClickEvent(
                                 containerId = msg.containerId,
                                 stateId = msg.stateId,
                                 slotNum = msg.slotNum,
                                 buttonNum = msg.buttonNum,
-                                clickType = ClickType.getType(msg.clickType.id())
+                                clickType = ClickType.getType(clickType),
+                                carriedItem = carried,
+                                changedSlots = changed,
+                                selectedItem = selectedItem
                             )
                             callback(event)
-                        },
-                        1L
+                        }, 1L
                     )
                 }
             })

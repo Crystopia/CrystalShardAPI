@@ -37,7 +37,7 @@ open class DisplayInteraction<T : org.bukkit.entity.Display>(open var entity: T)
         plugin: JavaPlugin,
         size: Pair<Float, Float>,
         player: Player,
-        callback: (clickType: ClickActionType, msg: ServerboundInteractPacket) -> Unit
+        callback: ServerboundInteractPacketUtil.InteractEvent.() -> Unit
     ) {
 
         // Register event for the Display
@@ -85,10 +85,12 @@ open class DisplayInteraction<T : org.bukkit.entity.Display>(open var entity: T)
             packet.send(mutableListOf(player))
         }
 
-        ServerboundInteractPacketUtil.attach("${key.namespace}:${key.key}", plugin, player) { clickType, msg ->
-            if (msg.entityId == interaction.id) {
-                callback(clickType, msg)
+
+        ServerboundInteractPacketUtil.attach("${key.namespace}:${key.key}", plugin, player) {
+            if (entityId == interaction.id) {
+                callback(this)
             }
         }
+
     }
 }

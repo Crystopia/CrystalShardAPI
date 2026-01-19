@@ -3,8 +3,17 @@ package net.crystopia.crystalshard.paper.dhl.server
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
 import net.minecraft.network.protocol.game.ServerboundInteractPacket
+import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket
+import net.minecraft.world.InteractionHand
+import net.minecraft.world.entity.Entity
+import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Player
+import org.bukkit.event.entity.EntityInteractEvent
+import org.bukkit.event.inventory.InventoryInteractEvent
+import org.bukkit.event.player.PlayerInteractAtEntityEvent
+import org.bukkit.event.player.PlayerInteractEntityEvent
+import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.plugin.java.JavaPlugin
 
 
@@ -12,6 +21,13 @@ import org.bukkit.plugin.java.JavaPlugin
  * Util class for attaching and working with the ServerboundInteractPacket for user-defined interactions by the player.
  */
 object ServerboundInteractPacketUtil {
+
+    data class InteractEvent(
+        var entityId: Int,
+        var isAttack: Boolean,
+        var sneakKeyPressed: Boolean,
+        var clickActionType: ClickActionType
+    )
 
     /**
      * Custom Click Type parser for the ServerboundInteractPacket
@@ -39,7 +55,7 @@ object ServerboundInteractPacketUtil {
         name: String,
         plugin: JavaPlugin,
         player: Player,
-        callback: (clickType: ClickActionType, msg: ServerboundInteractPacket) -> Unit
+        callback: InteractEvent.() -> Unit
     ): Boolean {
         val serverPlayer = (player as CraftPlayer).handle
         val channel = serverPlayer.connection.connection.channel
@@ -58,7 +74,14 @@ object ServerboundInteractPacketUtil {
                     plugin.server.scheduler.runTaskLater(
                         plugin,
                         Runnable {
-                            callback(ClickActionType.clickType(msg.isAttack, msg.isUsingSecondaryAction), msg)
+                            callback(
+                                InteractEvent(
+                                    entityId = msg.entityId,
+                                    isAttack = msg.isAttack,
+                                    sneakKeyPressed = msg.isUsingSecondaryAction,
+                                    clickActionType = ClickActionType.clickType(msg.isAttack, msg.isUsingSecondaryAction)
+                                )
+                            )
                         },
                         1L
                     )

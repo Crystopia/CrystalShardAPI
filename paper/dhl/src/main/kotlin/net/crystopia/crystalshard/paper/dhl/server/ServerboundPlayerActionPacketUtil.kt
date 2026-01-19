@@ -2,21 +2,15 @@ package net.crystopia.crystalshard.paper.dhl.server
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
-import net.minecraft.network.protocol.game.ServerboundContainerButtonClickPacket
+import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
- * Util class for attaching and working with the ServerboundContainerButtonClickPacket for user-defined clicks in a GUI by the player.
+ * Util class for attaching and working with the ServerboundPlayerActionPacket for user-defined action from the player.
  */
-object ServerboundContainerButtonClickPacketUtil {
-
-
-    data class ButtonClickEvent(
-        var containerId: Int,
-        var buttonId: Int
-    )
+object ServerboundPlayerActionPacketUtil {
 
     /**
      * Attach the Event to the Player.
@@ -25,7 +19,7 @@ object ServerboundContainerButtonClickPacketUtil {
         name: String,
         plugin: JavaPlugin,
         player: Player,
-        callback: ButtonClickEvent.() -> Unit
+        callback: Any.() -> Unit
     ): Boolean {
         val serverPlayer = (player as CraftPlayer).handle
         val channel = serverPlayer.connection.connection.channel
@@ -35,19 +29,17 @@ object ServerboundContainerButtonClickPacketUtil {
         }
 
         channel.pipeline().addAfter(
-            "decoder", name, object : MessageToMessageDecoder<ServerboundContainerButtonClickPacket>() {
+            "decoder", name, object : MessageToMessageDecoder<ServerboundPlayerActionPacket>() {
                 override fun decode(
-                    ctx: ChannelHandlerContext, msg: ServerboundContainerButtonClickPacket, out: MutableList<Any>
+                    ctx: ChannelHandlerContext, msg: ServerboundPlayerActionPacket, out: MutableList<Any>
                 ) {
                     out.add(msg)
 
+                  // TODO
                     plugin.server.scheduler.runTaskLater(
                         plugin,
                         Runnable {
-                            callback(ButtonClickEvent(
-                                containerId = msg.containerId,
-                                buttonId = msg.buttonId
-                            ))
+                            callback(msg)
                         },
                         1L
                     )
