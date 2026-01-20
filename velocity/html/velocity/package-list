@@ -1,0 +1,38 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes////PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/index.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd///PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/index.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/Motd/#com.velocitypowered.api.event.proxy.ProxyPingEvent/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/-motd.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/build/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/build.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/currentPlayers/#kotlin.Int/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/current-players.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/description/#net.kyori.adventure.text.Component/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/description.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/event/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/event.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/hover/#net.kyori.adventure.text.Component/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/hover.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/icon/#kotlin.String/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/icon.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/maxPlayers/#kotlin.Int/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/max-players.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/modInfo/#com.velocitypowered.api.util.ModInfo/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/mod-info.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/ping/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/ping.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions.classes/Motd/version/#net.kyori.adventure.text.Component/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions.classes/-motd/version.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions////PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions/index.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions//connect/com.velocitypowered.api.proxy.Player#kotlin.String#kotlin.Function1[com.velocitypowered.api.proxy.ConnectionRequestBuilder,kotlin.Unit]/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions/connect.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions//motd/com.velocitypowered.api.event.proxy.ProxyPingEvent#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions/motd.html
+$dokka.location:net.crystopia.crystalshard.velocity.extensions//motd/com.velocitypowered.api.event.proxy.ProxyPingEvent#kotlin.Function1[net.crystopia.crystalshard.velocity.extensions.classes.Motd,kotlin.Unit]/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.extensions/motd.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging////PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/index.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage///PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/index.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/ProxyMessage/#com.velocitypowered.api.proxy.ProxyServer#com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier#kotlin.String#kotlin.Function2[com.velocitypowered.api.event.connection.PluginMessageEvent,net.crystopia.crystalshard.velocity.messaging.ProxyMessage,kotlin.Unit]/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/-proxy-message.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/identifier/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/identifier.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/messageType/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/message-type.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/onEvent/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/on-event.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/onEvent/#com.velocitypowered.api.event.connection.PluginMessageEvent#net.crystopia.crystalshard.velocity.messaging.ProxyMessage/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/on-event.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/register/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/register.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/send/#kotlin.String#com.velocitypowered.api.proxy.Player/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/send.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/send/#kotlin.String#com.velocitypowered.api.proxy.server.RegisteredServer/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/send.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/server/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/server.html
+$dokka.location:net.crystopia.crystalshard.velocity.messaging/ProxyMessage/unRegister/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity.messaging/-proxy-message/un-register.html
+$dokka.location:net.crystopia.crystalshard.velocity////PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity/index.html
+$dokka.location:net.crystopia.crystalshard.velocity//crystalshard/#com.velocitypowered.api.proxy.ProxyServer/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity/crystalshard.html
+$dokka.location:net.crystopia.crystalshard.velocity//proxy/#/PointingToDeclaration/velocity/net.crystopia.crystalshard.velocity/proxy.html
+net.crystopia.crystalshard.velocity
+net.crystopia.crystalshard.velocity.extensions
+net.crystopia.crystalshard.velocity.extensions.classes
+net.crystopia.crystalshard.velocity.messaging
