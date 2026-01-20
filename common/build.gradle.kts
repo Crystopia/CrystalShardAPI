@@ -3,6 +3,7 @@ plugins {
     kotlin("jvm") version "2.+"
     kotlin("plugin.serialization")
     id("com.gradleup.shadow") version "9.2.2"
+    id("maven-publish")
 }
 
 dependencies {
@@ -42,5 +43,33 @@ tasks {
         relocate("org.ktorm.ktorm-core", "net.crystopia.libs.ktorm")
         relocate("eu.vendeli.rethis", "net.crystopia.libs.rethis")
         relocate("io.github.cdimascio.dotenv-kotlin", "net.crystopia.libs.dotenv")
+    }
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Reposilite"
+            url = uri("https://repo.xyzhub.link/releases")
+            credentials {
+                username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
+                password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
+            }
+            authentication {
+                create<BasicAuthentication>("basic")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("reposilite") {
+            from(components["java"])
+            artifactId = "paper-custom"
+            groupId = group as String
+            version = version
+        }
     }
 }
