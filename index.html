@@ -8,17 +8,99 @@
 </head>
 <body>
 
-<h1>CrystalShard API</h1>
+<h1 id="crystalshard-api">CrystalShard API</h1>
+<p><strong>CrystalShard</strong> is an open-source Minecraft library that provides packet handling, utilities, and server-side helpers to help you build plugins faster and cleaner.</p>
+<p>It supports both <strong>PaperMC</strong> and <strong>Velocity</strong>, offering modular packages for GUIs, NPCs, resource packs, custom elements, and more.</p>
 <hr>
+<h2 id="modules">Modules</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>ID</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PAPER</td>
+<td><code>paper-core</code></td>
+<td>Core methods and extensions for PaperMC</td>
+</tr>
+<tr>
+<td>PAPER</td>
+<td><code>paper-box</code></td>
+<td>Package-based GUI library for PaperMC <em>(WIP)</em></td>
+</tr>
+<tr>
+<td>PAPER</td>
+<td><code>paper-custom</code></td>
+<td>Utility library for custom elements and enhancements for Paper &amp; Bukkit</td>
+</tr>
+<tr>
+<td>PAPER</td>
+<td><code>paper-dhl</code></td>
+<td>Package library with factories and helpers for PaperMC <em>(BETA)</em></td>
+</tr>
+<tr>
+<td>PAPER</td>
+<td><code>paper-pack</code></td>
+<td>Resource pack utilities and helpers for PaperMC</td>
+</tr>
+<tr>
+<td>PAPER</td>
+<td><code>paper-panic</code></td>
+<td>Experimental library for unsafe and unstable PaperMC/Bukkit features</td>
+</tr>
+<tr>
+<td>PAPER</td>
+<td><code>paper-simulacrum</code></td>
+<td>Fancy NPCs, displays, and visual entities</td>
+</tr>
+<tr>
+<td>VELOCITY</td>
+<td><code>velocity</code></td>
+<td>Core utilities and extensions for Velocity</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="installation">Installation</h2>
+<p>CrystalShard is available via the public Maven repository:</p>
+<p><strong>Repository:</strong><br><a href="https://repo.xyzhub.link/#/releases/net/crystopia/crystalshard">https://repo.xyzhub.link/#/releases/net/crystopia/crystalshard</a></p>
+<p>Add it to your <code>build.gradle.kts</code>:</p>
+<pre><code class="lang-kotlin"><span class="hljs-section">maven</span> {
+    <span class="hljs-attribute">name</span> = <span class="hljs-string">"xyzReleases"</span>
+    url = uri(<span class="hljs-string">"https://repo.xyzhub.link/releases"</span>)
+}
+</code></pre>
+<h2 id="dependencies">Dependencies</h2>
+<pre><code class="lang-kotlin"><span class="hljs-comment">// Paper</span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-core:0.3.1"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-box:0.3.1"</span>)</span></span>       <span class="hljs-comment">// 🚧 NOT DONE!</span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-custom:0.3.1"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-dhl:0.3.1"</span>)</span></span>       <span class="hljs-comment">// 🧪 BETA!</span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-pack:0.3.1"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-panic:0.3.1"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-simulacrum:0.3.1"</span>)</span></span>
 
-<a href="examples/common/html">net.crystopia.crystalshard.common</a> <br />
-<a href="examples/paper-core/html">net.crystopia.crystalshard.paper-core</a> <br />
-<a href="examples/paper-dhl/html">net.crystopia.crystalshard.paper-dhl</a> <br />
-<a href="examples/paper-custom/html">net.crystopia.crystalshard.paper-custom</a> <br />
-<a href="examples/paper-pack/html">net.crystopia.crystalshard.paper-pack</a> <br />
-<a href="examples/paper-panic/html">net.crystopia.crystalshard.paper-panic</a> <br />
-<a href="examples/paper-simulacrum/html">net.crystopia.crystalshard.paper-simulacrum</a>
-<a href="examples/velocity/html">net.crystopia.crystalshard.velocity</a> <br />
+<span class="hljs-comment">// Velocity</span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:velocity:0.3.1"</span>)</span></span>
+</code></pre>
+<h2 id="license">License</h2>
+<p>CrystalShard is licensed under the <a href="LICENSE">MIT License</a>, meaning it’s free to use, modify, and distribute.
+See the LICENSE
+file for more details.</p>
+<h2 id="credits">Credits</h2>
+<p>Special thanks to the following projects and developers for inspiration and ideas:</p>
+<ul>
+<li>FancyInnovations/FancyPlugins</li>
+<li>flytegg/twilight</li>
+</ul>
+<blockquote>
+<p><strong>Made with ❤️ for the Minecraft developer community.</strong></p>
+</blockquote>
+
 
 </body>
 </html>
