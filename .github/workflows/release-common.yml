@@ -1,0 +1,25 @@
+﻿name: Build CrystalShard-Velocity
+
+on:
+  push:
+    tags:
+      - v.*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '22'
+
+      - name: Grant execute permission for Gradle
+        run: chmod +x gradlew
+      - name: Build crystalshard-common
+        run: ./gradlew :common:publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}
