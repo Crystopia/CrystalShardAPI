@@ -1,4 +1,13 @@
 # CrystalShard API
+<hr />
+
+![GitHub Release](https://img.shields.io/github/v/release/Crystopia/CrystalShardAPI)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Crystopia/CrystalShardAPI/release-common.yml?label=crystalshard-common)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Crystopia/CrystalShardAPI/release-paper.yml?label=crystalshard-paper)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Crystopia/CrystalShardAPI/release-velocity.yml?label=crystalshard-velocity)
+
+
+<hr />
 
 **CrystalShard** is an open-source Minecraft library that provides packet handling, utilities, and server-side helpers to help you build plugins faster and cleaner.
 
