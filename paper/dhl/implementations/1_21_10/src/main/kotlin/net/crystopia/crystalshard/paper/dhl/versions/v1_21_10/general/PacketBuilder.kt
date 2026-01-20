@@ -11,6 +11,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun playRespawnPacket(data: ClientboundRespawnPacketData): Packet<*> {
+        return Shard_ClientboundRespawnPacket().createPacket(data)
+    }
+
     override fun resetScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*> {
         return Shard_ClientboundResetScorePacket().createPacket(data)
     }

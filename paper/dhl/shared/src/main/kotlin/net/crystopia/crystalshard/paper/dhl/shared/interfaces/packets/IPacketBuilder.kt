@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun playRespawnPacket(data: ClientboundRespawnPacketData): Packet<*>
     fun resetScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
     fun setScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
     fun sendObjectiveUpdate(data: ClientboundSetDisplayObjectivePacketData): Packet<*>

@@ -4,27 +4,20 @@ import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import com.destroystokyo.paper.profile.ProfileProperty
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
-import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
-import net.crystopia.crystalshard.common.extension.click
-import net.crystopia.crystalshard.common.extension.copyToClipboard
-import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.common.extension.textTooltip
+import net.crystopia.crystalshard.common.extension.*
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
-import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.FixedFormatData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
-import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.DisplaySlot
-import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.NumberFormat
-import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.ObjectiveCriteria
-import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.RenderType
-import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.ScoreBoardMode
+import net.crystopia.crystalshard.paper.dhl.shared.enums.player.GameMode
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.*
 import net.crystopia.crystalshard.paper.pack.font.TextHeads
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.paper.pack.toasts.Toast
@@ -123,6 +116,7 @@ object PlayerJoin : Listener {
         }
 
 
+
         /*
         if (!checked.contains(event.player.uniqueId)) {
             checked.add(event.player.uniqueId)
@@ -151,6 +145,26 @@ object PlayerJoin : Listener {
 
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
+
+        PacketFactory.playRespawnPacket(
+            world = Bukkit.getWorld("world_the_end")!!,
+            deathLocation = Location(Bukkit.getWorld("world")!!, 0.0, 0.0, 0.0),
+            gameMode = GameMode.CREATIVE,
+            isDebug = false,
+            isFlat = false,
+            portalCooldown = 100000,
+            datakept = 0x01,
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+        PacketFactory.teleportEntityPacket(
+            entityId = event.player.entityId,
+            location = Location(Bukkit.getWorld("world_the_end")!!, 0.0, 0.0, 0.0),
+            onGround = false
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
 
         PacketFactory.createAnimatePacket(
             player!!.entityId,

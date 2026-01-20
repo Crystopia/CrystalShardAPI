@@ -15,6 +15,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
+import net.crystopia.crystalshard.paper.dhl.shared.enums.player.GameMode
 import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.DisplaySlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.ScoreBoardMode
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
@@ -23,15 +24,62 @@ import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuil
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
+import net.minecraft.network.protocol.game.ClientboundRespawnPacket
+import net.minecraft.server.level.ServerLevel
+import net.minecraft.world.level.dimension.DimensionType
+import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.World
+import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
+import org.bukkit.util.io.BukkitObjectInputStream
 import java.util.*
 
 object PacketFactory {
+
+    fun playRespawnPacket(
+         world: World,
+         deathLocation: org.bukkit.Location,
+         gameMode: GameMode,
+         isDebug : Boolean,
+         isFlat: Boolean,
+         portalCooldown: Int,
+         datakept: Byte,
+        callback: (packet: Shard_Packet<ClientboundRespawnPacketData>) -> Unit
+    ): Shard_Packet<ClientboundRespawnPacketData> {
+
+        val data = ClientboundRespawnPacketData(
+            world,deathLocation,gameMode,isDebug,isFlat,portalCooldown,datakept
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.playRespawnPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.playRespawnPacket(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundRespawnPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun resetScoreInDisplayObject(
         score: ScoreData<*>,
