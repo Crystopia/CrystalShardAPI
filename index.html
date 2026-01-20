@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <h1 id="crystalshard-api">CrystalShard API</h1>
+<h1 id="crystalshard-api">CrystalShard API</h1>
 <p><strong>CrystalShard</strong> is an open-source Minecraft library that provides packet handling, utilities, and server-side helpers to help you build plugins faster and cleaner.</p>
 <p>It supports both <strong>PaperMC</strong> and <strong>Velocity</strong>, offering modular packages for GUIs, NPCs, resource packs, custom elements, and more.</p>
 <hr>
@@ -80,14 +80,17 @@
 }
 </code></pre>
 <h2 id="dependencies">Dependencies</h2>
-<pre><code class="lang-kotlin"><span class="hljs-comment">// Paper</span>
-<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-core:0.3.1"</span>)</span></span>
-<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-box:0.3.1"</span>)</span></span>       <span class="hljs-comment">// 🚧 NOT DONE!</span>
-<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-custom:0.3.1"</span>)</span></span>
-<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-dhl:0.3.1"</span>)</span></span>       <span class="hljs-comment">// 🧪 BETA!</span>
-<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-pack:0.3.1"</span>)</span></span>
-<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-panic:0.3.1"</span>)</span></span>
-<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-simulacrum:0.3.1"</span>)</span></span>
+<pre><code class="lang-kotlin"><span class="hljs-comment">// Common</span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-common:&lt;version&gt;"</span>)</span></span>
+
+<span class="hljs-comment">// Paper</span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-core:&lt;version&gt;"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-box:&lt;version&gt;"</span>)</span></span>       <span class="hljs-comment">// 🚧 NOT DONE!</span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-custom:&lt;version&gt;"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-dhl:&lt;version&gt;"</span>)</span></span>       <span class="hljs-comment">// 🧪 BETA!</span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-pack:&lt;version&gt;"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-panic:&lt;version&gt;"</span>)</span></span>
+<span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:paper-simulacrum:&lt;version&gt;"</span>)</span></span>
 
 <span class="hljs-comment">// Velocity</span>
 <span class="hljs-function"><span class="hljs-title">implementation</span><span class="hljs-params">(<span class="hljs-string">"net.crystopia.crystalshard:velocity:0.3.1"</span>)</span></span>
