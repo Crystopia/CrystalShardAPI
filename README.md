@@ -4,15 +4,6 @@
 
 It supports both **PaperMC** and **Velocity**, offering modular packages for GUIs, NPCs, resource packs, custom elements, and more.
 
-
-## Information
-
-This library needs [paperweight-userdev](https://docs.papermc.io/paper/dev/userdev/) 
-
-because this library should make packets available for every simple but connected with all possibilities.<br>
-Just as paper implementations do for things, this library also does
-paperweight-userdev mainly concerns crystalshard-paper-dhl...
-
 ---
 
 ## Modules
