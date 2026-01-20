@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>PacketFactory</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../../index.html" tabindex="1">
+                    dhl
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+0.3.3        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":paper:dhl/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":paper:dhl/main"
+                                       data-filter=":paper:dhl/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    dhl
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="dhl::net.crystopia.crystalshard.paper.dhl/PacketFactory///PointingToDeclaration//-95282200">
+  <div class="breadcrumbs"><a href="../../../index.html">dhl</a><span class="delimiter">/</span><a href="../index.html">net.crystopia.crystalshard.paper.dhl</a><span class="delimiter">/</span><span class="current">PacketFactory</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Packet</span><wbr></wbr><span><span>Factory</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">PacketFactory</a></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1062506553%2FFunctions%2F-95282200" anchor-label="addEntitiesPacket" id="-1062506553%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="add-entities-packet.html"><span>add</span><wbr></wbr><span>Entities</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1062506553%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="add-entities-packet.html"><span class="token function">addEntitiesPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">entityUUID<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/util/UUID.html">UUID</a><span class="token punctuation">, </span></span><span class="parameter ">location<span class="token operator">: </span><span data-unresolved-link="org.bukkit/Location///PointingToDeclaration/">Location</span><span class="token punctuation">, </span></span><span class="parameter ">entityType<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/EntityType///PointingToDeclaration/">EntityType</span><span class="token punctuation">, </span></span><span class="parameter ">data<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">yHeadRot<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-double/index.html">Double</a><span class="token operator"> = </span><span class="token constant">0.0</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundAddEntityPacketData///PointingToDeclaration/">ClientboundAddEntityPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundAddEntityPacketData///PointingToDeclaration/">ClientboundAddEntityPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1527002453%2FFunctions%2F-95282200" anchor-label="applyCooldown" id="-1527002453%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="apply-cooldown.html"><span>apply</span><wbr></wbr><span><span>Cooldown</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1527002453%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="apply-cooldown.html"><span class="token function">applyCooldown</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">item<span class="token operator">: </span><span data-unresolved-link="org.bukkit/Material///PointingToDeclaration/">Material</span><span class="token punctuation">, </span></span><span class="parameter ">duration<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundCooldownPacketData///PointingToDeclaration/">ClientboundCooldownPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundCooldownPacketData///PointingToDeclaration/">ClientboundCooldownPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1172306851%2FFunctions%2F-95282200" anchor-label="closeContainerPacket" id="1172306851%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="close-container-packet.html"><span>close</span><wbr></wbr><span>Container</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1172306851%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="close-container-packet.html"><span class="token function">closeContainerPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundContainerClosePacketData///PointingToDeclaration/">ClientboundContainerClosePacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundContainerClosePacketData///PointingToDeclaration/">ClientboundContainerClosePacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1556206194%2FFunctions%2F-95282200" anchor-label="createAnimatePacket" id="1556206194%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-animate-packet.html"><span>create</span><wbr></wbr><span>Animate</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1556206194%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-animate-packet.html"><span class="token function">createAnimatePacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">animationId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundAnimatePacketData///PointingToDeclaration/">ClientboundAnimatePacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundAnimatePacketData///PointingToDeclaration/">ClientboundAnimatePacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1695348690%2FFunctions%2F-95282200" anchor-label="createBlockDestroyStagePacket" id="-1695348690%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-block-destroy-stage-packet.html"><span>create</span><wbr></wbr><span>Block</span><wbr></wbr><span>Destroy</span><wbr></wbr><span>Stage</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1695348690%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-block-destroy-stage-packet.html"><span class="token function">createBlockDestroyStagePacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">pos<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/BlockPos///PointingToDeclaration/">BlockPos</span><span class="token punctuation">, </span></span><span class="parameter ">progress<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundBlockDestructionPacketData///PointingToDeclaration/">ClientboundBlockDestructionPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundBlockDestructionPacketData///PointingToDeclaration/">ClientboundBlockDestructionPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="621401353%2FFunctions%2F-95282200" anchor-label="createBlockEntityDataPacket" id="621401353%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-block-entity-data-packet.html"><span>create</span><wbr></wbr><span>Block</span><wbr></wbr><span>Entity</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="621401353%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-block-entity-data-packet.html"><span class="token function">createBlockEntityDataPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">blockPos<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/BlockPos///PointingToDeclaration/">BlockPos</span><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/BlockEntityType///PointingToDeclaration/">BlockEntityType</span><span class="token punctuation">, </span></span><span class="parameter ">nbt<span class="token operator">: </span><span data-unresolved-link="net.minecraft.nbt/CompoundTag///PointingToDeclaration/">CompoundTag</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundBlockEntityDataPacketData///PointingToDeclaration/">ClientboundBlockEntityDataPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundBlockEntityDataPacketData///PointingToDeclaration/">ClientboundBlockEntityDataPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1252815552%2FFunctions%2F-95282200" anchor-label="createBlockUpdatePacket" id="-1252815552%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-block-update-packet.html"><span>create</span><wbr></wbr><span>Block</span><wbr></wbr><span>Update</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1252815552%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-block-update-packet.html"><span class="token function">createBlockUpdatePacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">pos<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/BlockPos///PointingToDeclaration/">BlockPos</span><span class="token punctuation">, </span></span><span class="parameter ">state<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/BlockType///PointingToDeclaration/">BlockType</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundBlockUpdatePacketData///PointingToDeclaration/">ClientboundBlockUpdatePacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundBlockUpdatePacketData///PointingToDeclaration/">ClientboundBlockUpdatePacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-572200756%2FFunctions%2F-95282200" anchor-label="createEquipmentPacket" id="-572200756%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-equipment-packet.html"><span>create</span><wbr></wbr><span>Equipment</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-572200756%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-equipment-packet.html"><span class="token function">createEquipmentPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">equipmentList<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-pair/index.html">Pair</a><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/EquipmentSlot///PointingToDeclaration/">EquipmentSlot</span><span class="token punctuation">, </span><span data-unresolved-link="org.bukkit.inventory/ItemStack///PointingToDeclaration/">ItemStack</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundSetEquipmentPacketData///PointingToDeclaration/">ClientboundSetEquipmentPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundSetEquipmentPacketData///PointingToDeclaration/">ClientboundSetEquipmentPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="577033500%2FFunctions%2F-95282200" anchor-label="createOpenSignEditorPacket" id="577033500%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-open-sign-editor-packet.html"><span>create</span><wbr></wbr><span>Open</span><wbr></wbr><span>Sign</span><wbr></wbr><span>Editor</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="577033500%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="create-open-sign-editor-packet.html"><span class="token function">createOpenSignEditorPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">blockPos<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/BlockPos///PointingToDeclaration/">BlockPos</span><span class="token punctuation">, </span></span><span class="parameter ">isFrontText<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundOpenSignEditorPacketData///PointingToDeclaration/">ClientboundOpenSignEditorPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundOpenSignEditorPacketData///PointingToDeclaration/">ClientboundOpenSignEditorPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1374440757%2FFunctions%2F-95282200" anchor-label="openScreenPacket" id="1374440757%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="open-screen-packet.html"><span>open</span><wbr></wbr><span>Screen</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1374440757%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="open-screen-packet.html"><span class="token function">openScreenPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">title<span class="token operator">: </span><span data-unresolved-link="net.kyori.adventure.text/Component///PointingToDeclaration/">Component</span><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/MenuType///PointingToDeclaration/">MenuType</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundOpenScreenPacketData///PointingToDeclaration/">ClientboundOpenScreenPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundOpenScreenPacketData///PointingToDeclaration/">ClientboundOpenScreenPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1763312396%2FFunctions%2F-95282200" anchor-label="playerInfoRemovePacket" id="-1763312396%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-info-remove-packet.html"><span>player</span><wbr></wbr><span>Info</span><wbr></wbr><span>Remove</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1763312396%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="player-info-remove-packet.html"><span class="token function">playerInfoRemovePacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">uuids<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/util/UUID.html">UUID</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundPlayerInfoRemovePacketData///PointingToDeclaration/">ClientboundPlayerInfoRemovePacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundPlayerInfoRemovePacketData///PointingToDeclaration/">ClientboundPlayerInfoRemovePacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="486247283%2FFunctions%2F-95282200" anchor-label="playerInfoUpdatePacket" id="486247283%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-info-update-packet.html"><span>player</span><wbr></wbr><span>Info</span><wbr></wbr><span>Update</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="486247283%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="player-info-update-packet.html"><span class="token function">playerInfoUpdatePacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">serverPlayer<span class="token operator">: </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">, </span></span><span class="parameter ">actions<span class="token operator">: </span><a href="https://docs.oracle.com/en/java/javase/22/docs/api/java.base/java/util/EnumSet.html">EnumSet</a><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.enums.packets/InfoUpdateAction///PointingToDeclaration/">InfoUpdateAction</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundPlayerInfoUpdatePacketData///PointingToDeclaration/">ClientboundPlayerInfoUpdatePacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundPlayerInfoUpdatePacketData///PointingToDeclaration/">ClientboundPlayerInfoUpdatePacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1081155599%2FFunctions%2F-95282200" anchor-label="removeEntitiesPacket" id="1081155599%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="remove-entities-packet.html"><span>remove</span><wbr></wbr><span>Entities</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1081155599%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="remove-entities-packet.html"><span class="token function">removeEntitiesPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityIds<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundRemoveEntitiesPacketData///PointingToDeclaration/">ClientboundRemoveEntitiesPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundRemoveEntitiesPacketData///PointingToDeclaration/">ClientboundRemoveEntitiesPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1515757039%2FFunctions%2F-95282200" anchor-label="rotateHeadPacket" id="1515757039%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="rotate-head-packet.html"><span>rotate</span><wbr></wbr><span>Head</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1515757039%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="rotate-head-packet.html"><span class="token function">rotateHeadPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">yaw<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundRotateHeadPacketData///PointingToDeclaration/">ClientboundRotateHeadPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundRotateHeadPacketData///PointingToDeclaration/">ClientboundRotateHeadPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="306598785%2FFunctions%2F-95282200" anchor-label="sendEntityEventPacket" id="306598785%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-entity-event-packet.html"><span>send</span><wbr></wbr><span>Entity</span><wbr></wbr><span>Event</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="306598785%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="send-entity-event-packet.html"><span class="token function">sendEntityEventPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">status<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-byte/index.html">Byte</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundEntityEventPacketData///PointingToDeclaration/">ClientboundEntityEventPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundEntityEventPacketData///PointingToDeclaration/">ClientboundEntityEventPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="863600667%2FFunctions%2F-95282200" anchor-label="sendPacket" id="863600667%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-packet.html"><span>send</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="863600667%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="send-packet.html"><span class="token function">sendPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">packet<span class="token operator">: </span><span data-unresolved-link="net.minecraft.network.protocol/Packet///PointingToDeclaration/">Packet</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">players<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="324245737%2FFunctions%2F-95282200" anchor-label="sendPlayerCombatKillPacket" id="324245737%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-player-combat-kill-packet.html"><span>send</span><wbr></wbr><span>Player</span><wbr></wbr><span>Combat</span><wbr></wbr><span>Kill</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="324245737%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="send-player-combat-kill-packet.html"><span class="token function">sendPlayerCombatKillPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">message<span class="token operator">: </span><span data-unresolved-link="net.kyori.adventure.text/Component///PointingToDeclaration/">Component</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundPlayerCombatKillPacketData///PointingToDeclaration/">ClientboundPlayerCombatKillPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundPlayerCombatKillPacketData///PointingToDeclaration/">ClientboundPlayerCombatKillPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1892608377%2FFunctions%2F-95282200" anchor-label="sendWaypoint" id="-1892608377%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="send-waypoint.html"><span>send</span><wbr></wbr><span><span>Waypoint</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1892608377%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="send-waypoint.html"><span class="token function">sendWaypoint</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">operation<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/WaypointOperation///PointingToDeclaration/">WaypointOperation</span><span class="token punctuation">, </span></span><span class="parameter ">waypoints<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/TrackedWaypoint///PointingToDeclaration/">TrackedWaypoint</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundTrackedWaypointPacketData///PointingToDeclaration/">ClientboundTrackedWaypointPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundTrackedWaypointPacketData///PointingToDeclaration/">ClientboundTrackedWaypointPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1799611090%2FFunctions%2F-95282200" anchor-label="setContainerContent" id="-1799611090%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-container-content.html"><span>set</span><wbr></wbr><span>Container</span><wbr></wbr><span><span>Content</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1799611090%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-container-content.html"><span class="token function">setContainerContent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">stateId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">items<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="org.bukkit.inventory/ItemStack///PointingToDeclaration/">ItemStack</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">carriedItem<span class="token operator">: </span><span data-unresolved-link="org.bukkit.inventory/ItemStack///PointingToDeclaration/">ItemStack</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundContainerSetContentPacketData///PointingToDeclaration/">ClientboundContainerSetContentPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundContainerSetContentPacketData///PointingToDeclaration/">ClientboundContainerSetContentPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="32645415%2FFunctions%2F-95282200" anchor-label="setContainerData" id="32645415%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-container-data.html"><span>set</span><wbr></wbr><span>Container</span><wbr></wbr><span><span>Data</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="32645415%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-container-data.html"><span class="token function">setContainerData</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">property<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-short/index.html">Short</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-short/index.html">Short</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundContainerSetDataPacketData///PointingToDeclaration/">ClientboundContainerSetDataPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundContainerSetDataPacketData///PointingToDeclaration/">ClientboundContainerSetDataPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2126560833%2FFunctions%2F-95282200" anchor-label="setContainerSlot" id="-2126560833%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-container-slot.html"><span>set</span><wbr></wbr><span>Container</span><wbr></wbr><span><span>Slot</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2126560833%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-container-slot.html"><span class="token function">setContainerSlot</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">id<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">revision<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">slot<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">item<span class="token operator">: </span><span data-unresolved-link="org.bukkit.inventory/ItemStack///PointingToDeclaration/">ItemStack</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundContainerSetSlotPacketData///PointingToDeclaration/">ClientboundContainerSetSlotPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundContainerSetSlotPacketData///PointingToDeclaration/">ClientboundContainerSetSlotPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-794115948%2FFunctions%2F-95282200" anchor-label="setEntityDataPacket" id="-794115948%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-entity-data-packet.html"><span>set</span><wbr></wbr><span>Entity</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-794115948%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-entity-data-packet.html"><span class="token function">setEntityDataPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">entityData<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom/EntityMetadata///PointingToDeclaration/">EntityMetadata</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundSetEntityDataPacketData///PointingToDeclaration/">ClientboundSetEntityDataPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundSetEntityDataPacketData///PointingToDeclaration/">ClientboundSetEntityDataPacketData</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Read more about <a href="https://minecraft.wiki/w/Java_Edition_protocol/Entity_metadata#Entity_Metadata_Format">Entity_Metadata_Format</a></p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1773940249%2FFunctions%2F-95282200" anchor-label="setPassengersPacket" id="1773940249%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-passengers-packet.html"><span>set</span><wbr></wbr><span>Passengers</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1773940249%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="set-passengers-packet.html"><span class="token function">setPassengersPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entity<span class="token operator">: </span><span data-unresolved-link="org.bukkit.entity/Entity///PointingToDeclaration/">Entity</span><span class="token punctuation">, </span></span><span class="parameter ">passengers<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="org.bukkit.entity/Entity///PointingToDeclaration/">Entity</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packetsid/ClientboundSetPassengersPacketData///PointingToDeclaration/">ClientboundSetPassengersPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packetsid/ClientboundSetPassengersPacketData///PointingToDeclaration/">ClientboundSetPassengersPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1849633859%2FFunctions%2F-95282200" anchor-label="teleportEntityPacket" id="-1849633859%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="teleport-entity-packet.html"><span>teleport</span><wbr></wbr><span>Entity</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1849633859%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="teleport-entity-packet.html"><span class="token function">teleportEntityPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">location<span class="token operator">: </span><span data-unresolved-link="org.bukkit/Location///PointingToDeclaration/">Location</span><span class="token punctuation">, </span></span><span class="parameter ">onGround<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundTeleportEntityPacketData///PointingToDeclaration/">ClientboundTeleportEntityPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundTeleportEntityPacketData///PointingToDeclaration/">ClientboundTeleportEntityPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-354212085%2FFunctions%2F-95282200" anchor-label="updateAttributesPacket" id="-354212085%2FFunctions%2F-95282200" data-filterable-set=":paper:dhl/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:dhl/main" data-filterable-set=":paper:dhl/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="update-attributes-packet.html"><span>update</span><wbr></wbr><span>Attributes</span><wbr></wbr><span><span>Packet</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-354212085%2FFunctions%2F-95282200"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:dhl/main"><div class="symbol monospace"><span class="token keyword">fun </span><a href="update-attributes-packet.html"><span class="token function">updateAttributesPacket</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">entityId<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">attributes<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-mutable-list/index.html">MutableList</a><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/Attribute///PointingToDeclaration/">Attribute</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span class="token punctuation">(</span>packet<span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundUpdateAttributesPacketData///PointingToDeclaration/">ClientboundUpdateAttributesPacketData</span><span class="token operator">&gt;</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared/Shard_Packet///PointingToDeclaration/">Shard_Packet</span><span class="token operator">&lt;</span><span data-unresolved-link="net.crystopia.crystalshard.paper.dhl.shared.data.packets/ClientboundUpdateAttributesPacketData///PointingToDeclaration/">ClientboundUpdateAttributesPacketData</span><span class="token operator">&gt;</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>(c)  2026 | xy-z.org - crystopia.net</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,6 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:net.crystopia.crystalshard.paper.box////PointingToDeclaration/box/net.crystopia.crystalshard.paper.box/index.html
+$dokka.location:net.crystopia.crystalshard.paper.box/GUI///PointingToDeclaration/box/net.crystopia.crystalshard.paper.box/-g-u-i/index.html
+$dokka.location:net.crystopia.crystalshard.paper.box/GUI/GUI/#/PointingToDeclaration/box/net.crystopia.crystalshard.paper.box/-g-u-i/-g-u-i.html
+net.crystopia.crystalshard.paper.box
