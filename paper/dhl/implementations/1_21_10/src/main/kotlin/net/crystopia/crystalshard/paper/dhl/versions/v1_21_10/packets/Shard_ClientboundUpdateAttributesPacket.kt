@@ -19,7 +19,7 @@ class Shard_ClientboundUpdateAttributesPacket : IPacket<ClientboundUpdateAttribu
                 Consumer { instance -> }
             )
             instance.baseValue = attribute.value
-            // addOrUpdateTransientModifier    addTransientModifier    addOrReplacePermanentModifier
+            // TODO: addOrUpdateTransientModifier    addTransientModifier    addOrReplacePermanentModifier
             attribute.modifiers.map { (id, amount, operation) ->
                 instance.addPermanentModifier(AttributeModifier(ResourceLocation.read(id).orThrow, amount, operation))
             }

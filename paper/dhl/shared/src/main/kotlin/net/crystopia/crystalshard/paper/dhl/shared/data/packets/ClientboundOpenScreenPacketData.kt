@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.MenuType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.kyori.adventure.text.Component
 
 data class ClientboundOpenScreenPacketData(

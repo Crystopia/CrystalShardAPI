@@ -2,10 +2,8 @@ package net.crystopia.crystalshard.paper.simulacrum.displays
 
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
-import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil.ClickActionType
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityDataSerializerType
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
-import net.minecraft.network.protocol.game.ServerboundInteractPacket
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.Interaction
 import org.bukkit.Bukkit
@@ -55,7 +53,7 @@ open class DisplayInteraction<T : org.bukkit.entity.Display>(open var entity: T)
             entityId = interaction.id,
             entityUUID = interaction.uuid,
             location = entity.location,
-            entityType = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.INTERACTION,
+            entityType = net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType.INTERACTION,
             data = 0,
             yHeadRot = 0.0,
         ) { packet ->

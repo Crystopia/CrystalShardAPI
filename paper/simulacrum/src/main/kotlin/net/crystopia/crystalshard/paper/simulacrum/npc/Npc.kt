@@ -53,7 +53,7 @@ class Npc(
             entityId = playerEntity.entityId,
             entityUUID = playerEntity.uniqueId,
             location = location,
-            entityType = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.PLAYER,
+            entityType = net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType.PLAYER,
             data = 0,
             yHeadRot = 0.0,
         ) { packet ->
@@ -69,7 +69,7 @@ class Npc(
             entityId = playerEntity.entityId,
             entityUUID = playerEntity.uniqueId,
             location = location,
-            entityType = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.PLAYER,
+            entityType = net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType.PLAYER,
             data = 0,
             yHeadRot = 0.0,
         ) { packet ->

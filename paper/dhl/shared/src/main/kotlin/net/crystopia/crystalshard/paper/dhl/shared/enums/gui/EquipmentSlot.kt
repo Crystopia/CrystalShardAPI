@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom
+package net.crystopia.crystalshard.paper.dhl.shared.enums.gui
 
 enum class EquipmentSlot(val type: net.minecraft.world.entity.EquipmentSlot) {
     MAINHAND(net.minecraft.world.entity.EquipmentSlot.OFFHAND),

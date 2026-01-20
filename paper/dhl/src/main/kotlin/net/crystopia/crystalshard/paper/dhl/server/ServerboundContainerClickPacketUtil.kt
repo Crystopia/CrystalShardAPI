@@ -34,7 +34,6 @@ object ServerboundContainerClickPacketUtil {
 
     enum class ClickType(open var id: Int) {
         PICKUP(0), QUICK_MOVE(1), SWAP(2), CLONE(3), THROW(4), QUICK_CRAFT(5), PICKUP_ALL(6),
-
         // OWN
         SET_DOWN(7);
 
@@ -62,6 +61,7 @@ object ServerboundContainerClickPacketUtil {
         if (channel.pipeline()[name] != null) {
             return false
         }
+
         channel.pipeline().addAfter(
             "decoder", name, object : MessageToMessageDecoder<ServerboundContainerClickPacket>() {
                 override fun decode(

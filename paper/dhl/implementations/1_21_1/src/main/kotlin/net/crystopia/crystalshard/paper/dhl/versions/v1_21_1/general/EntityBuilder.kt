@@ -9,7 +9,6 @@ import net.minecraft.world.entity.Display
 import net.minecraft.world.entity.EntityType
 import org.bukkit.Bukkit
 import org.bukkit.Location
-import org.bukkit.NamespacedKey
 import org.bukkit.World
 import org.bukkit.craftbukkit.CraftServer
 import org.bukkit.craftbukkit.CraftWorld
@@ -18,7 +17,7 @@ import java.util.*
 object EntityBuilder : IEntityBuilder {
 
     override fun createEntityInstance(
-        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType,
+        type: net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType,
         location: Location
     ): net.minecraft.world.entity.Entity {
         val instance = type.type.create(

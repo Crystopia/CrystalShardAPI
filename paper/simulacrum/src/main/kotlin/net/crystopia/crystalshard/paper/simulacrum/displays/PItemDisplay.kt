@@ -1,5 +1,6 @@
 package net.crystopia.crystalshard.paper.simulacrum.displays
 
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.simulacrum.displays.data.CustomItemDisplayData
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.displays.IDisplay
 import org.bukkit.NamespacedKey
@@ -8,7 +9,7 @@ import org.bukkit.inventory.ItemStack
 
 class PItemDisplay(
     override var id: NamespacedKey,
-    override var type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType,
+    override var type: EntityType,
     override var entity: ItemDisplay,
 ) : IDisplay<ItemDisplay>, DisplayInteraction<ItemDisplay>(entity) {
     var data = CustomItemDisplayData()

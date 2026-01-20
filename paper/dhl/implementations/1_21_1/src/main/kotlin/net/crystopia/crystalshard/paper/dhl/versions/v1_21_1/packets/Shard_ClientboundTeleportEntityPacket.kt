@@ -3,7 +3,6 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundTeleportEntityPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
-import net.crystopia.crystalshard.paper.dhl.shared.util.ClassUtil
 import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket
 import net.minecraft.server.MinecraftServer
 import net.minecraft.world.entity.Display

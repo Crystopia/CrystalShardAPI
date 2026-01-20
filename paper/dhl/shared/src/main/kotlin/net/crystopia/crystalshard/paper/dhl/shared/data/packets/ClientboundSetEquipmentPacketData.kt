@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EquipmentSlot
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 
 data class ClientboundSetEquipmentPacketData(
     var entityId: Int,

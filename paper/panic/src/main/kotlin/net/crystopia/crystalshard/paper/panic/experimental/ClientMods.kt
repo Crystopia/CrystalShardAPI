@@ -4,7 +4,9 @@ import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundSignUpdatePacketUtil
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockType
+import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
@@ -14,7 +16,7 @@ import java.util.*
 
 class ClientMods(val player: Player, val plugin: JavaPlugin) {
     val listenerKey = UUID.fromString("173c9e65-66a5-44c7-b21d-b307bdb06423").toString()
-    private val blockPos = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos(
+    private val blockPos = BlockPos(
         player.location.x.toInt(),
         player.location.y.toInt(),
         player.location.z.toInt()
@@ -23,7 +25,7 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
     class Mod(
         var player: Player,
         val plugin: JavaPlugin,
-        val blockPos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
+        val blockPos: BlockPos,
         val listenerKey: String
     ) {
         private var component: Component? = null
@@ -65,14 +67,14 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
     fun detectPacketsSender(key: String) {
         PacketFactory.createBlockUpdatePacket(
             blockPos,
-            net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockType.OAK_SIGN
+            BlockType.OAK_SIGN
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
         PacketFactory.createBlockEntityDataPacket(
             blockPos,
-            net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockEntityType.SIGN,
+            BlockEntityType.SIGN,
             buildNBT(key)
         ) { packet ->
             packet.send(mutableListOf(player))

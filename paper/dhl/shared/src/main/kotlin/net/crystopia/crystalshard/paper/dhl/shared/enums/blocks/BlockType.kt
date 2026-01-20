@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom
+package net.crystopia.crystalshard.paper.dhl.shared.enums.blocks
 
 import net.minecraft.world.level.block.Block
 import net.minecraft.world.level.block.Blocks

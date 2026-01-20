@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.simulacrum
 
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.EntityBuilder
 import net.crystopia.crystalshard.paper.simulacrum.displays.PBlockDisplay
@@ -80,7 +80,7 @@ object SimulacrumFactory {
 
     fun <T : IDisplay<*>> createDisPlayEntity(
         key: NamespacedKey,
-        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType,
+        type: net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType,
         location: Location,
         players: MutableList<Player>,
         callback: T.() -> Unit

@@ -10,6 +10,30 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun resetScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*> {
+        return Shard_ClientboundResetScorePacket().createPacket(data)
+    }
+
+    override fun setScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*> {
+        return Shard_ClientboundSetScorePacket().createPacket(data)
+    }
+
+    override fun sendObjectiveUpdate(data: ClientboundSetDisplayObjectivePacketData): Packet<*> {
+        return Shard_ClientboundSetObjectivePacket().createPacket(data)
+    }
+
+    override fun setDisplayObjective(data: ClientboundSetDisplayObjectivePacketData): Packet<*> {
+        return Shard_ClientboundSetDisplayObjectivePacket().createPacket(data)
+    }
+
+    override fun setHealth(data: ClientboundSetHealthPacketData): Packet<*> {
+        return Shard_ClientboundSetHealthPacket().createPacket(data)
+    }
+
+    override fun setCarriedItem(data: ClientboundSetCarriedItemPacketData): Packet<*> {
+        return Shard_ClientboundSetCarriedItemPacket().createPacket(data)
+    }
+
     override fun applyCooldown(data: ClientboundCooldownPacketData): Packet<*> {
         return Shard_ClientboundCooldownPacket().createPacket(data)
     }

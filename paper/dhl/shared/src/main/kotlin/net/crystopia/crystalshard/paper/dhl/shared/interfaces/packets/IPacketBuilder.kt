@@ -6,6 +6,12 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun resetScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
+    fun setScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
+    fun sendObjectiveUpdate(data: ClientboundSetDisplayObjectivePacketData): Packet<*>
+    fun setDisplayObjective(data: ClientboundSetDisplayObjectivePacketData): Packet<*>
+    fun setHealth(data: ClientboundSetHealthPacketData): Packet<*>
+    fun setCarriedItem(data: ClientboundSetCarriedItemPacketData): Packet<*>
     fun applyCooldown(data: ClientboundCooldownPacketData): Packet<*>
     fun sendPlayerCombatKillPacket(data: ClientboundPlayerCombatKillPacketData): Packet<*>
     fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*>

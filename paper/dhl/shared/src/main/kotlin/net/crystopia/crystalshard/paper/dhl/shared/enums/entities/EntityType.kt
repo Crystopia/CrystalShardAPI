@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom
+package net.crystopia.crystalshard.paper.dhl.shared.enums.entities
 
 import net.minecraft.world.entity.EntityType
 

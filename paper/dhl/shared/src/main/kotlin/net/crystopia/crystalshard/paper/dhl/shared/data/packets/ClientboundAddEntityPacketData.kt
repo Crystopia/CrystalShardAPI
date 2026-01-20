@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import org.bukkit.Location
 import java.util.*
 

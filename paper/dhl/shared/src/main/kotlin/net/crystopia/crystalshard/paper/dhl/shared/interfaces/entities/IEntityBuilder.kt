@@ -4,14 +4,12 @@ import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.Display
 import net.minecraft.world.entity.EntityType
 import org.bukkit.Location
-import org.bukkit.NamespacedKey
 import org.bukkit.World
-import org.bukkit.entity.Entity
 
 interface IEntityBuilder {
 
     fun createEntityInstance(
-        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType, location: Location
+        type: net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType, location: Location
     ): net.minecraft.world.entity.Entity
 
     fun createServerPlayer(

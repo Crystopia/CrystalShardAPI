@@ -1,12 +1,24 @@
 package net.crystopia.crystalshard.paper.dhl
 
 import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockType
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
+import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoint
+import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.DisplaySlot
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.ScoreBoardMode
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointOperation
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
@@ -21,10 +33,224 @@ import java.util.*
 
 object PacketFactory {
 
+    fun resetScoreInDisplayObject(
+        score: ScoreData<*>,
+        callback: (packet: Shard_Packet<ClientboundSetScorePacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetScorePacketData> {
+
+        val data = ClientboundSetScorePacketData(
+            score
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.resetScoreInDisplayObject(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.resetScoreInDisplayObject(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetScorePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setScoreInDisplayObject(
+        score: ScoreData<*>,
+        callback: (packet: Shard_Packet<ClientboundSetScorePacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetScorePacketData> {
+
+        val data = ClientboundSetScorePacketData(
+            score
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setScoreInDisplayObject(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setScoreInDisplayObject(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetScorePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun sendObjectiveUpdate(
+        mode: ScoreBoardMode,
+        displaySlot: DisplaySlot,
+        displayData: DisplayData<*>,
+        callback: (packet: Shard_Packet<ClientboundSetDisplayObjectivePacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetDisplayObjectivePacketData> {
+
+        val data = ClientboundSetDisplayObjectivePacketData(
+            mode, displaySlot, displayData,
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.sendObjectiveUpdate(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.sendObjectiveUpdate(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetDisplayObjectivePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setDisplayObjective(
+        mode: ScoreBoardMode,
+        displaySlot: DisplaySlot,
+        displayData: DisplayData<*>,
+        callback: (packet: Shard_Packet<ClientboundSetDisplayObjectivePacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetDisplayObjectivePacketData> {
+
+        val data = ClientboundSetDisplayObjectivePacketData(
+            ScoreBoardMode.CREATE, displaySlot, displayData,
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setDisplayObjective(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setDisplayObjective(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetDisplayObjectivePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setHealth(
+        health: Float,
+        food: Int,
+        saturation: Float,
+        callback: (packet: Shard_Packet<ClientboundSetHealthPacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetHealthPacketData> {
+
+        val data = ClientboundSetHealthPacketData(
+            health, food, saturation
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setHealth(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setHealth(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetHealthPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setItemOnCursor(
+        /**
+         * 1.21.10+
+         */
+        item: ItemStack,
+        /**
+         * 1.21.1
+         */
+        slot: Int, callback: (packet: Shard_Packet<ClientboundSetCarriedItemPacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetCarriedItemPacketData> {
+
+        val data = ClientboundSetCarriedItemPacketData(
+            item, slot
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setCarriedItem(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setCarriedItem(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetCarriedItemPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
     fun applyCooldown(
-        item: Material,
-        duration: Int,
-        callback: (packet: Shard_Packet<ClientboundCooldownPacketData>) -> Unit
+        item: Material, duration: Int, callback: (packet: Shard_Packet<ClientboundCooldownPacketData>) -> Unit
     ): Shard_Packet<ClientboundCooldownPacketData> {
 
         val data = ClientboundCooldownPacketData(
@@ -235,8 +461,7 @@ object PacketFactory {
     }
 
     fun closeContainerPacket(
-        id: Int,
-        callback: (packet: Shard_Packet<ClientboundContainerClosePacketData>) -> Unit
+        id: Int, callback: (packet: Shard_Packet<ClientboundContainerClosePacketData>) -> Unit
     ): Shard_Packet<ClientboundContainerClosePacketData> {
 
         val data = ClientboundContainerClosePacketData(
@@ -271,7 +496,7 @@ object PacketFactory {
     fun openScreenPacket(
         id: Int,
         title: Component,
-        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.MenuType,
+        type: MenuType,
         callback: (packet: Shard_Packet<ClientboundOpenScreenPacketData>) -> Unit
     ): Shard_Packet<ClientboundOpenScreenPacketData> {
 
@@ -347,8 +572,7 @@ object PacketFactory {
         /**
          * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
          */
-        status: Byte,
-        callback: (packet: Shard_Packet<ClientboundEntityEventPacketData>) -> Unit
+        status: Byte, callback: (packet: Shard_Packet<ClientboundEntityEventPacketData>) -> Unit
     ): Shard_Packet<ClientboundEntityEventPacketData> {
 
         val data = ClientboundEntityEventPacketData(
@@ -381,9 +605,7 @@ object PacketFactory {
     }
 
     fun createAnimatePacket(
-        entityId: Int,
-        animationId: Int,
-        callback: (packet: Shard_Packet<ClientboundAnimatePacketData>) -> Unit
+        entityId: Int, animationId: Int, callback: (packet: Shard_Packet<ClientboundAnimatePacketData>) -> Unit
     ): Shard_Packet<ClientboundAnimatePacketData> {
 
         val data = ClientboundAnimatePacketData(
@@ -416,12 +638,11 @@ object PacketFactory {
     }
 
     fun createBlockDestroyStagePacket(
-        entityId: Int, pos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
+        entityId: Int, pos: BlockPos,
         /**
          * Read more: [Packets#Block_Entity_Data](https://minecraft.wiki/w/Java_Edition_protocol/Packets#Block_Entity_Data)
          */
-        progress: Int,
-        callback: (packet: Shard_Packet<ClientboundBlockDestructionPacketData>) -> Unit
+        progress: Int, callback: (packet: Shard_Packet<ClientboundBlockDestructionPacketData>) -> Unit
     ): Shard_Packet<ClientboundBlockDestructionPacketData> {
 
         val data = ClientboundBlockDestructionPacketData(
@@ -454,7 +675,7 @@ object PacketFactory {
     }
 
     fun createOpenSignEditorPacket(
-        blockPos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
+        blockPos: BlockPos,
         isFrontText: Boolean,
         callback: (packet: Shard_Packet<ClientboundOpenSignEditorPacketData>) -> Unit
     ): Shard_Packet<ClientboundOpenSignEditorPacketData> {
@@ -489,8 +710,8 @@ object PacketFactory {
     }
 
     fun createBlockEntityDataPacket(
-        blockPos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
-        type: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockEntityType,
+        blockPos: BlockPos,
+        type: BlockEntityType,
         nbt: CompoundTag,
         callback: (packet: Shard_Packet<ClientboundBlockEntityDataPacketData>) -> Unit
     ): Shard_Packet<ClientboundBlockEntityDataPacketData> {
@@ -525,7 +746,7 @@ object PacketFactory {
     }
 
     fun createBlockUpdatePacket(
-        pos: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.BlockPos,
+        pos: BlockPos,
         state: BlockType,
         callback: (packet: Shard_Packet<ClientboundBlockUpdatePacketData>) -> Unit
     ): Shard_Packet<ClientboundBlockUpdatePacketData> {
@@ -561,7 +782,7 @@ object PacketFactory {
 
     fun createEquipmentPacket(
         entityId: Int,
-        equipmentList: MutableList<kotlin.Pair<net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EquipmentSlot, ItemStack>>,
+        equipmentList: MutableList<kotlin.Pair<EquipmentSlot, ItemStack>>,
         callback: (packet: Shard_Packet<ClientboundSetEquipmentPacketData>) -> Unit
     ): Shard_Packet<ClientboundSetEquipmentPacketData> {
 
@@ -632,7 +853,10 @@ object PacketFactory {
     }
 
     fun teleportEntityPacket(
-        entityId: Int, location: Location, onGround: Boolean, callback: (packet: Shard_Packet<ClientboundTeleportEntityPacketData>) -> Unit
+        entityId: Int,
+        location: Location,
+        onGround: Boolean,
+        callback: (packet: Shard_Packet<ClientboundTeleportEntityPacketData>) -> Unit
     ): Shard_Packet<ClientboundTeleportEntityPacketData> {
 
         val data = ClientboundTeleportEntityPacketData(
@@ -737,7 +961,7 @@ object PacketFactory {
         entityId: Int,
         entityUUID: UUID,
         location: Location,
-        entityType: net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType,
+        entityType: EntityType,
         data: Int,
         yHeadRot: Double = 0.0,
         callback: (packet: Shard_Packet<ClientboundAddEntityPacketData>) -> Unit
@@ -810,7 +1034,9 @@ object PacketFactory {
      *
      */
     fun setEntityDataPacket(
-        entityId: Int, entityData: MutableList<EntityMetadata<*>>, callback: (packet:  Shard_Packet<ClientboundSetEntityDataPacketData>) -> Unit
+        entityId: Int,
+        entityData: MutableList<EntityMetadata<*>>,
+        callback: (packet: Shard_Packet<ClientboundSetEntityDataPacketData>) -> Unit
     ): Shard_Packet<ClientboundSetEntityDataPacketData> {
 
         val data = ClientboundSetEntityDataPacketData(
@@ -845,7 +1071,9 @@ object PacketFactory {
     }
 
     fun setPassengersPacket(
-        entity: Entity, passengers: MutableList<Entity>, callback: (packet: Shard_Packet<ClientboundSetPassengersPacketData>) -> Unit
+        entity: Entity,
+        passengers: MutableList<Entity>,
+        callback: (packet: Shard_Packet<ClientboundSetPassengersPacketData>) -> Unit
     ): Shard_Packet<ClientboundSetPassengersPacketData> {
 
         val data = ClientboundSetPassengersPacketData(

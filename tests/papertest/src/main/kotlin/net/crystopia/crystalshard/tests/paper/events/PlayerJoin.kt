@@ -4,26 +4,27 @@ import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import com.destroystokyo.paper.profile.ProfileProperty
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
-import io.papermc.paper.dialog.Dialog
-import io.papermc.paper.registry.data.dialog.ActionButton
-import io.papermc.paper.registry.data.dialog.DialogBase
-import io.papermc.paper.registry.data.dialog.action.DialogAction
-import io.papermc.paper.registry.data.dialog.input.DialogInput
-import io.papermc.paper.registry.data.dialog.type.DialogType
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.internal.encodeByWriter
 import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
+import net.crystopia.crystalshard.common.extension.click
 import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
-import net.crystopia.crystalshard.paper.dhl.server.ServerboundCustomClickActionPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
-import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil.Direction
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityDataSerializerType
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.FixedFormatData
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.DisplaySlot
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.NumberFormat
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.ObjectiveCriteria
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.RenderType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.ScoreBoardMode
 import net.crystopia.crystalshard.paper.pack.font.TextHeads
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.paper.pack.toasts.Toast
@@ -38,7 +39,6 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.event.DataComponentValue
 import net.kyori.adventure.text.format.NamedTextColor
-import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -49,6 +49,7 @@ import org.bukkit.entity.TextDisplay
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryType
+import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
@@ -116,12 +117,10 @@ object PlayerJoin : Listener {
     fun onMove(event: PlayerMoveEvent) {
 
         PacketFactory.applyCooldown(
-            Material.PAPER,
-            1000
-        ) {
-            packet -> packet.send(mutableListOf(event.player))
+            Material.PAPER, 1000
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
         }
-
 
 
         /*
@@ -148,9 +147,115 @@ object PlayerJoin : Listener {
     var player: Player? = null
     var waypointUUID = UUID.randomUUID()
 
+    val savedUUID = UUID.randomUUID().toString()
+
+    @EventHandler
+    fun onPlayerInteract(event: PlayerInteractEvent) {
+
+        PacketFactory.createAnimatePacket(
+            player!!.entityId,
+            0
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+        PacketFactory.setScoreInDisplayObject(
+            ScoreData(
+                displayId = "testy",
+                ownerName = savedUUID,
+                score = -1,
+                displayName = Component.text().text(" EXTRA PACKET ").build(),
+                numberFormat = NumberFormat.FIXED,
+                format = FixedFormatData(
+                    text = Component.text("")
+                ),
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+    }
+
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
 
+        val displayData = DisplayData(
+            name = "testy",
+            displayName = Component.text().text("<rainbow>PACKET BOARD</rainbow>").build(),
+            displayAutoUpdate = false,
+            numberFormat = NumberFormat.FIXED,
+            format = FixedFormatData(
+                text = Component.text("TEST")
+            ),
+            renderType = RenderType.INTEGER,
+            criteria = ObjectiveCriteria.DUMMY
+        )
+
+        PacketFactory.sendObjectiveUpdate(
+            ScoreBoardMode.CREATE,
+            DisplaySlot.SIDEBAR,
+            displayData,
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+        PacketFactory.setScoreInDisplayObject(
+            ScoreData(
+                displayId = displayData.name,
+                ownerName = UUID.randomUUID().toString(),
+                score = 2,
+                displayName = Component.text().text("<gray>Packet sent...</gray>").click {
+                    this.sendMessage(Component.text("SECRET TEXT", NamedTextColor.GRAY))
+                }.build(),
+                numberFormat = NumberFormat.FIXED,
+                format = FixedFormatData(
+                    text = Component.text(" ")
+                ),
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+        PacketFactory.setScoreInDisplayObject(
+            ScoreData(
+                displayId = displayData.name,
+                ownerName = savedUUID,
+                score = 1,
+                displayName = Component.text().text(" ").build(),
+                numberFormat = NumberFormat.FIXED,
+                format = FixedFormatData(
+                    text = Component.text("")
+                ),
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+        PacketFactory.setScoreInDisplayObject(
+            ScoreData(
+                displayId = displayData.name,
+                ownerName = savedUUID,
+                score = 0,
+                displayName = Component.text().text("<green><b>PACKET RECEIVED!</b></green>").build(),
+                numberFormat = NumberFormat.FIXED,
+                format = FixedFormatData(
+                    text = Component.text(" ")
+                ),
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+
+        PacketFactory.setDisplayObjective(
+            ScoreBoardMode.UPDATE,
+            DisplaySlot.SIDEBAR,
+            displayData,
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+
+        /*
         ServerboundCustomClickActionPacketUtil.attach(
             "sdfsdfsddfsd", Main.instance, event.player
         ) {
@@ -190,7 +295,9 @@ object PlayerJoin : Listener {
             )
         })
 
-        event.player.showDialog(dialog)
+         */
+
+        // event.player.showDialog(dialog)
 
         /*
         PacketFactory.teleportEntityPacket(
@@ -365,7 +472,7 @@ f
 
         SimulacrumFactory.createDisPlayEntity<PTextDisplay>(
             NamespacedKey("sdfds", "dfgdf"),
-            net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.TEXT_DISPLAY,
+            EntityType.TEXT_DISPLAY,
             Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0),
             mutableListOf(event.player)
         ) {
@@ -386,9 +493,7 @@ f
                     PacketFactory.setEntityDataPacket(
                         entity.entityId, mutableListOf(
                             EntityMetadata(
-                                index = 12,
-                                type = EntityDataSerializerType.VECTOR3,
-                                value = Vector3f(2.0F, 2.0F, 2.0F)
+                                index = 12, type = EntityDataSerializerType.VECTOR3, value = Vector3f(2.0F, 2.0F, 2.0F)
                             )
                         )
                     ) { packet ->
@@ -403,9 +508,7 @@ f
                     PacketFactory.setEntityDataPacket(
                         entity.entityId, mutableListOf(
                             EntityMetadata(
-                                index = 12,
-                                type = EntityDataSerializerType.VECTOR3,
-                                value = Vector3f(1.0F, 1.0F, 1.0F)
+                                index = 12, type = EntityDataSerializerType.VECTOR3, value = Vector3f(1.0F, 1.0F, 1.0F)
                             )
                         )
                     ) { packet ->
@@ -480,19 +583,17 @@ f
                 entityId = playerEntity.entityId,
                 entityUUID = playerEntity.uniqueId,
                 location = playerEntity.location,
-                entityType = net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EntityType.PLAYER,
+                entityType = EntityType.PLAYER,
                 data = 0,
                 yHeadRot = 0.0,
             ) { packet ->
                 packet.send(mutableListOf(event.player))
             }
 
-            val equipmentList: MutableList<Pair<net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EquipmentSlot, ItemStack>> =
-                mutableListOf()
+            val equipmentList: MutableList<Pair<EquipmentSlot, ItemStack>> = mutableListOf()
             equipmentList.add(
                 Pair(
-                    net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.EquipmentSlot.MAINHAND,
-                    ItemStack(Material.STONE_SHOVEL)
+                    EquipmentSlot.MAINHAND, ItemStack(Material.STONE_SHOVEL)
                 )
             )
 

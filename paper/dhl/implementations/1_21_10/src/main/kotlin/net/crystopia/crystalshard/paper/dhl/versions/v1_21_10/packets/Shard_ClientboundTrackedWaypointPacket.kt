@@ -1,6 +1,11 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
+import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointDataAzimuth
+import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointDataChunk
+import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointDataVec3i
+import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointOperation
+import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointType
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.core.Vec3i
 import net.minecraft.network.protocol.game.ClientboundTrackedWaypointPacket
