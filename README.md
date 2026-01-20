@@ -41,14 +41,17 @@ maven {
 ## Dependencies
 
 ```kotlin
+// Common
+implementation("net.crystopia.crystalshard:paper-common:<version>")
+
 // Paper
-implementation("net.crystopia.crystalshard:paper-core:0.3.1")
-implementation("net.crystopia.crystalshard:paper-box:0.3.1")       // 🚧 NOT DONE!
-implementation("net.crystopia.crystalshard:paper-custom:0.3.1")
-implementation("net.crystopia.crystalshard:paper-dhl:0.3.1")       // 🧪 BETA!
-implementation("net.crystopia.crystalshard:paper-pack:0.3.1")
-implementation("net.crystopia.crystalshard:paper-panic:0.3.1")
-implementation("net.crystopia.crystalshard:paper-simulacrum:0.3.1")
+implementation("net.crystopia.crystalshard:paper-core:<version>")
+implementation("net.crystopia.crystalshard:paper-box:<version>")       // 🚧 NOT DONE!
+implementation("net.crystopia.crystalshard:paper-custom:<version>")
+implementation("net.crystopia.crystalshard:paper-dhl:<version>")       // 🧪 BETA!
+implementation("net.crystopia.crystalshard:paper-pack:<version>")
+implementation("net.crystopia.crystalshard:paper-panic:<version>")
+implementation("net.crystopia.crystalshard:paper-simulacrum:<version>")
 
 // Velocity
 implementation("net.crystopia.crystalshard:velocity:0.3.1")
