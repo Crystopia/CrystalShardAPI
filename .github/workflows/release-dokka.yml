@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         projects: [
-          # common,
+          common,
           paper/box,
           paper/core,
           paper/custom,
@@ -19,7 +19,7 @@ jobs:
           paper/pack,
           paper/panic,
           paper/simulacrum,
-          # velocity
+          velocity
         ]
     steps:
       - uses: actions/checkout@v4
@@ -57,7 +57,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          path: public/examples
+          path: public/paper
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
