@@ -2,20 +2,21 @@ package net.crystopia.crystalshard.paper.dhl
 
 import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
-import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
-import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
-import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.particles.Particle
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoint
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.player.GameMode
 import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.DisplaySlot
@@ -36,6 +37,40 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun spawnParticle(
+        particle: Particle<*, *>,
+        callback: (packet: Shard_Packet<ClientboundLevelParticlesPacketData>) -> Unit
+    ): Shard_Packet<ClientboundLevelParticlesPacketData> {
+
+        val data = ClientboundLevelParticlesPacketData(
+            particle
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.spawnParticle(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.spawnParticle(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundLevelParticlesPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun setWorldBorderWarningDistance(
         border: WorldBorder,
@@ -858,11 +893,13 @@ object PacketFactory {
         /**
          * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
          */
-        status: Byte, callback: (packet: Shard_Packet<ClientboundEntityEventPacketData>) -> Unit
+        status: Byte,
+        world: World,
+        callback: (packet: Shard_Packet<ClientboundEntityEventPacketData>) -> Unit
     ): Shard_Packet<ClientboundEntityEventPacketData> {
 
         val data = ClientboundEntityEventPacketData(
-            entityId, status
+            entityId, status, world
         )
 
         val packet = when (ServerUtil.currentVersion()) {

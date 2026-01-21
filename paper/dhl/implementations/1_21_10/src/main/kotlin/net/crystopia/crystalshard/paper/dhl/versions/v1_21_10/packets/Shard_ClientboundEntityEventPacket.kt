@@ -10,7 +10,7 @@ import org.bukkit.craftbukkit.CraftWorld
 
 class Shard_ClientboundEntityEventPacket : IPacket<ClientboundEntityEventPacketData> {
     override fun createPacket(packetObj: ClientboundEntityEventPacketData): ClientboundEntityEventPacket {
-        val fakeEntity = Display.ItemDisplay(EntityType.ITEM_DISPLAY.type, (Bukkit.getWorlds()[0] as CraftWorld).handle)
+        val fakeEntity = Display.ItemDisplay(EntityType.ITEM_DISPLAY.type, (packetObj.world as CraftWorld).handle)
         return ClientboundEntityEventPacket(
             fakeEntity,
             packetObj.status

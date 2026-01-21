@@ -1,6 +1,5 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.shared.data.particles
 
-import com.mojang.datafixers.util.Either
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.particles.ParticleType
@@ -10,7 +9,6 @@ import net.minecraft.core.particles.DustColorTransitionOptions
 import net.minecraft.core.particles.DustParticleOptions
 import net.minecraft.core.particles.ItemParticleOption
 import net.minecraft.core.particles.PowerParticleOption
-import net.minecraft.core.particles.ScalableParticleOptionsBase
 import net.minecraft.core.particles.SculkChargeParticleOptions
 import net.minecraft.core.particles.ShriekParticleOption
 import net.minecraft.core.particles.SpellParticleOption
@@ -24,16 +22,19 @@ import net.minecraft.world.phys.Vec3
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.inventory.CraftItemStack
-import org.bukkit.entity.ItemDisplay
 import org.bukkit.inventory.ItemStack
-import java.util.UUID
 
-class ParticleOptions
+open class ParticleOptions<T : Any, R : Any> {
+
+    open fun build(): R {
+        return TODO("Provide the return value")
+    }
+}
 
 data class BlockParticleOption(
     var type: ParticleType, var block: BlockType
-) {
-    fun build(): BlockParticleOption {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.BlockParticleOption, BlockParticleOption>() {
+    override fun build(): BlockParticleOption {
         return BlockParticleOption(
             type.id as net.minecraft.core.particles.ParticleType<BlockParticleOption>, block.block.defaultBlockState()
         )
@@ -42,8 +43,8 @@ data class BlockParticleOption(
 
 data class ColorParticleOption(
     var type: ParticleType, var color: Int
-) {
-    fun build(): net.minecraft.core.particles.ColorParticleOption {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.ColorParticleOption, ColorParticleOption>() {
+    override fun build(): net.minecraft.core.particles.ColorParticleOption {
         return ColorParticleOption.create(
             type.id as net.minecraft.core.particles.ParticleType<ColorParticleOption>, color
         )
@@ -52,8 +53,8 @@ data class ColorParticleOption(
 
 data class DustColorTransitionOptions(
     var fromColor: Int, var toColor: Int, var scale: Float
-) {
-    fun build(): net.minecraft.core.particles.DustColorTransitionOptions {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.DustColorTransitionOptions, DustColorTransitionOptions>() {
+    override fun build(): net.minecraft.core.particles.DustColorTransitionOptions {
         return DustColorTransitionOptions(
             fromColor, toColor, scale
         )
@@ -62,8 +63,8 @@ data class DustColorTransitionOptions(
 
 data class ItemParticleOption(
     var type: ParticleType, var item: ItemStack
-) {
-    fun build(): net.minecraft.core.particles.ItemParticleOption {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.ItemParticleOption, ItemParticleOption>() {
+    override fun build(): net.minecraft.core.particles.ItemParticleOption {
         return ItemParticleOption(
             type.id as net.minecraft.core.particles.ParticleType<ItemParticleOption>, CraftItemStack.asNMSCopy(item)
         )
@@ -72,8 +73,8 @@ data class ItemParticleOption(
 
 data class DustParticleOptions(
     var color: Int, var scale: Float
-) {
-    fun build(): net.minecraft.core.particles.DustParticleOptions {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.DustParticleOptions, DustParticleOptions>() {
+    override fun build(): net.minecraft.core.particles.DustParticleOptions {
         return DustParticleOptions(
             color, scale
         )
@@ -82,8 +83,8 @@ data class DustParticleOptions(
 
 data class PowerParticleOption(
     var type: ParticleType, var power: Float
-) {
-    fun build(): net.minecraft.core.particles.PowerParticleOption {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.PowerParticleOption, PowerParticleOption>() {
+    override fun build(): net.minecraft.core.particles.PowerParticleOption {
         return PowerParticleOption.create(
             type.id as net.minecraft.core.particles.ParticleType<PowerParticleOption>, power
         )
@@ -92,8 +93,8 @@ data class PowerParticleOption(
 
 data class SculkChargeParticleOptions(
     var roll: Float,
-) {
-    fun build(): net.minecraft.core.particles.SculkChargeParticleOptions {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.SculkChargeParticleOptions, SculkChargeParticleOptions>() {
+    override fun build(): net.minecraft.core.particles.SculkChargeParticleOptions {
         return SculkChargeParticleOptions(
             roll
         )
@@ -102,8 +103,8 @@ data class SculkChargeParticleOptions(
 
 data class ShriekParticleOption(
     var delay: Int
-) {
-    fun build(): net.minecraft.core.particles.ShriekParticleOption {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.ShriekParticleOption, ShriekParticleOption>() {
+    override fun build(): net.minecraft.core.particles.ShriekParticleOption {
         return ShriekParticleOption(
             delay
         )
@@ -114,8 +115,8 @@ data class SpellParticleOption(
     var type: ParticleType,
     var color: Int,
     var power: Float,
-) {
-    fun build(): net.minecraft.core.particles.SpellParticleOption {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.SpellParticleOption, SpellParticleOption>() {
+    override fun build(): net.minecraft.core.particles.SpellParticleOption {
         return SpellParticleOption.create(
             type.id as net.minecraft.core.particles.ParticleType<SpellParticleOption>, color, power
         )
@@ -124,8 +125,8 @@ data class SpellParticleOption(
 
 data class TrailParticleOption(
     var x: Double, var y: Double, var z: Double, var color: Int, var duration: Int
-) {
-    fun build(): TrailParticleOption {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.TrailParticleOption, TrailParticleOption>() {
+    override fun build(): TrailParticleOption {
         return net.minecraft.core.particles.TrailParticleOption(
             Vec3(x, y, z), color, duration
         )
@@ -133,13 +134,14 @@ data class TrailParticleOption(
 }
 
 data class VibrationParticleOption(
-    var entityId: Int?, var offSet: Float?,
+    var entityId: Int?,
+    var offSet: Float?,
 
     var blockPos: BlockPos?,
 
     var arrivalInTicks: Int
-) {
-    fun build(): VibrationParticleOption? {
+) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.VibrationParticleOption, VibrationParticleOption>() {
+    override fun build(): VibrationParticleOption {
 
         if (entityId != null) {
             requireNotNull(entityId)
@@ -166,6 +168,6 @@ data class VibrationParticleOption(
                 ), arrivalInTicks
             )
         }
-        return null
+        throw NoSuchMethodException("There are only entity or block methods.")
     }
 }

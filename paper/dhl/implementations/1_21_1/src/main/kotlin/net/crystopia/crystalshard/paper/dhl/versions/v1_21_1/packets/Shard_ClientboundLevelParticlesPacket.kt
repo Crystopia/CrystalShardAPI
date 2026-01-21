@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
+package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets
 
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundLevelParticlesPacketData
@@ -12,12 +12,10 @@ class Shard_ClientboundLevelParticlesPacket : IPacket<ClientboundLevelParticlesP
         packetObj: ClientboundLevelParticlesPacketData
     ): ClientboundLevelParticlesPacket {
 
-
         return ClientboundLevelParticlesPacket(
             (if (packetObj.particle.options == null) packetObj.particle.particle.id
             else packetObj.particle.options!!.build() as ParticleOptions) as ParticleOptions,
             packetObj.particle.overrideLimiter,
-            packetObj.particle.alwaysShow,
             packetObj.particle.x,
             packetObj.particle.y,
             packetObj.particle.z,

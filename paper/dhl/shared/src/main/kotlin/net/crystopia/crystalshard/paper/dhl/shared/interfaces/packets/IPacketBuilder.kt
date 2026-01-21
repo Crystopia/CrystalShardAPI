@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun spawnParticle(data: ClientboundLevelParticlesPacketData): Packet<*>
     fun setWorldBorderSize(data: ClientboundBorderPacketData): Packet<*>
     fun setWorldBorderCenter(data: ClientboundBorderPacketData): Packet<*>
     fun setWorldBorderLerpSize(data: ClientboundBorderPacketData): Packet<*>

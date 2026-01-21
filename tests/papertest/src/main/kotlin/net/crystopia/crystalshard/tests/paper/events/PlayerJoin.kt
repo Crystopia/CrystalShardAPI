@@ -4,22 +4,23 @@ import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import com.destroystokyo.paper.profile.ProfileProperty
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
-import net.crystopia.crystalshard.common.extension.*
+import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
+import net.crystopia.crystalshard.common.extension.copyToClipboard
+import net.crystopia.crystalshard.common.extension.text
+import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
-import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
-import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.FixedFormatData
-import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
-import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
+import net.crystopia.crystalshard.paper.dhl.shared.data.particles.BlockParticleOption
+import net.crystopia.crystalshard.paper.dhl.shared.data.particles.Particle
+import net.crystopia.crystalshard.paper.dhl.shared.data.particles.VibrationParticleOption
+import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
-import net.crystopia.crystalshard.paper.dhl.shared.enums.player.GameMode
-import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.*
+import net.crystopia.crystalshard.paper.dhl.shared.enums.particles.ParticleType
 import net.crystopia.crystalshard.paper.pack.font.TextHeads
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.paper.pack.toasts.Toast
@@ -147,6 +148,40 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
 
+        org.bukkit.Particle.NOTE.builder()
+            .location(Location(Bukkit.getWorld("world_nether")!!, 2.0, 2.0, 2.0))
+            .offset(2.0, 0.2, 2.0)
+            .count(14)
+            .receivers(23, false)
+            .spawn();
+
+
+        // VibrationParticleOption(
+        //                    entityId = event.player.entityId,
+        //                    offSet = 0.0F,
+        //                    blockPos = null,
+        //                    arrivalInTicks = 20
+        //                )
+
+        PacketFactory.spawnParticle(
+            particle = Particle(
+                particle = ParticleType.NOTE,
+                options = null,
+                overrideLimiter = true,
+                alwaysShow = false,
+                x = 1.0,
+                y = 1.0,
+                z = 1.0,
+                xOffSet = 2.0F,
+                yOffSet = 2.0F,
+                zOffSet = 2.0F,
+                maxSpeed = 5F,
+                count = 500
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
         /*
         PacketFactory.playRespawnPacket(
             world = Bukkit.getWorld("world_the_end")!!,
@@ -161,6 +196,7 @@ object PlayerJoin : Listener {
         }
          */
 
+        /*
         val worldBorder = WorldBorder(
             world = Bukkit.getWorld("world")!!,
             size = 50.0,
@@ -188,8 +224,8 @@ object PlayerJoin : Listener {
         }
 
         Bukkit.getWorld("world")!!.worldBorder.damageAmount
-
-        return
+         */
+        /*
         PacketFactory.runGameEvent(
             type = GameEventType.IMMEDIATE_RESPAWN,
             action = 1F
@@ -226,11 +262,12 @@ object PlayerJoin : Listener {
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
+         */
     }
 
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
-        return
+        /*
         val displayData = DisplayData(
             name = "testy",
             displayName = Component.text().text("<rainbow>PACKET BOARD</rainbow>").build(),
@@ -306,6 +343,7 @@ object PlayerJoin : Listener {
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
+         */
 
 
         /*

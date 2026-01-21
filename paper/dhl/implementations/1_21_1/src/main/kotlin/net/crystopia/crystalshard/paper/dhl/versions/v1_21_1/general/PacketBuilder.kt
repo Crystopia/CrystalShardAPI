@@ -9,6 +9,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun spawnParticle(data: ClientboundLevelParticlesPacketData): Packet<*> {
+        return Shard_ClientboundLevelParticlesPacket().createPacket(data)
+    }
+
     override fun setWorldBorderSize(data: ClientboundBorderPacketData): Packet<*> {
         return Shard_ClientboundSetBorderSizePacket().createPacket(data)
     }
