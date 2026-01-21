@@ -318,6 +318,7 @@ object PlayerJoin : Listener {
             packet.send(mutableListOf(event.player))
         }
 
+        PacketFactory.test(event.player)
         /*
         val displayData = DisplayData(
             name = "testy",

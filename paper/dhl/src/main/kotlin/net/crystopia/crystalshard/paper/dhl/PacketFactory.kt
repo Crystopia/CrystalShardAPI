@@ -28,6 +28,7 @@ import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuil
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
+import net.minecraft.network.protocol.common.ClientboundCustomReportDetailsPacket
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
@@ -38,6 +39,17 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun test(player: Player) {
+
+        val map = mutableMapOf<String, String>()
+        map["sdfsdf"] = "dfsdfsdf"
+
+        sendPacket(
+            ClientboundCustomReportDetailsPacket(map),
+            players = mutableListOf(player)
+        )
+    }
 
     fun setMerchantOffer(
         windowId: Int,
@@ -356,7 +368,7 @@ object PacketFactory {
 
     fun playRespawnPacket(
         world: World,
-        deathLocation: org.bukkit.Location,
+        deathLocation: Location,
         gameMode: GameMode,
         isDebug: Boolean,
         isFlat: Boolean,
@@ -1145,7 +1157,7 @@ object PacketFactory {
 
     fun createEquipmentPacket(
         entityId: Int,
-        equipmentList: MutableList<kotlin.Pair<EquipmentSlot, ItemStack>>,
+        equipmentList: MutableList<Pair<EquipmentSlot, ItemStack>>,
         callback: (packet: Shard_Packet<ClientboundSetEquipmentPacketData>) -> Unit
     ): Shard_Packet<ClientboundSetEquipmentPacketData> {
 

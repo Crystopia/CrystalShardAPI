@@ -5,6 +5,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSet
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets.*
 import net.minecraft.network.protocol.Packet
+import net.minecraft.network.protocol.common.ClientboundCustomReportDetailsPacket
 import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
