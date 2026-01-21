@@ -5,6 +5,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
+import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.particles.Particle
@@ -37,6 +38,45 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun setMerchantOffer(
+        windowId: Int,
+        merchantOffers: MerchantOffers,
+        levelProgress: Int,
+        experience: Int,
+        leveled: Boolean,
+        refreshable: Boolean,
+        callback: (packet: Shard_Packet<ClientboundMerchantOffersPacketData>) -> Unit
+    ): Shard_Packet<ClientboundMerchantOffersPacketData> {
+
+        val data = ClientboundMerchantOffersPacketData(
+            windowId, merchantOffers, levelProgress, experience, leveled, refreshable
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setMerchantOffer(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setMerchantOffer(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundMerchantOffersPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun spawnParticle(
         particle: Particle<*, *>,

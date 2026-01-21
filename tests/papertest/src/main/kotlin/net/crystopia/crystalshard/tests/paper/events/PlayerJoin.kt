@@ -12,13 +12,14 @@ import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.BlockParticleOption
+import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.ItemCost
+import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffer
+import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.paper.dhl.shared.data.particles.Particle
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.VibrationParticleOption
-import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.particles.ParticleType
 import net.crystopia.crystalshard.paper.pack.font.TextHeads
@@ -267,6 +268,56 @@ object PlayerJoin : Listener {
 
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
+
+        PacketFactory.openScreenPacket(
+            3243443,
+            Component.text().text("<rainbow>Nice Small GUI</rainbow>").build(),
+            MenuType.MERCHANT
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+
+        val result = ItemStack(Material.DIRT)
+        val resultMeta = result.itemMeta
+        resultMeta.displayName(Component.text().text("<gray>!REICHHEITS STATUS!</gray>").build())
+
+        result.itemMeta = resultMeta
+
+        val baseCost = ItemStack(Material.EMERALD_BLOCK)
+
+        PacketFactory.setMerchantOffer(
+            windowId = 3243443,
+            merchantOffers = MerchantOffers(
+                offers = mutableListOf(
+
+                    MerchantOffer(
+                        baseCost = ItemCost(
+                            itemStack = baseCost,
+                            count = 5
+                        ),
+                        optionalCost = null,
+                        result = result,
+                        uses = 19,
+                        maxUses = 20,
+                        experience = 1,
+                        priceMultiplier = 2F,
+                        demand = 0,
+                        specialPrice = 4,
+                        ignoreDiscounts = false,
+                        experienceReward = false
+                    )
+
+                )
+            ),
+            levelProgress = 1,
+            experience = 3,
+            leveled = true,
+            refreshable = false
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
         /*
         val displayData = DisplayData(
             name = "testy",

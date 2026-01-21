@@ -9,6 +9,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun setMerchantOffer(data: ClientboundMerchantOffersPacketData): Packet<*> {
+        return Shard_ClientboundMerchantOffersPacket().createPacket(data)
+    }
+
     override fun spawnParticle(data: ClientboundLevelParticlesPacketData): Packet<*> {
         return Shard_ClientboundLevelParticlesPacket().createPacket(data)
     }
