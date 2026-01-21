@@ -139,7 +139,7 @@ data class VibrationParticleOption(
 
     var arrivalInTicks: Int
 ) {
-    fun build(): VibrationParticleOption {
+    fun build(): VibrationParticleOption? {
 
         if (entityId != null) {
             requireNotNull(entityId)
@@ -166,5 +166,6 @@ data class VibrationParticleOption(
                 ), arrivalInTicks
             )
         }
+        return null
     }
 }
