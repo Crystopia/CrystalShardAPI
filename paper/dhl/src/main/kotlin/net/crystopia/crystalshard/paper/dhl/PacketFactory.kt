@@ -7,10 +7,12 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoint
+import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
@@ -24,36 +26,272 @@ import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuil
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
-import net.minecraft.network.protocol.game.ClientboundRespawnPacket
-import net.minecraft.server.level.ServerLevel
-import net.minecraft.world.level.dimension.DimensionType
-import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
-import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
-import org.bukkit.util.io.BukkitObjectInputStream
 import java.util.*
 
 object PacketFactory {
 
+    fun setWorldBorderWarningDistance(
+        border: WorldBorder,
+        callback: (packet: Shard_Packet<ClientboundBorderPacketData>) -> Unit
+    ): Shard_Packet<ClientboundBorderPacketData> {
+
+        val data = ClientboundBorderPacketData(
+            border
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setWorldBorderWarningDistance(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setWorldBorderWarningDistance(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundBorderPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setWorldBorderWarningDelay(
+        border: WorldBorder,
+        callback: (packet: Shard_Packet<ClientboundBorderPacketData>) -> Unit
+    ): Shard_Packet<ClientboundBorderPacketData> {
+
+        val data = ClientboundBorderPacketData(
+            border
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setWorldBorderWarningDelay(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setWorldBorderWarningDelay(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundBorderPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setWorldBorderLerpSize(
+        border: WorldBorder,
+        callback: (packet: Shard_Packet<ClientboundBorderPacketData>) -> Unit
+    ): Shard_Packet<ClientboundBorderPacketData> {
+
+        val data = ClientboundBorderPacketData(
+            border
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setWorldBorderLerpSize(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setWorldBorderLerpSize(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundBorderPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setWorldBorderCenter(
+        border: WorldBorder,
+        callback: (packet: Shard_Packet<ClientboundBorderPacketData>) -> Unit
+    ): Shard_Packet<ClientboundBorderPacketData> {
+
+        val data = ClientboundBorderPacketData(
+            border
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setWorldBorderCenter(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setWorldBorderCenter(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundBorderPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setWorldBorderSize(
+        border: WorldBorder,
+        callback: (packet: Shard_Packet<ClientboundBorderPacketData>) -> Unit
+    ): Shard_Packet<ClientboundBorderPacketData> {
+
+        val data = ClientboundBorderPacketData(
+            border
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setWorldBorderSize(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setWorldBorderSize(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundBorderPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun initWorldBorder(
+        border: WorldBorder,
+        callback: (packet: Shard_Packet<ClientboundBorderPacketData>) -> Unit
+    ): Shard_Packet<ClientboundBorderPacketData> {
+
+        val data = ClientboundBorderPacketData(
+            border
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.initWorldBorder(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.initWorldBorder(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundBorderPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun runGameEvent(
+        type: GameEventType,
+        /**
+         * More about action: https://minecraft.wiki/w/Java_Edition_protocol/Packets#Game_Event
+         */
+        action: Float,
+        callback: (packet: Shard_Packet<ClientboundGameEventPacketData>) -> Unit
+    ): Shard_Packet<ClientboundGameEventPacketData> {
+
+        val data = ClientboundGameEventPacketData(
+            type, action
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.runGameEvent(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.runGameEvent(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundGameEventPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
     fun playRespawnPacket(
-         world: World,
-         deathLocation: org.bukkit.Location,
-         gameMode: GameMode,
-         isDebug : Boolean,
-         isFlat: Boolean,
-         portalCooldown: Int,
-         datakept: Byte,
+        world: World,
+        deathLocation: org.bukkit.Location,
+        gameMode: GameMode,
+        isDebug: Boolean,
+        isFlat: Boolean,
+        portalCooldown: Int,
+        datakept: Byte,
         callback: (packet: Shard_Packet<ClientboundRespawnPacketData>) -> Unit
     ): Shard_Packet<ClientboundRespawnPacketData> {
 
         val data = ClientboundRespawnPacketData(
-            world,deathLocation,gameMode,isDebug,isFlat,portalCooldown,datakept
+            world, deathLocation, gameMode, isDebug, isFlat, portalCooldown, datakept
         )
 
         val packet = when (ServerUtil.currentVersion()) {

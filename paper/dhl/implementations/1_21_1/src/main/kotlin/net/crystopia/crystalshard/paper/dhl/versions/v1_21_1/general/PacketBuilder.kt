@@ -1,6 +1,5 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general
 
-
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacketBuilder
@@ -9,6 +8,34 @@ import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
+
+    override fun setWorldBorderSize(data: ClientboundBorderPacketData): Packet<*> {
+        return Shard_ClientboundSetBorderSizePacket().createPacket(data)
+    }
+
+    override fun setWorldBorderCenter(data: ClientboundBorderPacketData): Packet<*> {
+        return Shard_ClientboundSetBorderCenterPacket().createPacket(data)
+    }
+
+    override fun setWorldBorderLerpSize(data: ClientboundBorderPacketData): Packet<*> {
+        return Shard_ClientboundSetBorderLerpSizePacket().createPacket(data)
+    }
+
+    override fun setWorldBorderWarningDelay(data: ClientboundBorderPacketData): Packet<*> {
+        return Shard_ClientboundSetBorderWarningDelayPacket().createPacket(data)
+    }
+
+    override fun setWorldBorderWarningDistance(data: ClientboundBorderPacketData): Packet<*> {
+        return Shard_ClientboundSetBorderWarningDistancePacket().createPacket(data)
+    }
+
+    override fun initWorldBorder(data: ClientboundBorderPacketData): Packet<*> {
+        return Shard_ClientboundInitializeBorderPacket().createPacket(data)
+    }
+
+    override fun runGameEvent(data: ClientboundGameEventPacketData): Packet<*> {
+        return Shard_ClientboundGameEventPacket().createPacket(data)
+    }
 
     override fun playRespawnPacket(data: ClientboundRespawnPacketData): Packet<*> {
         return Shard_ClientboundRespawnPacket().createPacket(data)

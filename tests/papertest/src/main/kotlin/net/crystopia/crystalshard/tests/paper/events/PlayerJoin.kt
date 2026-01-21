@@ -9,9 +9,11 @@ import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.FixedFormatData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
+import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
@@ -116,7 +118,6 @@ object PlayerJoin : Listener {
         }
 
 
-
         /*
         if (!checked.contains(event.player.uniqueId)) {
             checked.add(event.player.uniqueId)
@@ -146,6 +147,7 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
 
+        /*
         PacketFactory.playRespawnPacket(
             world = Bukkit.getWorld("world_the_end")!!,
             deathLocation = Location(Bukkit.getWorld("world")!!, 0.0, 0.0, 0.0),
@@ -154,6 +156,43 @@ object PlayerJoin : Listener {
             isFlat = false,
             portalCooldown = 100000,
             datakept = 0x01,
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+         */
+
+        val worldBorder = WorldBorder(
+            world = Bukkit.getWorld("world")!!,
+            size = 50.0,
+            centerX = 0.0,
+            centerZ = 0.0,
+            absoluteMaxSize = null,
+            safeZone = 0.0,
+            warningBlocks = 10,
+            warningTime = 10,
+            oldLerpSize = 50.0,
+            newLerpSize = 5.0,
+            lerpTime = 10000,
+            damagePerBlock = 0.5
+        )
+
+        PacketFactory.initWorldBorder(
+            worldBorder
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+        PacketFactory.setWorldBorderLerpSize(
+            worldBorder
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+        Bukkit.getWorld("world")!!.worldBorder.damageAmount
+
+        return
+        PacketFactory.runGameEvent(
+            type = GameEventType.IMMEDIATE_RESPAWN,
+            action = 1F
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
@@ -191,7 +230,7 @@ object PlayerJoin : Listener {
 
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
-
+        return
         val displayData = DisplayData(
             name = "testy",
             displayName = Component.text().text("<rainbow>PACKET BOARD</rainbow>").build(),

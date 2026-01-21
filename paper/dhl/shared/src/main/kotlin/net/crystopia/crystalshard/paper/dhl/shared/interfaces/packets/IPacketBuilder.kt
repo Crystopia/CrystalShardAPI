@@ -6,6 +6,13 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun setWorldBorderSize(data: ClientboundBorderPacketData): Packet<*>
+    fun setWorldBorderCenter(data: ClientboundBorderPacketData): Packet<*>
+    fun setWorldBorderLerpSize(data: ClientboundBorderPacketData): Packet<*>
+    fun setWorldBorderWarningDelay(data: ClientboundBorderPacketData): Packet<*>
+    fun setWorldBorderWarningDistance(data: ClientboundBorderPacketData): Packet<*>
+    fun initWorldBorder(data: ClientboundBorderPacketData): Packet<*>
+    fun runGameEvent(data: ClientboundGameEventPacketData): Packet<*>
     fun playRespawnPacket(data: ClientboundRespawnPacketData): Packet<*>
     fun resetScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
     fun setScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
