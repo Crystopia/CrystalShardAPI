@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun sendTeam(data: ClientboundSetPlayerTeamPacketData): Packet<*>
     fun setMerchantOffer(data: ClientboundMerchantOffersPacketData): Packet<*>
     fun spawnParticle(data: ClientboundLevelParticlesPacketData): Packet<*>
     fun setWorldBorderSize(data: ClientboundBorderPacketData): Packet<*>

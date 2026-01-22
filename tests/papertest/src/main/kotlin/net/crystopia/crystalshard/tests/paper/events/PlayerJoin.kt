@@ -16,12 +16,16 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.ItemCost
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffer
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.paper.dhl.shared.data.particles.Particle
+import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.particles.ParticleType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.CollisionRule
+import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.NameTagVisibility
+import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.TeamAction
 import net.crystopia.crystalshard.paper.pack.font.TextHeads
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.paper.pack.toasts.Toast
@@ -149,12 +153,49 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
 
+        PacketFactory.test(event.player)
+
+        PacketFactory.sendTeam(
+            action = TeamAction.ADD,
+            team = Team(
+                name = "testteam",
+                teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
+                friendlyFlags = mutableListOf(),
+                nameTagVisibility = NameTagVisibility.ALWAYS,
+                collisionRule = CollisionRule.ALWAYS,
+                teamColor = 'A',
+                teamPrefix = Component.text("DUMM "),
+                teamSuffix = Component.text(" AM DÜMMSTEN"),
+                members = mutableListOf(event.player.name)
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+        PacketFactory.sendTeam(
+            action = TeamAction.ADD,
+            team = Team(
+                name = "xdvsdfsdfsfd",
+                teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
+                friendlyFlags = mutableListOf(),
+                nameTagVisibility = NameTagVisibility.ALWAYS,
+                collisionRule = CollisionRule.NEVER,
+                teamColor = 'A',
+                teamPrefix = Component.text("NPC", NamedTextColor.RED),
+                teamSuffix = Component.text(""),
+                members = mutableListOf(player!!.name)
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+
+        /*
         org.bukkit.Particle.NOTE.builder()
             .location(Location(Bukkit.getWorld("world_nether")!!, 2.0, 2.0, 2.0))
             .offset(2.0, 0.2, 2.0)
             .count(14)
             .receivers(23, false)
             .spawn();
+         */
 
 
         // VibrationParticleOption(
@@ -164,6 +205,7 @@ object PlayerJoin : Listener {
         //                    arrivalInTicks = 20
         //                )
 
+        /*
         PacketFactory.spawnParticle(
             particle = Particle(
                 particle = ParticleType.NOTE,
@@ -182,6 +224,7 @@ object PlayerJoin : Listener {
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
+         */
 
         /*
         PacketFactory.playRespawnPacket(
@@ -318,7 +361,7 @@ object PlayerJoin : Listener {
             packet.send(mutableListOf(event.player))
         }
 
-        PacketFactory.test(event.player)
+        // PacketFactory.test(event.player)
         /*
         val displayData = DisplayData(
             name = "testy",

@@ -1,5 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl
 
+import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
@@ -11,6 +12,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSet
 import net.crystopia.crystalshard.paper.dhl.shared.data.particles.Particle
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
+import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoint
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
@@ -23,12 +25,15 @@ import net.crystopia.crystalshard.paper.dhl.shared.enums.player.GameMode
 import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.DisplaySlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.ScoreBoardMode
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.TeamAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointOperation
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.common.ClientboundCustomReportDetailsPacket
+import net.minecraft.network.protocol.game.ClientboundSystemChatPacket
+import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
@@ -40,15 +45,43 @@ import java.util.*
 
 object PacketFactory {
 
-    fun test(player: Player) {
+    fun sdfsdf() {
+        ClientboundUpdateAdvancementsPacket
+    }
 
-        val map = mutableMapOf<String, String>()
-        map["sdfsdf"] = "dfsdfsdf"
+    fun sendTeam(
+        action: TeamAction,
+        team: Team,
+        callback: (packet: Shard_Packet<ClientboundSetPlayerTeamPacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetPlayerTeamPacketData> {
 
-        sendPacket(
-            ClientboundCustomReportDetailsPacket(map),
-            players = mutableListOf(player)
+        val data = ClientboundSetPlayerTeamPacketData(
+            action, team
         )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.sendTeam(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.sendTeam(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetPlayerTeamPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
     }
 
     fun setMerchantOffer(
