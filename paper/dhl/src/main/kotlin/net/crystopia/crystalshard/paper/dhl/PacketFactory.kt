@@ -45,10 +45,6 @@ import java.util.*
 
 object PacketFactory {
 
-    fun sdfsdf() {
-        ClientboundUpdateAdvancementsPacket
-    }
-
     fun sendTeam(
         action: TeamAction,
         team: Team,

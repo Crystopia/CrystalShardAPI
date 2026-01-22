@@ -153,8 +153,6 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
 
-        PacketFactory.test(event.player)
-
         PacketFactory.sendTeam(
             action = TeamAction.ADD,
             team = Team(

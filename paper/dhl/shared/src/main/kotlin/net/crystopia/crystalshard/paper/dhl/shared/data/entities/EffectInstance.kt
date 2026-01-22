@@ -1,10 +1,17 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.shared.data.entities
 
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EffectType
+import net.minecraft.world.effect.MobEffectInstance
+
 data class EffectInstance(
-    var effect: Effect,
+    var type: EffectType,
     var duration: Int,
     var amplifier: Double,
     var ambient: Boolean,
     var visible: Boolean,
     var showIcon: Boolean,
-)
+) {
+    fun build(): MobEffectInstance {
+        TODO()
+    }
+}
