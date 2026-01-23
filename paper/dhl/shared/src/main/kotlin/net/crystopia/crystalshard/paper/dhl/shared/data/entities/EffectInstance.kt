@@ -6,12 +6,14 @@ import net.minecraft.world.effect.MobEffectInstance
 data class EffectInstance(
     var type: EffectType,
     var duration: Int,
-    var amplifier: Double,
+    var amplifier: Int,
     var ambient: Boolean,
     var visible: Boolean,
     var showIcon: Boolean,
 ) {
     fun build(): MobEffectInstance {
-        TODO()
+        return MobEffectInstance(
+            type.id, duration, amplifier, ambient, visible, showIcon
+        )
     }
 }

@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
+package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets
 
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundUpdateMobEffectPacketData

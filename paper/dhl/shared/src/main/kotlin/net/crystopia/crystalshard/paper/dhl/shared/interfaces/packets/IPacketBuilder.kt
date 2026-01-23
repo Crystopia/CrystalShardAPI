@@ -6,6 +6,8 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun removeMobEffect(data: ClientboundRemoveMobEffectPacketData): Packet<*>
+    fun applyMobEffect(data: ClientboundUpdateMobEffectPacketData): Packet<*>
     fun sendTeam(data: ClientboundSetPlayerTeamPacketData): Packet<*>
     fun setMerchantOffer(data: ClientboundMerchantOffersPacketData): Packet<*>
     fun spawnParticle(data: ClientboundLevelParticlesPacketData): Packet<*>

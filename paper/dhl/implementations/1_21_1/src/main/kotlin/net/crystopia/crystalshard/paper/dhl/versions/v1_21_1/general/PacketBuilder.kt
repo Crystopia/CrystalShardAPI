@@ -9,6 +9,14 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun removeMobEffect(data: ClientboundRemoveMobEffectPacketData): Packet<*> {
+        return Shard_ClientboundRemoveMobEffectPacket().createPacket(data)
+    }
+
+    override fun applyMobEffect(data: ClientboundUpdateMobEffectPacketData): Packet<*> {
+        return Shard_ClientboundUpdateMobEffectPacket().createPacket(data)
+    }
+
     override fun sendTeam(data: ClientboundSetPlayerTeamPacketData): Packet<*> {
         return Shard_ClientboundSetPlayerTeamPacket().createPacket(data)
     }

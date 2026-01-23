@@ -11,18 +11,18 @@ import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EffectInstance
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.ItemCost
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffer
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.Particle
 import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EffectType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
-import net.crystopia.crystalshard.paper.dhl.shared.enums.particles.ParticleType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.CollisionRule
 import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.NameTagVisibility
 import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.TeamAction
@@ -153,38 +153,54 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
 
-        PacketFactory.sendTeam(
-            action = TeamAction.ADD,
-            team = Team(
-                name = "testteam",
-                teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
-                friendlyFlags = mutableListOf(),
-                nameTagVisibility = NameTagVisibility.ALWAYS,
-                collisionRule = CollisionRule.ALWAYS,
-                teamColor = 'A',
-                teamPrefix = Component.text("DUMM "),
-                teamSuffix = Component.text(" AM DÜMMSTEN"),
-                members = mutableListOf(event.player.name)
-            )
+        PacketFactory.applyMobEffect(
+            event.player.entityId,
+            EffectInstance(
+                type = EffectType.HASTE,
+                duration = 5000,
+                amplifier = 3,
+                ambient = false,
+                visible = true,
+                showIcon = true
+            ),
+            true
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
-        PacketFactory.sendTeam(
-            action = TeamAction.ADD,
-            team = Team(
-                name = "xdvsdfsdfsfd",
-                teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
-                friendlyFlags = mutableListOf(),
-                nameTagVisibility = NameTagVisibility.ALWAYS,
-                collisionRule = CollisionRule.NEVER,
-                teamColor = 'A',
-                teamPrefix = Component.text("NPC", NamedTextColor.RED),
-                teamSuffix = Component.text(""),
-                members = mutableListOf(player!!.name)
-            )
-        ) { packet ->
-            packet.send(mutableListOf(event.player))
-        }
+
+
+         PacketFactory.sendTeam(
+             action = TeamAction.ADD,
+             team = Team(
+                 name = "testteam",
+                 teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
+                 friendlyFlags = mutableListOf(),
+                 nameTagVisibility = NameTagVisibility.ALWAYS,
+                 collisionRule = CollisionRule.ALWAYS,
+                 teamColor = 'A',
+                 teamPrefix = Component.text("DUMM "),
+                 teamSuffix = Component.text(" AM DÜMMSTEN"),
+                 members = mutableListOf(event.player.name)
+             )
+         ) { packet ->
+             packet.send(mutableListOf(event.player))
+         }
+         PacketFactory.sendTeam(
+             action = TeamAction.ADD,
+             team = Team(
+                 name = "xdvsdfsdfsfd",
+                 teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
+                 friendlyFlags = mutableListOf(),
+                 nameTagVisibility = NameTagVisibility.ALWAYS,
+                 collisionRule = CollisionRule.NEVER,
+                 teamColor = 'A',
+                 teamPrefix = Component.text("NPC", NamedTextColor.RED),
+                 teamSuffix = Component.text(""),
+                 members = mutableListOf(player!!.name)
+             )
+         ) { packet ->
+             packet.send(mutableListOf(event.player))
+         }
 
         /*
         org.bukkit.Particle.NOTE.builder()

@@ -1,9 +1,9 @@
 package net.crystopia.crystalshard.paper.dhl
 
-import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EffectInstance
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
@@ -17,6 +17,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoin
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EffectType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
@@ -31,9 +32,6 @@ import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuil
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
-import net.minecraft.network.protocol.common.ClientboundCustomReportDetailsPacket
-import net.minecraft.network.protocol.game.ClientboundSystemChatPacket
-import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
@@ -44,6 +42,77 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun removeMobEffect(
+        entityId: Int,
+        effect: EffectType,
+        callback: (packet: Shard_Packet<ClientboundRemoveMobEffectPacketData>) -> Unit
+    ): Shard_Packet<ClientboundRemoveMobEffectPacketData> {
+
+        val data = ClientboundRemoveMobEffectPacketData(
+            entityId, effect
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.removeMobEffect(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.removeMobEffect(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundRemoveMobEffectPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun applyMobEffect(
+        entityId: Int,
+        effect: EffectInstance,
+        blend: Boolean,
+        callback: (packet: Shard_Packet<ClientboundUpdateMobEffectPacketData>) -> Unit
+    ): Shard_Packet<ClientboundUpdateMobEffectPacketData> {
+
+        val data = ClientboundUpdateMobEffectPacketData(
+            entityId, effect, blend
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.applyMobEffect(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.applyMobEffect(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundUpdateMobEffectPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun sendTeam(
         action: TeamAction,
