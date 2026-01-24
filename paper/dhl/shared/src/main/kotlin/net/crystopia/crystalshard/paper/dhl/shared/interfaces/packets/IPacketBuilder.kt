@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun setMapItemData(data: ClientboundMapItemDataPacketData): Packet<*>
     fun moveVehicle(data: ClientboundMoveVehiclePacketData): Packet<*>
     fun moveMinecart(data: ClientboundMoveMinecartPacketData): Packet<*>
     fun moveEntity(data: ClientboundMoveEntityPacketData): Packet<*>

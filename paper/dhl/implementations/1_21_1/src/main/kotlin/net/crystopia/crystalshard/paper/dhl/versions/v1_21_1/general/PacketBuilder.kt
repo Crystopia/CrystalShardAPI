@@ -9,6 +9,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun setMapItemData(data: ClientboundMapItemDataPacketData): Packet<*> {
+        return Shard_ClientboundMapItemDataPacket().createPacket(data)
+    }
+
     override fun moveVehicle(data: ClientboundMoveVehiclePacketData): Packet<*> {
         return Shard_ClientboundMoveVehiclePacket().createPacket(data)
     }

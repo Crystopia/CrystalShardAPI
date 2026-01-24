@@ -5,6 +5,8 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
+import net.crystopia.crystalshard.paper.dhl.shared.data.maps.MapDecoration
+import net.crystopia.crystalshard.paper.dhl.shared.data.maps.MapPatch
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
@@ -42,6 +44,44 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun setMapItemData(
+        mapId: Int,
+        scale: Byte,
+        locked: Boolean,
+        decorations: MutableList<MapDecoration>,
+        colorPatch: MapPatch,
+        callback: (packet: Shard_Packet<ClientboundMapItemDataPacketData>) -> Unit
+    ): Shard_Packet<ClientboundMapItemDataPacketData> {
+
+        val data = ClientboundMapItemDataPacketData(
+            mapId, scale, locked, decorations, colorPatch
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setMapItemData(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                PacketBuilder.setMapItemData(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundMapItemDataPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun moveVehicle(
         position: Vec3,
