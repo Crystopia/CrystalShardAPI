@@ -10,6 +10,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun updatePlayerPosition(data: ClientboundPlayerPositionPacketData): Packet<*> {
+        return Shard_ClientboundPlayerPositionPacket().createPacket(data)
+    }
+
     override fun updatePlayerRotation(data: ClientboundPlayerRotationPacketData): Packet<*> {
         return Shard_ClientboundPlayerRotationPacket().createPacket(data)
     }

@@ -9,6 +9,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun updatePlayerPosition(data: ClientboundPlayerPositionPacketData): Packet<*> {
+        return Shard_ClientboundPlayerPositionPacket().createPacket(data)
+    }
+
     override fun updatePlayerRotation(data: ClientboundPlayerRotationPacketData): Packet<*> {
         throw Exception("Rotation Packet not available on 1.21.1")
     }

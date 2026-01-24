@@ -5,6 +5,8 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EffectInstance
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.PositionMoveRotation
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.RelativePosition
 import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
@@ -42,6 +44,42 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun updatePlayerPosition(
+        entityId: Int,
+        change: PositionMoveRotation,
+        relatives: MutableSet<RelativePosition>,
+        callback: (packet: Shard_Packet<ClientboundPlayerPositionPacketData>) -> Unit
+    ): Shard_Packet<ClientboundPlayerPositionPacketData> {
+
+        val data = ClientboundPlayerPositionPacketData(
+            entityId, change, relatives
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.updatePlayerPosition(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.updatePlayerPosition(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundPlayerPositionPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun updatePlayerRotation(
         yRot: Float,
