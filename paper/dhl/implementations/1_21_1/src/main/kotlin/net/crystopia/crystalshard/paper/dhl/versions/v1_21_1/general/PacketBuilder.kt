@@ -9,6 +9,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun updatePlayerRotation(data: ClientboundPlayerRotationPacketData): Packet<*> {
+        throw Exception("Rotation Packet not available on 1.21.1")
+    }
+
     override fun removeMobEffect(data: ClientboundRemoveMobEffectPacketData): Packet<*> {
         return Shard_ClientboundRemoveMobEffectPacket().createPacket(data)
     }

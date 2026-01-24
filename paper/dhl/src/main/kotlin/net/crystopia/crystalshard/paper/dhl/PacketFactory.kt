@@ -43,6 +43,41 @@ import java.util.*
 
 object PacketFactory {
 
+    fun updatePlayerRotation(
+        yRot: Float,
+        relativeY: Boolean,
+        xRot: Float,
+        relativeX: Boolean,
+        callback: (packet: Shard_Packet<ClientboundPlayerRotationPacketData>) -> Unit
+    ): Shard_Packet<ClientboundPlayerRotationPacketData> {
+
+        val data = ClientboundPlayerRotationPacketData(
+            yRot, relativeY, xRot, relativeX
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.updatePlayerRotation(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                throw Exception("Rotation Packet not available on 1.21.1")
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundPlayerRotationPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
     fun removeMobEffect(
         entityId: Int,
         effect: EffectType,
@@ -88,6 +123,7 @@ object PacketFactory {
         val data = ClientboundUpdateMobEffectPacketData(
             entityId, effect, blend
         )
+
 
         val packet = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_10 -> {
