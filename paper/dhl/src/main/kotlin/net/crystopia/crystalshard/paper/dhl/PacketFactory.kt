@@ -3,10 +3,7 @@ package net.crystopia.crystalshard.paper.dhl
 import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EffectInstance
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.PositionMoveRotation
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.RelativePosition
+import net.crystopia.crystalshard.paper.dhl.shared.data.entities.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
@@ -44,6 +41,46 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun updatePlayerLookAt(
+        entityId: Int,
+        world: World,
+        fromAnchor: LookAnchor,
+        toAnchor: LookAnchor,
+        x: Double,
+        y: Double,
+        z: Double,
+        callback: (packet: Shard_Packet<ClientboundPlayerLookAtPacketData>) -> Unit
+    ): Shard_Packet<ClientboundPlayerLookAtPacketData> {
+
+        val data = ClientboundPlayerLookAtPacketData(
+            entityId, world, fromAnchor, toAnchor, x, y, z
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.updatePlayerLookAt(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.updatePlayerLookAt(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundPlayerLookAtPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun updatePlayerPosition(
         entityId: Int,

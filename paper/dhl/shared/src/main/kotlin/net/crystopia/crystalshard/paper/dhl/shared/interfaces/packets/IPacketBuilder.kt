@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun updatePlayerLookAt(data: ClientboundPlayerLookAtPacketData): Packet<*>
     fun updatePlayerPosition(data: ClientboundPlayerPositionPacketData): Packet<*>
     fun updatePlayerRotation(data: ClientboundPlayerRotationPacketData): Packet<*>
     fun removeMobEffect(data: ClientboundRemoveMobEffectPacketData): Packet<*>

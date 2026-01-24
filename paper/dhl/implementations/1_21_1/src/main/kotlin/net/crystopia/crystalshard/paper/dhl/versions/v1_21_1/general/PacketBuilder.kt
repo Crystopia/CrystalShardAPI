@@ -9,6 +9,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun updatePlayerLookAt(data: ClientboundPlayerLookAtPacketData): Packet<*> {
+        return Shard_ClientboundPlayerLookAtPacket().createPacket(data)
+    }
+
     override fun updatePlayerPosition(data: ClientboundPlayerPositionPacketData): Packet<*> {
         return Shard_ClientboundPlayerPositionPacket().createPacket(data)
     }
