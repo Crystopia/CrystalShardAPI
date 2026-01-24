@@ -6,6 +6,10 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun moveVehicle(data: ClientboundMoveVehiclePacketData): Packet<*>
+    fun moveMinecart(data: ClientboundMoveMinecartPacketData): Packet<*>
+    fun moveEntity(data: ClientboundMoveEntityPacketData): Packet<*>
+    fun updateEntityPositionSync(data: ClientboundEntityPositionSyncPacketData): Packet<*>
     fun updatePlayerLookAt(data: ClientboundPlayerLookAtPacketData): Packet<*>
     fun updatePlayerPosition(data: ClientboundPlayerPositionPacketData): Packet<*>
     fun updatePlayerRotation(data: ClientboundPlayerRotationPacketData): Packet<*>

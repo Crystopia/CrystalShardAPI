@@ -5,10 +5,25 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSet
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets.*
 import net.minecraft.network.protocol.Packet
-import net.minecraft.network.protocol.common.ClientboundCustomReportDetailsPacket
 import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
+
+    override fun moveVehicle(data: ClientboundMoveVehiclePacketData): Packet<*> {
+        return Shard_ClientboundMoveVehiclePacket().createPacket(data)
+    }
+
+    override fun moveMinecart(data: ClientboundMoveMinecartPacketData): Packet<*> {
+        return Shard_ClientboundMoveMinecartPacket().createPacket(data)
+    }
+
+    override fun moveEntity(data: ClientboundMoveEntityPacketData): Packet<*> {
+        return Shard_ClientboundMoveEntityPacket().createPacket(data)
+    }
+
+    override fun updateEntityPositionSync(data: ClientboundEntityPositionSyncPacketData): Packet<*> {
+        return Shard_ClientboundEntityPositionSyncPacket().createPacket(data)
+    }
 
     override fun updatePlayerLookAt(data: ClientboundPlayerLookAtPacketData): Packet<*> {
         return Shard_ClientboundPlayerLookAtPacket().createPacket(data)

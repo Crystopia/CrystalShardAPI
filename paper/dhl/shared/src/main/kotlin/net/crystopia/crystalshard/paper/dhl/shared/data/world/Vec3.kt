@@ -10,7 +10,7 @@ data class Vec3(
 ) {
     fun build(): Vec3 {
         return Vec3.atLowerCornerWithOffset(
-            _root_ide_package_.net.minecraft.core.Vec3i(
+            net.minecraft.core.Vec3i(
                 vec3i.x.toInt(), vec3i.y.toInt(), vec3i.z.toInt()
             ), offsetX, offsetY, offsetZ
         )

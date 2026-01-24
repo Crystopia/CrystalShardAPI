@@ -13,6 +13,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
 import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoint
+import net.crystopia.crystalshard.paper.dhl.shared.data.world.Vec3
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
@@ -41,6 +42,144 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun moveVehicle(
+        position: Vec3,
+        yRot: Float,
+        xRot: Float,
+        callback: (packet: Shard_Packet<ClientboundMoveVehiclePacketData>) -> Unit
+    ): Shard_Packet<ClientboundMoveVehiclePacketData> {
+
+        val data = ClientboundMoveVehiclePacketData(
+            position, yRot, xRot
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.moveVehicle(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                PacketBuilder.moveVehicle(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundMoveVehiclePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun moveMinecart(
+        entityId: Int,
+        lerpSteps: MutableList<MinecartStep>,
+        callback: (packet: Shard_Packet<ClientboundMoveMinecartPacketData>) -> Unit
+    ): Shard_Packet<ClientboundMoveMinecartPacketData> {
+
+        val data = ClientboundMoveMinecartPacketData(
+            entityId, lerpSteps
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.moveMinecart(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundMoveMinecartPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun moveEntity(
+        mode: EntityMoveMode,
+        entityId: Int,
+        xa: Short,
+        ya: Short,
+        za: Short,
+        yRot: Byte,
+        xRot: Byte,
+        onGround: Boolean,
+        hasRot: Boolean,
+        hasPos: Boolean,
+        callback: (packet: Shard_Packet<ClientboundMoveEntityPacketData>) -> Unit
+    ): Shard_Packet<ClientboundMoveEntityPacketData> {
+
+        val data = ClientboundMoveEntityPacketData(
+            mode, entityId, xa, ya, za, yRot, xRot, onGround, hasRot, hasPos
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.moveEntity(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.moveEntity(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundMoveEntityPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun updateEntityPositionSync(
+        entityId: Int,
+        values: PositionMoveRotation,
+        onGround: Boolean,
+        callback: (packet: Shard_Packet<ClientboundEntityPositionSyncPacketData>) -> Unit
+    ): Shard_Packet<ClientboundEntityPositionSyncPacketData> {
+
+        val data = ClientboundEntityPositionSyncPacketData(
+            entityId, values, onGround
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.updateEntityPositionSync(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundEntityPositionSyncPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun updatePlayerLookAt(
         entityId: Int,
@@ -135,10 +274,6 @@ object PacketFactory {
                 PacketBuilder.updatePlayerRotation(
                     data
                 )
-            }
-
-            ServerVersion.v1_21_1 -> {
-                throw Exception("Rotation Packet not available on 1.21.1")
             }
 
             else -> {

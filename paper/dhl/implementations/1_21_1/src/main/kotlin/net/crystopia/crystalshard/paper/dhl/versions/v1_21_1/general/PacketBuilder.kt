@@ -9,6 +9,22 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun moveVehicle(data: ClientboundMoveVehiclePacketData): Packet<*> {
+        return Shard_ClientboundMoveVehiclePacket().createPacket(data)
+    }
+
+    override fun moveMinecart(data: ClientboundMoveMinecartPacketData): Packet<*> {
+        throw Exception("Move Minecart Packet not available on 1.21.1")
+    }
+
+    override fun moveEntity(data: ClientboundMoveEntityPacketData): Packet<*> {
+        return Shard_ClientboundMoveEntityPacket().createPacket(data)
+    }
+
+    override fun updateEntityPositionSync(data: ClientboundEntityPositionSyncPacketData): Packet<*> {
+        throw Exception("Entity Position Sync not available on 1.21.1")
+    }
+
     override fun updatePlayerLookAt(data: ClientboundPlayerLookAtPacketData): Packet<*> {
         return Shard_ClientboundPlayerLookAtPacket().createPacket(data)
     }

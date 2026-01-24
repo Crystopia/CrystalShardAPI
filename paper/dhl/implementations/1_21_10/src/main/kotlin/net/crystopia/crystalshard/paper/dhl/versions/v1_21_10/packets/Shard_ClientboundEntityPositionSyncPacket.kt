@@ -2,20 +2,24 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundEntityPositionSyncPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerLookAtPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
-import net.minecraft.commands.arguments.EntityAnchorArgument
 import net.minecraft.network.protocol.game.ClientboundEntityPositionSyncPacket
-import net.minecraft.network.protocol.game.ClientboundPlayerLookAtPacket
-import net.minecraft.world.entity.Display
-import net.minecraft.world.entity.EntityType
-import org.bukkit.craftbukkit.CraftWorld
+import net.minecraft.world.entity.PositionMoveRotation
 
 class Shard_ClientboundEntityPositionSyncPacket : IPacket<ClientboundEntityPositionSyncPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundEntityPositionSyncPacketData
     ): ClientboundEntityPositionSyncPacket {
-        return ClientboundEntityPositionSyncPacket()
+        return ClientboundEntityPositionSyncPacket(
+            packetObj.entityId,
+            PositionMoveRotation(
+                packetObj.values.position.build(),
+                packetObj.values.deltaMovement.build(),
+                packetObj.values.yRot,
+                packetObj.values.xRot
+            ),
+            packetObj.onGround
+        )
     }
 }
