@@ -9,14 +9,23 @@ import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.common.extension.textTooltip
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
+import net.crystopia.crystalshard.paper.dhl.server.ServerboundCustomClickActionPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.CommonDialogData
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.ConfirmationDialog
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.DialogBodyPlainMessage
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.ActionButton
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.ActionCustomAll
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.ActionStaticAction
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.CommonButtonData
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EffectInstance
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.ItemCost
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffer
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
+import net.crystopia.crystalshard.paper.dhl.shared.enums.dialog.DialogAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EffectType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
@@ -152,6 +161,48 @@ object PlayerJoin : Listener {
 
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
+
+        PacketFactory.showDialog(
+            ConfirmationDialog(
+                common = CommonDialogData(
+                    title = Component.text("PACKET DIALOG"),
+                    externalTitle = null,
+                    canCloseWithEscape = false,
+                    pause = false,
+                    afterAction = DialogAction.CLOSE,
+                    body = mutableListOf(
+                        DialogBodyPlainMessage(
+                            contents = Component.text("Hey this is a dialog only for you!"),
+                            width = 100
+                        )
+                    ),
+                    inputs = mutableListOf()
+                ),
+                yesButton = ActionButton(
+                    button = CommonButtonData(
+                        label = Component.text("Click me for more packets :)"),
+                        tooltip = null,
+                        width = 500
+                    ),
+                    action = ActionCustomAll(
+                        id = NamespacedKey("testy", "packet"),
+                        additionsNBT = mutableMapOf(Pair("test","1234"))
+                    )
+                ),
+                noButton = ActionButton(
+                    button = CommonButtonData(
+                        label = Component.text("No Packets... :("),
+                        tooltip = null,
+                        width = 100
+                    ),
+                    action = ActionStaticAction(
+                        event = ClickEvent.openUrl("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+                    )
+                )
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
 
         PacketFactory.applyMobEffect(
             event.player.entityId,
@@ -455,7 +506,7 @@ object PlayerJoin : Listener {
          */
 
 
-        /*
+
         ServerboundCustomClickActionPacketUtil.attach(
             "sdfsdfsddfsd", Main.instance, event.player
         ) {
@@ -467,35 +518,35 @@ object PlayerJoin : Listener {
             println(this.payload.type.data)
 
         }
-
-        val dialog = Dialog.create({ builder ->
-            builder.empty().base(
-                DialogBase.builder(Component.text("Configure your new experience value")).inputs(
-                    mutableListOf(
-                        DialogInput.numberRange("level", Component.text("Level", NamedTextColor.GREEN), 0f, 100f)
-                            .step(1f).initial(0f).width(300).build(), DialogInput.numberRange(
-                            "experience", Component.text("Experience", NamedTextColor.GREEN), 0f, 100f
-                        ).step(1f).initial(0f).labelFormat("%s: %s percent to the next level").width(300).build()
+        /*
+                val dialog = Dialog.create({ builder ->
+                    builder.empty().base(
+                        DialogBase.builder(Component.text("Configure your new experience value")).inputs(
+                            mutableListOf(
+                                DialogInput.numberRange("level", Component.text("Level", NamedTextColor.GREEN), 0f, 100f)
+                                    .step(1f).initial(0f).width(300).build(), DialogInput.numberRange(
+                                    "experience", Component.text("Experience", NamedTextColor.GREEN), 0f, 100f
+                                ).step(1f).initial(0f).labelFormat("%s: %s percent to the next level").width(300).build()
+                            )
+                        ).build()
+                    ).type(
+                        DialogType.confirmation(
+                            ActionButton.create(
+                                Component.text("Confirm", TextColor.color(0xAEFFC1)),
+                                Component.text("Click to confirm your input."),
+                                100,
+                                DialogAction.customClick(Key.key("papermc:user_input/confirm"), null)
+                            ), ActionButton.create(
+                                Component.text("Discard", TextColor.color(0xFFA0B1)),
+                                Component.text("Click to discard your input."),
+                                100,
+                                null // If we set the action to null, it doesn't do anything and closes the dialog
+                            )
+                        )
                     )
-                ).build()
-            ).type(
-                DialogType.confirmation(
-                    ActionButton.create(
-                        Component.text("Confirm", TextColor.color(0xAEFFC1)),
-                        Component.text("Click to confirm your input."),
-                        100,
-                        DialogAction.customClick(Key.key("papermc:user_input/confirm"), null)
-                    ), ActionButton.create(
-                        Component.text("Discard", TextColor.color(0xFFA0B1)),
-                        Component.text("Click to discard your input."),
-                        100,
-                        null // If we set the action to null, it doesn't do anything and closes the dialog
-                    )
-                )
-            )
-        })
+                })
 
-         */
+                 */
 
         // event.player.showDialog(dialog)
 

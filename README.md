@@ -51,7 +51,7 @@ maven {
 
 ```kotlin
 // Common
-implementation("net.crystopia.crystalshard:paper-common:<version>")
+implementation("net.crystopia.crystalshard:common:<version>")
 
 // Paper
 implementation("net.crystopia.crystalshard:paper-core:<version>")

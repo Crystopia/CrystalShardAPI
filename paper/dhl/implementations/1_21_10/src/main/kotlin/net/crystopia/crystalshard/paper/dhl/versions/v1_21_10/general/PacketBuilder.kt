@@ -9,6 +9,34 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun showDialog(data: ClientboundShowDialogPacketData): Packet<*> {
+        return Shard_ClientboundShowDialogPacket().createPacket(data)
+    }
+
+    override fun updateTickingState(data: ClientboundTickingStatePacketData): Packet<*> {
+        return Shard_ClientboundTickingStatePacket().createPacket(data)
+    }
+
+    override fun updateTickingStep(data: ClientboundTickingStepPacketData): Packet<*> {
+        return Shard_ClientboundTickingStepPacket().createPacket(data)
+    }
+
+    override fun setTime(data: ClientboundSetTimePacketData): Packet<*> {
+        return Shard_ClientboundSetTimePacket().createPacket(data)
+    }
+
+    override fun setTabList(data: ClientboundTabListPacketData): Packet<*> {
+        return Shard_ClientboundTabListPacket().createPacket(data)
+    }
+
+    override fun setDefaultSpawnPosition(data: ClientboundSetDefaultSpawnPositionPacketData): Packet<*> {
+        return Shard_ClientboundSetDefaultSpawnPositionPacket().createPacket(data)
+    }
+
+    override fun sendLevelEvent(data: ClientboundLevelEventPacketData): Packet<*> {
+        return Shard_ClientboundLevelEventPacket().createPacket(data)
+    }
+
     override fun setMapItemData(data: ClientboundMapItemDataPacketData): Packet<*> {
         return Shard_ClientboundMapItemDataPacket().createPacket(data)
     }

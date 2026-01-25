@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.paper.dhl
 import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.Dialog
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.*
 import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
 import net.crystopia.crystalshard.paper.dhl.shared.data.maps.MapDecoration
@@ -44,6 +45,249 @@ import org.bukkit.inventory.ItemStack
 import java.util.*
 
 object PacketFactory {
+
+    fun showDialog(
+        dialog: Dialog<*>,
+        callback: (packet: Shard_Packet<ClientboundShowDialogPacketData>) -> Unit
+    ): Shard_Packet<ClientboundShowDialogPacketData> {
+
+        val data = ClientboundShowDialogPacketData(
+            dialog
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.showDialog(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundShowDialogPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun updateTickingState(
+        tickRate: Float,
+        isFrozen: Boolean,
+        callback: (packet: Shard_Packet<ClientboundTickingStatePacketData>) -> Unit
+    ): Shard_Packet<ClientboundTickingStatePacketData> {
+
+        val data = ClientboundTickingStatePacketData(
+            tickRate, isFrozen
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.updateTickingState(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                PacketBuilder.updateTickingState(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundTickingStatePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun updateTickingStep(
+        tickSteps: Int,
+        callback: (packet: Shard_Packet<ClientboundTickingStepPacketData>) -> Unit
+    ): Shard_Packet<ClientboundTickingStepPacketData> {
+
+        val data = ClientboundTickingStepPacketData(
+            tickSteps
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.updateTickingStep(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                PacketBuilder.updateTickingStep(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundTickingStepPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setTime(
+        gameTime: Long,
+        dayTime: Long,
+        tickDayTime: Boolean,
+        callback: (packet: Shard_Packet<ClientboundSetTimePacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetTimePacketData> {
+
+        val data = ClientboundSetTimePacketData(
+            gameTime, dayTime, tickDayTime
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setTime(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                PacketBuilder.setTime(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetTimePacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setTabList(
+        footer: Component,
+        header: Component,
+        callback: (packet: Shard_Packet<ClientboundTabListPacketData>) -> Unit
+    ): Shard_Packet<ClientboundTabListPacketData> {
+
+        val data = ClientboundTabListPacketData(
+            footer, header
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setTabList(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                PacketBuilder.setTabList(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundTabListPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun setDefaultSpawnPosition(
+        world: World,
+        pos: BlockPos,
+        yaw: Float,
+        pitch: Float,
+        angle: Float?,
+        callback: (packet: Shard_Packet<ClientboundSetDefaultSpawnPositionPacketData>) -> Unit
+    ): Shard_Packet<ClientboundSetDefaultSpawnPositionPacketData> {
+
+        val data = ClientboundSetDefaultSpawnPositionPacketData(
+            world, pos, yaw, pitch, angle ?: 0F
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.setDefaultSpawnPosition(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                PacketBuilder.setDefaultSpawnPosition(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundSetDefaultSpawnPositionPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
+
+    fun sendWorldEvent(
+        type: Int,
+        pos: BlockPos,
+        data: Int,
+        globalEvent: Boolean,
+        callback: (packet: Shard_Packet<ClientboundLevelEventPacketData>) -> Unit
+    ): Shard_Packet<ClientboundLevelEventPacketData> {
+
+        val data = ClientboundLevelEventPacketData(
+            type, pos, data, globalEvent
+        )
+
+        val packet = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_10 -> {
+                PacketBuilder.sendLevelEvent(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_1 -> {
+                PacketBuilder.sendLevelEvent(
+                    data
+                )
+            }
+
+            else -> {
+                throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            }
+        }
+
+        val shardPacket = Shard_Packet<ClientboundLevelEventPacketData>()
+        shardPacket.packetData = data
+        shardPacket.packetObject = packet
+        callback(shardPacket)
+        return shardPacket
+    }
 
     fun setMapItemData(
         mapId: Int,

@@ -6,6 +6,13 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun showDialog(data: ClientboundShowDialogPacketData): Packet<*>
+    fun updateTickingState(data: ClientboundTickingStatePacketData): Packet<*>
+    fun updateTickingStep(data: ClientboundTickingStepPacketData): Packet<*>
+    fun setTime(data: ClientboundSetTimePacketData): Packet<*>
+    fun setTabList(data: ClientboundTabListPacketData): Packet<*>
+    fun setDefaultSpawnPosition(data: ClientboundSetDefaultSpawnPositionPacketData): Packet<*>
+    fun sendLevelEvent(data: ClientboundLevelEventPacketData): Packet<*>
     fun setMapItemData(data: ClientboundMapItemDataPacketData): Packet<*>
     fun moveVehicle(data: ClientboundMoveVehiclePacketData): Packet<*>
     fun moveMinecart(data: ClientboundMoveMinecartPacketData): Packet<*>
