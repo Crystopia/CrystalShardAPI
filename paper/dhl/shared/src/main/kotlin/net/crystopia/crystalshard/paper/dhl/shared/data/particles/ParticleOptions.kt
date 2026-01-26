@@ -1,7 +1,6 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.shared.data.particles
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
-import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.particles.ParticleType
 import net.minecraft.core.particles.BlockParticleOption
 import net.minecraft.core.particles.ColorParticleOption
@@ -21,6 +20,9 @@ import net.minecraft.world.level.gameevent.EntityPositionSource
 import net.minecraft.world.phys.Vec3
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.CraftWorld
+import org.bukkit.craftbukkit.block.CraftBlock
+import org.bukkit.craftbukkit.block.CraftBlockType
+import org.bukkit.craftbukkit.block.data.CraftBlockData
 import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.inventory.ItemStack
 
@@ -32,11 +34,11 @@ open class ParticleOptions<T : Any, R : Any> {
 }
 
 data class BlockParticleOption(
-    var type: ParticleType, var block: BlockType
+    var type: ParticleType, var block: org.bukkit.block.BlockType
 ) : ParticleOptions<net.crystopia.crystalshard.paper.dhl.shared.data.particles.BlockParticleOption, BlockParticleOption>() {
     override fun build(): BlockParticleOption {
         return BlockParticleOption(
-            type.id as net.minecraft.core.particles.ParticleType<BlockParticleOption>, block.block.defaultBlockState()
+            type.id as net.minecraft.core.particles.ParticleType<BlockParticleOption>, (block.createBlockData() as CraftBlockData).state
         )
     }
 }

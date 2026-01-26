@@ -17,8 +17,8 @@ class Shard_ClientboundSetEquipmentPacket : IPacket<ClientboundSetEquipmentPacke
         val list = mutableListOf<Pair<EquipmentSlot, ItemStack>>()
         packetObj.equipmentList.forEach { (slot, stack) ->
             list.add(
-                com.mojang.datafixers.util.Pair(
-                    slot.type,
+                Pair(
+                    net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.types.enums.gui.EquipmentSlot.convert(slot).type,
                     CraftItemStack.asNMSCopy(stack)
                 )
             )

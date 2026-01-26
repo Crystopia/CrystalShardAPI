@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets
 
 import com.mojang.datafixers.util.Pair
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetEquipmentPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket
 import net.minecraft.world.entity.EquipmentSlot
@@ -18,7 +19,7 @@ class Shard_ClientboundSetEquipmentPacket : IPacket<ClientboundSetEquipmentPacke
         packetObj.equipmentList.forEach { (slot, stack) ->
             list.add(
                 Pair(
-                    slot.type,
+                    net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.types.enums.gui.EquipmentSlot.convert(slot).type,
                     CraftItemStack.asNMSCopy(stack)
                 )
             )

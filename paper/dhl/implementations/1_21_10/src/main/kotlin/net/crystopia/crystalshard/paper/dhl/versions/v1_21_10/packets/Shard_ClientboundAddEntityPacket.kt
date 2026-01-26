@@ -5,6 +5,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundAddEn
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.world.phys.Vec3
+import org.bukkit.craftbukkit.entity.CraftEntityType
 
 class Shard_ClientboundAddEntityPacket : IPacket<ClientboundAddEntityPacketData> {
 
@@ -19,7 +20,7 @@ class Shard_ClientboundAddEntityPacket : IPacket<ClientboundAddEntityPacketData>
             packetObj.location.y,
             packetObj.location.pitch,
             packetObj.location.yaw,
-            packetObj.entityType.type,
+            CraftEntityType.bukkitToMinecraft(packetObj.entityType),
             packetObj.data,
             Vec3.ZERO,
             packetObj.yHeadRot

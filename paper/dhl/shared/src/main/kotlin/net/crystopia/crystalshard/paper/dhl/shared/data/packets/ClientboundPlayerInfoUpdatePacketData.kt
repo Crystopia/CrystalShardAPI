@@ -6,5 +6,5 @@ import java.util.*
 
 data class ClientboundPlayerInfoUpdatePacketData(
     val serverPlayer: Player,
-    val actions: EnumSet<InfoUpdateAction>
+    val actions: MutableList<InfoUpdateAction>
 )

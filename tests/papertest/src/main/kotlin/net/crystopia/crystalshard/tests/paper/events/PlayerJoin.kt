@@ -4,37 +4,20 @@ import com.destroystokyo.paper.event.player.PlayerJumpEvent
 import com.destroystokyo.paper.profile.ProfileProperty
 import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
-import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
-import net.crystopia.crystalshard.common.extension.copyToClipboard
-import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.common.extension.textTooltip
+import net.crystopia.crystalshard.common.extension.*
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
-import net.crystopia.crystalshard.paper.dhl.server.ServerboundCustomClickActionPacketUtil
+import net.crystopia.crystalshard.paper.dhl.server.ServerboundContainerClickPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.CommonDialogData
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.ConfirmationDialog
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.DialogBodyPlainMessage
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.ActionButton
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.ActionCustomAll
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.ActionStaticAction
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.CommonButtonData
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EffectInstance
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.ItemCost
-import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffer
-import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
-import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
-import net.crystopia.crystalshard.paper.dhl.shared.enums.dialog.DialogAction
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EffectType
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.FixedFormatData
+import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
-import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.CollisionRule
-import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.NameTagVisibility
-import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.TeamAction
+import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.*
 import net.crystopia.crystalshard.paper.pack.font.TextHeads
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.paper.pack.toasts.Toast
@@ -54,6 +37,8 @@ import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.entity.EntityType
+import org.bukkit.entity.ItemDisplay
 import org.bukkit.entity.Player
 import org.bukkit.entity.TextDisplay
 import org.bukkit.event.EventHandler
@@ -64,6 +49,7 @@ import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
 import org.bukkit.inventory.ItemStack
+import org.bukkit.persistence.PersistentDataType
 import org.joml.Vector3f
 import java.util.*
 
@@ -126,11 +112,13 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onMove(event: PlayerMoveEvent) {
 
-        PacketFactory.applyCooldown(
-            Material.PAPER, 1000
-        ) { packet ->
-            packet.send(mutableListOf(event.player))
-        }
+        /*
+         PacketFactory.applyCooldown(
+             Material.PAPER, 1000
+         ) { packet ->
+             packet.send(mutableListOf(event.player))
+         }
+         */
 
 
         /*
@@ -162,6 +150,7 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
 
+        /*
         PacketFactory.showDialog(
             ConfirmationDialog(
                 common = CommonDialogData(
@@ -203,7 +192,9 @@ object PlayerJoin : Listener {
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
+         */
 
+        /*
         PacketFactory.applyMobEffect(
             event.player.entityId,
             EffectInstance(
@@ -218,40 +209,43 @@ object PlayerJoin : Listener {
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
+         */
 
 
-         PacketFactory.sendTeam(
-             action = TeamAction.ADD,
-             team = Team(
-                 name = "testteam",
-                 teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
-                 friendlyFlags = mutableListOf(),
-                 nameTagVisibility = NameTagVisibility.ALWAYS,
-                 collisionRule = CollisionRule.ALWAYS,
-                 teamColor = 'A',
-                 teamPrefix = Component.text("DUMM "),
-                 teamSuffix = Component.text(" AM DÜMMSTEN"),
-                 members = mutableListOf(event.player.name)
-             )
-         ) { packet ->
-             packet.send(mutableListOf(event.player))
-         }
-         PacketFactory.sendTeam(
-             action = TeamAction.ADD,
-             team = Team(
-                 name = "xdvsdfsdfsfd",
-                 teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
-                 friendlyFlags = mutableListOf(),
-                 nameTagVisibility = NameTagVisibility.ALWAYS,
-                 collisionRule = CollisionRule.NEVER,
-                 teamColor = 'A',
-                 teamPrefix = Component.text("NPC", NamedTextColor.RED),
-                 teamSuffix = Component.text(""),
-                 members = mutableListOf(player!!.name)
-             )
-         ) { packet ->
-             packet.send(mutableListOf(event.player))
-         }
+        /*
+        PacketFactory.sendTeam(
+            action = TeamAction.ADD,
+            team = Team(
+                name = "testteam",
+                teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
+                friendlyFlags = mutableListOf(),
+                nameTagVisibility = NameTagVisibility.ALWAYS,
+                collisionRule = CollisionRule.ALWAYS,
+                teamColor = 'A',
+                teamPrefix = Component.text("DUMM "),
+                teamSuffix = Component.text(" AM DÜMMSTEN"),
+                members = mutableListOf(event.player.name)
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+        PacketFactory.sendTeam(
+            action = TeamAction.ADD,
+            team = Team(
+                name = "xdvsdfsdfsfd",
+                teamDisplayName = Component.text().text("<pink>TEAM MEMBER</pink>").build(),
+                friendlyFlags = mutableListOf(),
+                nameTagVisibility = NameTagVisibility.ALWAYS,
+                collisionRule = CollisionRule.NEVER,
+                teamColor = 'A',
+                teamPrefix = Component.text("NPC", NamedTextColor.RED),
+                teamSuffix = Component.text(""),
+                members = mutableListOf(player!!.name)
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+         */
 
         /*
         org.bukkit.Particle.NOTE.builder()
@@ -377,6 +371,7 @@ object PlayerJoin : Listener {
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
 
+
         PacketFactory.openScreenPacket(
             3243443,
             Component.text().text("<rainbow>Nice Small GUI</rainbow>").build(),
@@ -394,6 +389,7 @@ object PlayerJoin : Listener {
 
         val baseCost = ItemStack(Material.EMERALD_BLOCK)
 
+        /*
         PacketFactory.setMerchantOffer(
             windowId = 3243443,
             merchantOffers = MerchantOffers(
@@ -425,9 +421,8 @@ object PlayerJoin : Listener {
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
+         */
 
-        // PacketFactory.test(event.player)
-        /*
         val displayData = DisplayData(
             name = "testy",
             displayName = Component.text().text("<rainbow>PACKET BOARD</rainbow>").build(),
@@ -503,10 +498,9 @@ object PlayerJoin : Listener {
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
-         */
 
 
-
+        /*
         ServerboundCustomClickActionPacketUtil.attach(
             "sdfsdfsddfsd", Main.instance, event.player
         ) {
@@ -518,39 +512,30 @@ object PlayerJoin : Listener {
             println(this.payload.type.data)
 
         }
-        /*
-                val dialog = Dialog.create({ builder ->
-                    builder.empty().base(
-                        DialogBase.builder(Component.text("Configure your new experience value")).inputs(
-                            mutableListOf(
-                                DialogInput.numberRange("level", Component.text("Level", NamedTextColor.GREEN), 0f, 100f)
-                                    .step(1f).initial(0f).width(300).build(), DialogInput.numberRange(
-                                    "experience", Component.text("Experience", NamedTextColor.GREEN), 0f, 100f
-                                ).step(1f).initial(0f).labelFormat("%s: %s percent to the next level").width(300).build()
-                            )
-                        ).build()
-                    ).type(
-                        DialogType.confirmation(
-                            ActionButton.create(
-                                Component.text("Confirm", TextColor.color(0xAEFFC1)),
-                                Component.text("Click to confirm your input."),
-                                100,
-                                DialogAction.customClick(Key.key("papermc:user_input/confirm"), null)
-                            ), ActionButton.create(
-                                Component.text("Discard", TextColor.color(0xFFA0B1)),
-                                Component.text("Click to discard your input."),
-                                100,
-                                null // If we set the action to null, it doesn't do anything and closes the dialog
-                            )
-                        )
-                    )
-                })
+         */
 
-                 */
+
+        /*
+        PacketFactory.sendWaypoint(
+            WaypointOperation.TRACK,
+            TrackedWaypoint(
+                identifier = waypointUUID,
+                icon = WaypointIcon(
+                    style = "default",
+                    color = 0x60008000
+                ),
+                type = WaypointType.VEC3I,
+                data = WaypointDataVec3i(
+                    10, 10, 10
+                )
+            )
+        ) { packet ->
+            packet.send(mutableListOf(event.player))
+        }
+         */
 
         // event.player.showDialog(dialog)
 
-        /*
         PacketFactory.teleportEntityPacket(
             player!!.entityId,
             Location(Bukkit.getWorld("world"), 1.0, 1.0, 1.0),
@@ -575,7 +560,7 @@ object PlayerJoin : Listener {
         val map = mutableMapOf<Int, ItemStack>()
         map.put(0, item)
         map.put(1, item2)
-f
+
         // TODO: HERE
         ServerboundContainerClickPacketUtil.attach(
             "sdffds",
@@ -615,7 +600,7 @@ f
         PacketFactory.openScreenPacket(
             3243443,
             Component.text().text("<rainbow>Nice Small GUI</rainbow>").build(),
-            net.crystopia.crystalshard.paper.dhl.shared.data.packets.custom.MenuType.GENERIC_9x6
+            MenuType.GENERIC_9x6
         ) { packet ->
             packet.send(mutableListOf(event.player))
         }
@@ -640,31 +625,21 @@ f
             packet.send(mutableListOf(event.player))
         }
 
-        PacketFactory.sendWaypoint(
-            WaypointOperation.TRACK,
-            TrackedWaypoint(
-                identifier = waypointUUID,
-                icon = WaypointIcon(
-                    style = "default",
-                    color = 0x60008000
-                ),
-                type = WaypointType.VEC3I,
-                data = WaypointDataVec3i(
-                    10, 10, 10
-                )
-            )
-        ) { packet ->
-            packet.send(mutableListOf(event.player))
-        }
-         */
+
     }
 
     @EventHandler
     fun addNPCsOnJoin(event: PlayerJoinEvent) {
+
         if (event.player.name != "xyzjesper") return
         Main.instance.adv.complete(event.player) {
 
         }
+        val message = Component.text("Dein Code: ", NamedTextColor.GRAY).append(
+            Component.text().text("ABC-123").clickEvent(ClickEvent.callback { audience ->
+                audience.sendMessage(Component.text("COOl"))
+            })
+        )
 
         ServerboundPlayerActionPacketUtil.attach(
             "fsdfsdfsd",
@@ -683,11 +658,7 @@ f
         val head = TextHeads.generateHead(
             UUID.fromString("f6f3a530-6c39-4098-96a0-6bdf4f3afc70"), true
         )
-        val message = Component.text("Dein Code: ", NamedTextColor.GRAY).append(
-            Component.text().text("ABC-123").clickEvent(ClickEvent.callback { audience ->
-                audience.sendMessage(Component.text("COOl"))
-            })
-        )
+
 
         event.player.sendMessage(message)
 
@@ -727,16 +698,24 @@ f
             Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0),
             mutableListOf(event.player)
         ) {
-            display = entity as TextDisplay
+            display = entity
 
             text(
                 message, mutableListOf(event.player)
             )
 
+            onInteract(
+                NamespacedKey("crystalshardtest", "playerjoindisplaydetect"),
+                Main.instance,
+                Pair(2.0F, 2.0F),
+                event.player
+            ) {
+                event.player.sendMessage(
+                    data.text!!
+                )
+            }
 
             onHover(Main.instance, event.player, 0.90) { isLockingAt ->
-
-
                 if (isLockingAt) {
                     // println("Lock: ${event.player.name}")
 
@@ -770,23 +749,10 @@ f
                 }
 
             }
-
-
-
-            onInteract(
-                NamespacedKey("crystalshardtest", "playerjoindisplaydetect"),
-                Main.instance,
-                Pair(2.0F, 2.0F),
-                event.player
-            ) {
-                event.player.sendMessage(
-                    data.text!!
-                )
-            }
         }
 
         SimulacrumFactory.createNpc<Npc>(
-            Location(Main.instance.server.worlds.first(), 0.0, 0.0, 0.0), NamespacedKey("test", "test"), "I'm a NPC"
+            Location(Main.instance.server.worlds.first(), 0.0, 0.0, 0.0), NamespacedKey("test", "test"), "test"
         ) {
 
             player = playerEntity
@@ -800,11 +766,10 @@ f
             playerEntity.isCustomNameVisible = true
             event.player.isCustomNameVisible = true
 
-            val actions = EnumSet.noneOf(InfoUpdateAction::class.java)
+            val actions = mutableListOf<InfoUpdateAction>()
             actions.add(InfoUpdateAction.ADD_PLAYER)
             actions.add(InfoUpdateAction.UPDATE_DISPLAY_NAME)
             actions.add(InfoUpdateAction.UPDATE_LISTED)
-
 
             val playerProfile = playerEntity.playerProfile
 
@@ -818,18 +783,6 @@ f
             playerEntity.playerProfile = playerProfile
 
 
-            PacketFactory.playerInfoUpdatePacket(
-                playerEntity,
-                actions,
-            ) { packet ->
-                packet.send(mutableListOf(event.player))
-            }
-
-
-            playerEntity.location.x = 5.0
-            playerEntity.location.y = 0.0
-            playerEntity.location.z = 0.0
-
             PacketFactory.addEntitiesPacket(
                 entityId = playerEntity.entityId,
                 entityUUID = playerEntity.uniqueId,
@@ -837,6 +790,14 @@ f
                 entityType = EntityType.PLAYER,
                 data = 0,
                 yHeadRot = 0.0,
+            ) { packet ->
+                packet.send(mutableListOf(event.player))
+            }
+
+
+            PacketFactory.playerInfoUpdatePacket(
+                playerEntity,
+                actions,
             ) { packet ->
                 packet.send(mutableListOf(event.player))
             }
@@ -854,6 +815,7 @@ f
                 packet.send(mutableListOf(event.player))
             }
 
+            /*
             PacketFactory.setEntityDataPacket(
                 playerEntity.entityId, mutableListOf(
                     EntityMetadata<Byte>(
@@ -865,9 +827,10 @@ f
             ) { packet ->
                 packet.send(mutableListOf(event.player))
             }
+             */
 
-            /*
-             ServerboundInteractPacketUtil.attach("TestNPCInteraction", Main.instance, event.player) { clickType, msg ->
+
+            ServerboundInteractPacketUtil.attach("TestNPCInteraction", Main.instance, event.player) {
 
                  event.player.sendMessage("COOL")
 
@@ -891,11 +854,9 @@ f
                  PacketFactory.setPassengersPacket(fakeDisplay, mutableListOf(playerEntity)) { packet ->
                      packet.send(mutableListOf(event.player))
                  }
-             }
-             */
+            }
         }
     }
-
 }
 
 

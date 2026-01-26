@@ -21,8 +21,42 @@ class Shard_ClientboundPlayerInfoUpdatePacket : IPacket<ClientboundPlayerInfoUpd
         val serverPlayer = (packetObj.serverPlayer as CraftPlayer).handle
         val vanillaActions =
             EnumSet.noneOf<ClientboundPlayerInfoUpdatePacket.Action?>(ClientboundPlayerInfoUpdatePacket.Action::class.java)
+
         packetObj.actions.forEach { infoUpdateAction ->
-            vanillaActions.add(infoUpdateAction.action)
+            when (infoUpdateAction) {
+                net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction.ADD_PLAYER -> {
+                    vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.ADD_PLAYER)
+                }
+
+                net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction.UPDATE_LATENCY -> {
+                    vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LATENCY)
+                }
+
+                net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction.UPDATE_LISTED -> {
+                    vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LISTED)
+                }
+
+                net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction.UPDATE_GAME_MODE -> {
+                    vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_GAME_MODE)
+                }
+
+                net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction.UPDATE_DISPLAY_NAME -> {
+                    vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_DISPLAY_NAME)
+                }
+
+                net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction.UPDATE_HAT -> {
+                    vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_HAT)
+                }
+
+                net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction.INITIALIZE_CHAT -> {
+                    vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.INITIALIZE_CHAT)
+                }
+
+                net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction.UPDATE_LIST_ORDER -> {
+                    vanillaActions.add(ClientboundPlayerInfoUpdatePacket.Action.UPDATE_LIST_ORDER)
+                }
+
+            }
         }
 
         return ClientboundPlayerInfoUpdatePacket(

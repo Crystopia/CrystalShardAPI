@@ -19,9 +19,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoin
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.Vec3
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
-import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EffectType
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
@@ -31,6 +29,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.ScoreBoardMo
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.TeamAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointOperation
+import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
@@ -38,6 +37,7 @@ import net.minecraft.network.protocol.Packet
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
+import org.bukkit.block.BlockType
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
@@ -1821,7 +1821,7 @@ object PacketFactory {
 
     fun playerInfoUpdatePacket(
         serverPlayer: Player,
-        actions: EnumSet<InfoUpdateAction>,
+        actions: MutableList<InfoUpdateAction>,
         callback: (packet: Shard_Packet<ClientboundPlayerInfoUpdatePacketData>) -> Unit
     ): Shard_Packet<ClientboundPlayerInfoUpdatePacketData> {
 
@@ -1964,7 +1964,7 @@ object PacketFactory {
         entityId: Int,
         entityUUID: UUID,
         location: Location,
-        entityType: EntityType,
+        entityType: org.bukkit.entity.EntityType,
         data: Int,
         yHeadRot: Double = 0.0,
         callback: (packet: Shard_Packet<ClientboundAddEntityPacketData>) -> Unit

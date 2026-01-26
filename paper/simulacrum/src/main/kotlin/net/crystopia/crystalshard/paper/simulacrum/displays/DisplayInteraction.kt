@@ -4,21 +4,23 @@ import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.simulacrum.SimulacrumFactory
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.Interaction
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.craftbukkit.entity.CraftPlayer
+import org.bukkit.entity.Display
 import org.bukkit.entity.Player
 import org.bukkit.persistence.PersistentDataType
 import org.bukkit.plugin.java.JavaPlugin
 
-open class DisplayInteraction<T : org.bukkit.entity.Display>(open var entity: T) {
-    lateinit var interaction: Interaction
+open class DisplayInteraction<T : Display>(open var entity: T) {
+    lateinit var interaction: org.bukkit.entity.Interaction
 
     fun onHover(plugin: JavaPlugin, player: Player, detectScalar: Double? = 0.99, callback: (lock: Boolean) -> Unit) {
         Bukkit.getServer().scheduler.runTaskTimer(plugin, Runnable {
-            val toEntity = interaction.bukkitEntity.location.toVector().subtract(player.eyeLocation.toVector())
+            val toEntity = interaction.location.toVector().subtract(player.eyeLocation.toVector())
 
             if (toEntity.normalize().dot(player.eyeLocation.direction) > detectScalar!!) {
                 callback(true)
@@ -42,18 +44,24 @@ open class DisplayInteraction<T : org.bukkit.entity.Display>(open var entity: T)
         entity.persistentDataContainer.set(key, PersistentDataType.STRING, entity.uniqueId.toString())
 
         // Add the key to the interaction...
-        interaction = Interaction(EntityType.INTERACTION, (player as CraftPlayer).handle.level())
-        interaction.bukkitEntity.persistentDataContainer.set(
+        SimulacrumFactory.createEntityInstance<org.bukkit.entity.Interaction>(
+            type = org.bukkit.entity.EntityType.INTERACTION,
+            location = (player as CraftPlayer).location,
+        ) {
+            interaction = this
+        }
+
+        interaction.persistentDataContainer.set(
             key,
             PersistentDataType.STRING,
             entity.uniqueId.toString()
         )
 
         PacketFactory.addEntitiesPacket(
-            entityId = interaction.id,
-            entityUUID = interaction.uuid,
+            entityId = interaction.entityId,
+            entityUUID = interaction.uniqueId,
             location = entity.location,
-            entityType = net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType.INTERACTION,
+            entityType = org.bukkit.entity.EntityType.INTERACTION,
             data = 0,
             yHeadRot = 0.0,
         ) { packet ->
@@ -62,7 +70,7 @@ open class DisplayInteraction<T : org.bukkit.entity.Display>(open var entity: T)
 
 
         PacketFactory.setEntityDataPacket(
-            interaction.id, mutableListOf(
+            interaction.entityId, mutableListOf(
                 EntityMetadata(
                     index = 8,
                     type = EntityDataSerializerType.FLOAT,
@@ -85,7 +93,7 @@ open class DisplayInteraction<T : org.bukkit.entity.Display>(open var entity: T)
 
 
         ServerboundInteractPacketUtil.attach("${key.namespace}:${key.key}", plugin, player) {
-            if (entityId == interaction.id) {
+            if (entityId == interaction.entityId) {
                 callback(this)
             }
         }

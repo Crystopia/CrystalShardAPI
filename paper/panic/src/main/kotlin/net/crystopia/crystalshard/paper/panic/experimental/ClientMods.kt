@@ -6,10 +6,10 @@ import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundSignUpdatePacketUtil
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
-import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockType
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
+import org.bukkit.block.BlockType
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
@@ -65,12 +65,14 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
     }
 
     fun detectPacketsSender(key: String) {
+
         PacketFactory.createBlockUpdatePacket(
             blockPos,
             BlockType.OAK_SIGN
         ) { packet ->
             packet.send(mutableListOf(player))
         }
+
 
         PacketFactory.createBlockEntityDataPacket(
             blockPos,

@@ -1,8 +1,7 @@
 package net.crystopia.crystalshard.paper.simulacrum
 
 import net.crystopia.crystalshard.paper.dhl.PacketFactory
-import net.crystopia.crystalshard.paper.dhl.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType
+import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.EntityBuilder
 import net.crystopia.crystalshard.paper.simulacrum.displays.PBlockDisplay
@@ -13,6 +12,9 @@ import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.displays.IDi
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
 import org.bukkit.Location
 import org.bukkit.NamespacedKey
+import org.bukkit.craftbukkit.block.CraftBlockType
+import org.bukkit.craftbukkit.entity.CraftEntityType
+import org.bukkit.craftbukkit.entity.CraftEntityTypes
 import org.bukkit.entity.*
 
 object SimulacrumFactory {
@@ -80,7 +82,7 @@ object SimulacrumFactory {
 
     fun <T : IDisplay<*>> createDisPlayEntity(
         key: NamespacedKey,
-        type: net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType,
+        type: org.bukkit.entity.EntityType,
         location: Location,
         players: MutableList<Player>,
         callback: T.() -> Unit
@@ -89,13 +91,13 @@ object SimulacrumFactory {
         val displayEntity = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createDisplayEntity(
-                    type.type, location
+                    CraftEntityType.bukkitToMinecraft(type), location
                 )
             }
 
             ServerVersion.v1_21_1 -> {
                 net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.EntityBuilder.createDisplayEntity(
-                    type.type, location
+                    CraftEntityType.bukkitToMinecraft(type), location
                 )
             }
 

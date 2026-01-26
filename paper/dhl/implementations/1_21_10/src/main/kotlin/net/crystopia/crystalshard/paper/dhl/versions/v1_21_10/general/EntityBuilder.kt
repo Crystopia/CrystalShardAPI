@@ -13,15 +13,17 @@ import org.bukkit.Location
 import org.bukkit.World
 import org.bukkit.craftbukkit.CraftServer
 import org.bukkit.craftbukkit.CraftWorld
+import org.bukkit.craftbukkit.entity.CraftEntityType
 import java.util.*
 
 object EntityBuilder : IEntityBuilder {
 
     override fun createEntityInstance(
-        type: net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType,
+        type: org.bukkit.entity.EntityType,
         location: Location
     ): net.minecraft.world.entity.Entity {
-        val instance = type.type.create(
+        val mcType = CraftEntityType.bukkitToMinecraft(type)
+        val instance = mcType.create(
             (location.world as CraftWorld).handle,
             EntitySpawnReason.COMMAND,
         )

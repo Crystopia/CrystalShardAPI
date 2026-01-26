@@ -1,5 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl
-
+package net.crystopia.crystalshard.paper.dhl.shared.utils
 
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.SoftwareType
@@ -23,11 +22,11 @@ object ServerUtil {
     }
 
     fun currentVersion(): ServerVersion {
-        return ServerVersion.getServerVersionByVersion(Bukkit.getMinecraftVersion())!!
+        return ServerVersion.Companion.getServerVersionByVersion(Bukkit.getMinecraftVersion())!!
     }
 
     fun isServerVersionSupported(): Boolean {
-        return ServerVersion.getServerVersionByVersion(Bukkit.getMinecraftVersion()) != ServerVersion.UNKNOWN
+        return ServerVersion.Companion.getServerVersionByVersion(Bukkit.getMinecraftVersion()) != ServerVersion.UNKNOWN
     }
 
     fun isClass(className: String): Boolean {

@@ -9,7 +9,7 @@ import org.bukkit.World
 interface IEntityBuilder {
 
     fun createEntityInstance(
-        type: net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityType, location: Location
+        type: org.bukkit.entity.EntityType, location: Location
     ): net.minecraft.world.entity.Entity
 
     fun createServerPlayer(
