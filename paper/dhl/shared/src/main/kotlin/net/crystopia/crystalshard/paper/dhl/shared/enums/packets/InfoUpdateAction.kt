@@ -1,8 +1,5 @@
 package net.crystopia.crystalshard.paper.dhl.shared.enums.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerInfoUpdatePacketData
-import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket
-
 enum class InfoUpdateAction {
     ADD_PLAYER,
     INITIALIZE_CHAT,

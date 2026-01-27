@@ -1,8 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetTimePacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundTickingStepPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundSetTimePacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.network.protocol.game.ClientboundSetTimePacket
 

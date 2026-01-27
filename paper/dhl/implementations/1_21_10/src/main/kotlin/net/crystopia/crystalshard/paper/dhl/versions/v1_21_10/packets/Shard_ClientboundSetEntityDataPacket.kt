@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetEntityDataPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundSetEntityDataPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.enums.entities.EntityDataSerializerType

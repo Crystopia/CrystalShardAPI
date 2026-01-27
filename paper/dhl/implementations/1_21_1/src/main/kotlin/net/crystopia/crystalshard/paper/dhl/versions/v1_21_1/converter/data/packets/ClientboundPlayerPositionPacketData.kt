@@ -1,7 +1,6 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.data.packets
 import net.minecraft.world.entity.RelativeMovement
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerPositionPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.RelativePosition
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundPlayerPositionPacketData
 
 fun ClientboundPlayerPositionPacketData.relativesSet(): Set<RelativeMovement> {
     val set = mutableSetOf<RelativeMovement>()

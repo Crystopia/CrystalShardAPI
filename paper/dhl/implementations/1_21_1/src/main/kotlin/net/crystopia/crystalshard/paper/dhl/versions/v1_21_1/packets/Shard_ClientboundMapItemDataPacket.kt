@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets
 
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundMapItemDataPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundMapItemDataPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.data.packets.colorPatch
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.data.packets.decorations

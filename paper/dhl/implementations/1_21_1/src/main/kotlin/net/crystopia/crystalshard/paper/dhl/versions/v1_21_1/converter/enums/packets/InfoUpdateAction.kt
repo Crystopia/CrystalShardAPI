@@ -1,6 +1,5 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.enums.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerInfoUpdatePacketData
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket
 
 internal enum class InfoUpdateAction(val action: ClientboundPlayerInfoUpdatePacket.Action) {

@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets
 
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundRespawnPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundRespawnPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.enums.player.GameMode
 import net.minecraft.core.BlockPos

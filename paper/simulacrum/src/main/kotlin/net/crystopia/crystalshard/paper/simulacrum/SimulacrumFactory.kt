@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.simulacrum
 
-import net.crystopia.crystalshard.paper.dhl.PacketFactory
+import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.EntityBuilder
@@ -12,9 +12,7 @@ import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.displays.IDi
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
 import org.bukkit.Location
 import org.bukkit.NamespacedKey
-import org.bukkit.craftbukkit.block.CraftBlockType
 import org.bukkit.craftbukkit.entity.CraftEntityType
-import org.bukkit.craftbukkit.entity.CraftEntityTypes
 import org.bukkit.entity.*
 
 object SimulacrumFactory {
@@ -106,7 +104,7 @@ object SimulacrumFactory {
             }
         }
 
-        PacketFactory.addEntitiesPacket(
+        ClientPacketFactory.addEntitiesPacket(
             displayEntity!!.id, displayEntity.uuid, location,
             entityType = type,
             data = 0,

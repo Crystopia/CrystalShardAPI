@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.simulacrum.npc
 
 import com.mojang.authlib.GameProfile
-import net.crystopia.crystalshard.paper.dhl.PacketFactory
+import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.simulacrum.types.config.npc.NpcSkinData
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
@@ -49,7 +49,7 @@ class Npc(
      * ```Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0, 0.0F, 0.0F)```
      */
     override fun spawn(player: Player) {
-        PacketFactory.addEntitiesPacket(
+        ClientPacketFactory.addEntitiesPacket(
             entityId = playerEntity.entityId,
             entityUUID = playerEntity.uniqueId,
             location = location,
@@ -65,7 +65,7 @@ class Npc(
      * Implemented fun to simple spawn the NPC on the Location in the selected world.
      */
     override fun spawnAll() {
-        PacketFactory.addEntitiesPacket(
+        ClientPacketFactory.addEntitiesPacket(
             entityId = playerEntity.entityId,
             entityUUID = playerEntity.uniqueId,
             location = location,
@@ -81,12 +81,12 @@ class Npc(
      * Implemented fun to simple remove the NPC from the Player.
      */
     override fun remove(player: Player) {
-        PacketFactory.removeEntitiesPacket(
+        ClientPacketFactory.removeEntitiesPacket(
             mutableListOf(playerEntity.entityId)
         ) { packet ->
             packet.send(mutableListOf(player))
         }
-        PacketFactory.playerInfoRemovePacket(
+        ClientPacketFactory.playerInfoRemovePacket(
             mutableListOf(playerEntity.uniqueId)
         ) { packet ->
             packet.send(mutableListOf(player))
@@ -97,12 +97,12 @@ class Npc(
      * Implemented fun to simple remove the NPC from all Players.
      */
     override fun removeAll() {
-        PacketFactory.removeEntitiesPacket(
+        ClientPacketFactory.removeEntitiesPacket(
             mutableListOf(playerEntity.entityId)
         ) { packet ->
             packet.send(Bukkit.getServer().onlinePlayers.toMutableList())
         }
-        PacketFactory.playerInfoRemovePacket(
+        ClientPacketFactory.playerInfoRemovePacket(
             mutableListOf(playerEntity.uniqueId)
         ) { packet ->
             packet.send(Bukkit.getServer().onlinePlayers.toMutableList())

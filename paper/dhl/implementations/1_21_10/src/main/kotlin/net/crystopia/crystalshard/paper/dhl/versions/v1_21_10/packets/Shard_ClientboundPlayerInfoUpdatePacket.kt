@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
 
 import com.mojang.authlib.GameProfile
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerInfoUpdatePacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundPlayerInfoUpdatePacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.Optionull
 import net.minecraft.network.chat.RemoteChatSession

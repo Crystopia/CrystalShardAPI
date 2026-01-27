@@ -1,7 +1,7 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.data.packets
 
 import io.papermc.paper.adventure.PaperAdventure
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundMapItemDataPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundMapItemDataPacketData
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.enums.maps.MapDecorationType
 import net.minecraft.world.level.saveddata.maps.MapItemSavedData
 

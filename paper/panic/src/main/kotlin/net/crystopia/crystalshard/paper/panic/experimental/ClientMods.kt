@@ -1,13 +1,10 @@
 package net.crystopia.crystalshard.paper.panic.experimental
 
 import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.dhl.PacketFactory
+import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
-import net.crystopia.crystalshard.paper.dhl.server.ServerboundSignUpdatePacketUtil
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.kyori.adventure.text.Component
-import net.minecraft.nbt.CompoundTag
-import net.minecraft.nbt.ListTag
 import org.bukkit.block.BlockType
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
@@ -30,15 +27,18 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
         }
 
         fun check(callback: Mod.(hasMod: Boolean) -> Unit): Mod {
-            ServerboundSignUpdatePacketUtil.attach(
-                listenerKey, plugin, player
-            ) {
-                player.removeServerPacketListener(listenerKey)
-
-                if (lines[0] != "NONE") {
-                    callback(true)
-                }
-            }
+            // TODO: NEW SERVER PACKETS
+            /**
+             * ServerboundSignUpdatePacketUtil.attach(
+             *                 listenerKey, plugin, player
+             *             ) {
+             *                 player.removeServerPacketListener(listenerKey)
+             *
+             *                 if (lines[0] != "NONE") {
+             *                     callback(true)
+             *                 }
+             *             }
+             */
             return this
         }
 
@@ -58,26 +58,26 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
 
     fun detectPacketsSender(key: String) {
 
-        PacketFactory.createBlockUpdatePacket(
+        ClientPacketFactory.createBlockUpdatePacket(
             blockPos, BlockType.OAK_SIGN
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
 
-        PacketFactory.createBlockEntityDataPacket(
+        ClientPacketFactory.createBlockEntityDataPacket(
             blockPos, BlockType.OAK_SIGN, buildNBT(key)
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
-        PacketFactory.createOpenSignEditorPacket(
+        ClientPacketFactory.createOpenSignEditorPacket(
             blockPos, true
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
-        PacketFactory.createBlockUpdatePacket(
+        ClientPacketFactory.createBlockUpdatePacket(
             blockPos, BlockType.AIR
         ) { packet ->
             packet.send(mutableListOf(player))

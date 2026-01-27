@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.DialogListDialog
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.MultiActionDialog
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.NoticeDialog
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.ServerLinksDialog
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundShowDialogPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundShowDialogPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.dialog.build
 import net.minecraft.core.Holder

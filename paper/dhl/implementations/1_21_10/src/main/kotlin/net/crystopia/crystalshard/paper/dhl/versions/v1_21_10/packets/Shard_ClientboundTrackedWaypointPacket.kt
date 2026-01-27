@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.*
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundTrackedWaypointPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointDataAzimuth
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointDataChunk
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointDataVec3i

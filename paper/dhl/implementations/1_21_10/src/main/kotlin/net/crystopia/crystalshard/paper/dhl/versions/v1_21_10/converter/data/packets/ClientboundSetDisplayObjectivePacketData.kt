@@ -1,7 +1,7 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.packets
 
 import io.papermc.paper.adventure.PaperAdventure
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetDisplayObjectivePacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundSetDisplayObjectivePacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.FixedFormatData
 import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.NumberFormat
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.enums.scoreboard.ObjectiveCriteria

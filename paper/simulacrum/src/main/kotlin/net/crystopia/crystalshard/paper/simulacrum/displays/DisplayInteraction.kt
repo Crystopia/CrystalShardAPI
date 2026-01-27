@@ -1,12 +1,9 @@
 package net.crystopia.crystalshard.paper.simulacrum.displays
 
-import net.crystopia.crystalshard.paper.dhl.PacketFactory
-import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
+import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.simulacrum.SimulacrumFactory
-import net.minecraft.world.entity.EntityType
-import net.minecraft.world.entity.Interaction
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.craftbukkit.entity.CraftPlayer
@@ -37,7 +34,8 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
         plugin: JavaPlugin,
         size: Pair<Float, Float>,
         player: Player,
-        callback: ServerboundInteractPacketUtil.InteractEvent.() -> Unit
+        // TODO: NEW SERVER PACKETS
+       // callback: ServerboundInteractPacketUtil.InteractEvent.() -> Unit
     ) {
 
         // Register event for the Display
@@ -57,7 +55,7 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
             entity.uniqueId.toString()
         )
 
-        PacketFactory.addEntitiesPacket(
+        ClientPacketFactory.addEntitiesPacket(
             entityId = interaction.entityId,
             entityUUID = interaction.uniqueId,
             location = entity.location,
@@ -69,7 +67,7 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
         }
 
 
-        PacketFactory.setEntityDataPacket(
+        ClientPacketFactory.setEntityDataPacket(
             interaction.entityId, mutableListOf(
                 EntityMetadata(
                     index = 8,
@@ -91,12 +89,14 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
             packet.send(mutableListOf(player))
         }
 
-
+        // TODO: NEW SERVER PACKETS
+        /*
         ServerboundInteractPacketUtil.attach("${key.namespace}:${key.key}", plugin, player) {
             if (entityId == interaction.entityId) {
                 callback(this)
             }
         }
+         */
 
     }
 }

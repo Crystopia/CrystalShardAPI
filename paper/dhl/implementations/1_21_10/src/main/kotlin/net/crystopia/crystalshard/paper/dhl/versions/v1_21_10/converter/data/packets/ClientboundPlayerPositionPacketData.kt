@@ -1,6 +1,6 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerPositionPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundPlayerPositionPacketData
 import net.minecraft.world.entity.Relative
 
 fun ClientboundPlayerPositionPacketData.relativesSet(): Set<Relative> {

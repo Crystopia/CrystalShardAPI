@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.simulacrum.displays
 
-import net.crystopia.crystalshard.paper.dhl.PacketFactory
+import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.simulacrum.displays.data.CustomTextDisplayData
@@ -21,7 +21,7 @@ class PTextDisplay(
 
     fun text(component: net.kyori.adventure.text.Component, players: MutableList<Player>) {
 
-        PacketFactory.setEntityDataPacket(
+        ClientPacketFactory.setEntityDataPacket(
             entity.entityId, mutableListOf(
                 EntityMetadata(
                     index = 23,

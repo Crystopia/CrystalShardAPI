@@ -1,6 +1,6 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundMoveMinecartPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundMoveMinecartPacketData
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.world.build
 import net.minecraft.world.entity.vehicle.NewMinecartBehavior
 import kotlin.collections.forEach

@@ -1,7 +1,7 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetDisplayObjectivePacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundSetDisplayObjectivePacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.packets.build
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.enums.scoreboard.DisplaySlot
