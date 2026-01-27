@@ -4,7 +4,7 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundSetEntityDataPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.types.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.enums.entities.EntityDataSerializerType
 import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket
 import net.minecraft.network.syncher.EntityDataAccessor
 import net.minecraft.network.syncher.EntityDataSerializer

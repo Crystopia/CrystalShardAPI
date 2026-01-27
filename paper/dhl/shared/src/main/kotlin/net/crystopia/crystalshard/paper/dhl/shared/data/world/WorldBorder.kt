@@ -17,23 +17,4 @@ data class WorldBorder(
     var oldLerpSize: Double?,
     var newLerpSize: Double?,
     var lerpTime: Long?,
-) {
-    fun build(): WorldBorder {
-        val worldBorder = WorldBorder()
-        worldBorder.setCenter(centerX, centerZ)
-        worldBorder.size = size
-        if (absoluteMaxSize != null) worldBorder.absoluteMaxSize = absoluteMaxSize!!
-        worldBorder.world = (world as CraftWorld).handle
-        if (damagePerBlock != null) worldBorder.damagePerBlock = damagePerBlock!!
-        if (safeZone != null) worldBorder.safeZone = safeZone!!
-        if (warningBlocks != null) worldBorder.warningBlocks = warningBlocks!!
-        if (warningTime != null) worldBorder.warningTime = warningTime!!
-        if (oldLerpSize != null && newLerpSize != null && lerpTime != null) worldBorder.lerpSizeBetween(
-            oldLerpSize!!,
-            newLerpSize!!,
-            lerpTime!!
-        )
-
-        return worldBorder
-    }
-}
+)

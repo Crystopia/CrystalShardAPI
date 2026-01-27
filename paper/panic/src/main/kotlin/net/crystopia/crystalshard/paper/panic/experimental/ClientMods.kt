@@ -5,7 +5,6 @@ import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundSignUpdatePacketUtil
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
-import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
 import net.kyori.adventure.text.Component
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.ListTag
@@ -17,16 +16,11 @@ import java.util.*
 class ClientMods(val player: Player, val plugin: JavaPlugin) {
     val listenerKey = UUID.fromString("173c9e65-66a5-44c7-b21d-b307bdb06423").toString()
     private val blockPos = BlockPos(
-        player.location.x.toInt(),
-        player.location.y.toInt(),
-        player.location.z.toInt()
+        player.location.x.toInt(), player.location.y.toInt(), player.location.z.toInt()
     )
 
     class Mod(
-        var player: Player,
-        val plugin: JavaPlugin,
-        val blockPos: BlockPos,
-        val listenerKey: String
+        var player: Player, val plugin: JavaPlugin, val blockPos: BlockPos, val listenerKey: String
     ) {
         private var component: Component? = null
 
@@ -37,9 +31,7 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
 
         fun check(callback: Mod.(hasMod: Boolean) -> Unit): Mod {
             ServerboundSignUpdatePacketUtil.attach(
-                listenerKey,
-                plugin,
-                player
+                listenerKey, plugin, player
             ) {
                 player.removeServerPacketListener(listenerKey)
 
@@ -67,31 +59,26 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
     fun detectPacketsSender(key: String) {
 
         PacketFactory.createBlockUpdatePacket(
-            blockPos,
-            BlockType.OAK_SIGN
+            blockPos, BlockType.OAK_SIGN
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
 
         PacketFactory.createBlockEntityDataPacket(
-            blockPos,
-            BlockEntityType.SIGN,
-            buildNBT(key)
+            blockPos, BlockType.OAK_SIGN, buildNBT(key)
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
         PacketFactory.createOpenSignEditorPacket(
-            blockPos,
-            true
+            blockPos, true
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
         PacketFactory.createBlockUpdatePacket(
-            blockPos,
-            BlockType.AIR
+            blockPos, BlockType.AIR
         ) { packet ->
             packet.send(mutableListOf(player))
         }
@@ -99,31 +86,26 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
         player.closeInventory()
     }
 
-    private fun buildNBT(key: String): CompoundTag {
-        val nbt = CompoundTag()
-        nbt.putString("id", "minecraft:sign")
+    private fun buildNBT(key: String): MutableMap<String, Any> {
 
-        val frontText = CompoundTag()
-        val messages = ListTag()
+        val map = mutableMapOf<String, Any>()
+        map["id"] = "minecraft:sign"
+
+        val frontText = mutableMapOf<String, Any>()
+        val messages = mutableListOf<MutableMap<String, Any>>()
 
         repeat(4) {
-            val line = CompoundTag()
-            line.putString(
-                "translate",
-                key
-            )
-            line.putString(
-                "fallback",
-                "NONE"
-            )
+            val line = mutableMapOf<String, Any>()
+            line["translate"] = key
+            line["fallback"] = "NONE"
             messages.add(line)
         }
 
-        frontText.put("messages", messages)
-        frontText.putString("color", "black")
-        frontText.putBoolean("has_glowing_text", false)
+        frontText["messages"] = messages
+        frontText["color"] = "black"
+        frontText["has_glowing_text"] = false
 
-        nbt.put("front_text", frontText)
-        return nbt
+        map["front_text"] = frontText
+        return map
     }
 }

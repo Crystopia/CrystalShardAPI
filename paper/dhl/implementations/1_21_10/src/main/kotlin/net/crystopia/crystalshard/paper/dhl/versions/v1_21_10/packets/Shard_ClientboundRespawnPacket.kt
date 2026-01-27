@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundRespawnPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.enums.player.GameMode
 import net.minecraft.core.BlockPos
 import net.minecraft.core.GlobalPos
 import net.minecraft.core.Holder
@@ -25,7 +26,7 @@ class Shard_ClientboundRespawnPacket : IPacket<ClientboundRespawnPacketData> {
                 Holder.direct(mcWorld.handle.dimensionType()),
                 mcWorld.handle.dimension(),
                 mcWorld.seed,
-                packetObj.gameMode.id,
+                GameMode.convert(packetObj.gameMode).id,
                 null,
                 packetObj.isDebug,
                 packetObj.isFlat,

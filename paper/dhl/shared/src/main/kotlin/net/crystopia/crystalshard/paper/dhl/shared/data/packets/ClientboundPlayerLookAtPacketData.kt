@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.packets
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.LookAnchor
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.LookAnchor
 import org.bukkit.World
 
 data class ClientboundPlayerLookAtPacketData(

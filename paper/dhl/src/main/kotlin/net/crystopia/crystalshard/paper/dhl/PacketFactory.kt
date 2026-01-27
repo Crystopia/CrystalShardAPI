@@ -5,7 +5,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.Dialog
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.*
-import net.crystopia.crystalshard.paper.dhl.shared.data.game.GameEventType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.game.GameEventType
 import net.crystopia.crystalshard.paper.dhl.shared.data.maps.MapDecoration
 import net.crystopia.crystalshard.paper.dhl.shared.data.maps.MapPatch
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
@@ -18,8 +18,10 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoint
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.Vec3
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
-import net.crystopia.crystalshard.paper.dhl.shared.enums.blocks.BlockEntityType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EffectType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityMoveMode
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.LookAnchor
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.RelativePosition
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
@@ -32,7 +34,6 @@ import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointOpera
 import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
 import net.kyori.adventure.text.Component
-import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.Packet
 import org.bukkit.Location
 import org.bukkit.Material
@@ -50,7 +51,6 @@ object PacketFactory {
         dialog: Dialog<*>,
         callback: (packet: Shard_Packet<ClientboundShowDialogPacketData>) -> Unit
     ): Shard_Packet<ClientboundShowDialogPacketData> {
-
         val data = ClientboundShowDialogPacketData(
             dialog
         )
@@ -1714,8 +1714,8 @@ object PacketFactory {
 
     fun createBlockEntityDataPacket(
         blockPos: BlockPos,
-        type: BlockEntityType,
-        nbt: CompoundTag,
+        type: BlockType,
+        nbt: MutableMap<String, Any>,
         callback: (packet: Shard_Packet<ClientboundBlockEntityDataPacketData>) -> Unit
     ): Shard_Packet<ClientboundBlockEntityDataPacketData> {
 

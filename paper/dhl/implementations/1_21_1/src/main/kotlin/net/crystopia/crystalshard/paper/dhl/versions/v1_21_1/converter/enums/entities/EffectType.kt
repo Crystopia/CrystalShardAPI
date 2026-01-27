@@ -1,0 +1,56 @@
+package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.enums.entities
+
+import net.minecraft.core.Holder
+import net.minecraft.world.effect.MobEffect
+import net.minecraft.world.effect.MobEffects
+
+enum class EffectType(val id : Holder<MobEffect>) {
+    SPEED(MobEffects.MOVEMENT_SPEED),
+    SLOWNESS(MobEffects.MOVEMENT_SLOWDOWN),
+    HASTE(MobEffects.DIG_SPEED),
+    MINING_FATIGUE(MobEffects.DIG_SLOWDOWN),
+    STRENGTH(MobEffects.HARM),
+    INSTANT_HEALTH(MobEffects.HEAL),
+    INSTANT_DAMAGE(MobEffects.DAMAGE_BOOST),
+    JUMP_BOOST(MobEffects.JUMP),
+    NAUSEA(MobEffects.CONFUSION),
+    REGENERATION(MobEffects.REGENERATION),
+    DAMAGE_RESISTANCE(MobEffects.DAMAGE_RESISTANCE),
+    FIRE_RESISTANCE(MobEffects.FIRE_RESISTANCE),
+    WATER_BREATHING(MobEffects.WATER_BREATHING),
+    INVISIBILITY(MobEffects.INVISIBILITY),
+    BLINDNESS(MobEffects.BLINDNESS),
+    NIGHT_VISION(MobEffects.NIGHT_VISION),
+    HUNGER(MobEffects.HUNGER),
+    WEAKNESS(MobEffects.WEAKNESS),
+    POISON(MobEffects.POISON),
+    WITHER(MobEffects.WITHER),
+    HEALTH_BOOST(MobEffects.HEALTH_BOOST),
+    ABSORPTION(MobEffects.ABSORPTION),
+    SATURATION(MobEffects.SATURATION),
+    GLOWING(MobEffects.GLOWING),
+    LEVITATION(MobEffects.LEVITATION),
+    LUCK(MobEffects.LUCK),
+    UNLUCK(MobEffects.UNLUCK),
+    SLOW_FALLING(MobEffects.SLOW_FALLING),
+    CONDUIT_POWER(MobEffects.CONDUIT_POWER),
+    DOLPHINS_GRACE(MobEffects.DOLPHINS_GRACE),
+    BAD_OMEN(MobEffects.BAD_OMEN),
+    HERO_OF_THE_VILLAGE(MobEffects.HERO_OF_THE_VILLAGE),
+    DARKNESS(MobEffects.DARKNESS),
+    TRIAL_OMEN(MobEffects.TRIAL_OMEN),
+    RAID_OMEN(MobEffects.RAID_OMEN),
+    WIND_CHARGED(MobEffects.WIND_CHARGED),
+    WEAVING(MobEffects.WEAVING),
+    OOZING(MobEffects.OOZING),
+    INFESTED(MobEffects.INFESTED);
+
+    companion object {
+        fun convert(type: net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EffectType): EffectType {
+            return EffectType.valueOf(
+                type.name
+            )
+        }
+    }
+
+}

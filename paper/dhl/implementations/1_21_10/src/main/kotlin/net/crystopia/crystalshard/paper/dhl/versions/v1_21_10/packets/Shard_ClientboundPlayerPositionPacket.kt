@@ -3,6 +3,8 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundPlayerPositionPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.packets.relativesSet
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.world.build
 import net.minecraft.network.protocol.game.ClientboundPlayerPositionPacket
 import net.minecraft.world.entity.PositionMoveRotation
 

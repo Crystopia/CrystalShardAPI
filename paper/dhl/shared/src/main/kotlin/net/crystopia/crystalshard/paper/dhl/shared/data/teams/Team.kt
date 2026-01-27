@@ -20,25 +20,4 @@ data class Team(
     var teamPrefix: Component,
     var teamSuffix: Component,
     var members: MutableList<String>
-) {
-    fun build(): PlayerTeam {
-
-        val team = PlayerTeam(
-            Scoreboard(),
-            name
-        )
-
-        team.displayName = PaperAdventure.asVanilla(teamDisplayName)
-        team.isAllowFriendlyFire = friendlyFlags.contains(TeamFlags.ALLOW_FRIENDLY_FIRE)
-        if (friendlyFlags.contains(TeamFlags.CAN_SEE_INVISIBLE_PLAYERS_ON_THE_SAME_TEAM)) team.setSeeFriendlyInvisibles(true)
-        else team.setSeeFriendlyInvisibles(false)
-        team.nameTagVisibility = nameTagVisibility.id
-        team.collisionRule = collisionRule.id
-        team.color = ChatFormatting.getByCode(teamColor)!!
-        team.playerPrefix =  PaperAdventure.asVanilla(teamPrefix)
-        team.playerSuffix =  PaperAdventure.asVanilla(teamSuffix)
-        team.players.addAll(members)
-
-        return team
-    }
-}
+)

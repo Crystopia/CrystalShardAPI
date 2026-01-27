@@ -18,7 +18,7 @@ class Shard_ClientboundSetEquipmentPacket : IPacket<ClientboundSetEquipmentPacke
         packetObj.equipmentList.forEach { (slot, stack) ->
             list.add(
                 Pair(
-                    net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.types.enums.gui.EquipmentSlot.convert(slot).type,
+                    net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.enums.gui.EquipmentSlot.convert(slot).type,
                     CraftItemStack.asNMSCopy(stack)
                 )
             )

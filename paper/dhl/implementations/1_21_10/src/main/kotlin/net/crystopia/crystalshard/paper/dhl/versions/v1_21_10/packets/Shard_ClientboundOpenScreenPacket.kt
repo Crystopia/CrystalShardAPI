@@ -4,8 +4,7 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.packets
 import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundOpenScreenPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.types.enums.gui.MenuType
-import net.kyori.adventure.text.serializer.json.JSONComponentSerializer
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.enums.gui.MenuType
 import net.minecraft.network.protocol.game.ClientboundOpenScreenPacket
 
 class Shard_ClientboundOpenScreenPacket : IPacket<ClientboundOpenScreenPacketData> {
@@ -13,10 +12,10 @@ class Shard_ClientboundOpenScreenPacket : IPacket<ClientboundOpenScreenPacketDat
     override fun createPacket(
         packetObj: ClientboundOpenScreenPacketData
     ): ClientboundOpenScreenPacket {
-        val type = MenuType.convert(packetObj.type)
+        val type = MenuType.convert(packetObj.type).type
         return ClientboundOpenScreenPacket(
             packetObj.id,
-            type.type,
+            type,
             PaperAdventure.asVanilla(packetObj.title)
         )
     }

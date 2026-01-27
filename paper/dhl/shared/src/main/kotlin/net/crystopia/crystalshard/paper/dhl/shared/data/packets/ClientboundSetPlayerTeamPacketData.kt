@@ -9,33 +9,4 @@ import net.minecraft.world.scores.Scoreboard
 data class ClientboundSetPlayerTeamPacketData(
     var action: TeamAction,
     var team: Team,
-) {
-    fun build(): ClientboundSetPlayerTeamPacket {
-
-
-
-
-
-        return when (action) {
-            TeamAction.ADD -> {
-                ClientboundSetPlayerTeamPacket.createAddOrModifyPacket(
-                    team.build(),true
-                )
-            }
-
-            TeamAction.REMOVE -> {
-                ClientboundSetPlayerTeamPacket.createRemovePacket(
-                    team.build(),
-                )
-            }
-
-            TeamAction.UPDATE -> {
-                ClientboundSetPlayerTeamPacket.createAddOrModifyPacket(
-                    team.build(),
-                    false
-                )
-            }
-        }
-
-    }
-}
+)

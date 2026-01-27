@@ -10,10 +10,4 @@ data class EffectInstance(
     var ambient: Boolean,
     var visible: Boolean,
     var showIcon: Boolean,
-) {
-    fun build(): MobEffectInstance {
-        return MobEffectInstance(
-            type.id, duration, amplifier, ambient, visible, showIcon
-        )
-    }
-}
+)

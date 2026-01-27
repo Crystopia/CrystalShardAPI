@@ -2,6 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.ClientboundMerchantOffersPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.data.merchant.build
 import net.minecraft.network.protocol.game.ClientboundMerchantOffersPacket
 
 class Shard_ClientboundMerchantOffersPacket : IPacket<ClientboundMerchantOffersPacketData> {

@@ -9,16 +9,4 @@ data class SingleOptionInputEntry(
     var id: String,
     var display: Component?,
     var initial: Boolean
-) {
-    fun build(): SingleOptionInput.Entry {
-
-        var mcComponent: net.minecraft.network.chat.Component? = null
-        if (display != null) mcComponent = PaperAdventure.asVanilla(display)
-
-        return SingleOptionInput.Entry(
-            id,
-            Optional.ofNullable(mcComponent),
-            initial
-        )
-    }
-}
+)

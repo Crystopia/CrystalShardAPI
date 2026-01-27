@@ -5,11 +5,7 @@ import net.kyori.adventure.text.Component
 import net.minecraft.server.dialog.input.InputControl
 import java.util.*
 
-abstract class DialogInput<T : Any>(open var id: String) {
-    open fun build(): InputControl? {
-        return null
-    }
-}
+abstract class DialogInput<T : Any>(open var id: String)
 
 data class BooleanInput(
     override var id: String,
@@ -17,16 +13,7 @@ data class BooleanInput(
     var initial: Boolean,
     var onTrue: String,
     var onFalse: String
-) : DialogInput<BooleanInput>(id) {
-    override fun build(): net.minecraft.server.dialog.input.BooleanInput {
-        return net.minecraft.server.dialog.input.BooleanInput(
-            PaperAdventure.asVanilla(label),
-            initial,
-            onTrue,
-            onFalse
-        )
-    }
-}
+) : DialogInput<BooleanInput>(id)
 
 data class NumberRangeInput(
     override var id: String,
@@ -37,18 +24,7 @@ data class NumberRangeInput(
     var end: Float,
     var initial: Float?,
     var step: Float?
-) : DialogInput<NumberRangeInput>(id) {
-    override fun build(): net.minecraft.server.dialog.input.NumberRangeInput {
-        return net.minecraft.server.dialog.input.NumberRangeInput(
-            width,
-            PaperAdventure.asVanilla(label),
-            labelFormat,
-            net.minecraft.server.dialog.input.NumberRangeInput.RangeInfo(
-                start, end, Optional.ofNullable(initial), Optional.ofNullable(step)
-            )
-        )
-    }
-}
+) : DialogInput<NumberRangeInput>(id)
 
 data class SingleOptionInput(
     override var id: String,
@@ -56,19 +32,7 @@ data class SingleOptionInput(
     var entries: MutableList<SingleOptionInputEntry>,
     var label: Component,
     var labelVisible: Boolean
-) : DialogInput<SingleOptionInput>(id) {
-    override fun build(): net.minecraft.server.dialog.input.SingleOptionInput {
-        val list = mutableListOf<net.minecraft.server.dialog.input.SingleOptionInput.Entry>()
-        entries.forEach { entry -> list.add(entry.build()) }
-
-        return net.minecraft.server.dialog.input.SingleOptionInput(
-            width,
-            list,
-            PaperAdventure.asVanilla(label),
-            labelVisible
-        )
-    }
-}
+) : DialogInput<SingleOptionInput>(id)
 
 data class TextInput(
     override var id: String,
@@ -78,19 +42,4 @@ data class TextInput(
     var initial: String,
     var maxLength: Int,
     var multiline: TextInputMultilineOptions
-) : DialogInput<TextInput>(id) {
-    override fun build(): net.minecraft.server.dialog.input.TextInput {
-
-        return net.minecraft.server.dialog.input.TextInput(
-        width,
-            PaperAdventure.asVanilla(label),
-            labelVisible,
-            initial,
-            maxLength,
-            Optional.ofNullable(net.minecraft.server.dialog.input.TextInput.MultilineOptions(
-                Optional.ofNullable(multiline.maxLines),
-                Optional.ofNullable(multiline.height),
-            ))
-        )
-    }
-}
+) : DialogInput<TextInput>(id)

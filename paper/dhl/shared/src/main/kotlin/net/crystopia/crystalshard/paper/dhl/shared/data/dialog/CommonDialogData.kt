@@ -17,25 +17,4 @@ data class CommonDialogData(
     var afterAction: DialogAction,
     var body: MutableList<DialogBody<*>>,
     var inputs: MutableList<DialogInput<*>>
-) {
-    fun build(): CommonDialogData {
-        var component: net.minecraft.network.chat.Component? = null
-        if (externalTitle != null) component = PaperAdventure.asVanilla(externalTitle)
-
-        val inputsData = mutableListOf<Input>()
-        inputs.forEach { input -> inputsData.add(Input(input.id, input.build()!!)) }
-
-        val bodyData = mutableListOf<net.minecraft.server.dialog.body.DialogBody>()
-        body.forEach { body -> bodyData.add(body.build()!!) }
-
-        return CommonDialogData(
-            PaperAdventure.asVanilla(title),
-            Optional.ofNullable(component),
-            canCloseWithEscape,
-            pause,
-            afterAction.base,
-            bodyData,
-            inputsData
-        )
-    }
-}
+)

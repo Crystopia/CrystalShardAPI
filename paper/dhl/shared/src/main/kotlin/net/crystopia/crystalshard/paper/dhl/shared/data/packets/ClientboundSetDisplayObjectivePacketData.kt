@@ -17,32 +17,4 @@ data class ClientboundSetDisplayObjectivePacketData(
     var mode: ScoreBoardMode,
     var displaySlot: DisplaySlot,
     var displayData: DisplayData<*>
-) {
-    fun build(): Objective {
-
-        val data = when (displayData.numberFormat) {
-            NumberFormat.FIXED -> {
-                val scoreboard = PaperAdventure.asVanilla((displayData.format as FixedFormatData).text)
-                FixedFormat(scoreboard)
-            }
-
-            NumberFormat.STYLED -> {
-                StyledFormat(Style.EMPTY)
-            }
-
-            NumberFormat.BLANK -> {
-                BlankFormat()
-            }
-        }
-
-        return Objective(
-            Scoreboard(),
-            displayData.name,
-            displayData.criteria.id,
-            PaperAdventure.asVanilla(displayData.displayName),
-            displayData.renderType.id,
-            displayData.displayAutoUpdate,
-            data
-        )
-    }
-}
+)

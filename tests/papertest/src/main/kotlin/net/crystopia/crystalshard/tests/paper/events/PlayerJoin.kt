@@ -9,6 +9,7 @@ import net.crystopia.crystalshard.paper.dhl.PacketFactory
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundContainerClickPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundInteractPacketUtil
 import net.crystopia.crystalshard.paper.dhl.server.ServerboundPlayerActionPacketUtil
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.DialogBodyPlainMessage
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.FixedFormatData
@@ -37,6 +38,8 @@ import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.Particle
+import org.bukkit.block.BlockType
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.ItemDisplay
 import org.bukkit.entity.Player
@@ -149,7 +152,6 @@ object PlayerJoin : Listener {
 
     @EventHandler
     fun onPlayerInteract(event: PlayerInteractEvent) {
-
         /*
         PacketFactory.showDialog(
             ConfirmationDialog(
@@ -782,6 +784,12 @@ object PlayerJoin : Listener {
             )
             playerEntity.playerProfile = playerProfile
 
+            PacketFactory.playerInfoUpdatePacket(
+                playerEntity,
+                actions,
+            ) { packet ->
+                packet.send(mutableListOf(event.player))
+            }
 
             PacketFactory.addEntitiesPacket(
                 entityId = playerEntity.entityId,
@@ -790,14 +798,6 @@ object PlayerJoin : Listener {
                 entityType = EntityType.PLAYER,
                 data = 0,
                 yHeadRot = 0.0,
-            ) { packet ->
-                packet.send(mutableListOf(event.player))
-            }
-
-
-            PacketFactory.playerInfoUpdatePacket(
-                playerEntity,
-                actions,
             ) { packet ->
                 packet.send(mutableListOf(event.player))
             }
