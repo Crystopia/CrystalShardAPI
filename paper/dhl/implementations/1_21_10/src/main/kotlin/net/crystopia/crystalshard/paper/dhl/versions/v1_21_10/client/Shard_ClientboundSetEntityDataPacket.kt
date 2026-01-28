@@ -32,9 +32,11 @@ class Shard_ClientboundSetEntityDataPacket : IPacket<ClientboundSetEntityDataPac
 
     @Suppress("UNCHECKED_CAST")
     fun <T: Any> buildMetaData(data: EntityMetadata<T>): SynchedEntityData.DataValue<*> {
-        val serializer = EntityDataSerializerType.convert(data.type).type as EntityDataSerializer<T>
-        val accessor = EntityDataAccessor(data.index, serializer)
-        val dataValue = SynchedEntityData.DataValue.create(accessor, data.value)
-        return dataValue
+        val serializer =
+            EntityDataSerializerType.convert(
+                data.type
+            ).type as EntityDataSerializer<T>
+        val accessor = serializer.createAccessor(data.index)
+        return SynchedEntityData.DataValue.create(accessor, data.value)
     }
 }
