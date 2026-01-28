@@ -2,9 +2,12 @@ package net.crystopia.crystalshard.paper.panic.experimental
 
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
 import net.kyori.adventure.text.Component
+import org.bukkit.NamespacedKey
 import org.bukkit.block.BlockType
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
@@ -27,18 +30,17 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
         }
 
         fun check(callback: Mod.(hasMod: Boolean) -> Unit): Mod {
-            // TODO: NEW SERVER PACKETS
-            /**
-             * ServerboundSignUpdatePacketUtil.attach(
-             *                 listenerKey, plugin, player
-             *             ) {
-             *                 player.removeServerPacketListener(listenerKey)
-             *
-             *                 if (lines[0] != "NONE") {
-             *                     callback(true)
-             *                 }
-             *             }
-             */
+            ServerPacketFactory.signUpdateEvent(
+                Shard_ServerPacketData(
+                    player = player, name = NamespacedKey(listenerKey,listenerKey), plugin = plugin
+                )
+            ) {
+                player.removeServerPacketListener(listenerKey)
+
+                if (lines[0] != "NONE") {
+                    callback(true)
+                }
+            }
             return this
         }
 

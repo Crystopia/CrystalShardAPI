@@ -6,7 +6,9 @@ import gg.flyte.twilight.gui.GUI.Companion.openInventory
 import gg.flyte.twilight.gui.gui
 import net.crystopia.crystalshard.common.extension.*
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.FixedFormatData
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.ScoreData
@@ -32,6 +34,7 @@ import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.EntityType
+import org.bukkit.entity.ItemDisplay
 import org.bukkit.entity.Player
 import org.bukkit.entity.TextDisplay
 import org.bukkit.event.EventHandler
@@ -364,8 +367,6 @@ object PlayerJoin : Listener {
 
     @EventHandler
     fun onJump(event: PlayerJumpEvent) {
-        return
-
         ClientPacketFactory.openScreenPacket(
             3243443,
             Component.text().text("<rainbow>Nice Small GUI</rainbow>").build(),
@@ -555,27 +556,26 @@ object PlayerJoin : Listener {
         map.put(0, item)
         map.put(1, item2)
 
-        // TODO: NEW SERVER PACKETS
-        /*
-        ServerboundContainerClickPacketUtil.attach(
-            "sdffds",
-            Main.instance,
-            event.player,
-            map
+        ServerPacketFactory.containerClickEvent(
+            map, Shard_ServerPacketData(
+                player = event.player, name = NamespacedKey(Main.instance, "inclcik"), plugin = Main.instance
+            )
         ) {
             event.player.sendMessage(
                 Component.text().text("${this.clickType} - $containerId - ${this.slotNum} ").build()
             )
 
             event.player.sendMessage(
-                Component.text().text("carriedItem: ").append(carriedItem?.displayName() ?: Component.text("NONE")).build()
+                Component.text().text("carriedItem: ").append(carriedItem?.displayName() ?: Component.text("NONE"))
+                    .build()
             )
 
             event.player.sendMessage(
                 Component.text().text("changedSlots: ").append(changedSlots.first().displayName()).build()
             )
         }
-         */
+
+
 
         /*
         Shard_ServerboundUseItemPacket.attach("sdsdf", Main.instance, event.player) {
@@ -699,8 +699,7 @@ object PlayerJoin : Listener {
             text(
                 message, mutableListOf(event.player)
             )
-            // TODO: NEW SERVER PACKETS
-            /*
+
             onInteract(
                 NamespacedKey("crystalshardtest", "playerjoindisplaydetect"),
                 Main.instance,
@@ -711,7 +710,6 @@ object PlayerJoin : Listener {
                     data.text!!
                 )
             }
-             */
 
             onHover(Main.instance, event.player, 0.90) { isLockingAt ->
                 if (isLockingAt) {
@@ -810,7 +808,8 @@ object PlayerJoin : Listener {
             ) { packet ->
                 packet.send(mutableListOf(event.player))
             }
-            /*
+
+
             ClientPacketFactory.setEntityDataPacket(
                 playerEntity.entityId, mutableListOf(
                     EntityMetadata<Byte>(
@@ -822,13 +821,22 @@ object PlayerJoin : Listener {
             ) { packet ->
                 packet.send(mutableListOf(event.player))
             }
-             */
 
 
-            // TODO: NEW SERVER PACKETS
-            /*
-            ServerboundInteractPacketUtil.attach("TestNPCInteraction", Main.instance, event.player) {
+            ClientPacketFactory.teleportEntityPacket(
+                player!!.entityId,
+                Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0),
+                false
+            ) { packet ->
+                packet.send(mutableListOf(event.player))
+            }
 
+
+            ServerPacketFactory.interactEvent(
+                Shard_ServerPacketData(
+                    player = event.player, name = NamespacedKey(Main.instance, "testnpcinteraction"), plugin =Main.instance
+                )
+            ) {
                 event.player.sendMessage("COOL")
 
                 val fakeDisplay = SimulacrumFactory.createEntityInstance<ItemDisplay>(
@@ -852,7 +860,8 @@ object PlayerJoin : Listener {
                     packet.send(mutableListOf(event.player))
                 }
             }
-             */
+
+
         }
     }
 }

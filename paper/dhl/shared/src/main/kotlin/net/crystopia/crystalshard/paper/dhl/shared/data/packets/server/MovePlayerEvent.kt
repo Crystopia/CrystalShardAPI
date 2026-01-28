@@ -7,7 +7,7 @@ data class MovePlayerEvent(
     var yRot: Float,
     var xRot: Float,
     var onGround: Boolean,
-    var horizontalCollision: Boolean,
+    var horizontalCollision: Boolean?,
     var hasPos: Boolean,
     var hasRot: Boolean
 )

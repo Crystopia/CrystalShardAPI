@@ -6,5 +6,5 @@ data class MoveVehicleEvent(
     var z: Double,
     var yRot: Float,
     var xRot: Float,
-    var onGround: Boolean
+    var onGround: Boolean?
 )

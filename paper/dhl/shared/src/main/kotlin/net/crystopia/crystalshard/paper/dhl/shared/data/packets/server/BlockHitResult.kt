@@ -10,5 +10,5 @@ data class BlockHitResult(
     var z: Int,
     var type: ItemUseType,
     var inside: Boolean,
-    var worldBorderHit: Boolean
+    var worldBorderHit: Boolean?
 )

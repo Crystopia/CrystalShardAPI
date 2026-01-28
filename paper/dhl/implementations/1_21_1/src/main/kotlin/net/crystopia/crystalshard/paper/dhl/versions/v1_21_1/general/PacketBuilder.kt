@@ -52,7 +52,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.Clientbou
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundUpdateMobEffectPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packetsid.ClientboundSetPassengersPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacketBuilder
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.packets.*
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.client.*
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.*
 
