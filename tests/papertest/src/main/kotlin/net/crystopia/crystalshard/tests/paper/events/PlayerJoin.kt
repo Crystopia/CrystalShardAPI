@@ -696,6 +696,18 @@ object PlayerJoin : Listener {
         ) {
             display = entity
 
+            ClientPacketFactory.setEntityDataPacket(
+                this.entity.entityId, mutableListOf(
+                    EntityMetadata<Byte>(
+                        index = 27,
+                        type = EntityDataSerializerType.BYTE,
+                        value = (0x01 or 0x02).toByte()
+                    )
+                )
+            ) { packet ->
+                packet.send(mutableListOf(event.player))
+            }
+
             text(
                 message, mutableListOf(event.player)
             )
@@ -812,9 +824,9 @@ object PlayerJoin : Listener {
 
             ClientPacketFactory.setEntityDataPacket(
                 playerEntity.entityId, mutableListOf(
-                    EntityMetadata(
+                    EntityMetadata<Byte>(
                         index = 16,
-                        type = EntityDataSerializerType.BYTE,
+                        type = EntityDataSerializerType.DATA_PLAYER_MODE_CUSTOMISATION,
                         value = (0x01 or 0x02 or 0x04 or 0x08 or 0x10 or 0x20 or 0x40).toByte()
                     )
                 )

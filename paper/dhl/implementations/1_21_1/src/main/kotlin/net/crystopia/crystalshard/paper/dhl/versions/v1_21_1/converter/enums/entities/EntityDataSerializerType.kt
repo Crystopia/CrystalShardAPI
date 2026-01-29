@@ -2,6 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.enums.en
 
 import net.minecraft.network.syncher.EntityDataSerializer
 import net.minecraft.network.syncher.EntityDataSerializers
+import net.minecraft.world.entity.player.Player
 
 internal enum class EntityDataSerializerType(val type : EntityDataSerializer<*>) {
     BYTE(EntityDataSerializers.BYTE),
