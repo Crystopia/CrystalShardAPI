@@ -9,3 +9,10 @@ fun Player.removeServerPacketListener(key: String) {
 
     channel.pipeline().remove(key)
 }
+
+fun Player.hasServerPacketListener(key: String) : Boolean {
+    val serverPlayer = (player as CraftPlayer).handle
+    val channel = serverPlayer.connection.connection.channel
+
+    return channel.pipeline().get(key) != null
+}

@@ -9,7 +9,7 @@ data class ContainerClickEvent(
     var slotNum: Short,
     var buttonNum: Byte,
     var clickType: ClickType,
-    var changedSlots: MutableList<ItemStack>,
+    var changedSlots: MutableMap<Int, ItemStack>,
     var carriedItem: ItemStack?,
     var selectedItem : ItemStack?
 )

@@ -6,5 +6,5 @@ data class ClientboundContainerSetContentPacketData(
     var id: Int,
     var stateId: Int,
     var items: MutableList<ItemStack>,
-    var carriedItem: ItemStack
+    var carriedItem: ItemStack?
 )

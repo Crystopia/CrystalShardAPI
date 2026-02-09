@@ -1440,7 +1440,7 @@ object ClientPacketFactory {
         id: Int,
         stateId: Int,
         items: MutableList<ItemStack>,
-        carriedItem: ItemStack,
+        carriedItem: ItemStack?,
         callback: (packet: Shard_Packet<ClientboundContainerSetContentPacketData>) -> Unit
     ): Shard_Packet<ClientboundContainerSetContentPacketData> {
 

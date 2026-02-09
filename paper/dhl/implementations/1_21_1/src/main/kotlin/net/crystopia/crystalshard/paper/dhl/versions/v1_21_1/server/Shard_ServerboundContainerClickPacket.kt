@@ -48,10 +48,10 @@ class Shard_ServerboundContainerClickPacket(var items: MutableMap<Int, ItemStack
                                 }
                             }
 
-                            val changed: MutableList<ItemStack> = mutableListOf()
+                            val changed: MutableMap<Int, ItemStack> = mutableMapOf()
                             if (!msg.changedSlots.isEmpty()) {
                                 msg.changedSlots.forEach { (i, stack) ->
-                                    changed.add(i, CraftItemStack.asBukkitCopy(stack))
+                                    changed[i] = CraftItemStack.asBukkitCopy(stack)
                                 }
                             }
 

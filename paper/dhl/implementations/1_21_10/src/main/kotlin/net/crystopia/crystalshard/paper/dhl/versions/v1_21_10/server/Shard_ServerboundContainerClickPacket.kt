@@ -10,6 +10,7 @@ import net.minecraft.network.HashedStack
 import net.minecraft.network.protocol.game.ServerboundContainerClickPacket
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.entity.CraftPlayer
+import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.inventory.ItemStack
 
 
@@ -54,13 +55,13 @@ class Shard_ServerboundContainerClickPacket(var items: MutableMap<Int, ItemStack
                                 }
                             }
 
-                            val changed: MutableList<ItemStack> = mutableListOf()
+                            val changed: MutableMap<Int, ItemStack> = mutableMapOf()
                             if (!msg.changedSlots.isEmpty()) {
                                 msg.changedSlots.forEach { (i, stack) ->
                                     if (stack is HashedStack.ActualItem) {
                                         items.forEach { (slot, stack) ->
                                             if (i == slot) {
-                                                changed.add(stack)
+                                                changed[i] = stack
                                             }
                                         }
                                     }
@@ -75,7 +76,6 @@ class Shard_ServerboundContainerClickPacket(var items: MutableMap<Int, ItemStack
                                     }
                                 }
                             }
-                            else selectedItem = null
 
                             val event = ContainerClickEvent(
                                 containerId = msg.containerId,

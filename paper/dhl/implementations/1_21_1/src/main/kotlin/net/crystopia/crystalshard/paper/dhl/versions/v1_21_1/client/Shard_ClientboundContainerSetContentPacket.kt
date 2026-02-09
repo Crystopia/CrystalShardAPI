@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.core.NonNullList
 import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket
 import net.minecraft.world.item.ItemStack
+import org.bukkit.Material
 import org.bukkit.craftbukkit.inventory.CraftItemStack
 
 class Shard_ClientboundContainerSetContentPacket : IPacket<ClientboundContainerSetContentPacketData> {
@@ -20,7 +21,7 @@ class Shard_ClientboundContainerSetContentPacket : IPacket<ClientboundContainerS
             packetObj.id,
             packetObj.stateId,
             notnullList,
-            CraftItemStack.asNMSCopy(packetObj.carriedItem)
+            CraftItemStack.asNMSCopy(packetObj.carriedItem ?: org.bukkit.inventory.ItemStack(Material.AIR))
         )
     }
 }
