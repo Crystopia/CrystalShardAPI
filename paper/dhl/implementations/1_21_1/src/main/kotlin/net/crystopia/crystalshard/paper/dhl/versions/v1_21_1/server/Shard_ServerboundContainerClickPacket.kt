@@ -32,7 +32,8 @@ class Shard_ServerboundContainerClickPacket(var items: MutableMap<Int, ItemStack
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundContainerClickPacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin, Runnable {

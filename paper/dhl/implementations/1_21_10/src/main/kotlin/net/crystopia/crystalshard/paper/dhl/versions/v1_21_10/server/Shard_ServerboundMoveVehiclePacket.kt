@@ -29,7 +29,8 @@ class Shard_ServerboundMoveVehiclePacket : IServerPacket<MoveVehicleEvent> {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundMoveVehiclePacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin,

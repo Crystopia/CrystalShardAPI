@@ -86,7 +86,7 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
 
         ServerPacketFactory.interactEvent(
             Shard_ServerPacketData(
-                player = player, name = key, plugin = plugin
+                player = player, name = key, shouldPublish = false, plugin = plugin
             )
         ) {
             if (entityId == interaction.entityId) {

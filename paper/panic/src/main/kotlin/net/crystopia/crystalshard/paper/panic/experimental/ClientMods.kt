@@ -32,7 +32,10 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
         fun check(callback: Mod.(hasMod: Boolean) -> Unit): Mod {
             ServerPacketFactory.signUpdateEvent(
                 Shard_ServerPacketData(
-                    player = player, name = NamespacedKey(listenerKey,listenerKey), plugin = plugin
+                    player = player,
+                    name = NamespacedKey(listenerKey, listenerKey),
+                    shouldPublish = false,
+                    plugin = plugin
                 )
             ) {
                 player.removeServerPacketListener(listenerKey)

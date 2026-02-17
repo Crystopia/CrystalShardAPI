@@ -8,8 +8,6 @@ import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IServerPac
 import net.minecraft.network.protocol.game.ServerboundContainerButtonClickPacket
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.entity.CraftPlayer
-import org.bukkit.entity.Player
-import org.bukkit.plugin.java.JavaPlugin
 
 class Shard_ServerboundContainerButtonClickPacket : IServerPacket<ButtonClickEvent> {
 
@@ -27,7 +25,8 @@ class Shard_ServerboundContainerButtonClickPacket : IServerPacket<ButtonClickEve
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundContainerButtonClickPacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin,

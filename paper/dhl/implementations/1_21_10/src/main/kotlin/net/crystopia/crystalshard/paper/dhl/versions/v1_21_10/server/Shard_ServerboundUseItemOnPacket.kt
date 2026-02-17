@@ -34,7 +34,8 @@ class Shard_ServerboundUseItemOnPacket: IServerPacket<UseItemOnEvent> {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundUseItemOnPacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin,

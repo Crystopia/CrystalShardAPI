@@ -30,7 +30,8 @@ class Shard_ServerboundPlayerCommandPacket : IServerPacket<PlayerCommandEvent> {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundPlayerCommandPacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin,

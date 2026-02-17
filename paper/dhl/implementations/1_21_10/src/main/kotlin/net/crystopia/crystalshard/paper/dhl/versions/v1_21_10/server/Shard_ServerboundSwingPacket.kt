@@ -30,7 +30,8 @@ class Shard_ServerboundSwingPacket : IServerPacket<SwingArmEvent> {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundSwingPacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin,

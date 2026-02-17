@@ -30,7 +30,8 @@ class Shard_ServerboundSignUpdatePacket : IServerPacket<SignUpdateEvent> {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundSignUpdatePacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin ,

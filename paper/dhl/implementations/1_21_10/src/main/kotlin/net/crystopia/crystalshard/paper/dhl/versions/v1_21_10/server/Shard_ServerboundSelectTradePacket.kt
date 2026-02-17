@@ -30,7 +30,8 @@ class Shard_ServerboundSelectTradePacket : IServerPacket<SelectTradeEvent> {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundSelectTradePacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin,

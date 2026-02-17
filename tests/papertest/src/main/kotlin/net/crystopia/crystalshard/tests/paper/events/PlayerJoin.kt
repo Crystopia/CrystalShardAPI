@@ -369,6 +369,7 @@ object PlayerJoin : Listener {
         guiDATA = net.crystopia.crystalshard.paper.box.gui(
             Component.text("PacketGUI", NamedTextColor.BLUE),
             MenuType.ANVIL,
+            false,
             Main.instance
         ) {
             players(event.player)
@@ -377,7 +378,8 @@ object PlayerJoin : Listener {
                 1,
                 GUI.Slot(
                     item = item,
-                    revision = 1
+                    revision = 1,
+                    cancel =  true
                 )
             ) { button, click ->
                 println("[ITEM] BUTTON $button")
@@ -389,7 +391,8 @@ object PlayerJoin : Listener {
                     revision = 1
                 )
             ) { button, click ->
-                guiDATA!!.slot(0, GUI.Slot(
+                slot(
+                    0, GUI.Slot(
                     item = ItemStack(Material.DIAMOND_BLOCK),
                     revision = 0
                 )) { button, click ->

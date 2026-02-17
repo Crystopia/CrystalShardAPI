@@ -28,7 +28,8 @@ class Shard_ServerboundMovePlayerPacket : IServerPacket<MovePlayerEvent> {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundMovePlayerPacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin, Runnable {

@@ -36,7 +36,8 @@ class Shard_ServerboundCustomClickActionPacket : IServerPacket<CustomClickEvent>
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundCustomClickActionPacket, out: MutableList<Any>
                 ) {
-                    out.add(msg)
+                    if (data.shouldPublish)
+                        out.add(msg)
 
                     Bukkit.getServer().scheduler.runTaskLater(
                         data.plugin, Runnable {
