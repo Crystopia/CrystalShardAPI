@@ -362,13 +362,12 @@ object PlayerJoin : Listener {
         meta2.persistentDataContainer.set(NamespacedKey("testy", "text"), PersistentDataType.STRING, "TTTTTTTTTTT")
         item2.itemMeta = meta2
 
-        val items = mutableMapOf<Int, ItemStack>()
-        items[0] = item
-        items[1] = item2
+        val item3 = ItemStack(Material.GRAY_STAINED_GLASS_PANE)
 
         guiDATA = net.crystopia.crystalshard.paper.box.gui(
+            44,
             Component.text("PacketGUI", NamedTextColor.BLUE),
-            MenuType.ANVIL,
+            MenuType.GENERIC_9x5,
             false,
             Main.instance
         ) {
@@ -376,26 +375,29 @@ object PlayerJoin : Listener {
             open()
             slot(
                 1,
-                GUI.Slot(
+                GUI.Data.Slot(
                     item = item,
                     revision = 1,
-                    cancel =  true
+                    cancel =  false
                 )
             ) { button, click ->
                 println("[ITEM] BUTTON $button")
                 println("[ITEM] CLICK $click")
             }.slot(
-                mutableListOf(2),
-                GUI.Slot(
-                    item = ItemStack(Material.GRAY_STAINED_GLASS_PANE),
-                    revision = 1
+                0,
+                GUI.Data.Slot(
+                    item = item3,
+                    revision = 0,
+                    cancel = false
                 )
             ) { button, click ->
                 slot(
-                    0, GUI.Slot(
-                    item = ItemStack(Material.DIAMOND_BLOCK),
-                    revision = 0
-                )) { button, click ->
+                    5,
+                    GUI.Data.Slot(
+                        item = item2,
+                        revision = 5
+                    )
+                ) { button, click ->
 
                 }
             }

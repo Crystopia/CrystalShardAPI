@@ -15,7 +15,7 @@ class Shard_ClientboundContainerSetContentPacket : IPacket<ClientboundContainerS
         packetObj: ClientboundContainerSetContentPacketData
     ): ClientboundContainerSetContentPacket {
         val notnullList = NonNullList.createWithCapacity<ItemStack>(packetObj.items.size)
-        packetObj.items.forEach { itemStack -> notnullList.add(CraftItemStack.asNMSCopy(itemStack)) }
+        packetObj.items.forEach { itemStack -> notnullList.add(CraftItemStack.asNMSCopy(itemStack.value)) }
 
         return ClientboundContainerSetContentPacket(
             packetObj.id,

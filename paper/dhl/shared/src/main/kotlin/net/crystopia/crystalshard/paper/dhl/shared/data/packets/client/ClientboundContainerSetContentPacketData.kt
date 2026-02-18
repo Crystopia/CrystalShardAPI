@@ -5,6 +5,6 @@ import org.bukkit.inventory.ItemStack
 data class ClientboundContainerSetContentPacketData(
     var id: Int,
     var stateId: Int,
-    var items: MutableList<ItemStack>,
+    var items: MutableMap<Int, ItemStack>,
     var carriedItem: ItemStack?
 )
