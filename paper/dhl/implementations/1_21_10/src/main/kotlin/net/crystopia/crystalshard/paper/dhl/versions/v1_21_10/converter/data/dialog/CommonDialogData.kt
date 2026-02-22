@@ -4,10 +4,10 @@ import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.CommonDialogData
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.DialogBodyItemBody
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.DialogBodyPlainMessage
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.BooleanInput
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.NumberRangeInput
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.SingleOptionInput
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.TextInput
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.DialogBooleanInput
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.DialogNumberRangeInput
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.DialogSingleOptionInput
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.DialogTextInput
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.dialog.input.build
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.enums.dialog.DialogAction
 import net.minecraft.network.chat.Component
@@ -23,10 +23,10 @@ internal fun CommonDialogData.build(): net.minecraft.server.dialog.CommonDialogD
     inputs.forEach { input ->
 
         val inputData = when (input) {
-            is BooleanInput -> {input.build()}
-            is NumberRangeInput -> {input.build()}
-            is SingleOptionInput -> {input.build()}
-            is TextInput -> {input.build()}
+            is DialogBooleanInput -> {input.build()}
+            is DialogNumberRangeInput -> {input.build()}
+            is DialogSingleOptionInput -> {input.build()}
+            is DialogTextInput -> {input.build()}
             else -> throw IllegalArgumentException("Unsupported input type: ${input.javaClass.name}")
         }
 

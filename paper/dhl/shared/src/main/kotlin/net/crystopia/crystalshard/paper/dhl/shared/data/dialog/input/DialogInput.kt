@@ -1,21 +1,18 @@
 package net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input
 
-import io.papermc.paper.adventure.PaperAdventure
 import net.kyori.adventure.text.Component
-import net.minecraft.server.dialog.input.InputControl
-import java.util.*
 
 abstract class DialogInput<T : Any>(open var id: String)
 
-data class BooleanInput(
+data class DialogBooleanInput(
     override var id: String,
     var label: Component,
     var initial: Boolean,
     var onTrue: String,
     var onFalse: String
-) : DialogInput<BooleanInput>(id)
+) : DialogInput<DialogBooleanInput>(id)
 
-data class NumberRangeInput(
+data class DialogNumberRangeInput(
     override var id: String,
     var width: Int,
     var label: Component,
@@ -24,22 +21,22 @@ data class NumberRangeInput(
     var end: Float,
     var initial: Float?,
     var step: Float?
-) : DialogInput<NumberRangeInput>(id)
+) : DialogInput<DialogNumberRangeInput>(id)
 
-data class SingleOptionInput(
+data class DialogSingleOptionInput(
     override var id: String,
     var width: Int,
-    var entries: MutableList<SingleOptionInputEntry>,
+    var entries: MutableList<DialogSingleOptionInputEntry>,
     var label: Component,
     var labelVisible: Boolean
-) : DialogInput<SingleOptionInput>(id)
+) : DialogInput<DialogSingleOptionInput>(id)
 
-data class TextInput(
+data class DialogTextInput(
     override var id: String,
     var width: Int,
     var label: Component,
     var labelVisible: Boolean,
     var initial: String,
     var maxLength: Int,
-    var multiline: TextInputMultilineOptions
-) : DialogInput<TextInput>(id)
+    var multiline: DialogTextInputMultilineOptions
+) : DialogInput<DialogTextInput>(id)

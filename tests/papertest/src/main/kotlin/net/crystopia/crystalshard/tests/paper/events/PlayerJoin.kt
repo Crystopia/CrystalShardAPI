@@ -7,6 +7,7 @@ import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
 import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.box.GUI
+import net.crystopia.crystalshard.paper.box.tablist
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.tests.paper.Main
@@ -368,49 +369,163 @@ object PlayerJoin : Listener {
             44,
             Component.text("PacketGUI", NamedTextColor.BLUE),
             MenuType.GENERIC_9x5,
-            false,
+            true,
             Main.instance
         ) {
-            players(event.player)
-            open()
+            player(event.player)
             slot(
-                1,
                 GUI.Data.Slot(
                     item = item,
                     revision = 1,
-                    cancel =  false
+                    cancel = true,
+                    slot = 1,
                 )
             ) { button, click ->
                 println("[ITEM] BUTTON $button")
                 println("[ITEM] CLICK $click")
             }.slot(
-                0,
                 GUI.Data.Slot(
                     item = item3,
                     revision = 0,
-                    cancel = false
+                    cancel = false,
+                    slot = 0,
                 )
+
             ) { button, click ->
                 slot(
-                    5,
                     GUI.Data.Slot(
-                        item = item2,
-                        revision = 5
+                        item = item3,
+                        revision = 5,
+                        cancel = true,
+                        slot = 5,
                     )
                 ) { button, click ->
 
                 }
             }
-                .click {
-                    println("CLICK $this")
-                }.buttonClick {
-                    println("BUTTON $this")
-                }
+            open()
+            click {
+                println(event.player.inventory.getItem(this.slotNum.toInt()))
+                println("CLICK $this")
+            }
+            buttonClick {
+                println("BUTTON $this")
+            }
         }
 
     }
 
-    fun onJump(event: PlayerJumpEvent) {
+    @EventHandler
+    fun onJump(event: PlayerMoveEvent) {
+
+        return
+
+        val tab = tablist {
+            players(mutableListOf(event.player))
+            header(
+                Component.text().text("\n\n       <color:#2bffe6>Welcome to our Packet Server</color>     \n\n").build()
+            )
+            footer(
+                Component.text()
+                    .text("\n\n       <gray><i>(c) Crystopia Network - xyzOrg - xyzifying</i></gray>       \n\n")
+                    .build()
+            )
+        }
+        /*
+                dialog(
+                    DialogListDialog(
+                        CommonDialogData(
+                            title = Component.text().text("<green>MANY DIALOGS<green>").build(),
+                            canCloseWithEscape = false,
+                            pause = false,
+                            afterAction = DialogAction.CLOSE,
+                            body = mutableListOf(
+                                DialogBodyPlainMessage(
+                                    contents = Component.text().text("<gray>WIESO SO VIELE!</gray>").build(),
+                                    width = 500
+                                )
+                            ),
+                            externalTitle = null,
+                            inputs = mutableListOf()
+                        ),
+                        mutableSetOf(
+                            ConfirmationDialog(
+                                common = CommonDialogData(
+                                    title = Component.text().text("<green>Magst du gerne eis?<green>").build(),
+                                    canCloseWithEscape = false,
+                                    pause = false,
+                                    afterAction = DialogAction.CLOSE,
+                                    body = mutableListOf(
+                                        DialogBodyPlainMessage(
+                                            contents = Component.text().text("<gray>Bitte wähle aus!</gray>").build(),
+                                            width = 500
+                                        )
+                                    ),
+                                    externalTitle = null,
+                                    inputs = mutableListOf(
+                                        DialogTextInput(
+                                            id = "ice",
+                                            width = 100,
+                                            label = Component.text("Ice"),
+                                            labelVisible = true,
+                                            initial = "VANILLE",
+                                            maxLength = 100000,
+                                            multiline = DialogTextInputMultilineOptions(
+                                                maxLines = 1,
+                                                height = 100
+                                            )
+                                        )
+                                    )
+                                ),
+                                yesButton = ActionButton(
+                                    button = CommonButtonData(
+                                        label = Component.text().text("Ja ich liebe es!").build(),
+                                        tooltip = null,
+                                        width = 100
+                                    ),
+                                    action = ActionCustomAll(
+                                        id = NamespacedKey("eis", "yes"),
+                                        additionsNBT = mutableMapOf()
+                                    )
+                                ),
+                                noButton = ActionButton(
+                                    button = CommonButtonData(
+                                        label = Component.text().text("Nein ich hasse eis....").build(),
+                                        tooltip = null,
+                                        width = 100
+                                    ),
+                                    action = ActionCustomAll(
+                                        id = NamespacedKey("eis", "no"),
+                                        additionsNBT = mutableMapOf(Pair("abc", "11"))
+                                    )
+                                )
+                            )
+                        ),
+                        ActionButton(
+                            button = CommonButtonData(
+                                label = Component.text().text("CLOSE").build(),
+                                tooltip = null,
+                                width = 100
+                            ),
+                            action = ActionCustomAll(
+                                id = NamespacedKey("close", "none"),
+                                additionsNBT = mutableMapOf(Pair("close", "yes"))
+                            )
+                        ),
+                        1,
+                        100
+                    ),
+
+                    false,
+                    Main.instance
+                ) {
+                    listen {
+                        println(this.payload.type.data)
+                    }
+                    open(mutableListOf(event.player))
+                }
+         */
+
         /*
         val result = ItemStack(Material.DIRT)
         val resultMeta = result.itemMeta

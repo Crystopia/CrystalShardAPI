@@ -1,5 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl
 
+import net.crystopia.crystalshard.paper.dhl.shared.data.gui.Slot
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.ButtonClickEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.ContainerClickEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.CustomClickEvent
@@ -40,7 +41,7 @@ import org.bukkit.inventory.ItemStack
 object ServerPacketFactory {
 
     fun containerClickEvent(
-        items: MutableMap<Int, ItemStack>, data: Shard_ServerPacketData, callback: ContainerClickEvent.() -> Unit
+        items: MutableList<Slot>, data: Shard_ServerPacketData, callback: ContainerClickEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_10 -> {

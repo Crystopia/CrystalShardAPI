@@ -5,6 +5,7 @@ import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.hasServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
+import net.crystopia.crystalshard.paper.dhl.shared.data.gui.Slot
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.ButtonClickEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.ContainerClickEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
@@ -15,18 +16,17 @@ import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
-import org.jetbrains.annotations.ApiStatus
 
 @ExperimentalApi("stable release of the packetGuis... (stable version)")
 fun gui(
     inventoryId: Int,
     title: Component,
     type: MenuType,
-    external: Boolean = false,
+    shouldPublish: Boolean = false,
     plugin: JavaPlugin,
     callback: GUI.() -> Unit
 ): GUI {
-    val gui = GUI(inventoryId, title, type, external, plugin)
+    val gui = GUI(inventoryId, title, type, shouldPublish, plugin)
     callback(gui)
     return gui
 }
@@ -35,10 +35,10 @@ fun gui(
 class GUI {
 
     private var inventoryId: Int? = null
-    var title: Component
-    var type: MenuType
-    var external: Boolean = false
-    var items = mutableMapOf<Int, Data.Slot>()
+    private var title: Component
+    private var type: MenuType
+    private var shouldPublish: Boolean = false
+    private val items = mutableMapOf<Int, Data.Slot>()
     private val data: MutableSet<Data.Data> = mutableSetOf()
     private var content: Data.Content? = null
     private var carriedItem: ItemStack? = null
@@ -56,11 +56,12 @@ class GUI {
         this.title = title
         this.type = type
         this.plugin = plugin
-        this.external = external
+        this.shouldPublish = external
     }
 
     private fun events(player: Player): GUI {
         val gui = this
+        val items = this.items
         if (player.hasServerPacketListener(containerClickEventKey.toString()))
             player.removeServerPacketListener(containerClickEventKey.toString())
         if (player.hasServerPacketListener(containerButtonClickEventKey.toString()))
@@ -68,29 +69,29 @@ class GUI {
                 containerButtonClickEventKey.toString()
             )
 
-        val itemSlots = mutableMapOf<Int, ItemStack>()
-        items.forEach { (key, value) ->
-            itemSlots[key] = value.item
-        }
         ServerPacketFactory.containerClickEvent(
-            itemSlots, Shard_ServerPacketData(
+            this.items.map {
+                Slot(
+                    id = it.value.slot,
+                    item = it.value.item
+                )
+            }.toMutableList(),
+            Shard_ServerPacketData(
                 player = player,
                 name = containerClickEventKey,
                 plugin = plugin,
-                shouldPublish = external
+                shouldPublish = shouldPublish
             )
         ) {
             // CONTAINER CLICK
             if (this.containerId == inventoryId) {
                 clickListener(this)
                 if (eventData.contains(this.slotNum.toInt().toString())) {
-                    println("TEST")
                     eventData[this.slotNum.toInt().toString()]!!.invoke(gui, null, this)
+
                     val data = items[this.slotNum.toInt()]
-                    if (data != null && data.cancel) {
+                    if (data?.cancel == true) {
                         carried(ItemStack(Material.AIR))
-                    } else {
-                        items.remove(this.slotNum.toInt())
                     }
                 }
             }
@@ -100,7 +101,7 @@ class GUI {
                 player = player,
                 name = containerButtonClickEventKey,
                 plugin = plugin,
-                shouldPublish = external
+                shouldPublish = shouldPublish
             )
         ) {
             // BUTTON CLICK
@@ -108,32 +109,26 @@ class GUI {
                 buttonClickListener(this)
                 if (eventData.contains(this.buttonId.toString())) {
                     eventData[this.buttonId.toString()]!!.invoke(gui, this, null)
+
                     val data = items[this.buttonId]
-                    if (data != null && data.cancel) {
+                    if (data?.cancel == true) {
                         carried(ItemStack(Material.AIR))
-                    } else {
-                        items.remove(this.buttonId)
                     }
                 }
             }
         }
+
         return this
     }
 
-    fun players(player: Player): GUI {
+    fun player(player: Player): GUI {
         this.players.add(player)
-        events(player)
         return this
     }
 
     fun players(players: MutableList<Player>): GUI {
         this.players = players
         players.forEach { events(it) }
-        return this
-    }
-
-    fun slots(items: MutableMap<Int, Data.Slot>): GUI {
-        this.items = items
         return this
     }
 
@@ -147,37 +142,23 @@ class GUI {
         return this
     }
 
-    fun slot(slot: Int, data: Data.Slot, event: GUI.(button: ButtonClickEvent?, click: ContainerClickEvent?) -> Unit): GUI {
+    fun slot(data: Data.Slot, event: GUI.(button: ButtonClickEvent?, click: ContainerClickEvent?) -> Unit): GUI {
         ClientPacketFactory.setContainerSlot(
             inventoryId!!,
             data.revision,
-            slot,
+            data.slot,
             data.item
         ) { packet ->
             packet.send(players)
         }
-        this.eventData[slot.toString()] = event
-        this.items[slot] = data
-        return this
-    }
+        this.eventData[data.slot.toString()] = event
+        this.items[data.slot] = (data)
 
-    fun slot(
-        slot: MutableList<Int>,
-        data: Data.Slot,
-        event: GUI.(button: ButtonClickEvent?, click: ContainerClickEvent?) -> Unit
-    ): GUI {
-        slot.forEach { slot ->
-            ClientPacketFactory.setContainerSlot(
-                inventoryId!!,
-                data.revision,
-                slot,
-                data.item
-            ) { packet ->
-                packet.send(players)
-            }
-            this.eventData[slot.toString()] = event
-            this.items[slot] = data
+        // Refresh user event listeners
+        this.players.forEach {
+            events(it)
         }
+
         return this
     }
 
@@ -225,12 +206,12 @@ class GUI {
         }
 
         // TODO: Change this only to Container Content...
-        items.forEach { (i, slot) ->
+        this.items.forEach { slot ->
             ClientPacketFactory.setContainerSlot(
                 inventoryId!!,
-                slot.revision,
-                i,
-                slot.item
+                slot.value.revision,
+                slot.value.slot,
+                slot.value.item
             ) { packet ->
                 packet.send(players)
             }
@@ -241,6 +222,8 @@ class GUI {
                 packet.send(players)
             }
         }
+
+        this.players.forEach { events(it) }
         return this
     }
 
@@ -248,6 +231,7 @@ class GUI {
         ClientPacketFactory.openScreenPacket(inventoryId!!, title, type) { packet ->
             packet.send(mutableListOf(player))
         }
+        update()
         return this
     }
 
@@ -255,6 +239,7 @@ class GUI {
         ClientPacketFactory.openScreenPacket(inventoryId!!, title, type) { packet ->
             packet.send(players)
         }
+        update()
         return this
     }
 
@@ -272,6 +257,7 @@ class GUI {
 
     class Data {
         data class Slot(
+            var slot: Int,
             var item: ItemStack,
             var revision: Int,
             var cancel: Boolean = false

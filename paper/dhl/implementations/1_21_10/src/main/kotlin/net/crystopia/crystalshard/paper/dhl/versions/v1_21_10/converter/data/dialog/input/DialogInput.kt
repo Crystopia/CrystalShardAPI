@@ -1,19 +1,19 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.dialog.input
 
 import io.papermc.paper.adventure.PaperAdventure
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.BooleanInput
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.NumberRangeInput
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.SingleOptionInput
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.TextInput
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.DialogBooleanInput
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.DialogNumberRangeInput
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.DialogSingleOptionInput
+import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.input.DialogTextInput
 import java.util.Optional
 
-internal fun BooleanInput.build(): net.minecraft.server.dialog.input.BooleanInput {
+internal fun DialogBooleanInput.build(): net.minecraft.server.dialog.input.BooleanInput {
     return net.minecraft.server.dialog.input.BooleanInput(
         PaperAdventure.asVanilla(label), initial, onTrue, onFalse
     )
 }
 
-internal fun NumberRangeInput.build(): net.minecraft.server.dialog.input.NumberRangeInput {
+internal fun DialogNumberRangeInput.build(): net.minecraft.server.dialog.input.NumberRangeInput {
     return net.minecraft.server.dialog.input.NumberRangeInput(
         width,
         PaperAdventure.asVanilla(label),
@@ -24,7 +24,7 @@ internal fun NumberRangeInput.build(): net.minecraft.server.dialog.input.NumberR
     )
 }
 
-internal fun SingleOptionInput.build(): net.minecraft.server.dialog.input.SingleOptionInput {
+internal fun DialogSingleOptionInput.build(): net.minecraft.server.dialog.input.SingleOptionInput {
     val list = mutableListOf<net.minecraft.server.dialog.input.SingleOptionInput.Entry>()
     entries.forEach { entry -> list.add(entry.build()) }
 
@@ -36,7 +36,7 @@ internal fun SingleOptionInput.build(): net.minecraft.server.dialog.input.Single
     )
 }
 
-internal fun TextInput.build(): net.minecraft.server.dialog.input.TextInput {
+internal fun DialogTextInput.build(): net.minecraft.server.dialog.input.TextInput {
 
     return net.minecraft.server.dialog.input.TextInput(
         width,

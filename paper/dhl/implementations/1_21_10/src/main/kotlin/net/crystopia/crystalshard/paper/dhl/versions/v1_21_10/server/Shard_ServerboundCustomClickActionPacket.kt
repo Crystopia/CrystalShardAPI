@@ -27,12 +27,12 @@ class Shard_ServerboundCustomClickActionPacket : IServerPacket<CustomClickEvent>
         val serverPlayer = (data.player as CraftPlayer).handle
         val channel = serverPlayer.connection.connection.channel
 
-        if (channel.pipeline()["${data.name.namespace}_${data.name.key}"] != null) {
+        if (channel.pipeline()[data.name.toString()] != null) {
             return
         }
 
         channel.pipeline().addAfter(
-            "decoder", "${data.name.namespace}_${data.name.key}", object : MessageToMessageDecoder<ServerboundCustomClickActionPacket>() {
+            "decoder", data.name.toString(), object : MessageToMessageDecoder<ServerboundCustomClickActionPacket>() {
                 override fun decode(
                     ctx: ChannelHandlerContext, msg: ServerboundCustomClickActionPacket, out: MutableList<Any>
                 ) {

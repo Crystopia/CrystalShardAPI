@@ -5,7 +5,6 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.Clientbou
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.core.NonNullList
 import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket
-import net.minecraft.world.item.equipment.trim.MaterialAssetGroup
 import org.bukkit.Material
 import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.inventory.ItemStack
