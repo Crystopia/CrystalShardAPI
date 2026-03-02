@@ -12,21 +12,24 @@ object SQLDatabaseManager {
     private var url: String = "jdbc:mysql://localhost:3306/ktorm"
     private var username: String? = null
     private var password: String? = null
+    private var driver: String? = null
 
     fun init(
         url: String = "jdbc:mysql://localhost:3306/ktorm",
         username: String,
         password: String,
+        driver: String
     ): SQLDatabaseManager {
         this.url = url
         this.username = username
         this.password = password
+        this.driver = driver
         return this
     }
 
     var database = Database.connect(
         url = url,
-        driver = "com.mysql.jdbc.Driver",
+        driver = driver,
         user = username,
         password = password
     )

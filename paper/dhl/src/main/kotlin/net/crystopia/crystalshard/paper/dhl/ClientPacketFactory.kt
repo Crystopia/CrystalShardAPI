@@ -35,7 +35,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.TeamAction
 import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointOperation
 import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder
 import net.kyori.adventure.text.Component
 import net.minecraft.network.protocol.Packet
 import org.bukkit.Location
@@ -59,12 +59,21 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.showDialog(
                     data
                 )
             }
-
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.showDialog(
+                    data
+                )
+            }
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.showDialog(
+                    data
+                )
+            }
             else -> {
                 throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
             }
@@ -88,14 +97,26 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.updateTickingState(
                     data
                 )
             }
 
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.updateTickingState(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.updateTickingState(
+                    data
+                )
+            }
+
             ServerVersion.v1_21_1 -> {
-                PacketBuilder.updateTickingState(
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.updateTickingState(
                     data
                 )
             }
@@ -122,14 +143,26 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.updateTickingStep(
                     data
                 )
             }
 
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.updateTickingStep(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.updateTickingStep(
+                    data
+                )
+            }
+
             ServerVersion.v1_21_1 -> {
-                PacketBuilder.updateTickingStep(
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.updateTickingStep(
                     data
                 )
             }
@@ -158,14 +191,26 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setTime(
                     data
                 )
             }
 
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setTime(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setTime(
+                    data
+                )
+            }
+
             ServerVersion.v1_21_1 -> {
-                PacketBuilder.setTime(
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setTime(
                     data
                 )
             }
@@ -193,14 +238,26 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setTabList(
                     data
                 )
             }
 
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setTabList(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setTabList(
+                    data
+                )
+            }
+
             ServerVersion.v1_21_1 -> {
-                PacketBuilder.setTabList(
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setTabList(
                     data
                 )
             }
@@ -231,14 +288,26 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setDefaultSpawnPosition(
                     data
                 )
             }
 
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setDefaultSpawnPosition(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setDefaultSpawnPosition(
+                    data
+                )
+            }
+
             ServerVersion.v1_21_1 -> {
-                PacketBuilder.setDefaultSpawnPosition(
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setDefaultSpawnPosition(
                     data
                 )
             }
@@ -268,14 +337,26 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.sendLevelEvent(
                     data
                 )
             }
 
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.sendLevelEvent(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.sendLevelEvent(
+                    data
+                )
+            }
+
             ServerVersion.v1_21_1 -> {
-                PacketBuilder.sendLevelEvent(
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.sendLevelEvent(
                     data
                 )
             }
@@ -306,14 +387,26 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setMapItemData(
                     data
                 )
             }
 
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setMapItemData(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setMapItemData(
+                    data
+                )
+            }
+
             ServerVersion.v1_21_1 -> {
-                PacketBuilder.setMapItemData(
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setMapItemData(
                     data
                 )
             }
@@ -342,14 +435,26 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.moveVehicle(
                     data
                 )
             }
 
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.moveVehicle(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.moveVehicle(
+                    data
+                )
+            }
+
             ServerVersion.v1_21_1 -> {
-                PacketBuilder.moveVehicle(
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.moveVehicle(
                     data
                 )
             }
@@ -377,8 +482,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.moveMinecart(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.moveMinecart(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.moveMinecart(
                     data
                 )
             }
@@ -414,8 +531,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.moveEntity(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.moveEntity(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.moveEntity(
                     data
                 )
             }
@@ -450,8 +579,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.updateEntityPositionSync(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.updateEntityPositionSync(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.updateEntityPositionSync(
                     data
                 )
             }
@@ -484,8 +625,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.updatePlayerLookAt(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.updatePlayerLookAt(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.updatePlayerLookAt(
                     data
                 )
             }
@@ -520,8 +673,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.updatePlayerPosition(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.updatePlayerPosition(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.updatePlayerPosition(
                     data
                 )
             }
@@ -557,8 +722,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.updatePlayerRotation(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.updatePlayerRotation(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.updatePlayerRotation(
                     data
                 )
             }
@@ -586,8 +763,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.removeMobEffect(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.removeMobEffect(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.removeMobEffect(
                     data
                 )
             }
@@ -623,8 +812,20 @@ object ClientPacketFactory {
 
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.applyMobEffect(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.applyMobEffect(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.applyMobEffect(
                     data
                 )
             }
@@ -658,8 +859,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.sendTeam(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.sendTeam(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.sendTeam(
                     data
                 )
             }
@@ -697,8 +910,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setMerchantOffer(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setMerchantOffer(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setMerchantOffer(
                     data
                 )
             }
@@ -731,8 +956,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.spawnParticle(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.spawnParticle(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.spawnParticle(
                     data
                 )
             }
@@ -765,8 +1002,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setWorldBorderWarningDistance(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setWorldBorderWarningDistance(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setWorldBorderWarningDistance(
                     data
                 )
             }
@@ -799,8 +1048,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setWorldBorderWarningDelay(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setWorldBorderWarningDelay(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setWorldBorderWarningDelay(
                     data
                 )
             }
@@ -833,8 +1094,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setWorldBorderLerpSize(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setWorldBorderLerpSize(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setWorldBorderLerpSize(
                     data
                 )
             }
@@ -867,8 +1140,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setWorldBorderCenter(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setWorldBorderCenter(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setWorldBorderCenter(
                     data
                 )
             }
@@ -901,8 +1186,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setWorldBorderSize(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setWorldBorderSize(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setWorldBorderSize(
                     data
                 )
             }
@@ -935,8 +1232,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.initWorldBorder(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.initWorldBorder(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.initWorldBorder(
                     data
                 )
             }
@@ -973,8 +1282,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.runGameEvent(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.runGameEvent(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.runGameEvent(
                     data
                 )
             }
@@ -1013,8 +1334,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.playRespawnPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.playRespawnPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.playRespawnPacket(
                     data
                 )
             }
@@ -1047,8 +1380,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.resetScoreInDisplayObject(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.resetScoreInDisplayObject(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.resetScoreInDisplayObject(
                     data
                 )
             }
@@ -1081,8 +1426,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setScoreInDisplayObject(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setScoreInDisplayObject(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setScoreInDisplayObject(
                     data
                 )
             }
@@ -1117,8 +1474,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.sendObjectiveUpdate(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.sendObjectiveUpdate(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.sendObjectiveUpdate(
                     data
                 )
             }
@@ -1153,8 +1522,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setDisplayObjective(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setDisplayObjective(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setDisplayObjective(
                     data
                 )
             }
@@ -1189,8 +1570,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setHealth(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setHealth(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setHealth(
                     data
                 )
             }
@@ -1229,8 +1622,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setCarriedItem(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setCarriedItem(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setCarriedItem(
                     data
                 )
             }
@@ -1262,8 +1667,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.applyCooldown(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.applyCooldown(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.applyCooldown(
                     data
                 )
             }
@@ -1297,8 +1714,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.sendPlayerCombatKillPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.sendPlayerCombatKillPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.sendPlayerCombatKillPacket(
                     data
                 )
             }
@@ -1332,8 +1761,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.sendWaypointPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.sendWaypointPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.sendWaypointPacket(
                     data
                 )
             }
@@ -1366,8 +1807,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setContainerData(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setContainerData(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setContainerData(
                     data
                 )
             }
@@ -1403,8 +1856,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setContainerContent(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setContainerContent(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setContainerContent(
                     data
                 )
             }
@@ -1440,8 +1905,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setContainerSlot(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setContainerSlot(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setContainerSlot(
                     data
                 )
             }
@@ -1473,8 +1950,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.closeContainerPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.closeContainerPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.closeContainerPacket(
                     data
                 )
             }
@@ -1509,8 +1998,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.openScreenPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.openScreenPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.openScreenPacket(
                     data
                 )
             }
@@ -1547,8 +2048,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.updateAttributesPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.updateAttributesPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.updateAttributesPacket(
                     data
                 )
             }
@@ -1586,8 +2099,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.entityEventPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.entityEventPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.entityEventPacket(
                     data
                 )
             }
@@ -1619,8 +2144,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.animatePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.animatePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.animatePacket(
                     data
                 )
             }
@@ -1656,8 +2193,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setBlockDestroyStagePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setBlockDestroyStagePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setBlockDestroyStagePacket(
                     data
                 )
             }
@@ -1691,8 +2240,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.openSignEditorPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.openSignEditorPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.openSignEditorPacket(
                     data
                 )
             }
@@ -1727,8 +2288,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.blockEntityDataPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.blockEntityDataPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.blockEntityDataPacket(
                     data
                 )
             }
@@ -1762,8 +2335,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.blockUpdatePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.blockUpdatePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.blockUpdatePacket(
                     data
                 )
             }
@@ -1797,8 +2382,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.equipmentPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.equipmentPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.equipmentPacket(
                     data
                 )
             }
@@ -1833,8 +2430,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.playerInfoUpdatePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.playerInfoUpdatePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.playerInfoUpdatePacket(
                     data
                 )
             }
@@ -1870,8 +2479,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.teleportEntityPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.teleportEntityPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.teleportEntityPacket(
                     data
                 )
             }
@@ -1904,8 +2525,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.playerInfoRemovePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.playerInfoRemovePacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.playerInfoRemovePacket(
                     data
                 )
             }
@@ -1938,8 +2571,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.removeEntitiesPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.removeEntitiesPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.removeEntitiesPacket(
                     data
                 )
             }
@@ -1978,8 +2623,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.addEntitiesPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.addEntitiesPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.addEntitiesPacket(
                     data
                 )
             }
@@ -2011,8 +2668,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.rotateHeadPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.rotateHeadPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.rotateHeadPacket(
                     data
                 )
             }
@@ -2050,8 +2719,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setEntityDataPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setEntityDataPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setEntityDataPacket(
                     data
                 )
             }
@@ -2087,8 +2768,20 @@ object ClientPacketFactory {
         )
 
         val packet = when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 PacketBuilder.setPassengersPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder.setPassengersPacket(
+                    data
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setPassengersPacket(
                     data
                 )
             }
@@ -2111,9 +2804,6 @@ object ClientPacketFactory {
         return shardPacket
     }
 
-    /**
-     *
-     */
     fun sendPacket(packet: Packet<*>, players: MutableList<Player>) {
         players.forEach { player ->
             val serverPlayer = (player as CraftPlayer).handle

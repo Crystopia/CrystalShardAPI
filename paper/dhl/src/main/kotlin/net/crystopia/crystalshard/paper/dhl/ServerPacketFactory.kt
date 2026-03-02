@@ -19,24 +19,21 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.UseItemEv
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.UseItemOnEvent
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundContainerButtonClickPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundContainerClickPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundCustomClickActionPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundInteractPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundMovePlayerPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundMoveVehiclePacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundPlayerActionPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundPlayerCommandPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundPlayerInputPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundSelectTradePacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundSetCarriedItemPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundSignUpdatePacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundSwingPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundUseItemOnPacket
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundUseItemPacket
-import net.minecraft.world.entity.player.Player
-import org.bukkit.inventory.ItemStack
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundContainerButtonClickPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundContainerClickPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundCustomClickActionPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundInteractPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundMovePlayerPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundMoveVehiclePacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundPlayerActionPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundPlayerCommandPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundPlayerInputPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundSelectTradePacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundSetCarriedItemPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundSignUpdatePacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundSwingPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundUseItemOnPacket
+import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.server.Shard_ServerboundUseItemPacket
 
 object ServerPacketFactory {
 
@@ -44,8 +41,16 @@ object ServerPacketFactory {
         items: MutableList<Slot>, data: Shard_ServerPacketData, callback: ContainerClickEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundContainerClickPacket(items).attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundContainerClickPacket(items).attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundContainerClickPacket(items).attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -63,8 +68,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: ButtonClickEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundContainerButtonClickPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundContainerButtonClickPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundContainerButtonClickPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -82,8 +95,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: CustomClickEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundCustomClickActionPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundCustomClickActionPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundCustomClickActionPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -100,10 +121,18 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: InteractEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundInteractPacket().attach(data, callback)
             }
-            
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundInteractPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundInteractPacket().attach(data, callback)
+            }
+
             ServerVersion.v1_21_1 -> {
                 net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.server.Shard_ServerboundInteractPacket()
                     .attach(data, callback)
@@ -119,8 +148,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: MovePlayerEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundMovePlayerPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundMovePlayerPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundMovePlayerPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -138,8 +175,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: MoveVehicleEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundMoveVehiclePacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundMoveVehiclePacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundMoveVehiclePacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -157,8 +202,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: PlayerActionEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundPlayerActionPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundPlayerActionPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundPlayerActionPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -176,8 +229,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: PlayerCommandEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundPlayerCommandPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundPlayerCommandPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundPlayerCommandPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -195,8 +256,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: PlayerInputEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundPlayerInputPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundPlayerInputPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundPlayerInputPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -214,8 +283,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: SelectTradeEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundSelectTradePacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundSelectTradePacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundSelectTradePacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -233,8 +310,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: SetCarriedItemEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundSetCarriedItemPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundSetCarriedItemPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundSetCarriedItemPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -252,8 +337,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: SignUpdateEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundSignUpdatePacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundSignUpdatePacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundSignUpdatePacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -271,8 +364,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: SwingArmEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundSwingPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundSwingPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundSwingPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -290,8 +391,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: UseItemOnEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundUseItemOnPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundUseItemOnPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundUseItemOnPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {
@@ -309,8 +418,16 @@ object ServerPacketFactory {
         data: Shard_ServerPacketData, callback: UseItemEvent.() -> Unit
     ) {
         when (ServerUtil.currentVersion()) {
-            ServerVersion.v1_21_10 -> {
+            ServerVersion.v1_21_11 -> {
                 Shard_ServerboundUseItemPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_10 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.server.Shard_ServerboundUseItemPacket().attach(data, callback)
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.server.Shard_ServerboundUseItemPacket().attach(data, callback)
             }
 
             ServerVersion.v1_21_1 -> {

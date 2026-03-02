@@ -10,8 +10,6 @@ import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IServerPac
 import net.minecraft.network.protocol.game.ServerboundPlayerActionPacket
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.entity.CraftPlayer
-import org.bukkit.entity.Player
-import org.bukkit.plugin.java.JavaPlugin
 
 class Shard_ServerboundPlayerActionPacket : IServerPacket<PlayerActionEvent>{
 

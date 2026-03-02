@@ -13,8 +13,6 @@ import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.common.ServerboundCustomClickActionPacket
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.entity.CraftPlayer
-import org.bukkit.entity.Player
-import org.bukkit.plugin.java.JavaPlugin
 
 /**
  * Util class for attaching and working with the ServerboundCustomClickActionPacket for user-defined clicks by the player.

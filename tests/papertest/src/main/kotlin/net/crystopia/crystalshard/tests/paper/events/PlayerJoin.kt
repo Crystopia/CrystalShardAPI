@@ -8,15 +8,15 @@ import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.box.GUI
 import net.crystopia.crystalshard.paper.box.tablist
+import net.crystopia.crystalshard.paper.custom.world.customWorld
+import net.crystopia.crystalshard.paper.custom.world.data.WorldSettings
 import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.tests.paper.Main
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
-import org.bukkit.Bukkit
-import org.bukkit.Material
-import org.bukkit.NamespacedKey
+import org.bukkit.*
 import org.bukkit.entity.Player
 import org.bukkit.entity.TextDisplay
 import org.bukkit.event.EventHandler
@@ -350,6 +350,25 @@ object PlayerJoin : Listener {
 
     @EventHandler
     fun onEvent(event: PlayerJumpEvent) {
+
+        customWorld {
+            name(NamespacedKey("custom", "jesper"))
+            settings(
+                WorldSettings(
+                    seed = 4534545,
+                    environment = World.Environment.NORMAL,
+                    type = WorldType.NORMAL,
+                    generateStructures = true,
+                    hardcore = true,
+                    bonusChest = true,
+                )
+            )
+            create {
+                println("CREATED")
+            }
+        }
+
+
         // ITEMS
         val item = ItemStack(Material.ARROW)
         val meta = item.itemMeta

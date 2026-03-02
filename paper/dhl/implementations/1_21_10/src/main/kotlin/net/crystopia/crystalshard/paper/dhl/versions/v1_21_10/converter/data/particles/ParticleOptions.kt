@@ -1,8 +1,5 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.converter.data.particles
 
-import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.ParticleOptions
-import net.crystopia.crystalshard.paper.dhl.shared.enums.particles.ParticleType
 import net.minecraft.core.particles.BlockParticleOption
 import net.minecraft.core.particles.ColorParticleOption
 import net.minecraft.core.particles.DustColorTransitionOptions
@@ -23,7 +20,6 @@ import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.block.data.CraftBlockData
 import org.bukkit.craftbukkit.inventory.CraftItemStack
-import org.bukkit.inventory.ItemStack
 
 fun net.crystopia.crystalshard.paper.dhl.shared.data.particles.BlockParticleOption.build(): BlockParticleOption {
     return BlockParticleOption(

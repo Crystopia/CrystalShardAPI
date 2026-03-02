@@ -7,12 +7,5 @@ data class ActionButton<T : Action<T>>(
     var button: CommonButtonData,
     var action: Action<T>
 ) {
-    fun build(): ActionButton {
-        return ActionButton(
-            button.build(),
-            Optional.of(
-                action.build()!!
-            )
-        )
-    }
+
 }

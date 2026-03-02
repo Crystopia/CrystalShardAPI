@@ -16,7 +16,9 @@ dependencies {
     implementation(project(":paper:dhl"))
     implementation(project(":paper:dhl:shared"))
     implementation(project(":paper:dhl:implementations:1_21_1"))
+    implementation(project(":paper:dhl:implementations:1_21_9"))
     implementation(project(":paper:dhl:implementations:1_21_10"))
+    implementation(project(":paper:dhl:implementations:1_21_11"))
 }
 
 kotlin {

@@ -17,4 +17,5 @@ data class WorldBorder(
     var oldLerpSize: Double?,
     var newLerpSize: Double?,
     var lerpTime: Long?,
+    var lerpTimeStart : Long?
 )

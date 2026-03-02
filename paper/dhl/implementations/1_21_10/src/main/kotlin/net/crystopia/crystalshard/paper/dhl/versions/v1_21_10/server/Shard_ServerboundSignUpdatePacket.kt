@@ -4,13 +4,10 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.SignUpdateEvent
-import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IServerPacket
 import net.minecraft.network.protocol.game.ServerboundSignUpdatePacket
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.entity.CraftPlayer
-import org.bukkit.entity.Player
-import org.bukkit.plugin.java.JavaPlugin
 
 class Shard_ServerboundSignUpdatePacket : IServerPacket<SignUpdateEvent> {
 

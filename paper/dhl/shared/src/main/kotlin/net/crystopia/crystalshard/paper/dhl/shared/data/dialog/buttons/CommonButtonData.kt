@@ -9,15 +9,4 @@ data class CommonButtonData(
     var label: Component,
     var tooltip: Component?,
     var width: Int
-) {
-    fun build(): CommonButtonData {
-        var mcTooltip: net.minecraft.network.chat.Component? = null
-        if (tooltip != null) mcTooltip = PaperAdventure.asVanilla(tooltip)
-
-        return CommonButtonData(
-            PaperAdventure.asVanilla(label),
-            Optional.ofNullable(mcTooltip),
-            width
-        )
-    }
-}
+)

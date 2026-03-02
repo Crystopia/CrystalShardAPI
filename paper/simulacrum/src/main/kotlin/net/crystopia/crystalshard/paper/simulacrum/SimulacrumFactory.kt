@@ -22,8 +22,20 @@ object SimulacrumFactory {
     ): T {
 
         val instance = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_11 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.EntityBuilder.createEntityInstance(
+                    type, location
+                )
+            }
+
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createEntityInstance(
+                    type, location
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.EntityBuilder.createEntityInstance(
                     type, location
                 )
             }
@@ -48,8 +60,20 @@ object SimulacrumFactory {
     ): INpc {
 
         val serverplayer = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_11 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.EntityBuilder.createServerPlayer(
+                    location.world, name
+                )
+            }
+
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createServerPlayer(
+                    location.world, name
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.EntityBuilder.createServerPlayer(
                     location.world, name
                 )
             }
@@ -87,8 +111,20 @@ object SimulacrumFactory {
     ): IDisplay<*> {
 
         val displayEntity = when (ServerUtil.currentVersion()) {
+            ServerVersion.v1_21_11 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.EntityBuilder.createDisplayEntity(
+                    CraftEntityType.bukkitToMinecraft(type), location
+                )
+            }
+
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createDisplayEntity(
+                    CraftEntityType.bukkitToMinecraft(type), location
+                )
+            }
+
+            ServerVersion.v1_21_9 -> {
+                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.EntityBuilder.createDisplayEntity(
                     CraftEntityType.bukkitToMinecraft(type), location
                 )
             }
