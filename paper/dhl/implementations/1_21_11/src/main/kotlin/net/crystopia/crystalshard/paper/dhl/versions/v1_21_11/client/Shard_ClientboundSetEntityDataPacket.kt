@@ -3,11 +3,14 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.client
 
 import com.sun.jdi.InvalidTypeException
 import io.papermc.paper.adventure.PaperAdventure
+import io.papermc.paper.world.WeatheringCopperState
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityRotation
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.VillagerData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundSetEntityDataPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.ArmadilloState
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.dhl.shared.enums.server.InteractionHand
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.converter.data.merchant.build
 import net.kyori.adventure.text.Component
@@ -17,15 +20,24 @@ import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
 import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.EntityReference
+import net.minecraft.world.entity.HumanoidArm
 import net.minecraft.world.entity.Pose
+import net.minecraft.world.entity.animal.armadillo.Armadillo
 import net.minecraft.world.entity.animal.chicken.ChickenVariant
 import net.minecraft.world.entity.animal.cow.CowVariant
 import net.minecraft.world.entity.animal.feline.CatVariant
+import net.minecraft.world.entity.animal.frog.FrogVariant
+import net.minecraft.world.entity.animal.golem.CopperGolemState
+import net.minecraft.world.entity.animal.pig.PigVariant
+import net.minecraft.world.entity.animal.sniffer.Sniffer
 import net.minecraft.world.entity.animal.wolf.WolfSoundVariant
 import net.minecraft.world.entity.animal.wolf.WolfVariant
+import net.minecraft.world.entity.decoration.painting.PaintingVariant
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.variant.ModelAndTexture
 import net.minecraft.world.entity.variant.SpawnPrioritySelectors
+import net.minecraft.world.item.component.ResolvableProfile
+import net.minecraft.world.level.block.WeatheringCopper
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.Particle
@@ -33,10 +45,14 @@ import org.bukkit.craftbukkit.CraftParticle
 import org.bukkit.craftbukkit.CraftSound
 import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.block.CraftBlockType
+import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.entity.Chicken
 import org.bukkit.entity.Cow
+import org.bukkit.entity.Pig
 import org.bukkit.inventory.ItemStack
+import org.joml.Quaternionf
+import org.joml.Vector3f
 import java.util.*
 
 class Shard_ClientboundSetEntityDataPacket : IPacket<ClientboundSetEntityDataPacketData> {
@@ -381,11 +397,285 @@ class Shard_ClientboundSetEntityDataPacket : IPacket<ClientboundSetEntityDataPac
                     )
                 )
             }
-            // TODO: FROG_VARIANT, PIG_VARIANT, PAINTING_VARIANT, ARMADILLO_STATE, SNIFFER_STATE, WEATHERING_COPPER_STATE, COPPER_GOLEM_STATE, VECTOR3, QUATERNION, RESOLVABLE_PROFILE
 
-            else -> {
-                TODO("Report this error to the CrystalShard Team! (CODE: NO_ENTITY_DATA_TYPE)")
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.FROG_VARIANT -> {
+                val variant = data.value as net.crystopia.crystalshard.paper.dhl.shared.data.variant.FrogVariant
+                val serializer = EntityDataSerializers.FROG_VARIANT
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    Holder.direct(
+                        FrogVariant(
+                            net.minecraft.core.ClientAsset.ResourceTexture(
+                                Identifier.tryBuild(variant.type.key.namespace, variant.type.key.key)!!
+                            ),
+                            SpawnPrioritySelectors.fallback(variant.spawnPrioritySelectors)
+                        )
+                    )
+                )
             }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.PIG_VARIANT -> {
+                val variant = data.value as net.crystopia.crystalshard.paper.dhl.shared.data.variant.PigVariant
+                val serializer = EntityDataSerializers.PIG_VARIANT
+                val accessor = serializer.createAccessor(data.index)
+
+                val model = when (variant.type) {
+                    Pig.Variant.COLD -> {
+                        PigVariant.ModelType.COLD
+                    }
+
+                    Pig.Variant.WARM -> {
+                        PigVariant.ModelType.NORMAL
+                    }
+
+                    Pig.Variant.TEMPERATE -> {
+                        PigVariant.ModelType.NORMAL
+                    }
+
+                    else -> {
+                        throw IllegalArgumentException("No more variants...")
+                    }
+                }
+
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    Holder.direct(
+                        PigVariant(
+                            ModelAndTexture(
+                                model,
+                                Identifier.tryBuild(variant.type.key.namespace, variant.type.key.key)!!
+                            ),
+                            SpawnPrioritySelectors.fallback(variant.spawnPrioritySelectors)
+                        )
+                    )
+                )
+            }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.PAINTING_VARIANT -> {
+                val variant = data.value as net.crystopia.crystalshard.paper.dhl.shared.data.variant.PaintigVariant
+                val serializer = EntityDataSerializers.PAINTING_VARIANT
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    Holder.direct(
+                        PaintingVariant(
+                            variant.width, variant.height,
+                            Identifier.tryBuild(variant.assetId.namespace, variant.assetId.key)!!,
+                            Optional.ofNullable(PaperAdventure.asVanilla(variant.title)),
+                            Optional.ofNullable(PaperAdventure.asVanilla(variant.author))
+                        )
+                    )
+                )
+            }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.ARMADILLO_STATE -> {
+                val state = when (data.value as ArmadilloState) {
+                    ArmadilloState.IDLE -> {
+                        Armadillo.ArmadilloState.IDLE
+                    }
+
+                    ArmadilloState.ROLLING -> {
+                        Armadillo.ArmadilloState.ROLLING
+                    }
+
+                    ArmadilloState.SCARED -> {
+                        Armadillo.ArmadilloState.SCARED
+                    }
+
+                    ArmadilloState.UNROLLING -> {
+                        Armadillo.ArmadilloState.UNROLLING
+                    }
+                }
+
+
+                val serializer = EntityDataSerializers.ARMADILLO_STATE
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    state
+                )
+            }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.SNIFFER_STATE -> {
+                val state = when (data.value as org.bukkit.entity.Sniffer.State) {
+                    org.bukkit.entity.Sniffer.State.FEELING_HAPPY -> {
+                        Sniffer.State.FEELING_HAPPY
+                    }
+
+                    org.bukkit.entity.Sniffer.State.SCENTING -> {
+                        Sniffer.State.SCENTING
+                    }
+
+                    org.bukkit.entity.Sniffer.State.SNIFFING -> {
+                        Sniffer.State.SNIFFING
+                    }
+
+                    org.bukkit.entity.Sniffer.State.SEARCHING -> {
+                        Sniffer.State.SEARCHING
+                    }
+
+                    org.bukkit.entity.Sniffer.State.RISING -> {
+                        Sniffer.State.RISING
+                    }
+
+                    org.bukkit.entity.Sniffer.State.DIGGING -> {
+                        Sniffer.State.DIGGING
+                    }
+
+                    org.bukkit.entity.Sniffer.State.IDLING -> {
+                        Sniffer.State.IDLING
+                    }
+                }
+
+
+                val serializer = EntityDataSerializers.SNIFFER_STATE
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    state
+                )
+            }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.WEATHERING_COPPER_STATE -> {
+                val state = when (data.value as WeatheringCopperState) {
+                    WeatheringCopperState.WEATHERED -> {
+                        WeatheringCopper.WeatherState.WEATHERED
+                    }
+
+                    WeatheringCopperState.OXIDIZED -> {
+                        WeatheringCopper.WeatherState.OXIDIZED
+                    }
+
+                    WeatheringCopperState.UNAFFECTED -> {
+                        WeatheringCopper.WeatherState.UNAFFECTED
+                    }
+
+                    WeatheringCopperState.EXPOSED -> {
+                        WeatheringCopper.WeatherState.EXPOSED
+                    }
+                }
+
+
+                val serializer = EntityDataSerializers.WEATHERING_COPPER_STATE
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    state
+                )
+            }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.COPPER_GOLEM_STATE -> {
+                val state =
+                    when (data.value as net.crystopia.crystalshard.paper.dhl.shared.enums.entities.CopperGolemState) {
+                        net.crystopia.crystalshard.paper.dhl.shared.enums.entities.CopperGolemState.IDLE -> {
+                            CopperGolemState.IDLE
+                        }
+
+                        net.crystopia.crystalshard.paper.dhl.shared.enums.entities.CopperGolemState.GETTING_ITEM -> {
+                            CopperGolemState.GETTING_ITEM
+                        }
+
+                        net.crystopia.crystalshard.paper.dhl.shared.enums.entities.CopperGolemState.DROPPING_ITEM -> {
+                            CopperGolemState.DROPPING_ITEM
+                        }
+
+                        net.crystopia.crystalshard.paper.dhl.shared.enums.entities.CopperGolemState.DROPPING_NO_ITEM -> {
+                            CopperGolemState.DROPPING_NO_ITEM
+                        }
+
+                        net.crystopia.crystalshard.paper.dhl.shared.enums.entities.CopperGolemState.GETTING_NO_ITEM -> {
+                            CopperGolemState.GETTING_NO_ITEM
+                        }
+                    }
+
+
+                val serializer = EntityDataSerializers.COPPER_GOLEM_STATE
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    state
+                )
+            }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.VECTOR3 -> {
+                val vec = data.value as net.crystopia.crystalshard.paper.dhl.shared.data.world.Vec3i
+                val serializer = EntityDataSerializers.VECTOR3
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    Vector3f(vec.x.toFloat(), vec.y.toFloat(), vec.z.toFloat())
+                )
+            }
+
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.QUATERNION -> {
+                val vec = data.value as net.crystopia.crystalshard.paper.dhl.shared.data.world.Quaternionf
+
+
+                val serializer = EntityDataSerializers.QUATERNION
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    Quaternionf(
+                        vec.x, vec.y, vec.z, vec.w
+                    )
+                )
+            }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.RESOLVABLE_PROFILE -> {
+                val profile = when (data.value) {
+                    is UUID, String -> {
+                        when (data.value) {
+                            is String -> {
+                                ResolvableProfile.createUnresolved(data.value as String)
+                            }
+
+                            is UUID -> {
+                                ResolvableProfile.createUnresolved(data.value as UUID)
+                            }
+
+                            else -> {
+                                throw NotImplementedError("No Implementation for this Type")
+                            }
+                        }
+                    }
+
+                    is org.bukkit.entity.Player -> {
+                        val serverPlayer = (data.value as CraftPlayer).handle
+                        ResolvableProfile.createResolved(serverPlayer.gameProfile)
+                    }
+
+                    else -> throw NotImplementedError("No Implementation for this Type")
+                }
+
+
+                val serializer = EntityDataSerializers.RESOLVABLE_PROFILE
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    profile
+                )
+            }
+
+            net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType.HUMANOID_ARM -> {
+                val arm = when (data.value as InteractionHand) {
+                    InteractionHand.MAIN_HAND -> {
+                        HumanoidArm.RIGHT
+                    }
+
+                    InteractionHand.OFF_HAND -> {
+                        HumanoidArm.LEFT
+                    }
+                }
+                val serializer = EntityDataSerializers.HUMANOID_ARM
+                val accessor = serializer.createAccessor(data.index)
+                return SynchedEntityData.DataValue.create(
+                    accessor,
+                    arm
+                )
+            }
+
         }
     }
 }
