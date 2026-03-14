@@ -187,6 +187,30 @@ $dokka.location:net.crystopia.crystalshard.paper.custom.messaging/PluginMessage/
 $dokka.location:net.crystopia.crystalshard.paper.custom.messaging/PluginMessage/send/#kotlin.String/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.messaging/-plugin-message/send.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.messaging/PluginMessage/type/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.messaging/-plugin-message/type.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.messaging/PluginMessage/unregister/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.messaging/-plugin-message/unregister.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data////PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/index.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/index.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings/WorldSettings/#kotlin.Long?#org.bukkit.World.Environment?#org.bukkit.WorldType?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/-world-settings.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings/bonusChest/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/bonus-chest.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings/environment/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/environment.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings/generateStructures/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/generate-structures.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings/hardcore/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/hardcore.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings/seed/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/seed.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings/type/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/type.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world////PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/index.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world//customWorld/#kotlin.Function1[net.crystopia.crystalshard.paper.custom.world.CustomWorld,kotlin.Unit]/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/custom-world.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/index.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/CustomWorld/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/-custom-world.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/biomeProvider/#TypeParam(bounds=[org.bukkit.generator.BiomeProvider])/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/biome-provider.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/create/#kotlin.Function1[org.bukkit.World?,kotlin.Unit]/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/create.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/delete/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/delete.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/generator/#TypeParam(bounds=[org.bukkit.generator.ChunkGenerator])/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/generator.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/generatorSettings/#kotlin.String/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/generator-settings.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/name/#org.bukkit.NamespacedKey/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/name.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/seed/#kotlin.Long/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/seed.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/CustomWorld/settings/#net.crystopia.crystalshard.paper.custom.world.data.WorldSettings/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-custom-world/settings.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/WorldHelper///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-world-helper/index.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/WorldHelper/create/#org.bukkit.NamespacedKey#net.crystopia.crystalshard.paper.custom.world.data.WorldSettings#org.bukkit.generator.ChunkGenerator?#org.bukkit.generator.BiomeProvider?#kotlin.String?#kotlin.Function1[org.bukkit.World?,kotlin.Unit]/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-world-helper/create.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.world/WorldHelper/delete/#org.bukkit.NamespacedKey/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world/-world-helper/delete.html
 net.crystopia.crystalshard.paper.custom.advancements
 net.crystopia.crystalshard.paper.custom.advancements.models
 net.crystopia.crystalshard.paper.custom.advancements.models.criteria
@@ -195,3 +219,5 @@ net.crystopia.crystalshard.paper.custom.advancements.models.rewards
 net.crystopia.crystalshard.paper.custom.crystal
 net.crystopia.crystalshard.paper.custom.extension
 net.crystopia.crystalshard.paper.custom.messaging
+net.crystopia.crystalshard.paper.custom.world
+net.crystopia.crystalshard.paper.custom.world.data
