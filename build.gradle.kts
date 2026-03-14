@@ -17,7 +17,7 @@ subprojects {
 
 allprojects {
     group = "net.crystopia.crystalshard"
-    version = "0.5.0"
+    version = "0.5.1"
 
     repositories {
         mavenCentral()
@@ -27,7 +27,7 @@ allprojects {
             url = uri("https://repo.papermc.io/repository/maven-public/")
         }
         maven {
-            url = uri("https://repo.xyzhub.link/releases")
+            url = uri("https://repo.xyzify.ing/releases")
         }
         maven("https://repo.flyte.gg/releases")
     }
