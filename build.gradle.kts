@@ -1,6 +1,3 @@
-import org.jetbrains.dokka.gradle.formats.DokkaFormatPlugin
-import org.jetbrains.dokka.gradle.internal.InternalDokkaGradlePluginApi
-
 plugins {
     kotlin("jvm") version "2.+"
     kotlin("plugin.serialization") version "2.+" apply false
@@ -11,7 +8,7 @@ plugins {
     id("com.gradleup.shadow") version "9.2.2" apply false
     id("io.papermc.paperweight.userdev") version "2.0.0-beta.19" apply false
     kotlin("kapt") version "2.3.0" apply false
-    id("org.jetbrains.dokka") version "2.1.0"
+    id("org.jetbrains.dokka") version "2.1.0" apply false
 }
 
 subprojects {
@@ -20,7 +17,7 @@ subprojects {
 
 allprojects {
     group = "net.crystopia.crystalshard"
-    version = "0.4.1"
+    version = "0.5.0"
 
     repositories {
         mavenCentral()
@@ -34,11 +31,4 @@ allprojects {
         }
         maven("https://repo.flyte.gg/releases")
     }
-
-    dokka {
-        pluginsConfiguration.html {
-            footerMessage.set("(c)  2026 | xy-z.org - crystopia.net")
-        }
-    }
-
 }
