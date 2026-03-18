@@ -13,7 +13,7 @@ import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
 
-fun dialog(
+fun packetDialog(
     dialog: Dialog<*>,
     external: Boolean,
     plugin: JavaPlugin,

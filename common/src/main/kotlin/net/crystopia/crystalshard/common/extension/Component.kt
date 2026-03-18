@@ -9,12 +9,30 @@ import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.event.DataComponentValue
 import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.minimessage.MiniMessage
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import java.util.*
 
 val MINI_MESSAGE: MiniMessage = MiniMessage.miniMessage()
 
 /**
  * Appends MiniMessage text with optional font.
+ */
+fun Component.toPlainText(
+    text: String, font: String? = null
+): String {
+    return PlainTextComponentSerializer.plainText().serialize(this)
+}
+
+/**
+ * Appends MiniMessage text with optional font.
+ */
+fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toPlainText(
+): String {
+    return PlainTextComponentSerializer.plainText().serialize(this.build())
+}
+
+/**
+ *
  */
 fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.text(
     text: String, font: String? = null

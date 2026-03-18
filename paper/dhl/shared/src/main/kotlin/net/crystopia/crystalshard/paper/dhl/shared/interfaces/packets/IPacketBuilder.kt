@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.Clientbou
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundBlockEntityDataPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundBlockUpdatePacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundBorderPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundChunkBatchFinishedPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundContainerClosePacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundContainerSetContentPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundContainerSetDataPacketData
@@ -14,6 +15,7 @@ import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.Clientbou
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundEntityEventPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundEntityPositionSyncPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundGameEventPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundLevelChunkWithLightPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundLevelEventPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundLevelParticlesPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundMapItemDataPacketData
@@ -55,6 +57,9 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+     fun setChunkBatchFinished(data: ClientboundChunkBatchFinishedPacketData): Packet<*>
+     fun startChunkBatch(): Packet<*>
+     fun sendChunkWithLight(data: ClientboundLevelChunkWithLightPacketData): Packet<*>
     fun showDialog(data: ClientboundShowDialogPacketData): Packet<*>
     fun updateTickingState(data: ClientboundTickingStatePacketData): Packet<*>
     fun updateTickingStep(data: ClientboundTickingStepPacketData): Packet<*>

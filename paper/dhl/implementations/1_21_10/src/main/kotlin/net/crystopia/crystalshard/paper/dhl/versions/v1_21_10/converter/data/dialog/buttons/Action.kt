@@ -10,10 +10,6 @@ import java.net.URI
 import kotlin.collections.component1
 import kotlin.collections.component2
 
-fun Action<*>.build(): net.minecraft.server.dialog.action.Action? {
-    return null
-}
-
 fun ActionCustomAll.build(): net.minecraft.server.dialog.action.CustomAll {
     val nbt = CompoundTag()
     additionsNBT.forEach { (key, data) ->

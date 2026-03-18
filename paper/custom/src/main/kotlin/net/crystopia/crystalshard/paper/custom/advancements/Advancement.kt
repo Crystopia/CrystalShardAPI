@@ -1,9 +1,8 @@
 package net.crystopia.crystalshard.paper.custom.advancements
 
 import com.destroystokyo.paper.event.player.PlayerAdvancementCriterionGrantEvent
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import net.crystopia.crystalshard.paper.custom.crystal.CrystalEvents
+import net.crystopia.crystalshard.paper.custom.smart.Events
 import net.crystopia.crystalshard.paper.custom.advancements.models.AdvancementModel
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
@@ -58,12 +57,12 @@ class Advancement {
     }
 
     fun criterionGrantEvent(action: PlayerAdvancementCriterionGrantEvent.() -> Unit = {}): Advancement {
-        CrystalEvents.advancementCriterionGrantEvent[key] = action
+        Events.advancementCriterionGrantEvent[key] = action
         return this
     }
 
     fun doneEvent(action: PlayerAdvancementDoneEvent.() -> Unit = {}): Advancement {
-        CrystalEvents.playerAdvancementDoneEvent[key] = action
+        Events.playerAdvancementDoneEvent[key] = action
         return this
     }
 }

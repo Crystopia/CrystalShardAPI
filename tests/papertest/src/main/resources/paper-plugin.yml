@@ -1,5 +1,5 @@
 name: "CrystalShardTest"
 description: "Test Plugin for Crystalshard"
 api-version: "1.21"
-main: "net.crystopia.crystalshard.tests.paper.Main"
+main: "net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest"
 version: "crystalshard-test_no-prod"

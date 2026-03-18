@@ -5,7 +5,7 @@ import net.kyori.adventure.text.Component
 import org.bukkit.entity.Player
 
 
-fun tablist(header: Component? = null, footer: Component? = null, callback: TabList.() -> Unit): TabList {
+fun packetTabList(header: Component? = null, footer: Component? = null, callback: TabList.() -> Unit): TabList {
     val list = TabList(
         header,
         footer

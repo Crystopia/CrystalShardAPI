@@ -12,7 +12,7 @@ class Shard_ClientboundCooldownPacket : IPacket<ClientboundCooldownPacketData> {
         packetObj: ClientboundCooldownPacketData
     ): ClientboundCooldownPacket {
         return ClientboundCooldownPacket(
-            ResourceLocation.withDefaultNamespace(packetObj.item.name.lowercase()),
+            ResourceLocation.parse(packetObj.item.key.toString()),
             packetObj.duration
         )
     }

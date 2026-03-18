@@ -10,7 +10,7 @@ data class DisplayData<T : FormatData<*>>(
     var displayName: Component,
     var displayAutoUpdate: Boolean,
     var numberFormat: NumberFormat,
-    var format: FormatData<T>,
+    var format: T,
     var renderType: RenderType,
     var criteria: ObjectiveCriteria
 )

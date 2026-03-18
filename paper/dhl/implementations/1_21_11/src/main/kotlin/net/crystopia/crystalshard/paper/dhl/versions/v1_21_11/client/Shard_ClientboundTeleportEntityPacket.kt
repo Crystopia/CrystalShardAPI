@@ -27,7 +27,6 @@ class Shard_ClientboundTeleportEntityPacket : IPacket<ClientboundTeleportEntityP
             ),
             mutableSetOf(),
             packetObj.onGround
-
         )
     }
 }

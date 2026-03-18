@@ -2,14 +2,12 @@ package net.crystopia.crystalshard.paper.core.extension
 
 import org.bukkit.entity.Damageable
 import org.bukkit.entity.Entity
+import org.bukkit.entity.LivingEntity
 
-fun Entity.kill(): Boolean {
+fun LivingEntity.kill(): Boolean {
     this.remove()
-    if (this is Damageable) {
-        this.health = 0.0
-        return true
-    }
-    return false
+    this.health = 0.0
+    return true
 }
     
 

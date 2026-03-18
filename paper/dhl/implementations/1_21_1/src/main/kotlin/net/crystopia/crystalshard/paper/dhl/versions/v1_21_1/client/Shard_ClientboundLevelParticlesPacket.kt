@@ -28,9 +28,13 @@ class Shard_ClientboundLevelParticlesPacket : IPacket<ClientboundLevelParticlesP
             else -> {}
         }
 
+        val particleData =
+            if (packetObj.particle.options == null) net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.converter.enums.particles.ParticleType.convert(
+                packetObj.particle.particle
+            ).id else particle as ParticleOptions
+
         return ClientboundLevelParticlesPacket(
-            (if (packetObj.particle.options == null) ParticleType.convert(packetObj.particle.particle).id
-            else particle as ParticleOptions) as ParticleOptions,
+            particleData as ParticleOptions,
             packetObj.particle.overrideLimiter,
             packetObj.particle.x,
             packetObj.particle.y,

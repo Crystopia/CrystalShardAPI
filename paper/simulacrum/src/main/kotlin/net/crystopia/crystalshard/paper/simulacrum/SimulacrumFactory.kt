@@ -4,9 +4,9 @@ import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.EntityBuilder
-import net.crystopia.crystalshard.paper.simulacrum.displays.PBlockDisplay
-import net.crystopia.crystalshard.paper.simulacrum.displays.PItemDisplay
-import net.crystopia.crystalshard.paper.simulacrum.displays.PTextDisplay
+import net.crystopia.crystalshard.paper.simulacrum.displays.SBlockDisplay
+import net.crystopia.crystalshard.paper.simulacrum.displays.SItemDisplay
+import net.crystopia.crystalshard.paper.simulacrum.displays.STextDisplay
 import net.crystopia.crystalshard.paper.simulacrum.npc.Npc
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.displays.IDisplay
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
@@ -152,20 +152,20 @@ object SimulacrumFactory {
 
         val obj = when (displayEntity.type) {
             net.minecraft.world.entity.EntityType.TEXT_DISPLAY -> {
-                PTextDisplay(
+                STextDisplay(
                     id = key, type = type, entity = displayEntity.bukkitEntity as TextDisplay
                 )
             }
 
             net.minecraft.world.entity.EntityType.ITEM_DISPLAY -> {
 
-                PItemDisplay(
+                SItemDisplay(
                     id = key, type = type, entity = displayEntity.bukkitEntity as ItemDisplay
                 )
             }
 
             net.minecraft.world.entity.EntityType.BLOCK_DISPLAY -> {
-                PBlockDisplay(
+                SBlockDisplay(
                     id = key, type = type, entity = displayEntity.bukkitEntity as BlockDisplay
                 )
             }

@@ -4,8 +4,8 @@ import org.bukkit.NamespacedKey
 
 /**
  * General Interface for a very simple NPC Manager. 
- * Implementation for it in: `net.crystopia.crystalshard.paper.npc.NpcManager`
- * @see NpcManager
+ * Implementation for it in: `net.crystopia.crystalshard.paper.npc.CrystalNpcManager`
+ * @see net.crystopia.crystalshard.paper.simulacrum.npc.CrystalNpcManager
  */
 interface INpcManager {
     var registeredNpcs: MutableMap<NamespacedKey, INpc>

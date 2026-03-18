@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
 
 @ExperimentalApi("stable release of the packetGuis... (stable version)")
-fun gui(
+fun packetGUI(
     inventoryId: Int,
     title: Component,
     type: MenuType,

@@ -2,20 +2,9 @@ package net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.client
 
 
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundLevelParticlesPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.BlockParticleOption
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.ColorParticleOption
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.DustColorTransitionOptions
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.DustParticleOptions
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.ItemParticleOption
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.PowerParticleOption
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.SculkChargeParticleOptions
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.ShriekParticleOption
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.SpellParticleOption
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.TrailParticleOption
-import net.crystopia.crystalshard.paper.dhl.shared.data.particles.VibrationParticleOption
+import net.crystopia.crystalshard.paper.dhl.shared.data.particles.*
 import net.crystopia.crystalshard.paper.dhl.shared.interfaces.packets.IPacket
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.converter.data.particles.build
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.converter.enums.particles.ParticleType
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket
 
@@ -40,9 +29,13 @@ class Shard_ClientboundLevelParticlesPacket : IPacket<ClientboundLevelParticlesP
             else -> {}
         }
 
+        val particleData =
+            if (packetObj.particle.options == null) net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.converter.enums.particles.ParticleType.convert(
+                packetObj.particle.particle
+            ).id else particle as ParticleOptions
+
         return ClientboundLevelParticlesPacket(
-            ((if (packetObj.particle.options == null) ParticleType.convert(packetObj.particle.particle)
-            else particle as ParticleOptions) as ParticleOptions),
+            particleData as ParticleOptions,
             packetObj.particle.overrideLimiter,
             packetObj.particle.alwaysShow,
             packetObj.particle.x,

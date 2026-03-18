@@ -14,7 +14,7 @@ class Shard_ClientboundBlockEntityDataPacket : IPacket<ClientboundBlockEntityDat
     override fun createPacket(packetObj: ClientboundBlockEntityDataPacketData): ClientboundBlockEntityDataPacket {
         return ClientboundBlockEntityDataPacket(
             BlockPos(packetObj.blockPos.x,packetObj.blockPos.y,packetObj.blockPos.z),
-            BuiltInRegistries.BLOCK_ENTITY_TYPE.get(ResourceLocation.tryBuild(packetObj.type.key.namespace, packetObj.type.key.key)!!).get().value(),
+            net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.converter.enums.entities.BlockEntityType.convert(packetObj.type).type,
             CompoundTag().deserialize(packetObj.nbt)
         )
     }

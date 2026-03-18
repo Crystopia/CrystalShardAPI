@@ -6,21 +6,21 @@ import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
+import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.BlockEntityType
 import net.kyori.adventure.text.Component
 import org.bukkit.NamespacedKey
 import org.bukkit.block.BlockType
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
-import java.util.*
 
 class ClientMods(val player: Player, val plugin: JavaPlugin) {
-    val listenerKey = UUID.fromString("173c9e65-66a5-44c7-b21d-b307bdb06423").toString()
+    val listenerKey = "${this.player.uniqueId}_moddetect"
     private val blockPos = BlockPos(
         player.location.x.toInt(), player.location.y.toInt(), player.location.z.toInt()
     )
 
     class Mod(
-        var player: Player, val plugin: JavaPlugin, val blockPos: BlockPos, val listenerKey: String
+        var player: Player, val plugin: JavaPlugin, val listenerKey: String
     ) {
         private var component: Component? = null
 
@@ -33,16 +33,15 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
             ServerPacketFactory.signUpdateEvent(
                 Shard_ServerPacketData(
                     player = player,
-                    name = NamespacedKey(listenerKey, listenerKey),
+                    name = NamespacedKey("moddetect", listenerKey),
                     shouldPublish = false,
                     plugin = plugin
                 )
             ) {
-                player.removeServerPacketListener(listenerKey)
-
                 if (lines[0] != "NONE") {
                     callback(true)
-                }
+                } else callback(false)
+                player.removeServerPacketListener(NamespacedKey("moddetect", listenerKey).toString())
             }
             return this
         }
@@ -56,12 +55,12 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
 
     fun onMod(translationKey: String, callback: Mod.() -> Unit): ClientMods {
         detectPacketsSender(translationKey)
-        val mod = Mod(player, plugin, blockPos, listenerKey)
+        val mod = Mod(player, plugin, listenerKey)
         callback(mod)
         return this
     }
 
-    fun detectPacketsSender(key: String) {
+    private fun detectPacketsSender(key: String) {
 
         ClientPacketFactory.createBlockUpdatePacket(
             blockPos, BlockType.OAK_SIGN
@@ -69,9 +68,8 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
             packet.send(mutableListOf(player))
         }
 
-
         ClientPacketFactory.createBlockEntityDataPacket(
-            blockPos, BlockType.OAK_SIGN, buildNBT(key)
+            blockPos, BlockEntityType.SIGN, buildNBT(key)
         ) { packet ->
             packet.send(mutableListOf(player))
         }
@@ -82,35 +80,18 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
             packet.send(mutableListOf(player))
         }
 
+        player.closeInventory()
+
         ClientPacketFactory.createBlockUpdatePacket(
             blockPos, BlockType.AIR
         ) { packet ->
             packet.send(mutableListOf(player))
         }
-
-        player.closeInventory()
     }
 
-    private fun buildNBT(key: String): MutableMap<String, Any> {
-
-        val map = mutableMapOf<String, Any>()
-        map["id"] = "minecraft:sign"
-
-        val frontText = mutableMapOf<String, Any>()
-        val messages = mutableListOf<MutableMap<String, Any>>()
-
-        repeat(4) {
-            val line = mutableMapOf<String, Any>()
-            line["translate"] = key
-            line["fallback"] = "NONE"
-            messages.add(line)
-        }
-
-        frontText["messages"] = messages
-        frontText["color"] = "black"
-        frontText["has_glowing_text"] = false
-
-        map["front_text"] = frontText
-        return map
+    private fun buildNBT(key: String): String {
+        return """
+          {front_text:{messages:[{"translate":"$key","fallback":"NONE"},"","",""]}}
+      """.trimIndent()
     }
 }
