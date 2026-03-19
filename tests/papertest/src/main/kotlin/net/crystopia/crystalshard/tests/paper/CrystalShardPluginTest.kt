@@ -4,7 +4,6 @@ import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIPaperConfig
 import net.crystopia.crystalshard.paper.core.crystalshard
 import net.crystopia.crystalshard.paper.core.utils.Log
-import net.crystopia.crystalshard.paper.custom.advancements.Advancement
 import net.crystopia.crystalshard.paper.custom.smart.SmartEvents
 import net.crystopia.crystalshard.tests.paper.tests.base.TestCommand
 import org.bukkit.plugin.java.JavaPlugin
