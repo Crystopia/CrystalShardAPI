@@ -14,9 +14,6 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
     // paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
 
-    // Twilight
-    implementation("gg.flyte:twilight:1.1.22")
-
     // Kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

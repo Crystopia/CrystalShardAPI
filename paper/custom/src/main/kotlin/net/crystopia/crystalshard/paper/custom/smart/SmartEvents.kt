@@ -18,13 +18,12 @@ import org.bukkit.persistence.PersistentDataType
 
 /**
  *
- * Register Events for SmartEvent support...
+ * Register SmartEvents for SmartEvent support...
  *
  */
 
-class Events : Listener {
+object SmartEvents : Listener {
 
-    companion object {
         val EVENT_KEY: NamespacedKey
             get() = NamespacedKey("crystalshardapievents", "uuid")
 
@@ -162,11 +161,7 @@ class Events : Listener {
         private fun onInventoryClickEvent(event: InventoryClickEvent) {
             if (inventoryClickEvent.isEmpty()) return
             inventoryClickEvent.forEach { (string, function) ->
-                try {
-                    inventoryClickEvent[string]!!.invoke(event)
-                } catch (e: Exception) {
-                    // Ignore
-                }
+                inventoryClickEvent[string]!!.invoke(event)
             }
         }
 
@@ -230,6 +225,4 @@ class Events : Listener {
             }
             return
         }
-
-    }
 }
