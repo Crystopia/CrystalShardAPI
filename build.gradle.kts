@@ -29,6 +29,5 @@ allprojects {
         maven {
             url = uri("https://repo.xyzify.ing/releases")
         }
-        maven("https://repo.flyte.gg/releases")
     }
 }
