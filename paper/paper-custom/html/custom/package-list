@@ -202,10 +202,6 @@ $dokka.location:net.crystopia.crystalshard.paper.custom.messaging/PluginMessage/
 $dokka.location:net.crystopia.crystalshard.paper.custom.messaging/PluginMessage/type/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.messaging/-plugin-message/type.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.messaging/PluginMessage/unregister/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.messaging/-plugin-message/unregister.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.smart////PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/index.html
-$dokka.location:net.crystopia.crystalshard.paper.custom.smart/Events.Companion///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-events/-companion/index.html
-$dokka.location:net.crystopia.crystalshard.paper.custom.smart/Events.Companion/EVENT_KEY/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-events/-companion/-e-v-e-n-t_-k-e-y.html
-$dokka.location:net.crystopia.crystalshard.paper.custom.smart/Events///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-events/index.html
-$dokka.location:net.crystopia.crystalshard.paper.custom.smart/Events/Events/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-events/-events.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.smart/Recipe.Companion///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-recipe/-companion/index.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.smart/Recipe.Companion/createBlastRecipe/#org.bukkit.inventory.ItemStack#org.bukkit.Material#kotlin.Float#kotlin.Int#kotlin.Boolean/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-recipe/-companion/create-blast-recipe.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.smart/Recipe.Companion/createCampfireRecipe/#org.bukkit.inventory.ItemStack#org.bukkit.Material#kotlin.Float#kotlin.Int#kotlin.Boolean/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-recipe/-companion/create-campfire-recipe.html
@@ -220,6 +216,8 @@ $dokka.location:net.crystopia.crystalshard.paper.custom.smart/Recipe.Companion/c
 $dokka.location:net.crystopia.crystalshard.paper.custom.smart/Recipe.Companion/getRecipes/#org.bukkit.inventory.ItemStack/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-recipe/-companion/get-recipes.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.smart/Recipe///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-recipe/index.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.smart/Recipe/Recipe/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-recipe/-recipe.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.smart/SmartEvents///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-smart-events/index.html
+$dokka.location:net.crystopia.crystalshard.paper.custom.smart/SmartEvents/EVENT_KEY/#/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.smart/-smart-events/-e-v-e-n-t_-k-e-y.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.world.data////PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/index.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings///PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/index.html
 $dokka.location:net.crystopia.crystalshard.paper.custom.world.data/WorldSettings/WorldSettings/#kotlin.Long?#org.bukkit.World.Environment?#org.bukkit.WorldType?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?/PointingToDeclaration/custom/net.crystopia.crystalshard.paper.custom.world.data/-world-settings/-world-settings.html
