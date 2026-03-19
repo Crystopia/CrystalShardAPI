@@ -29,7 +29,6 @@ tasks {
         }
         shadowJar {
             relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
-            relocate("gg.flyte.twilight", "net.crystopia.libs.twilight")
         }
         java {
             withSourcesJar()
