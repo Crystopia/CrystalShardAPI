@@ -4,6 +4,8 @@ plugins {
     id("maven-publish")
 }
 
+group = "net.crystopia.crystalshard"
+
 dependencies {
     compileOnly("com.velocitypowered:velocity-api:3.5.0-SNAPSHOT")
 }
@@ -17,29 +19,36 @@ tasks {
         dependsOn(shadowJar)
     }
     shadowJar {
+        archiveClassifier.set("")
+        configurations = listOf(project.configurations["runtimeClasspath"])
+        dependencies {
+            include(dependency("net.crystopia.crystalshard.*:.*"))
+        }
+    }
+    publishing {
+        repositories {
+            maven {
+                name = "Reposilite"
+                url = uri("https://repo.xyzify.ing/releases")
+                credentials {
+                    username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
+                    password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
+                }
+                authentication {
+                    create<BasicAuthentication>("basic")
+                }
+            }
+        }
+        publications {
+            create<MavenPublication>("reposilite") {
+                from(components["java"])
+                artifactId = "velocity"
+                groupId = group as String
+                version = version
+
+
+            }
+        }
     }
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "Reposilite"
-            url = uri("https://repo.xyzify.ing/releases")
-            credentials {
-                username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
-                password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
-            }
-            authentication {
-                create<BasicAuthentication>("basic")
-            }
-        }
-    }
-    publications {
-        create<MavenPublication>("reposilite") {
-            from(components["java"])
-            artifactId = "velocity"
-            groupId = group as String
-            version = version
-        }
-    }
-}

@@ -7,6 +7,8 @@ plugins {
     id("maven-publish")
 }
 
+group = "net.crystopia.crystalshard.paper"
+
 paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 dependencies {
@@ -24,45 +26,52 @@ dependencies {
 }
 
 tasks {
-    tasks {
         assemble {
             dependsOn(shadowJar)
             dependsOn(reobfJar)
         }
         shadowJar {
+            dependsOn(":paper:core:shadowJar")
+            archiveClassifier.set("")
+            configurations = listOf(project.configurations["runtimeClasspath"])
+            dependencies {
+                include(dependency("net.crystopia.crystalshard.paper:dhl:shared"))
+                include(dependency("net.crystopia.crystalshard.paper:dhl:implementations:1_21_1"))
+                include(dependency("net.crystopia.crystalshard.paper:dhl:implementations:1_21_9"))
+                include(dependency("net.crystopia.crystalshard.paper:dhl:implementations:1_21_10"))
+                include(dependency("net.crystopia.crystalshard.paper:dhl:implementations:1_21_11"))
+            }
             relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
         }
         java {
             withSourcesJar()
             withJavadocJar()
         }
+    publishing {
+        repositories {
+            maven {
+                name = "Reposilite"
+                url = uri("https://repo.xyzify.ing/releases")
+                credentials {
+                    username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
+                    password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
+                }
+                authentication {
+                    create<BasicAuthentication>("basic")
+                }
+            }
+        }
+        publications {
+            create<MavenPublication>("reposilite") {
+                from(components["java"])
+                artifactId = "dhl"
+                groupId = group as String
+                version = version
+            }
+        }
     }
 }
 
 kotlin {
     jvmToolchain(22)
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "Reposilite"
-            url = uri("https://repo.xyzify.ing/releases")
-            credentials {
-                username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
-                password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
-            }
-            authentication {
-                create<BasicAuthentication>("basic")
-            }
-        }
-    }
-    publications {
-        create<MavenPublication>("reposilite") {
-            from(components["java"])
-            artifactId = "paper-dhl"
-            groupId = group as String
-            version = version
-        }
-    }
 }

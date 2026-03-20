@@ -3,11 +3,12 @@ plugins {
     kotlin("jvm") version "2.+"
     id("com.gradleup.shadow") version "9.2.2"
     id("io.papermc.paperweight.userdev")
-    kotlin("plugin.serialization")
     id("maven-publish")
 }
 
 paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
+
+group = "net.crystopia.crystalshard.paper"
 
 dependencies {
     paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
@@ -26,41 +27,48 @@ kotlin {
 }
 
 tasks {
-    tasks {
         assemble {
             dependsOn(shadowJar)
             dependsOn(reobfJar)
         }
         shadowJar {
+            dependsOn(":paper:dhl:shadowJar")
+            dependsOn(":paper:core:shadowJar")
+            archiveClassifier.set("")
+            configurations = listOf(project.configurations["runtimeClasspath"])
+            dependencies {
+                include(dependency("net.crystopia.crystalshard.*:.*"))
+            }
             relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
         }
         java {
             withSourcesJar()
             withJavadocJar()
         }
+    publishing {
+        repositories {
+            maven {
+                name = "Reposilite"
+                url = uri("https://repo.xyzify.ing/releases")
+                credentials {
+                    username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
+                    password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
+                }
+                authentication {
+                    create<BasicAuthentication>("basic")
+                }
+            }
+        }
+        publications {
+            create<MavenPublication>("reposilite") {
+                from(components["java"])
+                artifactId = "simulacrum"
+                groupId = group as String
+                version = version
+
+
+            }
+        }
     }
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "Reposilite"
-            url = uri("https://repo.xyzify.ing/releases")
-            credentials {
-                username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
-                password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
-            }
-            authentication {
-                create<BasicAuthentication>("basic")
-            }
-        }
-    }
-    publications {
-        create<MavenPublication>("reposilite") {
-            from(components["java"])
-            artifactId = "paper-simulacrum"
-            groupId = group as String
-            version = version
-        }
-    }
-}
