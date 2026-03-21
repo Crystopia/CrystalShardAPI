@@ -19,7 +19,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":paper:core"))
     implementation(project(":paper:dhl"))
-    implementation(project(":paper:dhl:shared"))
 }
 
 kotlin {
@@ -31,8 +30,12 @@ tasks {
         dependsOn(shadowJar)
         dependsOn(reobfJar)
     }
+    reobfJar {
+        dependsOn(":paper:custom:jar")
+    }
     shadowJar {
         dependsOn(":paper:core:shadowJar")
+        dependsOn(":paper:dhl:shadowJar")
         archiveClassifier.set("")
         configurations = listOf(project.configurations["runtimeClasspath"])
         dependencies {

@@ -5,6 +5,7 @@ plugins {
     kotlin("jvm") version "2.+"
     id("io.papermc.paperweight.userdev")
     id("com.gradleup.shadow") version "9.2.2"
+    id("maven-publish")
 }
 
 group = "net.crystopia.crystalshard.paper.dhl.versions"
@@ -18,14 +19,41 @@ dependencies {
 }
 
 tasks {
-    tasks {
-        assemble {
-            dependsOn(shadowJar)
-            dependsOn(reobfJar)
+    assemble {
+        dependsOn(shadowJar)
+        dependsOn(reobfJar)
+    }
+    shadowJar {
+        dependsOn(":paper:dhl:shared:shadowJar")
+        archiveClassifier.set("")
+        configurations = listOf(project.configurations["runtimeClasspath"])
+        relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
+    }
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+    publishing {
+        repositories {
+            maven {
+                name = "Reposilite"
+                url = uri("https://repo.xyzify.ing/releases")
+                credentials {
+                    username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
+                    password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
+                }
+                authentication {
+                    create<BasicAuthentication>("basic")
+                }
+            }
         }
-        java {
-            withSourcesJar()
-            withJavadocJar()
+        publications {
+            create<MavenPublication>("reposilite") {
+                from(components["java"])
+                artifactId = "1_21_11"
+                groupId = group as String
+                version = version
+            }
         }
     }
 }

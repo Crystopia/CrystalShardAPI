@@ -4,7 +4,6 @@ import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.*
-import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.Dialog
 import net.crystopia.crystalshard.paper.dhl.shared.data.dialog.buttons.ActionCustomAll
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.CustomClickEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
@@ -14,7 +13,7 @@ import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
 
 fun packetDialog(
-    dialog: Dialog<*>,
+    dialog: net.crystopia.crystalshard.paper.dhl.shared.data.dialog.Dialog<*>,
     external: Boolean,
     plugin: JavaPlugin,
     callback: net.crystopia.crystalshard.paper.box.Dialog.() -> Unit
@@ -32,14 +31,14 @@ fun packetDialog(
 class Dialog {
 
     private var customClickEvent: CustomClickEvent.() -> Unit = {}
-    private var dialog: Dialog<*>
+    private var dialog: net.crystopia.crystalshard.paper.dhl.shared.data.dialog.Dialog<*>
     private var listenerKey: NamespacedKey
     private var players: MutableList<Player> = mutableListOf()
     private var plugin: JavaPlugin
     private var external: Boolean
 
     constructor(
-        dialog: Dialog<*>,
+        dialog: net.crystopia.crystalshard.paper.dhl.shared.data.dialog.Dialog<*>,
         external: Boolean,
         plugin: JavaPlugin,
     ) {
@@ -87,7 +86,7 @@ class Dialog {
     }
 
 
-    private fun handleEvent(eventData: CustomClickEvent, dialog: Dialog<*>) {
+    private fun handleEvent(eventData: CustomClickEvent, dialog: net.crystopia.crystalshard.paper.dhl.shared.data.dialog.Dialog<*>) {
         when (dialog) {
             is ServerLinksDialog -> {
                 if (dialog.exitAction?.action is ActionCustomAll) {

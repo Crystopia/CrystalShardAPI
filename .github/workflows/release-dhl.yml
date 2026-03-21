@@ -1,0 +1,29 @@
+﻿name: Build CrystalShard-Paper
+
+on:
+  push:
+    tags:
+      - v.*
+
+jobs:
+  publish:
+    strategy:
+      matrix:
+        tasks: ["shared", "implementations:1_21_1", "implementations:1_21_9", "implementations:1_21_10", "implementations:1_21_11"]
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '22'
+
+      - name: Grant execute permission for Gradle
+        run: chmod +x gradlew
+      - name: Build crystalshard-paper-${{ matrix.tasks }}
+        run: ./gradlew paper:dhl:${{ matrix.tasks }}:publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}
