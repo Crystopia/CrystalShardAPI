@@ -24,34 +24,10 @@ $dokka.location:net.crystopia.crystalshard.paper.core.extension//taskLaterAsync/
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//timer/org.bukkit.plugin.java.JavaPlugin#kotlin.Long#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/timer.html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//timerAsync/org.bukkit.plugin.java.JavaPlugin#kotlin.Long#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/timer-async.html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//transfer/org.bukkit.entity.Player#kotlin.String#kotlin.Int#net.kyori.adventure.text.Component?/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/transfer.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces////PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/index.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log///PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/index.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/BLUE/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-b-l-u-e.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/GRAY/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-g-r-a-y.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/GREEN/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-g-r-e-e-n.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/LIGHTGREEN/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-l-i-g-h-t-g-r-e-e-n.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/MAGENTA/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-m-a-g-e-n-t-a.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/RED/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-r-e-d.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/RESET/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-r-e-s-e-t.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/WHITE/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-w-h-i-t-e.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/YELLOW/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/-y-e-l-l-o-w.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/debug/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/debug.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/error/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/error.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/getTimestamp/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/get-timestamp.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/info/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/info.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/log/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/log.html
-$dokka.location:net.crystopia.crystalshard.paper.core.interfaces/Log/warn/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.interfaces/-log/warn.html
 $dokka.location:net.crystopia.crystalshard.paper.core.utils////PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/index.html
 $dokka.location:net.crystopia.crystalshard.paper.core.utils/Cookie///PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-cookie/index.html
 $dokka.location:net.crystopia.crystalshard.paper.core.utils/Cookie/get/#org.bukkit.NamespacedKey#org.bukkit.entity.Player#kotlin.Function1[kotlin.String?,kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-cookie/get.html
 $dokka.location:net.crystopia.crystalshard.paper.core.utils/Cookie/set/#org.bukkit.NamespacedKey#kotlin.String#org.bukkit.entity.Player/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-cookie/set.html
-$dokka.location:net.crystopia.crystalshard.paper.core.utils/Log///PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-log/index.html
-$dokka.location:net.crystopia.crystalshard.paper.core.utils/Log/debug/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-log/debug.html
-$dokka.location:net.crystopia.crystalshard.paper.core.utils/Log/error/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-log/error.html
-$dokka.location:net.crystopia.crystalshard.paper.core.utils/Log/getTimestamp/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-log/get-timestamp.html
-$dokka.location:net.crystopia.crystalshard.paper.core.utils/Log/info/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-log/info.html
-$dokka.location:net.crystopia.crystalshard.paper.core.utils/Log/log/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-log/log.html
-$dokka.location:net.crystopia.crystalshard.paper.core.utils/Log/warn/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-log/warn.html
 $dokka.location:net.crystopia.crystalshard.paper.core.utils/PluginUtil///PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-plugin-util/index.html
 $dokka.location:net.crystopia.crystalshard.paper.core.utils/PluginUtil/enablePlugin/#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-plugin-util/enable-plugin.html
 $dokka.location:net.crystopia.crystalshard.paper.core.utils/PluginUtil/loadPlugin/#java.io.File/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.utils/-plugin-util/load-plugin.html
@@ -64,5 +40,4 @@ $dokka.location:net.crystopia.crystalshard.paper.core//crystalshard/#org.bukkit.
 $dokka.location:net.crystopia.crystalshard.paper.core//shardInstance/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core/shard-instance.html
 net.crystopia.crystalshard.paper.core
 net.crystopia.crystalshard.paper.core.extension
-net.crystopia.crystalshard.paper.core.interfaces
 net.crystopia.crystalshard.paper.core.utils
