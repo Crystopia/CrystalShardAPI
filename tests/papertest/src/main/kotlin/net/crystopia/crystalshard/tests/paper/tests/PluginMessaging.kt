@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.tests.paper.tests
 
 import com.google.common.io.ByteStreams
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.paper.core.utils.Log
+import net.crystopia.crystalshard.common.log.ILog
 import net.crystopia.crystalshard.paper.custom.messaging.ChannelType
 import net.crystopia.crystalshard.paper.custom.messaging.PluginMessage
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
@@ -29,7 +29,7 @@ class PluginMessaging(name: String, sender: CommandSender, args: CommandArgument
                     if (subchannel.equals("testy")) {
                         // This is our response to the PlayerCount request
                         val testy = data.readUTF();
-                        Log.info("$testy")
+                        ILog.info("$testy")
                     }
                 }
             ).register()

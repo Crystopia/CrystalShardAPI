@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.tests.paper.tests.base
 
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.paper.core.utils.Log
+import net.crystopia.crystalshard.common.log.ILog
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
@@ -30,7 +30,7 @@ abstract class ITest(var name: String, var sender: CommandSender, var args: Comm
     }
 
     private fun error(e: Exception) {
-        Log.error(e.toString())
+        ILog.error(e.toString())
         this.sender.sendMessage(
             MiniMessage.miniMessage()
                 .deserialize("\n<color:#ff0015>Your test did not run successfully!</color>\n\n<b><i>>></i></b> <b>Details</b>:\n   <gray><u>Name</u>:</gray> $name\n   <gray><u>Message</u>:</gray> ${e.message}\n\n<b><i>>></i></b> <b>Exception</b>:\n<dark_gray>[</dark_gray>\n<color:#b3b3b3> $e</color>\n<dark_gray>]</dark_gray>\n")

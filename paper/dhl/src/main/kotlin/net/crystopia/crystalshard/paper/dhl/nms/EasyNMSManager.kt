@@ -1,7 +1,7 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.nms
 
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.SoftwareType
-import net.crystopia.crystalshard.paper.core.utils.Log
+import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
 import org.bukkit.Bukkit
 

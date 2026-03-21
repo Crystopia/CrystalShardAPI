@@ -32,6 +32,7 @@ tasks {
         }
         shadowJar {
             dependsOn(":paper:core:shadowJar")
+            dependsOn(":paper:dhl:shared:shadowJar")
             archiveClassifier.set("")
             configurations = listOf(project.configurations["runtimeClasspath"])
             dependencies {

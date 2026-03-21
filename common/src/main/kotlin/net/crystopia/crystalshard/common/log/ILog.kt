@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.core.interfaces
+package net.crystopia.crystalshard.common.log
 
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -8,7 +8,7 @@ import java.util.Date
  * Interface for the Logger of CrystalShard to make your own one.
  *
  */
-interface Log {
+interface ILog {
 
     fun getTimestamp(): String {
         val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -60,3 +60,4 @@ interface Log {
         println("${MAGENTA}$message$RESET")
     }
 }
+

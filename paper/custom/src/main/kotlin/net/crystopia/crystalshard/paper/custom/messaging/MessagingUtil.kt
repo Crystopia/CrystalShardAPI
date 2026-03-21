@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.custom.messaging
 
-import net.crystopia.crystalshard.paper.core.utils.Log
+import net.crystopia.crystalshard.common.log.Log
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.ByteArrayOutputStream

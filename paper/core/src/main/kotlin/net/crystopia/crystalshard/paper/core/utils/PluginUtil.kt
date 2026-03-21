@@ -1,5 +1,6 @@
 package net.crystopia.crystalshard.paper.core.utils
 
+import net.crystopia.crystalshard.common.log.Log
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File

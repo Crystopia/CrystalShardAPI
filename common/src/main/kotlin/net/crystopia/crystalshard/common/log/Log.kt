@@ -1,16 +1,14 @@
-package net.crystopia.crystalshard.paper.core.utils
+package net.crystopia.crystalshard.common.log
 
-import net.crystopia.crystalshard.paper.core.interfaces.Log
 import java.text.SimpleDateFormat
-import java.util.*
-
+import java.util.Date
 
 /**
- * 
+ *
  * CrystalShard Logger (Basic)
  *
  */
-object Log : Log {
+object Log : ILog {
 
     override fun getTimestamp(): String {
         val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
@@ -30,7 +28,7 @@ object Log : Log {
     }
 
     override fun log(message: String) {
-        println("[Log] $message$RESET")
+        println("[ILog] $message$RESET")
     }
 
     override fun debug(message: String) {
