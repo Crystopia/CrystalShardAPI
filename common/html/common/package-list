@@ -92,7 +92,32 @@ $dokka.location:net.crystopia.crystalshard.common.extension/Case///PointingToDec
 $dokka.location:net.crystopia.crystalshard.common.extension/Case/entries/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.extension/-case/entries.html
 $dokka.location:net.crystopia.crystalshard.common.extension/Case/valueOf/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.extension/-case/value-of.html
 $dokka.location:net.crystopia.crystalshard.common.extension/Case/values/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.extension/-case/values.html
+$dokka.location:net.crystopia.crystalshard.common.log////PointingToDeclaration/common/net.crystopia.crystalshard.common.log/index.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog///PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/index.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/BLUE/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-b-l-u-e.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/GRAY/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-g-r-a-y.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/GREEN/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-g-r-e-e-n.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/LIGHTGREEN/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-l-i-g-h-t-g-r-e-e-n.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/MAGENTA/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-m-a-g-e-n-t-a.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/RED/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-r-e-d.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/RESET/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-r-e-s-e-t.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/WHITE/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-w-h-i-t-e.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/YELLOW/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/-y-e-l-l-o-w.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/debug/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/debug.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/error/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/error.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/getTimestamp/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/get-timestamp.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/info/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/info.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/log/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/log.html
+$dokka.location:net.crystopia.crystalshard.common.log/ILog/warn/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-i-log/warn.html
+$dokka.location:net.crystopia.crystalshard.common.log/Log///PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-log/index.html
+$dokka.location:net.crystopia.crystalshard.common.log/Log/debug/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-log/debug.html
+$dokka.location:net.crystopia.crystalshard.common.log/Log/error/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-log/error.html
+$dokka.location:net.crystopia.crystalshard.common.log/Log/getTimestamp/#/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-log/get-timestamp.html
+$dokka.location:net.crystopia.crystalshard.common.log/Log/info/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-log/info.html
+$dokka.location:net.crystopia.crystalshard.common.log/Log/log/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-log/log.html
+$dokka.location:net.crystopia.crystalshard.common.log/Log/warn/#kotlin.String/PointingToDeclaration/common/net.crystopia.crystalshard.common.log/-log/warn.html
 net.crystopia.crystalshard.common.config
 net.crystopia.crystalshard.common.database
 net.crystopia.crystalshard.common.database.custom
 net.crystopia.crystalshard.common.extension
+net.crystopia.crystalshard.common.log
