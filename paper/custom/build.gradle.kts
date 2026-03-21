@@ -36,14 +36,6 @@ tasks {
     shadowJar {
         dependsOn(":paper:core:shadowJar")
         dependsOn(":paper:dhl:shadowJar")
-        archiveClassifier.set("")
-        configurations = listOf(project.configurations["runtimeClasspath"])
-        dependencies {
-            include(dependency("net.crystopia.crystalshard:common"))
-            include(dependency("net.crystopia.crystalshard.paper:core"))
-            include(dependency("net.crystopia.crystalshard.paper:dhl"))
-            include(dependency("net.crystopia.crystalshard.paper:shared"))
-        }
         relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
     }
     java {

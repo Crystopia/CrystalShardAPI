@@ -26,11 +26,6 @@ tasks {
             dependsOn(reobfJar)
         }
         shadowJar {
-            archiveClassifier.set("")
-            configurations = listOf(project.configurations["runtimeClasspath"])
-            dependencies {
-                include(dependency("net.crystopia.crystalshard:common"))
-            }
             relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
         }
         java {

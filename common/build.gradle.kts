@@ -9,7 +9,6 @@ plugins {
 group = "net.crystopia.crystalshard"
 
 dependencies {
-
     // Minimessage
     implementation("net.kyori:adventure-api:4.26.0")
     implementation("net.kyori:adventure-text-minimessage:4.26.0")
@@ -71,8 +70,6 @@ tasks {
                 artifactId = "common"
                 groupId = group as String
                 version = version
-
-
             }
         }
     }

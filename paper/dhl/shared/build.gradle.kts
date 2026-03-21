@@ -23,8 +23,6 @@ tasks {
         dependsOn(reobfJar)
     }
     shadowJar {
-        archiveClassifier.set("")
-        configurations = listOf(project.configurations["runtimeClasspath"])
         relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
     }
     java {

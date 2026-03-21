@@ -25,8 +25,6 @@ tasks {
     }
     shadowJar {
         dependsOn(":paper:dhl:shared:shadowJar")
-        archiveClassifier.set("")
-        configurations = listOf(project.configurations["runtimeClasspath"])
         relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
     }
     java {

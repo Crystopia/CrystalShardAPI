@@ -19,11 +19,6 @@ tasks {
         dependsOn(shadowJar)
     }
     shadowJar {
-        archiveClassifier.set("")
-        configurations = listOf(project.configurations["runtimeClasspath"])
-        dependencies {
-            include(dependency("net.crystopia.crystalshard.*:.*"))
-        }
     }
     publishing {
         repositories {
