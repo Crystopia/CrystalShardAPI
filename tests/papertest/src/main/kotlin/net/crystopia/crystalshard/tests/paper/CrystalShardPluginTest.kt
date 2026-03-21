@@ -4,6 +4,7 @@ import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIPaperConfig
 import net.crystopia.crystalshard.paper.core.crystalshard
 import net.crystopia.crystalshard.common.log.ILog
+import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.paper.custom.smart.SmartEvents
 import net.crystopia.crystalshard.tests.paper.tests.base.TestCommand
 import org.bukkit.plugin.java.JavaPlugin
@@ -29,7 +30,7 @@ class CrystalShardPluginTest : JavaPlugin() {
 
         TestCommand
         server.pluginManager.registerEvents(SmartEvents, this)
-        ILog.info("Plugin loaded!")
+        Log.info("Plugin loaded!")
     }
 
     override fun onDisable() {
