@@ -33,7 +33,7 @@ tasks {
         repositories {
             maven {
                 name = "Reposilite"
-                url = uri("https://repo.xyzify.ing/releases")
+                url = uri("https://repo.jespersen.zip/releases")
                 credentials {
                     username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
                     password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"

@@ -36,14 +36,14 @@ It supports both **PaperMC** and **Velocity**, offering modular packages for GUI
 CrystalShard is available via the public Maven repository:
 
 **Repository:**  
-https://repo.xyzify.ing/#/releases/net/crystopia/crystalshard
+https://repo.jespersen.zip/#/releases/net/crystopia/crystalshard
 
 Add it to your `build.gradle.kts`:
 
 ```kotlin
 maven {
     name = "xyzReleases"
-    url = uri("https://repo.xyzify.ing/releases")
+    url = uri("https://repo.jespersen.zip/releases")
 }
 ```
 
