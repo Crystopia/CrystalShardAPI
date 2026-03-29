@@ -27,7 +27,7 @@ allprojects {
             url = uri("https://repo.papermc.io/repository/maven-public/")
         }
         maven {
-            url = uri("https://repo.xyzify.ing/releases")
+            url = uri("https://repo.jespersen.zip/releases")
         }
     }
 }
