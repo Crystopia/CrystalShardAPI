@@ -20,6 +20,12 @@ object TestCommand {
             }
         }
 
+        literalArgument("component") {
+            anyExecutor { sender, arguments ->
+                ComponentTest("component", sender, arguments).command()
+            }
+        }
+
         literalArgument("world") {
             anyExecutor { sender, arguments ->
                 WorldTest("world", sender, arguments).command()

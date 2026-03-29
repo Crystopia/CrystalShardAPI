@@ -1,9 +1,9 @@
 package net.crystopia.crystalshard.common.config
 
-import com.charleskorn.kaml.Yaml
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import net.mamoe.yamlkt.Yaml
 import java.io.File
 
 val json = Json {
@@ -35,7 +35,7 @@ inline fun <reified T : Any> File.saveJSONConfig(config: T) {
 inline fun <reified T : Any> File.loadYAMLConfig(default: T): T {
     return if (exists()) {
         try {
-            Yaml.default.decodeFromString(readText().toString())
+            Yaml.decodeFromString(readText().toString())
         } catch (_: Exception) {
             saveJSONConfig(default)
             default
@@ -48,7 +48,7 @@ inline fun <reified T : Any> File.loadYAMLConfig(default: T): T {
 
 inline fun <reified T : Any> File.saveYAMLConfig(config: T) {
     if (!exists() && parentFile != null) parentFile.mkdirs()
-    writeText(Yaml.default.encodeToString<T>(config))
+    writeText(Yaml.encodeToString<T>(config))
 }
 
 
@@ -57,6 +57,6 @@ inline fun <reified T : Any> loadJSONFromFile(file: File): T {
 }
 
 inline fun <reified T : Any> loadYAMLFromFile(file: File): T {
-    return Yaml.default.decodeFromString<T>(file.readText())
+    return Yaml.decodeFromString<T>(file.readText())
 }
 

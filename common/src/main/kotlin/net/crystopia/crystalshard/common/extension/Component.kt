@@ -14,6 +14,10 @@ import java.util.*
 
 val MINI_MESSAGE: MiniMessage = MiniMessage.miniMessage()
 
+fun cmp(string: String): ComponentBuilder<*,*> {
+   return Component.text().text(string)
+}
+
 /**
  * Appends MiniMessage text with optional font.
  */
