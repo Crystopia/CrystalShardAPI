@@ -25,8 +25,8 @@ dependencies {
     // ENV
     implementation("io.github.cdimascio:dotenv-kotlin:6.5.1")
 
-    // kaml
-    implementation("com.charleskorn.kaml:kaml:0.96.0")
+    // yamlkt
+    implementation("net.mamoe.yamlkt:yamlkt:0.13.0")
 }
 
 kotlin {
