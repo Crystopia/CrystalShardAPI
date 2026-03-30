@@ -1,6 +1,8 @@
 package net.crystopia.crystalshard.paper.custom.advancements.models.display
 
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonElement
+import kotlinx.serialization.json.JsonObject
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 
@@ -16,5 +18,5 @@ data class AdvancementDisplayIcon(
      * eg. `JSONComponentSerializer.builder().build().serialize(Component.text("Cool text"))`
      * @see net.kyori.adventure.text.serializer.json.JSONComponentSerializer
      */
-    // var component: String? = null
+    var component: JsonElement? = null
 )
