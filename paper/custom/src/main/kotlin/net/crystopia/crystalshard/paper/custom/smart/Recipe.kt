@@ -16,116 +16,114 @@ class Recipe {
         }
 
         fun createShapedRecipe(
+            key: NamespacedKey,
             result: ItemStack,
             mutableMap: MutableMap<Char, Material>,
-            addToPlayers: Boolean = false,
-            vararg shape: String
+            vararg shape: String,
+            callback: ShapedRecipe.() -> Unit
         ): ShapedRecipe {
-            val key = NamespacedKey("uuid", UUID.randomUUID().toString())
-
             val recipe = ShapedRecipe(key, result)
             recipe.shape(*shape)
             mutableMap.forEach { (key, value) ->
                 recipe.setIngredient(key, value)
             }
 
-            Bukkit.getServer().addRecipe(recipe, addToPlayers)
+            callback.invoke(recipe)
             return recipe
         }
 
         fun createFurnaceRecipe(
+            key: NamespacedKey,
             result: ItemStack,
             material: Material,
             experience: Float,
             cookTime: Int,
-            addToPlayers: Boolean = false,
+            callback: FurnaceRecipe.() -> Unit
         ): FurnaceRecipe {
-            val key = NamespacedKey("uuid", UUID.randomUUID().toString())
             val recipe = FurnaceRecipe(key, result, material, experience, cookTime)
 
-            Bukkit.getServer().addRecipe(recipe, addToPlayers)
+            callback.invoke(recipe)
             return recipe
         }
 
         fun createSmithingTrimRecipe(
+            key: NamespacedKey,
             template: RecipeChoice = RecipeChoice.empty(),
             base: RecipeChoice = RecipeChoice.empty(),
             pattern: TrimPattern,
             addition: RecipeChoice = RecipeChoice.empty(),
-            addToPlayers: Boolean = false,
+            callback: SmithingTrimRecipe.() -> Unit
         ): SmithingTrimRecipe {
-            val key = NamespacedKey("uuid", UUID.randomUUID().toString())
             val recipe = SmithingTrimRecipe(key, template, base, addition, pattern)
 
-            Bukkit.getServer().addRecipe(recipe, addToPlayers)
+            callback.invoke(recipe)
             return recipe
         }
 
         fun createSmithingTransformRecipe(
+            key: NamespacedKey,
             result: ItemStack,
             template: RecipeChoice = RecipeChoice.empty(),
             base: RecipeChoice = RecipeChoice.empty(),
-            addition: RecipeChoice = RecipeChoice.empty(),
-            addToPlayers: Boolean = false,
+            addition: RecipeChoice = RecipeChoice.empty(),callback: SmithingTransformRecipe.() -> Unit
         ): SmithingTransformRecipe {
-            val key = NamespacedKey("uuid", UUID.randomUUID().toString())
             val recipe = SmithingTransformRecipe(key, result, template, base, addition)
 
-            Bukkit.getServer().addRecipe(recipe, addToPlayers)
+            callback.invoke(recipe)
             return recipe
         }
 
         fun createBlastRecipe(
+            key: NamespacedKey,
             result: ItemStack,
             material: Material,
             experience: Float,
             cookTime: Int,
-            addToPlayers: Boolean = false,
+            callback: BlastingRecipe.() -> Unit
         ): BlastingRecipe {
-            val key = NamespacedKey("uuid", UUID.randomUUID().toString())
             val recipe = BlastingRecipe(key, result, material, experience, cookTime)
 
-            Bukkit.getServer().addRecipe(recipe, addToPlayers)
+            callback.invoke(recipe)
             return recipe
         }
 
         fun createSmokingRecipe(
+            key: NamespacedKey,
             result: ItemStack,
             material: Material,
             experience: Float,
             cookTime: Int,
-            addToPlayers: Boolean = false,
+            callback: SmokingRecipe.() -> Unit
         ): SmokingRecipe {
-            val key = NamespacedKey("uuid", UUID.randomUUID().toString())
             val recipe = SmokingRecipe(key, result, material, experience, cookTime)
 
-            Bukkit.getServer().addRecipe(recipe, addToPlayers)
+            callback.invoke(recipe)
             return recipe
         }
 
         fun createStonecuttingRecipe(
+            key: NamespacedKey,
             result: ItemStack,
             material: Material,
-            addToPlayers: Boolean = false,
+            callback: StonecuttingRecipe.() -> Unit
         ): StonecuttingRecipe {
-            val key = NamespacedKey("uuid", UUID.randomUUID().toString())
             val recipe = StonecuttingRecipe(key, result, material)
 
-            Bukkit.getServer().addRecipe(recipe, addToPlayers)
+            callback.invoke(recipe)
             return recipe
         }
 
         fun createCampfireRecipe(
+            key: NamespacedKey,
             result: ItemStack,
             material: Material,
             experience: Float,
             cookTime: Int,
-            addToPlayers: Boolean = false,
+            callback: CampfireRecipe.() -> Unit
         ): CampfireRecipe {
-            val key = NamespacedKey("uuid", UUID.randomUUID().toString())
             val recipe = CampfireRecipe(key, result, material, experience, cookTime)
 
-            Bukkit.getServer().addRecipe(recipe, addToPlayers)
+            callback.invoke(recipe)
             return recipe
         }
 
@@ -140,6 +138,7 @@ class Recipe {
             specialPrice: Int,
             ignoreDiscounts: Boolean,
             ingredients: Pair<ItemStack, ItemStack?>,
+            callback: MerchantRecipe.() -> Unit
         ): MerchantRecipe {
             val recipe = MerchantRecipe(
                 result,
@@ -162,13 +161,15 @@ class Recipe {
                     ingredients.second!!
                 )
             }
+            callback.invoke(recipe)
             return recipe
         }
 
         fun createVillagerRecipe(
             world: World,
             location: Location,
-            recipeList: MutableMap<Int, MerchantRecipe>
+            recipeList: MutableMap<Int, MerchantRecipe>,
+            callback: Villager.() -> Unit
         ): Villager {
             val villager = world.spawnEntity(
                 location, EntityType.VILLAGER
@@ -176,6 +177,7 @@ class Recipe {
             recipeList.forEach { (id, recipe) ->
                 villager.setRecipe(id, recipe)
             }
+            callback.invoke(villager)
             return villager
         }
 
