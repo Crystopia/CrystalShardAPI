@@ -2,7 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar.Companion.shad
 
 plugins {
     id("java-library")
-    kotlin("jvm") version "2.+"
+    kotlin("jvm") version "2.3.+"
     id("io.papermc.paperweight.userdev")
     id("com.gradleup.shadow") version "9.2.2"
     id("maven-publish")

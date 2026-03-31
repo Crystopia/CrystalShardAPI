@@ -25,7 +25,7 @@ inline fun customGUI(
 
 class CustomGUI(val title: Component, val size: Int, val type: InventoryType, val context: CustomGUI.() -> Unit) {
 
-    private val inventory = when (type) {
+    val customInventory = when (type) {
         InventoryType.CHEST -> Bukkit.createInventory(null, size, title)
         else -> Bukkit.createInventory(null, type, title)
     }
@@ -44,20 +44,20 @@ class CustomGUI(val title: Component, val size: Int, val type: InventoryType, va
      * Set the action to be executed when the player clicks on any slot while the GUI is open.
      */
     fun onClick(action: InventoryClickEvent.() -> Unit) {
-        inventory.onClick(action)
+        customInventory.onClick(action)
     }
 
     /**
      * Set the action to be executed when the inventory is closed
      */
     fun onClose(action: InventoryCloseEvent.() -> Unit) {
-        inventory.onClose(action)
+        customInventory.onClose(action)
     }
 
     @JvmName("setSlot")
     fun set(slot: Int, item: ItemStack, action: InventoryClickEvent.() -> Unit = {}) {
-        inventory.setItem(slot, item)
-        inventory.onSlotClick(slot, action)
+        customInventory.setItem(slot, item)
+        customInventory.onSlotClick(slot, action)
     }
 
     @JvmName("setSlots")
@@ -79,7 +79,7 @@ class CustomGUI(val title: Component, val size: Int, val type: InventoryType, va
         fun Player.openInventory(gui: CustomGUI) {
             gui.viewer = this
             gui.context.invoke(gui)
-            openInventory(gui.inventory)
+            openInventory(gui.customInventory)
         }
     }
 

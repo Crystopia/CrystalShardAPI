@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.+"
-    kotlin("plugin.serialization") version "2.+" apply false
+    kotlin("jvm") version "2.3.+"
+    kotlin("plugin.serialization") version "2.3.+" apply false
     id("java-library")
     id("maven-publish")
     id("xyz.jpenilla.run-velocity") version "3.+" apply false 

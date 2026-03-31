@@ -1,6 +1,6 @@
 plugins {
     id("java-library")
-    kotlin("jvm") version "2.+"
+    kotlin("jvm") version "2.3.+"
     id("com.gradleup.shadow") version "9.2.2"
     id("io.papermc.paperweight.userdev")
     kotlin("plugin.serialization")
