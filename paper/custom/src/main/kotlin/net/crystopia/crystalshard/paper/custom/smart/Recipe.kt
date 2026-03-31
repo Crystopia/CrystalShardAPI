@@ -18,13 +18,13 @@ class Recipe {
         fun createShapedRecipe(
             result: ItemStack,
             mutableMap: MutableMap<Char, Material>,
-            shape: String,
             addToPlayers: Boolean = false,
+            vararg shape: String
         ): ShapedRecipe {
             val key = NamespacedKey("uuid", UUID.randomUUID().toString())
 
             val recipe = ShapedRecipe(key, result)
-            recipe.shape(shape)
+            recipe.shape(*shape)
             mutableMap.forEach { (key, value) ->
                 recipe.setIngredient(key, value)
             }
