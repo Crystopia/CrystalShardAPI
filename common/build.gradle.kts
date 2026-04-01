@@ -13,6 +13,8 @@ dependencies {
     implementation("net.kyori:adventure-api:4.26.0")
     implementation("net.kyori:adventure-text-minimessage:4.26.0")
     implementation("net.kyori:adventure-text-serializer-plain:4.26.1")
+    implementation("net.kyori:adventure-text-serializer-gson:4.26.1")
+    implementation("net.kyori:adventure-text-serializer-legacy:4.26.1")
 
     // Database
     implementation("org.ktorm:ktorm-core:4.1.1")

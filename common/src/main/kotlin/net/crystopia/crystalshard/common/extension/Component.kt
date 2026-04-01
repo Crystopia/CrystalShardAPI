@@ -1,5 +1,7 @@
 package net.crystopia.crystalshard.common.extension
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonElement
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.key.Key
 import net.kyori.adventure.text.BuildableComponent
@@ -9,35 +11,78 @@ import net.kyori.adventure.text.event.ClickEvent
 import net.kyori.adventure.text.event.DataComponentValue
 import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.minimessage.MiniMessage
+import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
+import net.kyori.adventure.text.serializer.json.JSONComponentSerializer
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import java.util.*
 
 val MINI_MESSAGE: MiniMessage = MiniMessage.miniMessage()
 
-fun cmp(string: String): ComponentBuilder<*,*> {
+fun cmpb(string: String): ComponentBuilder<*, *> {
    return Component.text().text(string)
 }
 
-/**
- * Appends MiniMessage text with optional font.
- */
+fun cmp(string: String): Component {
+    return MINI_MESSAGE.deserialize(string)
+}
+
 fun Component.toPlainText(
     text: String, font: String? = null
 ): String {
     return PlainTextComponentSerializer.plainText().serialize(this)
 }
-
-/**
- * Appends MiniMessage text with optional font.
- */
 fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toPlainText(
 ): String {
     return PlainTextComponentSerializer.plainText().serialize(this.build())
 }
 
-/**
- *
- */
+fun Component.toJson(
+    text: String, font: String? = null
+): String {
+    return JSONComponentSerializer.builder().build().serialize(this)
+}
+
+fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toJson(
+): String {
+    return JSONComponentSerializer.builder().build().serialize(this.build())
+}
+
+fun Component.toLegacy(
+    text: String, font: String? = null
+): String {
+    return LegacyComponentSerializer.builder().build().serialize(this)
+}
+
+fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toLegacy(
+): String {
+    return LegacyComponentSerializer.builder().build().serialize((this.build()))
+}
+
+fun Component.toGson(
+    text: String, font: String? = null
+): String {
+    return GsonComponentSerializer.builder().build().serialize(this)
+}
+
+fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toGson(
+): String {
+    return GsonComponentSerializer.builder().build().serialize((this.build()))
+}
+
+fun Component.toJsonElement(
+    text: String, font: String? = null
+): JsonElement {
+    return Json.decodeFromString(JSONComponentSerializer.builder().build().serialize(this))
+}
+
+fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toJsonElement(
+    text: String, font: String? = null
+): JsonElement {
+    return Json.decodeFromString(JSONComponentSerializer.builder().build().serialize(this.build()))
+}
+
+
 fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.text(
     text: String, font: String? = null
 ): B {
@@ -46,9 +91,7 @@ fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<
     )
 }
 
-/**
- * Appends MiniMessage text with optional font.
- */
+
 fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.text(
     text: String, font: String? = null, callback: ComponentBuilder<*, *>.() -> Unit = {}
 ): B {
@@ -59,17 +102,10 @@ fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<
     return append(component)
 }
 
-/**
- * Convenience overload for setting font via String.
- */
 fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.font(
     font: String
 ): B = font(Key.key(font))
 
-
-/**
- * Creates a callback to interact with the click.
- */
 fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.click(
     callback: Audience.() -> Unit = {}
 ): B {
