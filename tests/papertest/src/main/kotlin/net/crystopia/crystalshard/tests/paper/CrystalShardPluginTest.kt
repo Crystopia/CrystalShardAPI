@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.paper.core.crystalshard
 import net.crystopia.crystalshard.common.log.ILog
 import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.paper.custom.smart.SmartEvents
+import net.crystopia.crystalshard.tests.paper.tests.EventTest
 import net.crystopia.crystalshard.tests.paper.tests.base.TestCommand
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -28,6 +29,7 @@ class CrystalShardPluginTest : JavaPlugin() {
         crystalshard(this)
         CommandAPI.onEnable();
 
+        EventTest
         TestCommand
         server.pluginManager.registerEvents(SmartEvents, this)
         Log.info("Plugin loaded!")

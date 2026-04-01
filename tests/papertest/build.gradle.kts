@@ -19,9 +19,9 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // Command API
-    compileOnly("dev.jorel:commandapi-paper-core:11.0.0")
-    implementation("dev.jorel:commandapi-paper-shade:11.0.0")
-    implementation("dev.jorel:commandapi-kotlin-paper:11.0.0")
+    compileOnly("dev.jorel:commandapi-paper-core:11.+")
+    implementation("dev.jorel:commandapi-paper-shade:11.+")
+    implementation("dev.jorel:commandapi-kotlin-paper:11.+")
     
     // Crystalshard
     implementation(project(":common"))
@@ -49,6 +49,6 @@ tasks {
         // Configure the Minecraft version for our task.
         // This is the only required configuration besides applying the plugin.
         // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.21.10")
+        minecraftVersion("1.21.11")
     }
 }
