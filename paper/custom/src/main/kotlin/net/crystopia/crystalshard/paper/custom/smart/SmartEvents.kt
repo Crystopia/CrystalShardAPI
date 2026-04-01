@@ -3,9 +3,10 @@
 import com.destroystokyo.paper.event.player.PlayerAdvancementCriterionGrantEvent
 import io.papermc.paper.event.entity.EntityDamageItemEvent
 import io.papermc.paper.event.player.AsyncChatEvent
+import net.crystopia.crystalshard.paper.core.shardInstance
+import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
-import org.bukkit.event.EventHandler
-import org.bukkit.event.Listener
+import org.bukkit.event.*
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.event.entity.*
@@ -15,6 +16,29 @@ import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.player.*
 import org.bukkit.persistence.PersistentDataType
 
+class CrystalListener : Listener {
+    fun unregister() = HandlerList.unregisterAll(this)
+}
+
+// Credits to https://github.com/flytegg/twilight/blob/master/src/main/kotlin/gg/flyte/twilight/event/Event.kt
+// This is better then my...
+
+inline fun <reified T : Event> event(
+    priority: EventPriority = EventPriority.NORMAL,
+    ignoreCancelled: Boolean = false,
+    crossinline callback: T.() -> Unit,
+): CrystalListener = CrystalListener().apply {
+    Bukkit.getServer().pluginManager.registerEvent(
+        T::class.java,
+        this,
+        priority,
+        { _, event ->
+            if (event is T) callback(event)
+        },
+        shardInstance(),
+        ignoreCancelled
+    )
+}
 
 /**
  *
