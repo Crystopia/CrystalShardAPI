@@ -9,8 +9,6 @@ import org.bukkit.entity.Villager
 import org.bukkit.inventory.*
 import org.bukkit.inventory.meta.trim.TrimPattern
 
-// TODO: Improve? - Not sure about this and maybe there are more coming soon...?
-
 inline fun <reified T : Recipe> smartRecipe(
     recipe: T,
     callback: T.() -> Unit
