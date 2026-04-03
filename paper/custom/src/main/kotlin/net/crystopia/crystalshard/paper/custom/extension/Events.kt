@@ -3,34 +3,20 @@ package net.crystopia.crystalshard.paper.custom.extension
 import io.papermc.paper.event.entity.EntityDamageItemEvent
 import io.papermc.paper.event.player.AsyncChatEvent
 import net.crystopia.crystalshard.paper.custom.smart.SmartEvents
-import org.bukkit.entity.Display
-import org.bukkit.entity.Entity
-import org.bukkit.entity.EntityType
-import org.bukkit.entity.Interaction
-import org.bukkit.entity.Player
+import org.bukkit.NamespacedKey
+import org.bukkit.entity.*
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
-import org.bukkit.event.entity.EntityDamageByBlockEvent
-import org.bukkit.event.entity.EntityDamageByEntityEvent
-import org.bukkit.event.entity.EntityDamageEvent
-import org.bukkit.event.entity.EntityDeathEvent
-import org.bukkit.event.entity.EntityPickupItemEvent
-import org.bukkit.event.entity.PlayerDeathEvent
+import org.bukkit.event.entity.*
 import org.bukkit.event.inventory.CraftItemEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
-import org.bukkit.event.player.PlayerDropItemEvent
-import org.bukkit.event.player.PlayerInteractAtEntityEvent
-import org.bukkit.event.player.PlayerInteractEntityEvent
-import org.bukkit.event.player.PlayerInteractEvent
-import org.bukkit.event.player.PlayerJoinEvent
-import org.bukkit.event.player.PlayerMoveEvent
-import org.bukkit.event.player.PlayerQuitEvent
-import org.bukkit.event.player.PlayerSwapHandItemsEvent
+import org.bukkit.event.inventory.PrepareItemCraftEvent
+import org.bukkit.event.player.*
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.Recipe
 import org.bukkit.persistence.PersistentDataType
-import java.util.*
 
 /**
  * Custom Interaction Method for the PlayerInteractEntityEvent.
@@ -38,6 +24,7 @@ import java.util.*
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Display.playerInteractEntityEvent(
+    player: Player,
     interactionHeight: Float?,
     interactionWidth: Float?, action: PlayerInteractEntityEvent.() -> Unit = {}
 ) {
@@ -70,7 +57,7 @@ fun Display.playerInteractEntityEvent(
     if (id.isNullOrEmpty()) {
         throw Exception("Item has no event interact Key!")
     } else {
-        SmartEvents.displayEvents[id] = action
+        SmartEvents.displayEvents[player] = action
     }
 }
 
@@ -79,15 +66,35 @@ fun Display.playerInteractEntityEvent(
  * Register SmartEvents and use the Event Manager.
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
-fun ItemStack.playerInteractEvent(action: PlayerInteractEvent.() -> Unit = {}) {
-    val id = itemMeta.persistentDataContainer.get(
-        SmartEvents.EVENT_KEY, PersistentDataType.STRING
-    )
-    if (id.isNullOrEmpty()) {
-        throw Exception("Item has no event interact Key!")
-    } else {
-        SmartEvents.interactEvent[id] = action
-    }
+fun ItemStack.playerInteractEvent(
+    player: Player,
+    action: PlayerInteractEvent.() -> Unit = {}
+) {
+    SmartEvents.interactEvent[player] = action
+}
+
+/**
+ * Custom Interaction Method for the PlayerInteractEvent.
+ * Register SmartEvents and use the Event Manager.
+ * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
+ */
+fun ItemStack.playerInteractWithItemEvent(
+    action: PlayerInteractEvent.() -> Unit = {}
+) {
+    SmartEvents.interactWithItemEvent[this] = action
+}
+
+/**
+ * Custom Interaction Method for the PlayerInteractEvent.
+ * Register SmartEvents and use the Event Manager.
+ * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
+ */
+fun ItemStack.playerInteractWithItemHasContainerEvent(
+    key: NamespacedKey,
+    type: PersistentDataType<*, *>,
+    action: PlayerInteractEvent.() -> Unit = {}
+) {
+    SmartEvents.interactWithItemHasContainerEvent[Pair(this, Pair(key, type))] = action
 }
 
 /**
@@ -96,14 +103,7 @@ fun ItemStack.playerInteractEvent(action: PlayerInteractEvent.() -> Unit = {}) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun ItemStack.craftItemEvent(action: CraftItemEvent.() -> Unit = {}) {
-    val id = itemMeta.persistentDataContainer.get(
-        SmartEvents.EVENT_KEY, PersistentDataType.STRING
-    )
-    if (id.isNullOrEmpty()) {
-        throw Exception("Item has no event interact Key!")
-    } else {
-        SmartEvents.craftItemEvent[id] = action
-    }
+    SmartEvents.craftItemWithItemEvent[this] = action
 }
 
 /**
@@ -112,7 +112,7 @@ fun ItemStack.craftItemEvent(action: CraftItemEvent.() -> Unit = {}) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Inventory.onClick(callback: InventoryClickEvent.() -> Unit) {
-    SmartEvents.inventoryClickEvent[UUID.randomUUID().toString()] = callback
+    SmartEvents.inventoryClickEvent[this] = callback
 }
 
 /**
@@ -121,7 +121,7 @@ fun Inventory.onClick(callback: InventoryClickEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Inventory.onSlotClick(slot: Int, callback: InventoryClickEvent.() -> Unit) {
-    SmartEvents.inventoryClickEvent[slot.toString()] = callback
+    SmartEvents.inventorySlotClickEvent[Pair(this, slot)] = callback
 }
 
 /**
@@ -130,7 +130,7 @@ fun Inventory.onSlotClick(slot: Int, callback: InventoryClickEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Inventory.onClose(callback: InventoryCloseEvent.() -> Unit) {
-    SmartEvents.inventoryCloseEvent.add(callback)
+    SmartEvents.inventoryCloseEvent[this] = callback
 }
 
 /**
@@ -139,7 +139,7 @@ fun Inventory.onClose(callback: InventoryCloseEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onInventoryClick(callback: InventoryClickEvent.() -> Unit) {
-    SmartEvents.inventoryClickEvent[UUID.randomUUID().toString()] = callback
+    SmartEvents.inventoryClickEvent[this.inventory] = callback
 }
 
 /**
@@ -148,7 +148,7 @@ fun Player.onInventoryClick(callback: InventoryClickEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onJoin(callback: PlayerJoinEvent.() -> Unit) {
-    SmartEvents.playerJoinEvent.add(callback)
+    SmartEvents.playerJoinEvent[this] = callback
 }
 
 /**
@@ -157,7 +157,7 @@ fun Player.onJoin(callback: PlayerJoinEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onQuit(callback: PlayerQuitEvent.() -> Unit) {
-    SmartEvents.playerQuitEvent.add(callback)
+    SmartEvents.playerQuitEvent[this] = callback
 }
 
 /**
@@ -166,7 +166,7 @@ fun Player.onQuit(callback: PlayerQuitEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onChat(callback: AsyncChatEvent.() -> Unit) {
-    SmartEvents.asyncChatEvent.add(callback)
+    SmartEvents.asyncChatEvent[this] = callback
 }
 
 /**
@@ -175,7 +175,7 @@ fun Player.onChat(callback: AsyncChatEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onInventoryClose(callback: InventoryCloseEvent.() -> Unit) {
-    SmartEvents.inventoryCloseEvent.add(callback)
+    SmartEvents.inventoryCloseEvent[this.inventory] = callback
 }
 
 /**
@@ -184,7 +184,7 @@ fun Player.onInventoryClose(callback: InventoryCloseEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onDrop(callback: PlayerDropItemEvent.() -> Unit) {
-    SmartEvents.playerDropItemEvent.add(callback)
+    SmartEvents.playerDropItemEvent[this] = callback
 }
 
 /**
@@ -193,7 +193,7 @@ fun Player.onDrop(callback: PlayerDropItemEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onItemSwap(callback: PlayerSwapHandItemsEvent.() -> Unit) {
-    SmartEvents.playerSwapHandItemsEvent.add(callback)
+    SmartEvents.playerSwapHandItemsEvent[this] = callback
 }
 
 /**
@@ -202,7 +202,7 @@ fun Player.onItemSwap(callback: PlayerSwapHandItemsEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Entity.onPickUp(callback: EntityPickupItemEvent.() -> Unit) {
-    SmartEvents.entityPickupItemEvent.add(callback)
+    SmartEvents.entityPickupItemEvent[this] = callback
 }
 
 /**
@@ -211,7 +211,7 @@ fun Entity.onPickUp(callback: EntityPickupItemEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onBlockPlace(callback: BlockPlaceEvent.() -> Unit) {
-    SmartEvents.blockPlaceEvent.add(callback)
+    SmartEvents.blockPlaceEvent[this] = callback
 }
 
 /**
@@ -220,7 +220,7 @@ fun Player.onBlockPlace(callback: BlockPlaceEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onBlockBreak(callback: BlockBreakEvent.() -> Unit) {
-    SmartEvents.blockBreakEvent.add(callback)
+    SmartEvents.blockBreakEvent[this] = callback
 }
 
 /**
@@ -229,7 +229,7 @@ fun Player.onBlockBreak(callback: BlockBreakEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onDeath(callback: PlayerDeathEvent.() -> Unit) {
-    SmartEvents.playerDeathEvent.add(callback)
+    SmartEvents.playerDeathEvent[this] = callback
 }
 
 /**
@@ -238,7 +238,7 @@ fun Player.onDeath(callback: PlayerDeathEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onMove(callback: PlayerMoveEvent.() -> Unit) {
-    SmartEvents.playerMoveEvent.add(callback)
+    SmartEvents.playerMoveEvent[this] = callback
 }
 
 /**
@@ -247,7 +247,7 @@ fun Player.onMove(callback: PlayerMoveEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Player.onInteractEntity(callback: PlayerInteractAtEntityEvent.() -> Unit) {
-    SmartEvents.playerInteractAtEntityEvent.add(callback)
+    SmartEvents.playerInteractAtEntityEvent[this] = callback
 }
 
 /**
@@ -256,7 +256,7 @@ fun Player.onInteractEntity(callback: PlayerInteractAtEntityEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Entity.onDeath(callback: EntityDeathEvent.() -> Unit) {
-    SmartEvents.entityDeathEvent.add(callback)
+    SmartEvents.entityDeathEvent[this] = callback
 }
 
 /**
@@ -265,7 +265,7 @@ fun Entity.onDeath(callback: EntityDeathEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Entity.onDamage(callback: EntityDamageEvent.() -> Unit) {
-    SmartEvents.entityDamageEvent.add(callback)
+    SmartEvents.entityDamageEvent[this] = callback
 }
 
 /**
@@ -274,7 +274,7 @@ fun Entity.onDamage(callback: EntityDamageEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Entity.onDamageByBlock(callback: EntityDamageByBlockEvent.() -> Unit) {
-    SmartEvents.entityDamageByBlockEvent.add(callback)
+    SmartEvents.entityDamageByBlockEvent[this] = callback
 }
 
 /**
@@ -283,7 +283,7 @@ fun Entity.onDamageByBlock(callback: EntityDamageByBlockEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Entity.onDamageByEntity(callback: EntityDamageByEntityEvent.() -> Unit) {
-    SmartEvents.entityDamageByEntityEvent.add(callback)
+    SmartEvents.entityDamageByEntityEvent[this] = callback
 }
 
 /**
@@ -292,5 +292,23 @@ fun Entity.onDamageByEntity(callback: EntityDamageByEntityEvent.() -> Unit) {
  * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
  */
 fun Entity.onItemDamage(callback: EntityDamageItemEvent.() -> Unit) {
-    SmartEvents.entityDamageItemEvent.add(callback)
+    SmartEvents.entityDamageItemEvent[this] = callback
+}
+
+/**
+ * Custom Interaction Method for the CraftItemEvent.
+ * Register SmartEvents and use the Event Manager.
+ * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
+ */
+fun Recipe.onCraftItem(callback: CraftItemEvent.() -> Unit) {
+    SmartEvents.craftItemEvent[this] = callback
+}
+
+/**
+ * Custom Interaction Method for the PrepareItemCraftEvent.
+ * Register SmartEvents and use the Event Manager.
+ * @see net.crystopia.crystalshard.paper.custom.smart.SmartEvents
+ */
+fun Recipe.onPrepareCraftItem(callback: PrepareItemCraftEvent.() -> Unit) {
+    SmartEvents.prepareItemCraftEvent[this] = callback
 }

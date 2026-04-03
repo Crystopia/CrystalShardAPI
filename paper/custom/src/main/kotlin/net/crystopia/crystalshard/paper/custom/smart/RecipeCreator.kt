@@ -1,24 +1,30 @@
 package net.crystopia.crystalshard.paper.custom.smart
 
-import org.bukkit.*
+import org.bukkit.Location
+import org.bukkit.Material
+import org.bukkit.NamespacedKey
+import org.bukkit.World
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Villager
 import org.bukkit.inventory.*
-import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.meta.trim.TrimPattern
-import java.util.*
 
-class Recipe {
+// TODO: Improve? - Not sure about this and maybe there are more coming soon...?
 
-    companion object {
-        fun getRecipes(itemStack: ItemStack): Collection<Recipe> {
-            return Bukkit.getServer().getRecipesFor(itemStack)
-        }
+inline fun <reified T : Recipe> smartRecipe(
+    recipe: T,
+    callback: T.() -> Unit
+): T {
+    callback.invoke(recipe)
+    return recipe
+}
 
-        fun createShapedRecipe(
+object RecipeCreator {
+
+    fun shapedRecipe(
             key: NamespacedKey,
             result: ItemStack,
-            mutableMap: MutableMap<Char, Material>,
+            mutableMap: MutableMap<Char, ItemStack>,
             vararg shape: String,
             callback: ShapedRecipe.() -> Unit
         ): ShapedRecipe {
@@ -32,7 +38,7 @@ class Recipe {
             return recipe
         }
 
-        fun createFurnaceRecipe(
+    fun furnaceRecipe(
             key: NamespacedKey,
             result: ItemStack,
             material: Material,
@@ -46,7 +52,7 @@ class Recipe {
             return recipe
         }
 
-        fun createSmithingTrimRecipe(
+    fun smithingTrimRecipe(
             key: NamespacedKey,
             template: RecipeChoice = RecipeChoice.empty(),
             base: RecipeChoice = RecipeChoice.empty(),
@@ -60,7 +66,7 @@ class Recipe {
             return recipe
         }
 
-        fun createSmithingTransformRecipe(
+    fun smithingTransformRecipe(
             key: NamespacedKey,
             result: ItemStack,
             template: RecipeChoice = RecipeChoice.empty(),
@@ -73,7 +79,7 @@ class Recipe {
             return recipe
         }
 
-        fun createBlastRecipe(
+    fun blastRecipe(
             key: NamespacedKey,
             result: ItemStack,
             material: Material,
@@ -87,7 +93,7 @@ class Recipe {
             return recipe
         }
 
-        fun createSmokingRecipe(
+    fun smokingRecipe(
             key: NamespacedKey,
             result: ItemStack,
             material: Material,
@@ -101,7 +107,7 @@ class Recipe {
             return recipe
         }
 
-        fun createStonecuttingRecipe(
+    fun stonecuttingRecipe(
             key: NamespacedKey,
             result: ItemStack,
             material: Material,
@@ -113,7 +119,7 @@ class Recipe {
             return recipe
         }
 
-        fun createCampfireRecipe(
+    fun campfireRecipe(
             key: NamespacedKey,
             result: ItemStack,
             material: Material,
@@ -127,7 +133,7 @@ class Recipe {
             return recipe
         }
 
-        fun createMerchantRecipe(
+    fun merchantRecipe(
             result: ItemStack,
             uses: Int,
             maxUses: Int,
@@ -165,7 +171,7 @@ class Recipe {
             return recipe
         }
 
-        fun createVillagerRecipe(
+    fun villagerRecipe(
             world: World,
             location: Location,
             recipeList: MutableMap<Int, MerchantRecipe>,
@@ -180,7 +186,4 @@ class Recipe {
             callback.invoke(villager)
             return villager
         }
-
-
-    }
 }
