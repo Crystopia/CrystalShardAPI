@@ -30,6 +30,7 @@ class CrystalShardPluginTest : JavaPlugin() {
         CommandAPI.onEnable();
 
         EventTest
+        EventTest.recipe
         TestCommand
         server.pluginManager.registerEvents(SmartEvents, this)
         Log.info("Plugin loaded!")

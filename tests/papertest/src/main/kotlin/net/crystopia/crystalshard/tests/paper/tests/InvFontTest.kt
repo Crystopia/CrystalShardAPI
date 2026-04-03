@@ -3,8 +3,8 @@ package net.crystopia.crystalshard.tests.paper.tests
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.copyToClipboard
 import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.custom.gui.CustomGUI.Companion.openInventory
-import net.crystopia.crystalshard.paper.custom.gui.customGUI
+import net.crystopia.crystalshard.paper.custom.smart.CustomGUI.Companion.openInventory
+import net.crystopia.crystalshard.paper.custom.smart.smartGUI
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
 import net.kyori.adventure.text.Component
@@ -30,7 +30,7 @@ class InvFontTest(name: String, sender: CommandSender, args: CommandArguments) :
 
     var currentPage = 1
 
-    fun basicGui(page: Int) = customGUI(
+    fun basicGui(page: Int) = smartGUI(
         title(page), 54
     ) {
         set(9, ItemStack(Material.ARROW).apply {

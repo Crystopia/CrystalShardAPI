@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.custom.gui
+package net.crystopia.crystalshard.paper.custom.smart
 
 import net.crystopia.crystalshard.paper.custom.extension.onClick
 import net.crystopia.crystalshard.paper.custom.extension.onClose
@@ -11,10 +11,8 @@ import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.ItemStack
 
-/**
- * **Credits to https://github.com/flytegg/twilight/blob/master/src/main/kotlin/gg/flyte/twilight/gui/GUI.kt**
- */
-inline fun customGUI(
+// Credits to https://github.com/flytegg/twilight/blob/master/src/main/kotlin/gg/flyte/twilight/gui/GUI.kt
+inline fun smartGUI(
     title: Component = Component.text("Custom GUI"),
     size: Int = 27,
     type: InventoryType = InventoryType.CHEST,

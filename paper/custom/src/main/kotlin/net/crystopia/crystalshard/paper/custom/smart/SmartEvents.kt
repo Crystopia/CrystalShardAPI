@@ -6,6 +6,8 @@ import io.papermc.paper.event.player.AsyncChatEvent
 import net.crystopia.crystalshard.paper.core.shardInstance
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
+import org.bukkit.entity.Entity
+import org.bukkit.entity.Player
 import org.bukkit.event.*
 import org.bukkit.event.block.BlockBreakEvent
 import org.bukkit.event.block.BlockPlaceEvent
@@ -13,7 +15,12 @@ import org.bukkit.event.entity.*
 import org.bukkit.event.inventory.CraftItemEvent
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.event.inventory.PrepareItemCraftEvent
 import org.bukkit.event.player.*
+import org.bukkit.inventory.CraftingRecipe
+import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.ItemStack
+import org.bukkit.inventory.Recipe
 import org.bukkit.persistence.PersistentDataType
 
 class CrystalListener : Listener {
@@ -23,7 +30,7 @@ class CrystalListener : Listener {
 // Credits to https://github.com/flytegg/twilight/blob/master/src/main/kotlin/gg/flyte/twilight/event/Event.kt
 // This is better then my...
 
-inline fun <reified T : Event> event(
+inline fun <reified T : Event> smartEvent(
     priority: EventPriority = EventPriority.NORMAL,
     ignoreCancelled: Boolean = false,
     crossinline callback: T.() -> Unit,
@@ -48,144 +55,147 @@ inline fun <reified T : Event> event(
 
 object SmartEvents : Listener {
 
-        val EVENT_KEY: NamespacedKey
-            get() = NamespacedKey("crystalshardapievents", "uuid")
+    internal val EVENT_KEY: NamespacedKey
+        get() =
+            NamespacedKey("crystalshardapievents", "uuid")
 
-        // General
-        internal var entityDeathEvent = mutableListOf<EntityDeathEvent.() -> Unit>()
-        internal var playerInteractAtEntityEvent = mutableListOf<PlayerInteractAtEntityEvent.() -> Unit>()
-        internal var playerMoveEvent = mutableListOf<PlayerMoveEvent.() -> Unit>()
-        internal var playerJoinEvent = mutableListOf<PlayerJoinEvent.() -> Unit>()
-        internal var asyncChatEvent = mutableListOf<AsyncChatEvent.() -> Unit>()
-        internal var playerQuitEvent = mutableListOf<PlayerQuitEvent.() -> Unit>()
-        internal var inventoryClickEvent = mutableMapOf<String, InventoryClickEvent.() -> Unit>()
-        internal var inventoryCloseEvent = mutableListOf<InventoryCloseEvent.() -> Unit>()
-        internal var playerDropItemEvent = mutableListOf<PlayerDropItemEvent.() -> Unit>()
-        internal var playerSwapHandItemsEvent = mutableListOf<PlayerSwapHandItemsEvent.() -> Unit>()
-        internal var entityPickupItemEvent = mutableListOf<EntityPickupItemEvent.() -> Unit>()
-        internal var blockPlaceEvent = mutableListOf<BlockPlaceEvent.() -> Unit>()
-        internal var blockBreakEvent = mutableListOf<BlockBreakEvent.() -> Unit>()
-        internal var playerDeathEvent = mutableListOf<PlayerDeathEvent.() -> Unit>()
-        internal var entityDamageEvent = mutableListOf<EntityDamageEvent.() -> Unit>()
-        internal var entityDamageByBlockEvent = mutableListOf<EntityDamageByBlockEvent.() -> Unit>()
-        internal var entityDamageByEntityEvent = mutableListOf<EntityDamageByEntityEvent.() -> Unit>()
-        internal var entityDamageItemEvent = mutableListOf<EntityDamageItemEvent.() -> Unit>()
+    // General
+    internal var entityDeathEvent = mutableMapOf<Entity, EntityDeathEvent.() -> Unit>()
+    internal var playerInteractAtEntityEvent = mutableMapOf<Player, PlayerInteractAtEntityEvent.() -> Unit>()
+    internal var playerMoveEvent = mutableMapOf<Player, PlayerMoveEvent.() -> Unit>()
+    internal var playerJoinEvent = mutableMapOf<Player, PlayerJoinEvent.() -> Unit>()
+    internal var asyncChatEvent = mutableMapOf<Player, AsyncChatEvent.() -> Unit>()
+    internal var playerQuitEvent = mutableMapOf<Player, PlayerQuitEvent.() -> Unit>()
+    internal var inventoryClickEvent = mutableMapOf<Inventory, InventoryClickEvent.() -> Unit>()
+    internal var inventorySlotClickEvent = mutableMapOf<Pair<Inventory, Int>, InventoryClickEvent.() -> Unit>()
+    internal var inventoryCloseEvent = mutableMapOf<Inventory, InventoryCloseEvent.() -> Unit>()
+    internal var playerDropItemEvent = mutableMapOf<Player, PlayerDropItemEvent.() -> Unit>()
+    internal var playerSwapHandItemsEvent = mutableMapOf<Player, PlayerSwapHandItemsEvent.() -> Unit>()
+    internal var entityPickupItemEvent = mutableMapOf<Entity, EntityPickupItemEvent.() -> Unit>()
+    internal var blockPlaceEvent = mutableMapOf<Player, BlockPlaceEvent.() -> Unit>()
+    internal var blockBreakEvent = mutableMapOf<Player, BlockBreakEvent.() -> Unit>()
+    internal var playerDeathEvent = mutableMapOf<Player, PlayerDeathEvent.() -> Unit>()
+    internal var entityDamageEvent = mutableMapOf<Entity, EntityDamageEvent.() -> Unit>()
+    internal var entityDamageByBlockEvent = mutableMapOf<Entity, EntityDamageByBlockEvent.() -> Unit>()
+    internal var entityDamageByEntityEvent = mutableMapOf<Entity, EntityDamageByEntityEvent.() -> Unit>()
+    internal var entityDamageItemEvent = mutableMapOf<Entity, EntityDamageItemEvent.() -> Unit>()
 
-        // Other
-        internal var interactEvent = mutableMapOf<String, PlayerInteractEvent.() -> Unit>()
-        internal var craftItemEvent = mutableMapOf<String, CraftItemEvent.() -> Unit>()
-        internal var displayEvents = mutableMapOf<String, PlayerInteractEntityEvent.() -> Unit>()
-        internal var advancementCriterionGrantEvent =
-            mutableMapOf<NamespacedKey, PlayerAdvancementCriterionGrantEvent.() -> Unit>()
-        internal var playerAdvancementDoneEvent = mutableMapOf<NamespacedKey, PlayerAdvancementDoneEvent.() -> Unit>()
+    // Other
+    internal var interactEvent = mutableMapOf<Player, PlayerInteractEvent.() -> Unit>()
+    internal var interactWithItemEvent = mutableMapOf<ItemStack, PlayerInteractEvent.() -> Unit>()
+    internal var interactWithItemHasContainerEvent =
+        mutableMapOf<Pair<ItemStack, Pair<NamespacedKey, PersistentDataType<*, *>>>, PlayerInteractEvent.() -> Unit>()
+    internal var craftItemEvent = mutableMapOf<Recipe, CraftItemEvent.() -> Unit>()
+    internal var craftItemWithItemEvent = mutableMapOf<ItemStack, CraftItemEvent.() -> Unit>()
+    internal var prepareItemCraftEvent = mutableMapOf<Recipe, PrepareItemCraftEvent.() -> Unit>()
+    internal var displayEvents = mutableMapOf<Player, PlayerInteractEntityEvent.() -> Unit>()
+    internal var advancementCriterionGrantEvent =
+        mutableMapOf<NamespacedKey, PlayerAdvancementCriterionGrantEvent.() -> Unit>()
+    internal var playerAdvancementDoneEvent = mutableMapOf<NamespacedKey, PlayerAdvancementDoneEvent.() -> Unit>()
+
+    @EventHandler
+    private fun onPrepareItemCraftEvent(event: PrepareItemCraftEvent) {
+        prepareItemCraftEvent.forEach { (recipe, function) ->
+            if ((event.recipe as CraftingRecipe).key == (recipe as CraftingRecipe).key) function.invoke(event)
+        }
+    }
 
         @EventHandler
         private fun onEntityDeathEvent(event: EntityDeathEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            entityDeathEvent.forEach { it.invoke(event) }
+            entityDeathEvent.forEach { if (it.key.entityId == event.entity.entityId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onPlayerInteractAtEntityEvent(event: PlayerInteractAtEntityEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            playerInteractAtEntityEvent.forEach { it.invoke(event) }
+            playerInteractAtEntityEvent.forEach { if (event.player.entityId == it.key.entityId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onPlayerMoveEvent(event: PlayerMoveEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            playerMoveEvent.forEach { it.invoke(event) }
+            playerMoveEvent.forEach {
+                if (it.key.uniqueId == event.player.uniqueId) it.value.invoke(event)
+            }
         }
 
         @EventHandler
         private fun onAsyncChatEvent(event: AsyncChatEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            asyncChatEvent.forEach { it.invoke(event) }
+            asyncChatEvent.forEach { if (event.player.uniqueId == it.key.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onPlayerJoinEvent(event: PlayerJoinEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            playerJoinEvent.forEach { it.invoke(event) }
+            playerJoinEvent.forEach { if (event.player.uniqueId == it.key.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onPlayerQuitEvent(event: PlayerQuitEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            playerQuitEvent.forEach { it.invoke(event) }
+            playerQuitEvent.forEach { if (event.player.uniqueId == event.player.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onEntityDamageItemEvent(event: EntityDamageItemEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            entityDamageItemEvent.forEach { it.invoke(event) }
+            entityDamageItemEvent.forEach { if (event.entity.uniqueId == it.key.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onEntityDamageByEntityEvent(event: EntityDamageByEntityEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            entityDamageByEntityEvent.forEach { it.invoke(event) }
+            entityDamageByEntityEvent.forEach { if (event.entity.uniqueId == it.key.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onEntityDamageByBlockEvent(event: EntityDamageByBlockEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            entityDamageByBlockEvent.forEach { it.invoke(event) }
+            entityDamageByBlockEvent.forEach { if (it.key.uniqueId == event.entity.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onEntityDamageEvent(event: EntityDamageEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            entityDamageEvent.forEach { it.invoke(event) }
+            entityDamageEvent.forEach { if (it.key.uniqueId == event.entity.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onPlayerDeathEvent(event: PlayerDeathEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            playerDeathEvent.forEach { it.invoke(event) }
+            playerDeathEvent.forEach { if (event.entity.uniqueId == event.player.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onBlockBreakEvent(event: BlockBreakEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            blockBreakEvent.forEach { it.invoke(event) }
+            blockBreakEvent.forEach { if (event.player.uniqueId == event.player.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onBlockPlaceEvent(event: BlockPlaceEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            blockPlaceEvent.forEach { it.invoke(event) }
+            blockPlaceEvent.forEach { if (event.player.uniqueId == event.player.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onInventoryCloseEvent(event: InventoryCloseEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            inventoryCloseEvent.forEach { it.invoke(event) }
+            inventoryCloseEvent.forEach { if (it.key == event.inventory) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onPlayerDropItemEvent(event: PlayerDropItemEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            playerDropItemEvent.forEach { it.invoke(event) }
+            playerDropItemEvent.forEach { if (event.player.uniqueId == event.player.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onPlayerSwapHandItemsEvent(event: PlayerSwapHandItemsEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            playerSwapHandItemsEvent.forEach { it.invoke(event) }
+            playerSwapHandItemsEvent.forEach { if (event.player.uniqueId == event.player.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onEntityPickupItemEvent(event: EntityPickupItemEvent) {
-            if (inventoryCloseEvent.isEmpty()) return
-            entityPickupItemEvent.forEach { it.invoke(event) }
+            entityPickupItemEvent.forEach { if (event.entity.uniqueId == it.key.uniqueId) it.value.invoke(event) }
         }
 
         @EventHandler
         private fun onInventoryClickEvent(event: InventoryClickEvent) {
-            if (inventoryClickEvent.isEmpty()) return
-            inventoryClickEvent.forEach { (string, function) ->
-                inventoryClickEvent[string]!!.invoke(event)
+            inventoryClickEvent.forEach { (inv, function) ->
+                if (event.inventory == inv) function.invoke(event)
+            }
+            inventorySlotClickEvent.forEach { (pair, function) ->
+                if (pair.first == event.inventory) {
+                    if (event.slot == pair.second) function.invoke(event)
+                }
             }
         }
 
@@ -203,50 +213,42 @@ object SmartEvents : Listener {
 
         @EventHandler
         private fun onInteractDisplay(event: PlayerInteractAtEntityEvent) {
-            if (!event.rightClicked.persistentDataContainer.has(
-                    EVENT_KEY, PersistentDataType.STRING
-                )
-            ) return
-
-            val id = event.rightClicked.persistentDataContainer.get(
-                EVENT_KEY, PersistentDataType.STRING
-            )
-
-            displayEvents[id]!!.invoke(event)
+            displayEvents.forEach { (player, function) ->
+                if (player.uniqueId == event.player.uniqueId) function.invoke(event)
+            }
         }
 
         @EventHandler
         private fun onInteractEvent(event: PlayerInteractEvent) {
-            if (interactEvent.isEmpty()) {
-                return
+            interactEvent.forEach { (player, function) ->
+                if (player.uniqueId == event.player.uniqueId) function.invoke(event)
             }
-            if (event.item != null && event.item!!.itemMeta.persistentDataContainer.has(EVENT_KEY)) {
-                val id = event.item!!.itemMeta.persistentDataContainer.get(
-                    EVENT_KEY,
-                    PersistentDataType.STRING
-                )
-                if (event.item != null) {
-                    interactEvent[id]!!.invoke(event)
-                    return
+            interactWithItemEvent.forEach { (stack, function) ->
+                if (event.item == stack) {
+                    function.invoke(event)
                 }
-                return
             }
-            return
+            interactWithItemHasContainerEvent.forEach { (pair, function) ->
+                if (
+                    event.item?.persistentDataContainer?.has(pair.second.first) == true
+                ) {
+                    if (
+                        event.item?.persistentDataContainer?.get(pair.second.first, pair.second.second)
+                        ==
+                        pair.first.persistentDataContainer.get(pair.second.first, pair.second.second)
+
+                    ) function.invoke(event)
+                }
+            }
         }
 
         @EventHandler
         private fun onCraftItemEvent(event: CraftItemEvent) {
-            if (craftItemEvent.isEmpty()) {
-                return
+            craftItemEvent.forEach { (recipe, function) ->
+                if ((event.recipe as CraftingRecipe).key == (recipe as CraftingRecipe).key) function.invoke(event)
             }
-            if (event.recipe.result.persistentDataContainer.has(EVENT_KEY, PersistentDataType.STRING)) {
-                val id = event.recipe.result.itemMeta.persistentDataContainer.get(
-                    EVENT_KEY,
-                    PersistentDataType.STRING
-                )
-                craftItemEvent[id]!!.invoke(event)
-                return
+            craftItemWithItemEvent.forEach {
+                if (it.key == (event.recipe as CraftingRecipe).result) it.value.invoke(event)
             }
-            return
         }
 }
