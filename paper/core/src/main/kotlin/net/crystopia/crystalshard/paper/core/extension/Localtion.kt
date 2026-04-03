@@ -6,12 +6,14 @@ import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 import java.util.*
 
-fun <T : org.bukkit.entity.Entity> Location.spawnEntity(entity: EntityType): T {
+fun <T : Entity> Location.spawnEntity(entity: EntityType): T {
     return world.spawnEntity(this, entity) as T
 }
 
-fun Location.spawnEntity(entity: EntityType): Entity {
-    return world.spawnEntity(this, entity)
+fun <T : Entity> Location.spawnEntity(entity: EntityType, callback: T.() -> Unit): T {
+    val entity = world.spawnEntity(this, entity) as T
+    callback.invoke(entity)
+    return entity
 }
 
 fun Location.teleport(entity: Entity): Location {
