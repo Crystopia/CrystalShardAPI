@@ -1,6 +1,5 @@
-﻿package net.crystopia.crystalshard.paper.custom.i8n.impl.extension
+﻿package net.crystopia.crystalshard.paper.custom.extension
 
-import net.crystopia.crystalshard.paper.custom.extension.toTranslationEntry
 import net.crystopia.crystalshard.paper.custom.i8n.impl.YamlTranslationDataEntry
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
