@@ -1,14 +1,14 @@
 ﻿package net.crystopia.crystalshard.paper.custom.i8n.impl
 
+import net.crystopia.crystalshard.paper.custom.extension.toDataEntry
 import net.crystopia.crystalshard.paper.custom.i8n.ITranslationDataEntry
 import net.crystopia.crystalshard.paper.custom.i8n.ITranslationDataSource
 import net.crystopia.crystalshard.paper.custom.i8n.TranslationNotFoundException
-import net.crystopia.crystalshard.paper.custom.i8n.impl.extension.toDataEntry
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 
 open class YamlTranslationDataSource(
-    private val langDirectory: File
+    protected val langDirectory: File
 ) : ITranslationDataSource {
 
     override var data: MutableMap<String, ITranslationDataEntry> = mutableMapOf()
