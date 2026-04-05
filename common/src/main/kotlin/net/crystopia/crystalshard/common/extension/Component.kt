@@ -27,9 +27,7 @@ fun cmp(string: String): Component {
     return MINI_MESSAGE.deserialize(string)
 }
 
-fun Component.toPlainText(
-    text: String, font: String? = null
-): String {
+fun Component.toPlainText(): String {
     return PlainTextComponentSerializer.plainText().serialize(this)
 }
 fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toPlainText(
@@ -37,20 +35,15 @@ fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<
     return PlainTextComponentSerializer.plainText().serialize(this.build())
 }
 
-fun Component.toJson(
-    text: String, font: String? = null
-): String {
+fun Component.toJson(): String {
     return JSONComponentSerializer.builder().build().serialize(this)
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toJson(
-): String {
+fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toJson(): String {
     return JSONComponentSerializer.builder().build().serialize(this.build())
 }
 
-fun Component.toLegacy(
-    text: String, font: String? = null
-): String {
+fun Component.toLegacy(): String {
     return LegacyComponentSerializer.builder().build().serialize(this)
 }
 
@@ -59,26 +52,19 @@ fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<
     return LegacyComponentSerializer.builder().build().serialize((this.build()))
 }
 
-fun Component.toGson(
-    text: String, font: String? = null
-): String {
+fun Component.toGson(): String {
     return GsonComponentSerializer.builder().build().serialize(this)
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toGson(
-): String {
+fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toGson(): String {
     return GsonComponentSerializer.builder().build().serialize((this.build()))
 }
 
-fun Component.toJsonElement(
-    text: String, font: String? = null
-): JsonElement {
+fun Component.toJsonElement(): JsonElement {
     return Json.decodeFromString(JSONComponentSerializer.builder().build().serialize(this))
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toJsonElement(
-    text: String, font: String? = null
-): JsonElement {
+fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toJsonElement(): JsonElement {
     return Json.decodeFromString(JSONComponentSerializer.builder().build().serialize(this.build()))
 }
 
