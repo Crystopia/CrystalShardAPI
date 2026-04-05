@@ -6,6 +6,12 @@ import net.kyori.adventure.text.minimessage.tag.Tag
 import net.kyori.adventure.text.minimessage.tag.resolver.ArgumentQueue
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
 
+/**
+ * An interface that offers an almost complete custom color resolver for MiniMessage
+ *
+ * You only need to insert the data from a source of your choice into the colors Map, as an example:
+ * @see net.crystopia.crystalshard.paper.custom.i8n.impl.YamlColorResolver
+ */
 interface IColorResolver : TagResolver {
 
     var colors: MutableMap<String, TextColor>

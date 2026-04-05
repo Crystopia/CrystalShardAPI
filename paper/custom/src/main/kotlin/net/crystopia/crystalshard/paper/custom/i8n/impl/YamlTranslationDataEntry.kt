@@ -3,9 +3,14 @@
 import net.crystopia.crystalshard.paper.custom.i8n.ITranslationDataEntry
 import net.crystopia.crystalshard.paper.custom.i8n.TranslationNotFoundException
 
+
+/**
+ * An implementation of the ITranslationDataEntry to get the translation data from a YAML file
+ * @see YamlTranslationDataSource
+ */
 open class YamlTranslationDataEntry(
     override var entry: MutableMap<String, String>,
-    override val fallbackLang: String
+    override val fallbackLang: String?
 ) : ITranslationDataEntry {
 
     override fun getTranslation(key: String): String {

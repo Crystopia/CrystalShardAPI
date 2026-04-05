@@ -7,6 +7,19 @@ import net.crystopia.crystalshard.paper.custom.i8n.TranslationNotFoundException
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
 
+/**
+ * An implementation of an ITranslationDataSource to use all YAML files from a given directory as language files.
+ *
+ * Each YAML file needs to have the following structure:
+ *
+ * ```yml
+ * fallback: ""     # enter a fallback language (of course this language has to exist)
+ * values:          # add all translation strings as key-value pairs in here
+ *  key1: value1
+ *  key2: value2
+ *  ...
+ * ```
+ */
 open class YamlTranslationDataSource(
     protected val langDirectory: File
 ) : ITranslationDataSource {
@@ -30,11 +43,14 @@ open class YamlTranslationDataSource(
             try {
                 return data[lang]!!.getTranslation(key)
             } catch (e: TranslationNotFoundException) {
-                return getTranslation(data[lang]!!.fallbackLang, key, 15)
+                if (data[lang]!!.getFallbackLang() != null) {
+                    return getTranslation(data[lang]!!.fallbackLang!!, key, 10)
+                }
             }
         } else {
-            return ""
+            throw TranslationNotFoundException()
         }
+        return ""
     }
 
     fun getTranslation(lang: String, key: String, tries: Int): String {
@@ -42,11 +58,14 @@ open class YamlTranslationDataSource(
             try {
                 return data[lang]!!.getTranslation(key)
             } catch (e: TranslationNotFoundException) {
-                return getTranslation(data[lang]!!.fallbackLang, key, tries - 1)
+                if (data[lang]!!.getFallbackLang() != null) {
+                    return getTranslation(data[lang]!!.fallbackLang!!, key, tries - 1)
+                }
             }
         } else {
-            return ""
+            throw TranslationNotFoundException()
         }
+        return ""
     }
 
     /**
