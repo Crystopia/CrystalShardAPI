@@ -1,7 +1,6 @@
 package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.paper.core.extension.kill
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.shared.enums.player.GameMode
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
@@ -25,7 +24,7 @@ class RespawnTest(name: String, sender: CommandSender, args: CommandArguments) :
                 packet.send(mutableListOf(sender as Player))
             }
 
-          (sender as Player).kill()
+            (sender as Player).health = 0.0
         }
     }
 

@@ -21,11 +21,12 @@ inline fun smartGUI(
     return CustomGUI(title, size, type, context)
 }
 
-class CustomGUI(val title: Component, val size: Int, val type: InventoryType, val context: CustomGUI.() -> Unit) {
+class CustomGUI(val title: Component, val size: Int, val type: InventoryType, val context: CustomGUI.() -> Unit) :
+    org.bukkit.inventory.InventoryHolder {
 
     val customInventory = when (type) {
-        InventoryType.CHEST -> Bukkit.createInventory(null, size, title)
-        else -> Bukkit.createInventory(null, type, title)
+        InventoryType.CHEST -> Bukkit.createInventory(this, size, title)
+        else -> Bukkit.createInventory(this, type, title)
     }
 
     private val keySlot = mutableMapOf<Char, MutableList<Int>>()
@@ -72,6 +73,8 @@ class CustomGUI(val title: Component, val size: Int, val type: InventoryType, va
     fun set(keys: Collection<Char>, item: ItemStack, action: InventoryClickEvent.() -> Unit = {}) {
         keys.forEach { set(it, item, action) }
     }
+
+    override fun getInventory() = customInventory
 
     companion object {
         fun Player.openInventory(gui: CustomGUI) {

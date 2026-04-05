@@ -2,7 +2,6 @@ package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.core.extension.kill
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.player.GameMode
