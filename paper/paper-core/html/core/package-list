@@ -1,10 +1,10 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension////PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/index.html
-$dokka.location:net.crystopia.crystalshard.paper.core.extension//addEvent/org.bukkit.plugin.java.JavaPlugin#org.bukkit.event.Listener/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/add-event.html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//async/org.bukkit.plugin.java.JavaPlugin#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/async.html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//broadcast/org.bukkit.World#org.bukkit.Location#kotlin.Double#org.bukkit.Sound#kotlin.Float#kotlin.Float/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/broadcast.html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//getRecipesFor/org.bukkit.inventory.ItemStack#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/get-recipes-for.html
+$dokka.location:net.crystopia.crystalshard.paper.core.extension//onEvent/org.bukkit.plugin.java.JavaPlugin#org.bukkit.event.Listener/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/on-event.html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//openDialog/net.kyori.adventure.text.ComponentBuilder[TypeParam(bounds=[net.kyori.adventure.text.BuildableComponent[^,TypeParam(bounds=[net.kyori.adventure.text.ComponentBuilder[^,^^]])]]),TypeParam(bounds=[net.kyori.adventure.text.ComponentBuilder[TypeParam(bounds=[net.kyori.adventure.text.BuildableComponent[^^,^]]),^]])]#io.papermc.paper.dialog.Dialog/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/open-dialog.html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//register/org.bukkit.event.Listener#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/register.html
 $dokka.location:net.crystopia.crystalshard.paper.core.extension//requirePlugin/org.bukkit.plugin.java.JavaPlugin#kotlin.String/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.extension/require-plugin.html
