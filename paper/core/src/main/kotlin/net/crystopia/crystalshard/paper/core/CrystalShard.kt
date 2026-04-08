@@ -1,18 +1,19 @@
 package net.crystopia.crystalshard.paper.core
 
-import org.bukkit.craftbukkit.block.CraftBlockType
 import org.bukkit.plugin.java.JavaPlugin
 
-private var plugin: JavaPlugin? = null
+object CrystalShard {
+    var plugin: JavaPlugin? = null
+}
 
 fun shardInstance(): JavaPlugin {
-    if (plugin == null){
+    if (CrystalShard.plugin == null) {
         throw Exception("You need to use crystalshard(plugin)")
     }
-    return plugin!!
+    return CrystalShard.plugin!!
 }
 
 
 fun crystalshard(plugin: JavaPlugin) {
-    net.crystopia.crystalshard.paper.core.plugin = plugin
+    CrystalShard.plugin = plugin
 }

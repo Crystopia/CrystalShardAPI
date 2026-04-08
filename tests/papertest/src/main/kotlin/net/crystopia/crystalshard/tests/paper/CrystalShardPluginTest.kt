@@ -5,8 +5,10 @@ import dev.jorel.commandapi.CommandAPIPaperConfig
 import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.paper.core.crystalshard
 import net.crystopia.crystalshard.paper.custom.smart.SmartEvents
+import net.crystopia.crystalshard.paper.folia.threadedTask
 import net.crystopia.crystalshard.tests.paper.tests.EventTest
 import net.crystopia.crystalshard.tests.paper.tests.base.TestCommand
+import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
 
@@ -27,6 +29,11 @@ class CrystalShardPluginTest : JavaPlugin() {
     override fun onEnable() {
         crystalshard(this)
         CommandAPI.onEnable();
+
+
+        threadedTask {
+            println("Oh hello on main thread")
+        }
 
         EventTest
         EventTest.recipe

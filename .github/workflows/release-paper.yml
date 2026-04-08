@@ -9,7 +9,7 @@ jobs:
   publish:
     strategy:
       matrix:
-        tasks: [box,core,custom,dhl,pack,panic,simulacrum]
+        tasks: [box,core,custom,dhl,pack,panic,simulacrum,folia]
     runs-on: ubuntu-latest
 
 

@@ -27,6 +27,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":paper"))
     implementation(project(":paper:core"))
+    implementation(project(":paper:folia"))
     implementation(project(":paper:box"))
     implementation(project(":paper:custom"))
     implementation(project(":paper:dhl"))
