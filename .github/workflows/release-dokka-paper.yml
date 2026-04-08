@@ -18,6 +18,7 @@ jobs:
           paper/pack,
           paper/panic,
           paper/simulacrum,
+          paper/folia
         ]
     steps:
       - uses: actions/checkout@v4
