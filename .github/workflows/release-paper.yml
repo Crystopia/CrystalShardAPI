@@ -1,6 +1,7 @@
 ﻿name: Build CrystalShard-Paper
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - v.*

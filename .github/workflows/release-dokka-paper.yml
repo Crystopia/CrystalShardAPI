@@ -1,6 +1,7 @@
 ﻿name: Deploy crystalshard-paper to GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - v.*

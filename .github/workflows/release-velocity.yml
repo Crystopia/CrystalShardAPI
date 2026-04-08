@@ -1,6 +1,7 @@
 ﻿name: Build CrystalShard-Velocity
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - v.*
