@@ -33,6 +33,8 @@ $dokka.location:net.crystopia.crystalshard.paper.core.scheduler//async/#kotlin.F
 $dokka.location:net.crystopia.crystalshard.paper.core.scheduler//delay/#kotlin.Long#java.util.concurrent.TimeUnit#kotlin.Boolean#kotlin.Function1[net.crystopia.crystalshard.paper.core.scheduler.ShardRunnable,kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.scheduler/delay.html
 $dokka.location:net.crystopia.crystalshard.paper.core.scheduler//repeat/#kotlin.Long#kotlin.Long#java.util.concurrent.TimeUnit#kotlin.Boolean#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.scheduler/repeat.html
 $dokka.location:net.crystopia.crystalshard.paper.core.scheduler//sync/#kotlin.Function1[net.crystopia.crystalshard.paper.core.scheduler.ShardRunnable,kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.scheduler/sync.html
+$dokka.location:net.crystopia.crystalshard.paper.core.scheduler//task/#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.scheduler/task.html
+$dokka.location:net.crystopia.crystalshard.paper.core.scheduler//taskAsync/#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.scheduler/task-async.html
 $dokka.location:net.crystopia.crystalshard.paper.core.scheduler//taskLater/#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.scheduler/task-later.html
 $dokka.location:net.crystopia.crystalshard.paper.core.scheduler//taskLaterAsync/#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.scheduler/task-later-async.html
 $dokka.location:net.crystopia.crystalshard.paper.core.scheduler//taskTimer/#kotlin.Long#kotlin.Long#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core.scheduler/task-timer.html
@@ -61,6 +63,8 @@ $dokka.location:net.crystopia.crystalshard.paper.core.utils/ProxyUtil/sendToServ
 $dokka.location:net.crystopia.crystalshard.paper.core////PointingToDeclaration/core/net.crystopia.crystalshard.paper.core/index.html
 $dokka.location:net.crystopia.crystalshard.paper.core//crystalshard/#org.bukkit.plugin.java.JavaPlugin/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core/crystalshard.html
 $dokka.location:net.crystopia.crystalshard.paper.core//shardInstance/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core/shard-instance.html
+$dokka.location:net.crystopia.crystalshard.paper.core/CrystalShard///PointingToDeclaration/core/net.crystopia.crystalshard.paper.core/-crystal-shard/index.html
+$dokka.location:net.crystopia.crystalshard.paper.core/CrystalShard/plugin/#/PointingToDeclaration/core/net.crystopia.crystalshard.paper.core/-crystal-shard/plugin.html
 net.crystopia.crystalshard.paper.core
 net.crystopia.crystalshard.paper.core.extension
 net.crystopia.crystalshard.paper.core.scheduler
