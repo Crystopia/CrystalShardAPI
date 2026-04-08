@@ -26,8 +26,10 @@ fun Player.transfer(ip: String, port: Int, message: Component?) {
     transfer(ip, port)
 }
 
-fun Player.sendBossBar(text: Component, process: Float, color: BossBar.Color, overlay: BossBar.Overlay) {
-    showBossBar(BossBar.bossBar(text, process, color, overlay))
+fun Player.sendBossBar(text: Component, process: Float, color: BossBar.Color, overlay: BossBar.Overlay): BossBar {
+    val bossBar = BossBar.bossBar(text, process, color, overlay)
+    showBossBar(bossBar)
+    return bossBar
 }
 
 
@@ -39,10 +41,12 @@ fun Player.sendBossBar(
     overlay: BossBar.Overlay,
     delaySeconds: Long,
     timeSeconds: Long,
-) {
+): BossBar {
+    val bossBar = BossBar.bossBar(text, process * actionBarTaskProcess, color, overlay)
     Bukkit.getScheduler().runTaskTimer(shardInstance(), Runnable {
-        showBossBar(BossBar.bossBar(text, process * actionBarTaskProcess, color, overlay))
+        showBossBar(bossBar)
     }, delaySeconds, timeSeconds * 20L)
+    return bossBar
 }
 
 fun Player.sendBossBar(
@@ -54,8 +58,10 @@ fun Player.sendBossBar(
     overlay: BossBar.Overlay,
     delaySeconds: Long,
     timeSeconds: Long,
-) {
+): BossBar {
+    val bossBar = BossBar.bossBar(text, process * actionBarTaskProcess, color, overlay)
     Bukkit.getScheduler().runTaskTimer(plugin, Runnable {
-        showBossBar(BossBar.bossBar(text, process * actionBarTaskProcess, color, overlay))
+        showBossBar(bossBar)
     }, delaySeconds, timeSeconds * 20L)
+    return bossBar
 }
