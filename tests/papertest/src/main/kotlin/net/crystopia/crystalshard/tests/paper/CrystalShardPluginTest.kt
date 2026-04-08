@@ -2,15 +2,11 @@ package net.crystopia.crystalshard.tests.paper
 
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIPaperConfig
-import net.crystopia.crystalshard.common.extension.cmp
 import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.paper.core.crystalshard
-import net.crystopia.crystalshard.paper.core.extension.taskLater
-import net.crystopia.crystalshard.paper.core.extension.taskTimer
 import net.crystopia.crystalshard.paper.custom.smart.SmartEvents
 import net.crystopia.crystalshard.tests.paper.tests.EventTest
 import net.crystopia.crystalshard.tests.paper.tests.base.TestCommand
-import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 
 
