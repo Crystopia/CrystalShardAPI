@@ -14,6 +14,7 @@ paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArt
 dependencies {
     paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
     implementation(project(":common"))
+    implementation(project(":paper:core"))
 }
 
 kotlin {
@@ -21,17 +22,14 @@ kotlin {
 }
 
 tasks {
-        assemble {
-            dependsOn(shadowJar)
-            dependsOn(reobfJar)
-        }
-        shadowJar {
-            relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
-        }
-        java {
-            withSourcesJar()
-            withJavadocJar()
-        }
+    assemble {
+        dependsOn(shadowJar)
+        dependsOn(reobfJar)
+    }
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
     publishing {
         repositories {
             maven {
@@ -49,7 +47,7 @@ tasks {
         publications {
             create<MavenPublication>("reposilite") {
                 from(components["java"])
-                artifactId = "core"
+                artifactId = "folia"
                 groupId = group as String
                 version = version
             }

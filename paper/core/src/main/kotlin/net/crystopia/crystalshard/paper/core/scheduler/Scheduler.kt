@@ -6,6 +6,14 @@ import org.bukkit.scheduler.BukkitRunnable
 import org.bukkit.scheduler.BukkitTask
 import java.util.concurrent.TimeUnit
 
+fun task(delay: Long, task: () -> Unit): BukkitTask {
+    return Bukkit.getServer().scheduler.runTask(shardInstance(), task)
+}
+
+fun taskAsync(delay: Long, task: () -> Unit): BukkitTask {
+    return Bukkit.getServer().scheduler.runTaskAsynchronously(shardInstance(), task)
+}
+
 fun taskLater(delay: Long, task: () -> Unit): BukkitTask {
     return Bukkit.getServer().scheduler.runTaskLater(shardInstance(), task, delay)
 }
