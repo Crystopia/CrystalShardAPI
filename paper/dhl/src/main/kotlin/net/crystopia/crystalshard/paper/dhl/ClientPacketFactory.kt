@@ -39,7 +39,6 @@ import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder
 import net.kyori.adventure.text.Component
 import net.minecraft.network.protocol.Packet
-import net.minecraft.world.level.block.entity.BlockEntityType
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.World
@@ -2086,7 +2085,7 @@ object ClientPacketFactory {
     }
 
     fun sendEntityEventPacket(
-        entityId: Int,
+        entity: Entity,
         /**
          * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
          */
@@ -2096,7 +2095,7 @@ object ClientPacketFactory {
     ): Shard_Packet<ClientboundEntityEventPacketData> {
 
         val data = ClientboundEntityEventPacketData(
-            entityId, status, world
+            entity, status, world
         )
 
         val packet = when (ServerUtil.currentVersion()) {
