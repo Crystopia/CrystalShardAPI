@@ -14,6 +14,12 @@ object TestCommand {
             }
         }
 
+        literalArgument("packet") {
+            anyExecutor { sender, arguments ->
+                PacketTest("packet", sender, arguments).command()
+            }
+        }
+
         literalArgument("advancement") {
             anyExecutor { sender, arguments ->
                 AdvancementTest("advancement", sender, arguments).command()

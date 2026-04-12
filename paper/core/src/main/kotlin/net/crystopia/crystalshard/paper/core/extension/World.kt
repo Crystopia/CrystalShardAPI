@@ -7,18 +7,25 @@ import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 
 
-/**
- *
- * Shorter Methods to interact with a World.
- * More Methods will follow!!!
- *
- */
-fun World.spawnEntity(    x: Double,
+fun <T : Entity> World.spawnEntity(
+    x: Double,
     y: Double,
     z: Double,
     type: EntityType,
-): Entity {
-    val spawned = spawnEntity(Location(this, x, y, z), type)
+): T {
+    val spawned = spawnEntity(Location(this, x, y, z), type) as T
+    return spawned
+}
+
+fun <T : Entity> World.spawnEntity(
+    x: Double,
+    y: Double,
+    z: Double,
+    type: EntityType,
+    entity: T.() -> Unit
+): T {
+    val spawned = spawnEntity(Location(this, x, y, z), type) as T
+    entity.invoke(spawned)
     return spawned
 }
 
