@@ -9,6 +9,14 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun damageEvent(data: ClientboundDamageEventPacketData): Packet<*> {
+        return Shard_ClientboundDamageEventPacket().createPacket(data)
+    }
+
+    override fun takeItem(data: ClientboundTakeItemEntityPacketData): Packet<*> {
+        return Shard_ClientboundTakeItemEntityPacket().createPacket(data)
+    }
+
     override fun setChunkBatchFinished(data: ClientboundChunkBatchFinishedPacketData): Packet<*> {
         return Shard_ClientboundChunkBatchFinishedPacket().createPacket(data)
     }

@@ -1,6 +1,7 @@
 package net.crystopia.crystalshard.paper.simulacrum
 
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
 import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
 import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.EntityBuilder
@@ -140,7 +141,7 @@ object SimulacrumFactory {
             }
         }
 
-        ClientPacketFactory.addEntitiesPacket(
+        ClientPacketFactory.addEntity(
             displayEntity!!.id, displayEntity.uuid, location,
             entityType = type,
             data = 0,

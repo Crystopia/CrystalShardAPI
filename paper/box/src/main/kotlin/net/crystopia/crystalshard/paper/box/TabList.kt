@@ -1,6 +1,7 @@
 package net.crystopia.crystalshard.paper.box
 
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.setTabList
 import net.kyori.adventure.text.Component
 import org.bukkit.entity.Player
 

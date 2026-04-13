@@ -4,6 +4,10 @@ import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
+import net.crystopia.crystalshard.paper.dhl.packets.client.createBlockEntityData
+import net.crystopia.crystalshard.paper.dhl.packets.client.createBlockUpdate
+import net.crystopia.crystalshard.paper.dhl.packets.client.createOpenSignEditor
+import net.crystopia.crystalshard.paper.dhl.packets.server.signUpdateEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.BlockEntityType
@@ -62,19 +66,19 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
 
     private fun detectPacketsSender(key: String) {
 
-        ClientPacketFactory.createBlockUpdatePacket(
+        ClientPacketFactory.createBlockUpdate(
             blockPos, BlockType.OAK_SIGN
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
-        ClientPacketFactory.createBlockEntityDataPacket(
+        ClientPacketFactory.createBlockEntityData(
             blockPos, BlockEntityType.SIGN, buildNBT(key)
         ) { packet ->
             packet.send(mutableListOf(player))
         }
 
-        ClientPacketFactory.createOpenSignEditorPacket(
+        ClientPacketFactory.createOpenSignEditor(
             blockPos, true
         ) { packet ->
             packet.send(mutableListOf(player))
@@ -82,7 +86,7 @@ class ClientMods(val player: Player, val plugin: JavaPlugin) {
 
         player.closeInventory()
 
-        ClientPacketFactory.createBlockUpdatePacket(
+        ClientPacketFactory.createBlockUpdate(
             blockPos, BlockType.AIR
         ) { packet ->
             packet.send(mutableListOf(player))
