@@ -5,6 +5,13 @@ import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.hasServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
+import net.crystopia.crystalshard.paper.dhl.packets.client.closeContainer
+import net.crystopia.crystalshard.paper.dhl.packets.client.openScreen
+import net.crystopia.crystalshard.paper.dhl.packets.client.setContainerContent
+import net.crystopia.crystalshard.paper.dhl.packets.client.setContainerData
+import net.crystopia.crystalshard.paper.dhl.packets.client.setContainerSlot
+import net.crystopia.crystalshard.paper.dhl.packets.server.containerButtonClickEvent
+import net.crystopia.crystalshard.paper.dhl.packets.server.containerClickEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.gui.Slot
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.ButtonClickEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.ContainerClickEvent
@@ -163,7 +170,7 @@ class GUI {
     }
 
     fun close(player: Player): GUI {
-        ClientPacketFactory.closeContainerPacket(inventoryId!!) { packet ->
+        ClientPacketFactory.closeContainer(inventoryId!!) { packet ->
             packet.send(mutableListOf(player))
         }
         player.removeServerPacketListener(
@@ -177,7 +184,7 @@ class GUI {
 
     fun close(): GUI {
         players.forEach {
-            ClientPacketFactory.closeContainerPacket(inventoryId!!) { packet ->
+            ClientPacketFactory.closeContainer(inventoryId!!) { packet ->
                 packet.send(mutableListOf(it))
             }
             it.removeServerPacketListener(
@@ -228,7 +235,7 @@ class GUI {
     }
 
     fun open(player: Player): GUI {
-        ClientPacketFactory.openScreenPacket(inventoryId!!, title, type) { packet ->
+        ClientPacketFactory.openScreen(inventoryId!!, title, type) { packet ->
             packet.send(mutableListOf(player))
         }
         update()
@@ -236,7 +243,7 @@ class GUI {
     }
 
     fun open(): GUI {
-        ClientPacketFactory.openScreenPacket(inventoryId!!, title, type) { packet ->
+        ClientPacketFactory.openScreen(inventoryId!!, title, type) { packet ->
             packet.send(players)
         }
         update()

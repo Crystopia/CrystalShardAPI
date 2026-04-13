@@ -2,6 +2,9 @@ package net.crystopia.crystalshard.paper.simulacrum.displays
 
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
+import net.crystopia.crystalshard.paper.dhl.packets.client.setEntityData
+import net.crystopia.crystalshard.paper.dhl.packets.server.interactEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.InteractEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
@@ -57,7 +60,7 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
             key, PersistentDataType.STRING, entity.uniqueId.toString()
         )
 
-        ClientPacketFactory.addEntitiesPacket(
+        ClientPacketFactory.addEntity(
             entityId = interaction.entityId,
             entityUUID = interaction.uniqueId,
             location = entity.location,
@@ -69,7 +72,7 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
         }
 
 
-        ClientPacketFactory.setEntityDataPacket(
+        ClientPacketFactory.setEntityData(
             interaction.entityId, mutableListOf(
                 EntityMetadata(
                     index = 8, type = EntityDataSerializerType.FLOAT, value = size.first

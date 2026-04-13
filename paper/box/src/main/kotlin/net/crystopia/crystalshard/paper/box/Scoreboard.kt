@@ -1,6 +1,10 @@
 package net.crystopia.crystalshard.paper.box
 
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.resetScoreInDisplayObject
+import net.crystopia.crystalshard.paper.dhl.packets.client.sendObjectiveUpdate
+import net.crystopia.crystalshard.paper.dhl.packets.client.setDisplayObjective
+import net.crystopia.crystalshard.paper.dhl.packets.client.setScoreInDisplayObject
 import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.*
 import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.*
 import net.kyori.adventure.text.Component

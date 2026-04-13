@@ -2,6 +2,9 @@ package net.crystopia.crystalshard.paper.simulacrum.npc
 
 import com.mojang.authlib.GameProfile
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
+import net.crystopia.crystalshard.paper.dhl.packets.client.playerInfoRemove
+import net.crystopia.crystalshard.paper.dhl.packets.client.removeEntities
 import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.simulacrum.types.config.npc.NpcSkinData
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
@@ -49,7 +52,7 @@ class Npc(
      * ```Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0, 0.0F, 0.0F)```
      */
     override fun spawn(player: Player) {
-        ClientPacketFactory.addEntitiesPacket(
+        ClientPacketFactory.addEntity(
             entityId = playerEntity.entityId,
             entityUUID = playerEntity.uniqueId,
             location = location,
@@ -65,7 +68,7 @@ class Npc(
      * Implemented fun to simple spawn the NPC on the Location in the selected world.
      */
     override fun spawnAll() {
-        ClientPacketFactory.addEntitiesPacket(
+        ClientPacketFactory.addEntity(
             entityId = playerEntity.entityId,
             entityUUID = playerEntity.uniqueId,
             location = location,
@@ -81,12 +84,12 @@ class Npc(
      * Implemented fun to simple remove the NPC from the Player.
      */
     override fun remove(player: Player) {
-        ClientPacketFactory.removeEntitiesPacket(
+        ClientPacketFactory.removeEntities(
             mutableListOf(playerEntity.entityId)
         ) { packet ->
             packet.send(mutableListOf(player))
         }
-        ClientPacketFactory.playerInfoRemovePacket(
+        ClientPacketFactory.playerInfoRemove(
             mutableListOf(playerEntity.uniqueId)
         ) { packet ->
             packet.send(mutableListOf(player))
@@ -97,12 +100,12 @@ class Npc(
      * Implemented fun to simple remove the NPC from all Players.
      */
     override fun removeAll() {
-        ClientPacketFactory.removeEntitiesPacket(
+        ClientPacketFactory.removeEntities(
             mutableListOf(playerEntity.entityId)
         ) { packet ->
             packet.send(Bukkit.getServer().onlinePlayers.toMutableList())
         }
-        ClientPacketFactory.playerInfoRemovePacket(
+        ClientPacketFactory.playerInfoRemove(
             mutableListOf(playerEntity.uniqueId)
         ) { packet ->
             packet.send(Bukkit.getServer().onlinePlayers.toMutableList())
