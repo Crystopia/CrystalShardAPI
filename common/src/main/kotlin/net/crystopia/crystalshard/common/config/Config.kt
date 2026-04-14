@@ -2,7 +2,6 @@
 
 import java.io.File
 
-
 inline fun <T : Any> config(
     file: File, type: ConfigType? = ConfigType.JSON, config: Config<T>.() -> Unit
 ): Config<T> {
@@ -14,6 +13,7 @@ inline fun <T : Any> config(
 class Config<C : Any>(
     val file: File, val type: ConfigType? = ConfigType.JSON
 ) {
+
     lateinit var data: C
 
     inline fun <reified T : Any> load(default: T): T {
