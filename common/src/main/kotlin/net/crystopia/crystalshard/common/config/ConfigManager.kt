@@ -9,12 +9,11 @@ object ConfigManager {
     @OptIn(ExperimentalSerializationApi::class)
     var configs: MutableMap<String, Pair<ConfigType, File>> = mutableMapOf()
 
-    inline fun <reified T : Any> load(key: String, default: T, type: ConfigType?, file: File?): T? {
-
+    inline fun <reified T : Any> load(key: String, default: T, type: ConfigType?, file: File?): T {
         if (!configs.contains(key)) {
             requireNotNull(type)
             requireNotNull(file)
-            configs[key] = Pair(type!!, file!!)
+            configs[key] = Pair(type, file)
         }
 
         if (configs[key]!!.first == ConfigType.YAML) {
@@ -22,7 +21,8 @@ object ConfigManager {
         } else if (configs[key]!!.first == ConfigType.JSON) {
             return configs[key]!!.second.loadJSONConfig(default)
         }
-        return null
+
+        throw IllegalArgumentException("No config found for the requirements...")
     }
 
     inline fun <reified T : Any> save(key: String, default: T) {
@@ -33,12 +33,12 @@ object ConfigManager {
         }
     }
 
-    inline fun <reified T : Any> reload(key: String, default: T): T? {
+    inline fun <reified T : Any> reload(key: String, default: T): T {
         if (configs[key]!!.first == ConfigType.YAML) {
             return loadYAMLFromFile(configs[key]!!.second)
         } else if (configs[key]!!.first == ConfigType.JSON) {
             return loadJSONFromFile(configs[key]!!.second)
         }
-        return null
+        throw IllegalArgumentException("No config found for the requirements...")
     }
 }

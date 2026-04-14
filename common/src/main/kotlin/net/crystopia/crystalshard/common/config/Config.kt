@@ -2,18 +2,32 @@
 
 import java.io.File
 
-class Config(
+
+inline fun <T : Any> config(
+    file: File, type: ConfigType? = ConfigType.JSON, config: Config<T>.() -> Unit
+): Config<T> {
+    val config = Config<T>(file, type)
+    config(config)
+    return config
+}
+
+class Config<C : Any>(
     val file: File, val type: ConfigType? = ConfigType.JSON
 ) {
+    lateinit var data: C
 
     inline fun <reified T : Any> load(default: T): T {
         return when (type) {
             ConfigType.JSON -> {
-                file.loadJSONConfig(default)
+                val fileData = file.loadJSONConfig(default)
+                this.data = fileData as C
+                fileData as T
             }
 
             ConfigType.YAML -> {
-                file.loadYAMLConfig(default)
+                val fileData = file.loadYAMLConfig(default)
+                this.data = fileData as C
+                fileData as T
             }
 
             null -> throw Exception("Please define a ConfigType!")
@@ -34,7 +48,7 @@ class Config(
         }
     }
 
-    fun reload() {
+    fun reload(): Config<C> {
         return when (type) {
             ConfigType.JSON -> {
                 load(loadJSONFromFile(file))

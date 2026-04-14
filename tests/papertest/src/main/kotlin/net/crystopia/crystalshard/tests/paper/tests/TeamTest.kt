@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.tests.paper.tests
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.sendTeam
 import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
 import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.CollisionRule
 import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.NameTagVisibility

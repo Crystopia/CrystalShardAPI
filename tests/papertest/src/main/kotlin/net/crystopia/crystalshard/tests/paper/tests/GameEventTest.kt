@@ -2,6 +2,7 @@ package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.runGameEvent
 import net.crystopia.crystalshard.paper.dhl.shared.enums.game.GameEventType
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
 import org.bukkit.command.CommandSender

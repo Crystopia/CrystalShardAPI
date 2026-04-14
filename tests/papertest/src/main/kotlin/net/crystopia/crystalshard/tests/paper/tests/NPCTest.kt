@@ -5,6 +5,13 @@ import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
+import net.crystopia.crystalshard.paper.dhl.packets.client.createEquipment
+import net.crystopia.crystalshard.paper.dhl.packets.client.playerInfoUpdate
+import net.crystopia.crystalshard.paper.dhl.packets.client.setEntityData
+import net.crystopia.crystalshard.paper.dhl.packets.client.setPassengers
+import net.crystopia.crystalshard.paper.dhl.packets.client.teleportEntity
+import net.crystopia.crystalshard.paper.dhl.packets.server.interactEvent
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
@@ -58,14 +65,14 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                 )
                 playerEntity.playerProfile = playerProfile
 
-                ClientPacketFactory.playerInfoUpdatePacket(
+                ClientPacketFactory.playerInfoUpdate(
                     playerEntity,
                     actions,
                 ) { packet ->
                     packet.send(mutableListOf((sender as Player)))
                 }
 
-                ClientPacketFactory.addEntitiesPacket(
+                ClientPacketFactory.addEntity(
                     entityId = playerEntity.entityId,
                     entityUUID = playerEntity.uniqueId,
                     location = playerEntity.location,
@@ -83,14 +90,14 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                     )
                 )
 
-                ClientPacketFactory.createEquipmentPacket(
+                ClientPacketFactory.createEquipment(
                     playerEntity.entityId, equipmentList
                 ) { packet ->
                     packet.send(mutableListOf((sender as Player)))
                 }
 
 
-                ClientPacketFactory.setEntityDataPacket(
+                ClientPacketFactory.setEntityData(
                     playerEntity.entityId, mutableListOf(
                         EntityMetadata<Byte>(
                             index = 16,
@@ -103,7 +110,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                 }
 
 
-                ClientPacketFactory.teleportEntityPacket(
+                ClientPacketFactory.teleportEntity(
                     playerEntity.entityId,
                     Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0),
                     false
@@ -127,7 +134,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                         Location(Bukkit.getWorld("world"), 1.0, 1.0, 1.0)
                     ) {
 
-                        ClientPacketFactory.addEntitiesPacket(
+                        ClientPacketFactory.addEntity(
                             this.entityId,
                             this.uniqueId,
                             location,
@@ -139,7 +146,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                         }
                     }
 
-                    ClientPacketFactory.setPassengersPacket(fakeDisplay, mutableListOf(playerEntity)) { packet ->
+                    ClientPacketFactory.setPassengers(fakeDisplay, mutableListOf(playerEntity)) { packet ->
                         packet.send(mutableListOf((sender as Player)))
                     }
                 }

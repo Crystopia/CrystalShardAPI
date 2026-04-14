@@ -2,6 +2,7 @@ package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.sendWaypoint
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoint
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointDataVec3i
 import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointIcon
