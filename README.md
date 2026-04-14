@@ -10,7 +10,6 @@
 <hr />
 
 **CrystalShard** is an open-source Minecraft library that provides packet handling, utilities, and server-side helpers to help you build plugins faster and cleaner.
-
 It supports both **PaperMC** and **Velocity**, offering modular packages for GUIs, NPCs, resource packs, custom elements, and more.
 
 ---
@@ -43,7 +42,7 @@ Add it to your `build.gradle.kts`:
 
 ```kotlin
 maven {
-    name = "xyzReleases"
+    name = "crystopiaReleases"
     url = uri("https://repo.jespersen.zip/releases")
 }
 ```
@@ -56,15 +55,15 @@ implementation("net.crystopia.crystalshard:common:<version>")
 
 // Paper
 implementation("net.crystopia.crystalshard:paper-core:<version>")
-implementation("net.crystopia.crystalshard:paper-box:<version>")       // 🚧 NOT DONE!
+implementation("net.crystopia.crystalshard:paper-box:<version>")      
 implementation("net.crystopia.crystalshard:paper-custom:<version>")
-implementation("net.crystopia.crystalshard:paper-dhl:<version>")       // 🧪 BETA!
+implementation("net.crystopia.crystalshard:paper-dhl:<version>")    
 implementation("net.crystopia.crystalshard:paper-pack:<version>")
 implementation("net.crystopia.crystalshard:paper-panic:<version>")
 implementation("net.crystopia.crystalshard:paper-simulacrum:<version>")
 
 // Velocity
-implementation("net.crystopia.crystalshard:velocity:0.3.1")
+implementation("net.crystopia.crystalshard:velocity:<version>")
 ```
 
 ## License
