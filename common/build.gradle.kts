@@ -10,25 +10,28 @@ group = "net.crystopia.crystalshard"
 
 dependencies {
     // Minimessage
-    implementation("net.kyori:adventure-api:4.26.0")
-    implementation("net.kyori:adventure-text-minimessage:4.26.0")
+    implementation("net.kyori:adventure-api:4.26.1")
+    implementation("net.kyori:adventure-text-minimessage:4.26.1")
     implementation("net.kyori:adventure-text-serializer-plain:4.26.1")
     implementation("net.kyori:adventure-text-serializer-gson:4.26.1")
     implementation("net.kyori:adventure-text-serializer-legacy:4.26.1")
 
     // Database
-    implementation("org.ktorm:ktorm-core:4.1.1")
-    implementation("eu.vendeli:rethis:0.3.2")
+    api("org.ktorm:ktorm-core:4.1.1")
+    api("org.ktorm:ktorm-support-postgresql:4.1.1")
+    api("org.ktorm:ktorm-support-mysql:4.1.1")
+    api("org.postgresql:postgresql:42.7.2")
+    api("eu.vendeli:rethis:0.3.2")
 
     // Kotlin
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // ENV
-    implementation("io.github.cdimascio:dotenv-kotlin:6.5.1")
+    api("io.github.cdimascio:dotenv-kotlin:6.5.1")
 
     // yamlkt
-    implementation("net.mamoe.yamlkt:yamlkt:0.13.0")
+    api("net.mamoe.yamlkt:yamlkt:0.13.0")
 }
 
 kotlin {
@@ -38,15 +41,6 @@ kotlin {
 tasks {
     assemble {
         dependsOn(shadowJar)
-    }
-    shadowJar {
-        relocate("net.kyori.adventure", "net.crystopia.libs.adventure")
-        relocate("org.jetbrains.kotlinx", "net.crystopia.libs.kotlinx")
-        relocate("org.jetbrains.kotlinx", "net.crystopia.libs.kotlinx")
-        relocate("com.charleskorn.kaml", "net.crystopia.libs.kaml")
-        relocate("org.ktorm.ktorm-core", "net.crystopia.libs.ktorm")
-        relocate("eu.vendeli.rethis", "net.crystopia.libs.rethis")
-        relocate("io.github.cdimascio.dotenv-kotlin", "net.crystopia.libs.dotenv")
     }
     java {
         withSourcesJar()

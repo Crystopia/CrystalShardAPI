@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.tests.paper.tests
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.setEntityData
 import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.Vec3i
 import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
@@ -26,7 +27,7 @@ class DisplayTest(name: String, sender: CommandSender, args: CommandArguments) :
                 org.bukkit.Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0),
                 mutableListOf(sender as Player)
             ) {
-                ClientPacketFactory.setEntityDataPacket(
+                ClientPacketFactory.setEntityData(
                     this.entity.entityId, mutableListOf(
                         EntityMetadata<Byte>(
                             index = 27,
@@ -58,7 +59,7 @@ class DisplayTest(name: String, sender: CommandSender, args: CommandArguments) :
                         // println("Lock: ${event.player.name}")
 
 
-                        ClientPacketFactory.setEntityDataPacket(
+                        ClientPacketFactory.setEntityData(
                             entity.entityId, mutableListOf(
                                 EntityMetadata(
                                     index = 12,
@@ -75,7 +76,7 @@ class DisplayTest(name: String, sender: CommandSender, args: CommandArguments) :
                         // println("NotLock: ${event.player.name}")
 
 
-                        ClientPacketFactory.setEntityDataPacket(
+                        ClientPacketFactory.setEntityData(
                             entity.entityId, mutableListOf(
                                 EntityMetadata(
                                     index = 12,

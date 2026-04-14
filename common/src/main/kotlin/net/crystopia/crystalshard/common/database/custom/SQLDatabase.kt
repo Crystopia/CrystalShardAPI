@@ -1,37 +1,48 @@
 package net.crystopia.crystalshard.common.database.custom
 
 import org.ktorm.database.Database
+import org.ktorm.database.SqlDialect
+import org.ktorm.support.postgresql.PostgreSqlDialect
+import java.sql.SQLException
 
-class SQLDatabase {
+/**
+ * Build a Mysql Database instance to connect to a MySql/MariaDB/Postgres Database.
+ */
+fun database(url: String, username: String, password: String, database: SQLDatabase.() -> Unit): SQLDatabase {
+    val db = SQLDatabase(url, username, password)
+    database(db)
+    return db
+}
 
-    private var url: String = "jdbc:mysql://localhost:3306/ktorm"
-    private var username: String? = null
-    private var password: String? = null
-
-    fun init(
-        url: String = "jdbc:mysql://localhost:3306/ktorm",
-        username: String,
-        password: String,
-    ): SQLDatabase {
-        this.url = url
-        this.username = username
-        this.password = password
-        return this
-    }
+class SQLDatabase(
+    url: String = "jdbc:postgresql://localhost:5432/public",
+    username: String? = null,
+    password: String? = null,
+    driverClassName: String? = "org.postgresql.Driver",
+    dialect: SqlDialect? = PostgreSqlDialect()
+) {
 
     var database = Database.connect(
         url = url,
-        driver = "com.mysql.jdbc.Driver",
+        driver = driverClassName,
         user = username,
-        password = password
+        password = password,
+        dialect = dialect!!
     )
 
+    fun connect(): SQLDatabase {
+        try {
+            database.useConnection { _ -> }
+        } catch (e: SQLException) {
+            e.printStackTrace()
+        }
+        return this
+    }
+
     /**
-     *
      * Setup Method to execute SQL Queries
-     *
      */
-    fun init(command: String): SQLDatabase {
+    fun command(command: String): SQLDatabase {
         try {
             database.useConnection { conn ->
                 conn.createStatement().use { statement ->
@@ -44,10 +55,4 @@ class SQLDatabase {
 
         return this
     }
-
-    fun preload(callback: Database.() -> Unit): SQLDatabase {
-        callback(database)
-        return this
-    }
-
 }

@@ -3,6 +3,8 @@ package net.crystopia.crystalshard.tests.paper.tests
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.initWorldBorder
+import net.crystopia.crystalshard.paper.dhl.packets.client.setWorldBorderLerpSize
 import net.crystopia.crystalshard.paper.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.paper.dhl.shared.enums.player.GameMode
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest

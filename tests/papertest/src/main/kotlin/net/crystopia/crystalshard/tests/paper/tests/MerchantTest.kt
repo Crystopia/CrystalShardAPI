@@ -3,6 +3,8 @@ package net.crystopia.crystalshard.tests.paper.tests
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.openScreen
+import net.crystopia.crystalshard.paper.dhl.packets.client.setMerchantOffer
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.ItemCost
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffer
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
@@ -25,7 +27,7 @@ class MerchantTest(name: String, sender: CommandSender, args: CommandArguments) 
 
             val baseCost = ItemStack(Material.EMERALD_BLOCK)
 
-            ClientPacketFactory.openScreenPacket(
+            ClientPacketFactory.openScreen(
                 3243443,
                 Component.text("..."),
                 net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType.MERCHANT

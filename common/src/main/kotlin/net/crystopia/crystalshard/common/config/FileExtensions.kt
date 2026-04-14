@@ -35,7 +35,7 @@ inline fun <reified T : Any> File.saveJSONConfig(config: T) {
 inline fun <reified T : Any> File.loadYAMLConfig(default: T): T {
     return if (exists()) {
         try {
-            Yaml.decodeFromString(readText().toString())
+            Yaml.decodeFromString(readText())
         } catch (_: Exception) {
             saveJSONConfig(default)
             default

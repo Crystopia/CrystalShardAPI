@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.tests.paper.tests
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.paper.core.extension.spawnEntity
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.sendEntityEvent
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -19,7 +20,7 @@ class PacketTest(name: String, sender: CommandSender, args: CommandArguments) : 
             val entity = Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0).spawnEntity<Chicken>(EntityType.CHICKEN) {
 
             }
-            ClientPacketFactory.sendEntityEventPacket(
+            ClientPacketFactory.sendEntityEvent(
                 entity,
                 3.toByte(),
                 Bukkit.getWorld("world")!!

@@ -1,6 +1,7 @@
 package net.crystopia.crystalshard.common.database
 
 import org.ktorm.database.Database
+import org.ktorm.database.SqlDialect
 
 /**
  *
@@ -9,37 +10,37 @@ import org.ktorm.database.Database
  */
 object SQLDatabaseManager {
 
-    private var url: String = "jdbc:mysql://localhost:3306/ktorm"
+    private var url: String = "jdbc:postgresql://localhost:5432/postgres"
     private var username: String? = null
     private var password: String? = null
-    private var driver: String? = null
+    var driverClassName: String? = "org.postgresql.Driver"
+    var dialect: SqlDialect? = null
 
     fun init(
-        url: String = "jdbc:mysql://localhost:3306/ktorm",
+        url: String = "jdbc:postgresql://localhost:5432/postgres",
         username: String,
         password: String,
-        driver: String
+        db: SQLDatabaseManager.() -> Unit
     ): SQLDatabaseManager {
         this.url = url
         this.username = username
         this.password = password
-        this.driver = driver
+        db(this)
         return this
     }
 
-    var database = Database.connect(
+    val database = Database.connect(
         url = url,
-        driver = driver,
+        driver = driverClassName,
         user = username,
-        password = password
+        password = password,
+        dialect = dialect!!
     )
 
     /**
-     *
      * Setup Method to execute SQL Queries
-     *
      */
-    fun init(command: String): SQLDatabaseManager {
+    fun command(command: String): SQLDatabaseManager {
         try {
         database.useConnection { conn ->
             conn.createStatement().use { statement ->
@@ -51,11 +52,4 @@ object SQLDatabaseManager {
         }
         return this
     }
-
-    fun preload(callback: Database.() -> Unit): SQLDatabaseManager {
-        callback(database)
-        return this
-    }
-    
-    
 }

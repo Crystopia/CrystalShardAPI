@@ -25,12 +25,13 @@ object RedisDatabaseManager {
         port: Int,
         username: String,
         password: String,
+        db: RedisDatabaseManager.() -> Unit
     ): RedisDatabaseManager {
         this.ip = ip
         this.port = port
         this.username = username
         this.password = password
-
+        db(this)
         return this
     }
 

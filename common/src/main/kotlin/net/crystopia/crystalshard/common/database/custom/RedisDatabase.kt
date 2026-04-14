@@ -8,26 +8,27 @@ import eu.vendeli.rethis.command.string.set
 import eu.vendeli.rethis.shared.types.RType
 import eu.vendeli.rethis.types.common.RespVer
 
-class RedisDatabase {
+/**
+ * Build a redis Database instance to Connect to a Redis-Database Server.
+ */
+fun database(
+    ip: String,
+    port: Int,
+    username: String,
+    password: String,
+    database: RedisDatabase.() -> Unit
+): RedisDatabase {
+    val db = RedisDatabase(ip, port, username, password)
+    database(db)
+    return db
+}
 
-    private var ip: String = "127.0.0.1"
-    private var port: Int = 6379
-    private var username: String? = null
-    private var password: String? = null
-
-    fun init(
-        ip: String,
-        port: Int,
-        username: String,
-        password: String,
-    ): RedisDatabase {
-        this.ip = ip
-        this.port = port
-        this.username = username
-        this.password = password
-
-        return this
-    }
+class RedisDatabase(
+    ip: String = "127.0.0.1",
+    port: Int = 6379,
+    username: String? = null,
+    password: String? = null,
+) {
 
     val client = ReThis(
         host = ip,
@@ -35,7 +36,7 @@ class RedisDatabase {
         protocol = RespVer.V2
     ) {
         if (username != null && password != null) {
-            auth(password!!.toCharArray(), username)
+            auth(password.toCharArray(), username)
         }
     }
 

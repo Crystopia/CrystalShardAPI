@@ -4,6 +4,9 @@ import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.click
 import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.packets.client.sendObjectiveUpdate
+import net.crystopia.crystalshard.paper.dhl.packets.client.setDisplayObjective
+import net.crystopia.crystalshard.paper.dhl.packets.client.setScoreInDisplayObject
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.ItemCost
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffer
 import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
