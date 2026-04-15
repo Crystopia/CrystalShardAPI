@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.common.log
 
 import java.text.SimpleDateFormat
-import java.util.Date
+import java.util.*
 
 /**
  *
@@ -41,15 +41,15 @@ interface ILog {
         get() = "\u001B[35m"
 
     fun warn(message: String) {
-        println("${YELLOW} $message$RESET")
+        println("$YELLOW$message$RESET")
     }
 
     fun error(message: String) {
-        println("${RED}$message$RESET")
+        println("$RED$message$RESET")
     }
 
     fun info(message: String) {
-        println("${BLUE}$message$RESET")
+        println("$BLUE$message$RESET")
     }
 
     fun log(message: String) {
@@ -57,7 +57,7 @@ interface ILog {
     }
 
     fun debug(message: String) {
-        println("${MAGENTA}$message$RESET")
+        println("$MAGENTA$message$RESET")
     }
 }
 
