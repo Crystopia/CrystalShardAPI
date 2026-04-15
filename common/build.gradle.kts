@@ -10,11 +10,11 @@ group = "net.crystopia.crystalshard"
 
 dependencies {
     // Minimessage
-    implementation("net.kyori:adventure-api:4.26.1")
-    implementation("net.kyori:adventure-text-minimessage:4.26.1")
-    implementation("net.kyori:adventure-text-serializer-plain:4.26.1")
-    implementation("net.kyori:adventure-text-serializer-gson:4.26.1")
-    implementation("net.kyori:adventure-text-serializer-legacy:4.26.1")
+    implementation("net.kyori:adventure-api:5.+")
+    implementation("net.kyori:adventure-text-minimessage:5.+")
+    implementation("net.kyori:adventure-text-serializer-plain:5.+")
+    implementation("net.kyori:adventure-text-serializer-gson:5.+")
+    implementation("net.kyori:adventure-text-serializer-legacy:5.+")
 
     // Database
     api("org.ktorm:ktorm-core:4.1.1")

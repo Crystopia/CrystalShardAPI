@@ -4,7 +4,6 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonElement
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.key.Key
-import net.kyori.adventure.text.BuildableComponent
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.ComponentBuilder
 import net.kyori.adventure.text.event.ClickEvent
@@ -30,7 +29,7 @@ fun cmp(string: String): Component {
 fun Component.toPlainText(): String {
     return PlainTextComponentSerializer.plainText().serialize(this)
 }
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toPlainText(
+fun ComponentBuilder<*, *>.toPlainText(
 ): String {
     return PlainTextComponentSerializer.plainText().serialize(this.build())
 }
@@ -39,7 +38,7 @@ fun Component.toJson(): String {
     return JSONComponentSerializer.builder().build().serialize(this)
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toJson(): String {
+fun ComponentBuilder<*, *>.toJson(): String {
     return JSONComponentSerializer.builder().build().serialize(this.build())
 }
 
@@ -47,7 +46,7 @@ fun Component.toLegacy(): String {
     return LegacyComponentSerializer.builder().build().serialize(this)
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toLegacy(
+fun ComponentBuilder<*, *>.toLegacy(
 ): String {
     return LegacyComponentSerializer.builder().build().serialize((this.build()))
 }
@@ -56,7 +55,7 @@ fun Component.toGson(): String {
     return GsonComponentSerializer.builder().build().serialize(this)
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toGson(): String {
+fun ComponentBuilder<*, *>.toGson(): String {
     return GsonComponentSerializer.builder().build().serialize((this.build()))
 }
 
@@ -64,23 +63,23 @@ fun Component.toJsonElement(): JsonElement {
     return Json.decodeFromString(JSONComponentSerializer.builder().build().serialize(this))
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.toJsonElement(): JsonElement {
+fun ComponentBuilder<*, *>.toJsonElement(): JsonElement {
     return Json.decodeFromString(JSONComponentSerializer.builder().build().serialize(this.build()))
 }
 
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.text(
+fun ComponentBuilder<*, *>.text(
     text: String, font: String? = null
-): B {
+): ComponentBuilder<*, *> {
     return append(
         MINI_MESSAGE.deserialize(text).font(font?.let { Key.key(it) })
     )
 }
 
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.text(
+fun ComponentBuilder<*, *>.text(
     text: String, font: String? = null, callback: ComponentBuilder<*, *>.() -> Unit = {}
-): B {
+): ComponentBuilder<*, *> {
     val component =
         Component.text().append(MINI_MESSAGE.deserialize(text)).font(font?.let { Key.key(it) }).also { it.callback() }
             .build()
@@ -88,59 +87,59 @@ fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<
     return append(component)
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.font(
+fun ComponentBuilder<*, *>.font(
     font: String
-): B = font(Key.key(font))
+): ComponentBuilder<*, *> = font(Key.key(font))
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.click(
+fun ComponentBuilder<*, *>.click(
     callback: Audience.() -> Unit = {}
-): B {
+): ComponentBuilder<*, *> {
     return clickEvent(ClickEvent.callback { audience ->
         callback(audience)
     })
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.openUrl(
+fun ComponentBuilder<*, *>.openUrl(
     callback: Audience.() -> Unit = {}
-): B {
+): ComponentBuilder<*, *> {
     return clickEvent(ClickEvent.callback { audience ->
         callback(audience)
     })
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.openFile(
+fun ComponentBuilder<*, *>.openFile(
     file: String
-): B {
+): ComponentBuilder<*, *> {
     return clickEvent(ClickEvent.openFile(file))
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.openUrl(
+fun ComponentBuilder<*, *>.openUrl(
     url: String
-): B {
+): ComponentBuilder<*, *> {
     return clickEvent(ClickEvent.openUrl(url))
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.runCommand(
+fun ComponentBuilder<*, *>.runCommand(
     command: String
-): B {
+): ComponentBuilder<*, *> {
     return clickEvent(ClickEvent.runCommand(command))
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.suggestCommand(
+fun ComponentBuilder<*, *>.suggestCommand(
     command: String
-): B {
+): ComponentBuilder<*, *> {
     return clickEvent(ClickEvent.suggestCommand(command))
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.copyToClipboard(
+fun ComponentBuilder<*, *>.copyToClipboard(
     text: String
-): B {
+): ComponentBuilder<*, *> {
     return clickEvent(ClickEvent.copyToClipboard(text))
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.itemTooltip(
+fun ComponentBuilder<*, *>.itemTooltip(
     itemKey: String, count: Int, dataComponents: MutableMap<Key, DataComponentValue>? = null
-): B {
+): ComponentBuilder<*, *> {
     return hoverEvent(dataComponents?.let {
         HoverEvent.showItem(
             Key.key(itemKey), count, it
@@ -148,14 +147,14 @@ fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<
     })
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.textTooltip(
+fun ComponentBuilder<*, *>.textTooltip(
     text: Component
-): B {
+): ComponentBuilder<*, *> {
     return hoverEvent(HoverEvent.showText(text))
 }
 
-fun <C : BuildableComponent<C, B>, B : ComponentBuilder<C, B>> ComponentBuilder<C, B>.entityTooltip(
+fun ComponentBuilder<*, *>.entityTooltip(
     type: String, uuid: UUID
-): B {
+): ComponentBuilder<*, *> {
     return hoverEvent(HoverEvent.showEntity(Key.key(type), uuid))
 }
