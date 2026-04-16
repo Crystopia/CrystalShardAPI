@@ -9,6 +9,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*> {
+        return Shard_ClientboundUpdateAdvancementsPacket().createPacket(data)
+    }
+
     override fun damageEvent(data: ClientboundDamageEventPacketData): Packet<*> {
         return Shard_ClientboundDamageEventPacket().createPacket(data)
     }

@@ -27,7 +27,7 @@ class EasyNMSManager<T : Any> : INMSManager<T> {
             handler = Class.forName(classPattern.replace("{version}", classVersion))
                 .getConstructor().newInstance() as T
             Log.info("Loaded NMS for Minecraft Version ${mcVersion}.")
-            Log.info("CrystalShard Loaded your NMS Handler!")
+            Log.info("CrystalShard Loaded an NMS Handler!")
         } catch (e: Exception) {
             Log.error("Cant setup NMS for your Plugin")
         }

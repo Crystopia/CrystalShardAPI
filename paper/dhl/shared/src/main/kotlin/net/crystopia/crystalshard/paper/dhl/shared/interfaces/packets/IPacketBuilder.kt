@@ -6,6 +6,7 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*>
     fun damageEvent(data: ClientboundDamageEventPacketData): Packet<*>
     fun takeItem(data: ClientboundTakeItemEntityPacketData): Packet<*>
     fun setChunkBatchFinished(data: ClientboundChunkBatchFinishedPacketData): Packet<*>
