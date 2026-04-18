@@ -1,4 +1,4 @@
-﻿package net.crystopia.crystalshard.paper.custom.i8n
+﻿package net.crystopia.crystalshard.paper.custom.i18n
 
 /**
  * An interface to store the translation data for one language.

@@ -1,4 +1,4 @@
-﻿package net.crystopia.crystalshard.paper.custom.i8n
+﻿package net.crystopia.crystalshard.paper.custom.i18n
 
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.Context

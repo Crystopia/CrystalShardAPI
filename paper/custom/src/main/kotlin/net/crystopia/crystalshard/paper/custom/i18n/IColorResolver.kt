@@ -1,4 +1,4 @@
-﻿package net.crystopia.crystalshard.paper.custom.i8n
+﻿package net.crystopia.crystalshard.paper.custom.i18n
 
 import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.Context
@@ -10,7 +10,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver
  * An interface that offers an almost complete custom color resolver for MiniMessage
  *
  * You only need to insert the data from a source of your choice into the colors Map, as an example:
- * @see net.crystopia.crystalshard.paper.custom.i8n.impl.YamlColorResolver
+ * @see net.crystopia.crystalshard.paper.custom.i18n.impl.YamlColorResolver
  */
 interface IColorResolver : TagResolver {
 

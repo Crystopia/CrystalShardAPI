@@ -1,7 +1,7 @@
-﻿package net.crystopia.crystalshard.paper.custom.i8n.impl
+﻿package net.crystopia.crystalshard.paper.custom.i18n.impl
 
-import net.crystopia.crystalshard.paper.custom.i8n.ITranslationDataEntry
-import net.crystopia.crystalshard.paper.custom.i8n.TranslationNotFoundException
+import net.crystopia.crystalshard.paper.custom.i18n.ITranslationDataEntry
+import net.crystopia.crystalshard.paper.custom.i18n.TranslationNotFoundException
 
 
 /**

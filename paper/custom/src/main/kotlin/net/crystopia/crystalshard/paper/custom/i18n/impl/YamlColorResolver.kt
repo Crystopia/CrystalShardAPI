@@ -1,6 +1,6 @@
-﻿package net.crystopia.crystalshard.paper.custom.i8n.impl
+﻿package net.crystopia.crystalshard.paper.custom.i18n.impl
 
-import net.crystopia.crystalshard.paper.custom.i8n.IColorResolver
+import net.crystopia.crystalshard.paper.custom.i18n.IColorResolver
 import net.kyori.adventure.text.format.TextColor
 import org.bukkit.configuration.file.YamlConfiguration
 import java.io.File
