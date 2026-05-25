@@ -10,9 +10,7 @@ import org.bukkit.entity.Player
 class ClientModTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
     override fun command() {
         test {
-            (sender as Player).clientMods(
-                CrystalShardPluginTest.instance
-            ) {
+            (sender as Player).clientMods {
                 onMod("text.skinlayers.title") {
                     check { hasMod ->
                         (sender as Player).sendMessage("Has Mod: $hasMod")

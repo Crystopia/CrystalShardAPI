@@ -1,7 +1,8 @@
 package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.teleportEntity
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
 import org.bukkit.Bukkit
@@ -13,7 +14,7 @@ class TeleportTest(name: String, sender: CommandSender, args: CommandArguments) 
     override fun command() {
         test {
             ClientPacketFactory.teleportEntity(
-                entityId = (sender as Player).entityId,
+                entity = (sender as Player),
                 location = Location(Bukkit.getWorld("world_the_end")!!, 0.0, 0.0, 0.0),
                 onGround = false
             ) { packet ->

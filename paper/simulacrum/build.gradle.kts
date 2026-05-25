@@ -15,11 +15,12 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":paper:core"))
     implementation(project(":paper:dhl"))
-    implementation(project(":paper:dhl:shared"))
-    implementation(project(":paper:dhl:implementations:1_21_1"))
-    implementation(project(":paper:dhl:implementations:1_21_9"))
-    implementation(project(":paper:dhl:implementations:1_21_10"))
-    implementation(project(":paper:dhl:implementations:1_21_11"))
+    implementation(project(":dhl"))
+    implementation(project(":dhl:shared"))
+    implementation(project(":dhl:implementations:1_21_1"))
+    implementation(project(":dhl:implementations:1_21_9"))
+    implementation(project(":dhl:implementations:1_21_10"))
+    implementation(project(":dhl:implementations:1_21_11"))
 
 }
 
@@ -33,7 +34,7 @@ tasks {
             dependsOn(reobfJar)
         }
         shadowJar {
-            dependsOn(":paper:dhl:shadowJar")
+            dependsOn(":dhl:shadowJar")
             dependsOn(":paper:core:shadowJar")
 
             relocate("com.mojang.authlib", "net.crystopia.libs.authlib")

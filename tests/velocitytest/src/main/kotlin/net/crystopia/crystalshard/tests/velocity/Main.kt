@@ -42,7 +42,6 @@ class Main {
 
     @Subscribe
     fun onProxyInitialization(event: ProxyInitializeEvent) {
-
         PACK_INFO =
             server!!.createResourcePackBuilder("https://download.mc-packs.net/pack/1c5abf47dcc64c7733c572d24eeeab9174a761f0.zip")
                 .setId(uuid)

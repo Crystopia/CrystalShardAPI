@@ -1,13 +1,13 @@
 package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.shared.data.waypoints.WaypointDataVec3i
+import net.crystopia.crystalshard.dhl.shared.data.waypoints.WaypointIcon
+import net.crystopia.crystalshard.dhl.shared.enums.waypoints.WaypointOperation
+import net.crystopia.crystalshard.dhl.shared.enums.waypoints.WaypointType
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.sendWaypoint
-import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.TrackedWaypoint
-import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointDataVec3i
-import net.crystopia.crystalshard.paper.dhl.shared.data.waypoints.WaypointIcon
-import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointOperation
-import net.crystopia.crystalshard.paper.dhl.shared.enums.waypoints.WaypointType
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -19,7 +19,7 @@ class WaypointTest(name: String, sender: CommandSender, args: CommandArguments) 
         test {
             ClientPacketFactory.sendWaypoint(
                 WaypointOperation.TRACK,
-                TrackedWaypoint(
+                net.crystopia.crystalshard.dhl.shared.data.waypoints.TrackedWaypoint(
                     identifier = UUID.randomUUID(),
                     icon = WaypointIcon(
                         style = "default",

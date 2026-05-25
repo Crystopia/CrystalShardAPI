@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl.nms
 
-import net.crystopia.crystalshard.paper.dhl.shared.enums.server.SoftwareType
+import net.crystopia.crystalshard.dhl.shared.enums.server.SoftwareType
 
 interface INMSManager<T : Any> {
 

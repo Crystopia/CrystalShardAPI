@@ -1,18 +1,22 @@
 package net.crystopia.crystalshard.paper.simulacrum
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.versions.v1_21_10.general.EntityBuilder
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
-import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.EntityBuilder
+import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.paper.simulacrum.displays.SBlockDisplay
 import net.crystopia.crystalshard.paper.simulacrum.displays.SItemDisplay
 import net.crystopia.crystalshard.paper.simulacrum.displays.STextDisplay
 import net.crystopia.crystalshard.paper.simulacrum.npc.Npc
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.displays.IDisplay
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
+import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.NamespacedKey
+import org.bukkit.craftbukkit.CraftServer
+import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.entity.CraftEntityType
 import org.bukkit.entity.*
 
@@ -24,26 +28,54 @@ object SimulacrumFactory {
 
         val instance = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_11 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.EntityBuilder.createEntityInstance(
-                    type, location
+                net.crystopia.crystalshard.dhl.versions.v1_21_11.general.EntityBuilder.createEntityInstance(
+                    CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
+                        (location.world as CraftWorld).handle,
+                        location.x,
+                        location.y,
+                        location.z,
+                        location.yaw,
+                        location.pitch
+                    )
                 )
             }
 
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createEntityInstance(
-                    type, location
+                    CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
+                        (location.world as CraftWorld).handle,
+                        location.x,
+                        location.y,
+                        location.z,
+                        location.yaw,
+                        location.pitch
+                    )
                 )
             }
 
             ServerVersion.v1_21_9 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.EntityBuilder.createEntityInstance(
-                    type, location
+                net.crystopia.crystalshard.dhl.versions.v1_21_9.general.EntityBuilder.createEntityInstance(
+                    CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
+                        (location.world as CraftWorld).handle,
+                        location.x,
+                        location.y,
+                        location.z,
+                        location.yaw,
+                        location.pitch
+                    )
                 )
             }
 
             ServerVersion.v1_21_1 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.EntityBuilder.createEntityInstance(
-                    type, location
+                net.crystopia.crystalshard.dhl.versions.v1_21_1.general.EntityBuilder.createEntityInstance(
+                    CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
+                        (location.world as CraftWorld).handle,
+                        location.x,
+                        location.y,
+                        location.z,
+                        location.yaw,
+                        location.pitch
+                    )
                 )
             }
 
@@ -60,28 +92,30 @@ object SimulacrumFactory {
         location: Location, key: NamespacedKey, name: String, callback: T.() -> Unit
     ): INpc {
 
+        val server = (Bukkit.getServer() as CraftServer).server
+
         val serverplayer = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_11 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.EntityBuilder.createServerPlayer(
-                    location.world, name
+                net.crystopia.crystalshard.dhl.versions.v1_21_11.general.EntityBuilder.createServerPlayer(
+                    (location.world as CraftWorld).handle, name, server
                 )
             }
 
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createServerPlayer(
-                    location.world, name
+                    (location.world as CraftWorld).handle, name, server
                 )
             }
 
             ServerVersion.v1_21_9 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.EntityBuilder.createServerPlayer(
-                    location.world, name
+                net.crystopia.crystalshard.dhl.versions.v1_21_9.general.EntityBuilder.createServerPlayer(
+                    (location.world as CraftWorld).handle, name, server
                 )
             }
 
             ServerVersion.v1_21_1 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.EntityBuilder.createServerPlayer(
-                    location.world, name
+                net.crystopia.crystalshard.dhl.versions.v1_21_1.general.EntityBuilder.createServerPlayer(
+                    (location.world as CraftWorld).handle, name, server
                 )
             }
 
@@ -113,26 +147,54 @@ object SimulacrumFactory {
 
         val displayEntity = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_11 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.EntityBuilder.createDisplayEntity(
-                    CraftEntityType.bukkitToMinecraft(type), location
+                net.crystopia.crystalshard.dhl.versions.v1_21_11.general.EntityBuilder.createDisplayEntity(
+                    CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
+                        (location.world as CraftWorld).handle,
+                        location.x,
+                        location.y,
+                        location.z,
+                        location.yaw,
+                        location.pitch
+                    )
                 )
             }
 
             ServerVersion.v1_21_10 -> {
                 EntityBuilder.createDisplayEntity(
-                    CraftEntityType.bukkitToMinecraft(type), location
+                    CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
+                        (location.world as CraftWorld).handle,
+                        location.x,
+                        location.y,
+                        location.z,
+                        location.yaw,
+                        location.pitch
+                    )
                 )
             }
 
             ServerVersion.v1_21_9 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.EntityBuilder.createDisplayEntity(
-                    CraftEntityType.bukkitToMinecraft(type), location
+                net.crystopia.crystalshard.dhl.versions.v1_21_9.general.EntityBuilder.createDisplayEntity(
+                    CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
+                        (location.world as CraftWorld).handle,
+                        location.x,
+                        location.y,
+                        location.z,
+                        location.yaw,
+                        location.pitch
+                    )
                 )
             }
 
             ServerVersion.v1_21_1 -> {
-                net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.EntityBuilder.createDisplayEntity(
-                    CraftEntityType.bukkitToMinecraft(type), location
+                net.crystopia.crystalshard.dhl.versions.v1_21_1.general.EntityBuilder.createDisplayEntity(
+                    CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
+                        (location.world as CraftWorld).handle,
+                        location.x,
+                        location.y,
+                        location.z,
+                        location.yaw,
+                        location.pitch
+                    )
                 )
             }
 

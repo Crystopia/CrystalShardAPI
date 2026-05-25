@@ -32,8 +32,8 @@ import org.bukkit.plugin.java.JavaPlugin
  * }
  * ```
  */
-fun Player.clientMods(plugin: JavaPlugin, callback: ClientMods.() -> Unit): Player {
-    val clientMods = ClientMods(this, plugin)
+fun Player.clientMods(callback: ClientMods.() -> Unit): Player {
+    val clientMods = ClientMods(this)
     callback(
         clientMods
     )

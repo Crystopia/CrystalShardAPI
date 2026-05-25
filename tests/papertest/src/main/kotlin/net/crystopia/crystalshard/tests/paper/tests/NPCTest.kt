@@ -3,20 +3,15 @@ package net.crystopia.crystalshard.tests.paper.tests
 import com.destroystokyo.paper.profile.ProfileProperty
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
-import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
-import net.crystopia.crystalshard.paper.dhl.packets.client.createEquipment
-import net.crystopia.crystalshard.paper.dhl.packets.client.playerInfoUpdate
-import net.crystopia.crystalshard.paper.dhl.packets.client.setEntityData
-import net.crystopia.crystalshard.paper.dhl.packets.client.setPassengers
-import net.crystopia.crystalshard.paper.dhl.packets.client.teleportEntity
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ServerPacketFactory
+import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.dhl.shared.enums.gui.EquipmentSlot
+import net.crystopia.crystalshard.dhl.shared.enums.packets.InfoUpdateAction
+import net.crystopia.crystalshard.paper.dhl.extension.send
+import net.crystopia.crystalshard.paper.dhl.packets.client.*
 import net.crystopia.crystalshard.paper.dhl.packets.server.interactEvent
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
-import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
-import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.simulacrum.SimulacrumFactory
 import net.crystopia.crystalshard.paper.simulacrum.npc.Npc
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
@@ -40,11 +35,8 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
             ) {
 
                 playerEntity.playerListName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
-                (sender as Player).playerListName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
                 playerEntity.displayName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
-                (sender as Player).displayName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
                 playerEntity.customName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
-                (sender as Player).customName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
 
                 playerEntity.isCustomNameVisible = true
                 (sender as Player).isCustomNameVisible = true
@@ -83,6 +75,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                     packet.send(mutableListOf((sender as Player)))
                 }
 
+
                 val equipmentList: MutableList<Pair<EquipmentSlot, ItemStack>> = mutableListOf()
                 equipmentList.add(
                     Pair(
@@ -98,7 +91,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
 
 
                 ClientPacketFactory.setEntityData(
-                    playerEntity.entityId, mutableListOf(
+                    playerEntity, mutableListOf(
                         EntityMetadata<Byte>(
                             index = 16,
                             type = EntityDataSerializerType.DATA_PLAYER_MODE_CUSTOMISATION,
@@ -111,7 +104,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
 
 
                 ClientPacketFactory.teleportEntity(
-                    playerEntity.entityId,
+                    playerEntity,
                     Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0),
                     false
                 ) { packet ->
@@ -120,12 +113,10 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
 
 
                 ServerPacketFactory.interactEvent(
-                    Shard_ServerPacketData(
-                        player = (sender as Player),
-                        name = NamespacedKey(CrystalShardPluginTest.instance, "testnpcinteraction"),
-                        plugin = CrystalShardPluginTest.instance,
-                        shouldPublish = true
-                    )
+                    player = (sender as Player),
+                    name = NamespacedKey(CrystalShardPluginTest.instance, "testnpcinteraction"),
+                    shouldPublish = true
+
                 ) {
                     (sender as Player).sendMessage("COOL")
 

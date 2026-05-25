@@ -2,7 +2,8 @@ package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.paper.core.extension.spawnEntity
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.sendEntityEvent
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
 import org.bukkit.Bukkit
@@ -17,12 +18,9 @@ class PacketTest(name: String, sender: CommandSender, args: CommandArguments) : 
     override fun command() {
         test {
 
-            val entity = Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0).spawnEntity<Chicken>(EntityType.CHICKEN) {
-
-            }
             ClientPacketFactory.sendEntityEvent(
-                entity,
-                3.toByte(),
+                sender as Player,
+                35.toByte(),
                 Bukkit.getWorld("world")!!
             ) { packet ->
                 packet.send(mutableListOf(sender as Player))

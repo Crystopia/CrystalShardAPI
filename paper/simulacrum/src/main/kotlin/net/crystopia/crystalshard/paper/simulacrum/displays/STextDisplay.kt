@@ -1,9 +1,10 @@
 package net.crystopia.crystalshard.paper.simulacrum.displays
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.packets.client.setEntityData
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.simulacrum.displays.data.CustomTextDisplayData
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.displays.IDisplay
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
@@ -23,7 +24,7 @@ class STextDisplay(
     fun text(component: net.kyori.adventure.text.Component, players: MutableList<Player>) {
 
         ClientPacketFactory.setEntityData(
-            entity.entityId, mutableListOf(
+            entity, mutableListOf(
                 EntityMetadata(
                     index = 23,
                     type = EntityDataSerializerType.COMPONENT,

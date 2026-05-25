@@ -1,12 +1,13 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundSetEquipmentPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.EquipmentSlot
-import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetEquipmentPacketData
+import net.crystopia.crystalshard.dhl.shared.enums.gui.EquipmentSlot
+import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
+import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.inventory.ItemStack
 
 fun ClientPacketFactory.createEquipment(
@@ -16,7 +17,12 @@ fun ClientPacketFactory.createEquipment(
 ): Shard_Packet<ClientboundSetEquipmentPacketData> {
 
     val data = ClientboundSetEquipmentPacketData(
-        entityId, equipmentList
+        entityId, equipmentList.map {
+            Pair(
+                it.first,
+                CraftItemStack.asNMSCopy(it.second)
+            )
+        }.toMutableList()
     )
 
     val packet = when (ServerUtil.currentVersion()) {
@@ -27,19 +33,19 @@ fun ClientPacketFactory.createEquipment(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder.equipmentPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.equipmentPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.equipmentPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.equipmentPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.equipmentPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.equipmentPacket(
                 data
             )
         }

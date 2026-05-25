@@ -1,18 +1,20 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundRotateHeadPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRotateHeadPacketData
+import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
+import org.bukkit.craftbukkit.entity.CraftEntity
+import org.bukkit.entity.Entity
 
 fun ClientPacketFactory.rotateHead(
-    entityId: Int, yaw: Float, callback: (packet: Shard_Packet<ClientboundRotateHeadPacketData>) -> Unit
+    entity: Entity, yaw: Float, callback: (packet: Shard_Packet<ClientboundRotateHeadPacketData>) -> Unit
 ): Shard_Packet<ClientboundRotateHeadPacketData> {
 
     val data = ClientboundRotateHeadPacketData(
-        entityId, yaw
+        (entity as CraftEntity).handle, yaw
     )
 
     val packet = when (ServerUtil.currentVersion()) {
@@ -23,19 +25,19 @@ fun ClientPacketFactory.rotateHead(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder.rotateHeadPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.rotateHeadPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.rotateHeadPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.rotateHeadPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.rotateHeadPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.rotateHeadPacket(
                 data
             )
         }

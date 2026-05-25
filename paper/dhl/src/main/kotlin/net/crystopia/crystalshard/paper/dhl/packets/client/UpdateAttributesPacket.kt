@@ -1,24 +1,41 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
-import net.crystopia.crystalshard.paper.dhl.shared.data.attributes.Attribute
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundUpdateAttributesPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.data.attributes.Attribute
+import net.crystopia.crystalshard.dhl.shared.data.attributes.AttributeModifiers
+import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateAttributesPacketData
+import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
+import net.minecraft.core.Holder
+import net.minecraft.world.entity.ai.attributes.AttributeModifier
+import org.bukkit.craftbukkit.attribute.CraftAttribute
+import org.bukkit.craftbukkit.entity.CraftEntity
+import org.bukkit.entity.Entity
 
 fun ClientPacketFactory.updateAttributes(
-    entityId: Int,
+    entity: Entity,
     /**
      * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
      */
-    attributes: MutableList<Attribute>,
+    attributes: MutableList<net.crystopia.crystalshard.paper.dhl.types.attributes.Attribute>,
     callback: (packet: Shard_Packet<ClientboundUpdateAttributesPacketData>) -> Unit
 ): Shard_Packet<ClientboundUpdateAttributesPacketData> {
-
     val data = ClientboundUpdateAttributesPacketData(
-        entityId, attributes
+        (entity as CraftEntity).handle, attributes.map { attr ->
+            Attribute(
+                id = Holder.direct(CraftAttribute.bukkitToMinecraft(attr.id)),
+                value = attr.value,
+                modifiers = attr.modifiers.map {
+                    AttributeModifiers(
+                        id = it.id,
+                        operation = AttributeModifier.Operation.valueOf(it.operation.name),
+                        amount = it.amount,
+                    )
+                }.toMutableList()
+            )
+        }.toMutableList()
     )
 
     val packet = when (ServerUtil.currentVersion()) {
@@ -29,19 +46,19 @@ fun ClientPacketFactory.updateAttributes(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder.updateAttributesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.updateAttributesPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.updateAttributesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.updateAttributesPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.updateAttributesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.updateAttributesPacket(
                 data
             )
         }

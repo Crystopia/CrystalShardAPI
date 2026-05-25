@@ -2,12 +2,13 @@ package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.packets.client.openScreen
 import net.crystopia.crystalshard.paper.dhl.packets.client.setMerchantOffer
-import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.ItemCost
-import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffer
-import net.crystopia.crystalshard.paper.dhl.shared.data.merchant.MerchantOffers
+import net.crystopia.crystalshard.dhl.shared.data.merchant.ItemCost
+import net.crystopia.crystalshard.dhl.shared.data.merchant.MerchantOffer
+import net.crystopia.crystalshard.dhl.shared.data.merchant.MerchantOffers
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
@@ -30,18 +31,18 @@ class MerchantTest(name: String, sender: CommandSender, args: CommandArguments) 
             ClientPacketFactory.openScreen(
                 3243443,
                 Component.text("..."),
-                net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType.MERCHANT
+                net.crystopia.crystalshard.dhl.shared.enums.gui.MenuType.MERCHANT
             ) { packet ->
                 packet.send(mutableListOf(sender as Player))
             }
 
             ClientPacketFactory.setMerchantOffer(
                 windowId = 3243443,
-                merchantOffers = MerchantOffers(
+                merchantOffers = net.crystopia.crystalshard.paper.dhl.types.merchant.MerchantOffers(
                     offers = mutableListOf(
 
-                        MerchantOffer(
-                            baseCost = ItemCost(
+                        net.crystopia.crystalshard.paper.dhl.types.merchant.MerchantOffer(
+                            baseCost = net.crystopia.crystalshard.paper.dhl.types.merchant.ItemCost(
                                 itemStack = baseCost,
                                 count = 5
                             ),

@@ -1,13 +1,14 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
-import net.crystopia.crystalshard.paper.dhl.shared.data.blocks.BlockPos
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundSetDefaultSpawnPositionPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.data.blocks.BlockPos
+import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetDefaultSpawnPositionPacketData
+import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
 import org.bukkit.World
+import org.bukkit.craftbukkit.CraftWorld
 
 fun ClientPacketFactory.setDefaultSpawnPosition(
     world: World,
@@ -19,7 +20,7 @@ fun ClientPacketFactory.setDefaultSpawnPosition(
 ): Shard_Packet<ClientboundSetDefaultSpawnPositionPacketData> {
 
     val data = ClientboundSetDefaultSpawnPositionPacketData(
-        world, pos, yaw, pitch, angle ?: 0F
+        (world as CraftWorld).handle, pos, yaw, pitch, angle ?: 0F
     )
 
     val packet = when (ServerUtil.currentVersion()) {
@@ -30,19 +31,19 @@ fun ClientPacketFactory.setDefaultSpawnPosition(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder.setDefaultSpawnPosition(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.setDefaultSpawnPosition(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.setDefaultSpawnPosition(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.setDefaultSpawnPosition(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.setDefaultSpawnPosition(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.setDefaultSpawnPosition(
                 data
             )
         }

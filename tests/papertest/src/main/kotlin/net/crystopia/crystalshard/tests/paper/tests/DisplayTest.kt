@@ -2,11 +2,12 @@ package net.crystopia.crystalshard.tests.paper.tests
 
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.dhl.shared.data.world.Vec3i
+import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.setEntityData
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.data.world.Vec3i
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.simulacrum.SimulacrumFactory
 import net.crystopia.crystalshard.paper.simulacrum.displays.STextDisplay
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
@@ -28,7 +29,7 @@ class DisplayTest(name: String, sender: CommandSender, args: CommandArguments) :
                 mutableListOf(sender as Player)
             ) {
                 ClientPacketFactory.setEntityData(
-                    this.entity.entityId, mutableListOf(
+                    this.entity, mutableListOf(
                         EntityMetadata<Byte>(
                             index = 27,
                             type = EntityDataSerializerType.BYTE,
@@ -45,7 +46,6 @@ class DisplayTest(name: String, sender: CommandSender, args: CommandArguments) :
 
                 onInteract(
                     NamespacedKey("crystalshardtest", "playerjoindisplaydetect"),
-                    CrystalShardPluginTest.instance,
                     Pair(2.0F, 2.0F),
                     sender as Player
                 ) {
@@ -54,13 +54,11 @@ class DisplayTest(name: String, sender: CommandSender, args: CommandArguments) :
                     )
                 }
 
-                onHover(CrystalShardPluginTest.instance, sender as Player, 0.90) { isLockingAt ->
+                onHover(sender as Player, 0.90) { isLockingAt ->
                     if (isLockingAt) {
-                        // println("Lock: ${event.player.name}")
-
-
+                        // println("Lock: ${sender.name}")
                         ClientPacketFactory.setEntityData(
-                            entity.entityId, mutableListOf(
+                            entity, mutableListOf(
                                 EntityMetadata(
                                     index = 12,
                                     type = EntityDataSerializerType.VECTOR3,
@@ -73,11 +71,11 @@ class DisplayTest(name: String, sender: CommandSender, args: CommandArguments) :
 
 
                     } else {
-                        // println("NotLock: ${event.player.name}")
+                        // println("NotLock: ${sender.name}")
 
 
                         ClientPacketFactory.setEntityData(
-                            entity.entityId, mutableListOf(
+                            entity, mutableListOf(
                                 EntityMetadata(
                                     index = 12,
                                     type = EntityDataSerializerType.VECTOR3,

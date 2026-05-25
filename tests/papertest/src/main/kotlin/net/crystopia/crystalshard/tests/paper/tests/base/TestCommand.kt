@@ -116,9 +116,9 @@ object TestCommand {
             }
         }
 
-        literalArgument("merchant") {
+        literalArgument("VillagerType") {
             anyExecutor { sender, arguments ->
-                MerchantTest("merchant", sender, arguments).command()
+                MerchantTest("VillagerType", sender, arguments).command()
             }
         }
 

@@ -10,7 +10,7 @@ jobs:
   publish:
     strategy:
       matrix:
-        tasks: ["shared", "implementations:1_21_1", "implementations:1_21_9", "implementations:1_21_10", "implementations:1_21_11"]
+        tasks: ["dhl:shared", "dhl:implementations:1_21_1", "dhl:implementations:1_21_9", "dhl:implementations:1_21_10", "dhl:implementations:1_21_11"]
     runs-on: ubuntu-latest
 
 
@@ -26,5 +26,5 @@ jobs:
 
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
-      - name: Build crystalshard-paper-${{ matrix.tasks }}
-        run: ./gradlew paper:dhl:${{ matrix.tasks }}:publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}
+      - name: Build crystalshard-${{ matrix.tasks }}
+        run: ./gradlew ${{ matrix.tasks }}:publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}

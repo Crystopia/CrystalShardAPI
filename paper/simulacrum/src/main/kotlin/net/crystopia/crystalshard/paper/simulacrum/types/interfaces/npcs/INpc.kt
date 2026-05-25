@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs
 
 import com.mojang.authlib.GameProfile
-import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
+import net.crystopia.crystalshard.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.simulacrum.types.config.npc.NpcSkinData
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.EquipmentSlot

@@ -1,11 +1,12 @@
 package net.crystopia.crystalshard.paper.simulacrum.npc
 
 import com.mojang.authlib.GameProfile
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
 import net.crystopia.crystalshard.paper.dhl.packets.client.playerInfoRemove
 import net.crystopia.crystalshard.paper.dhl.packets.client.removeEntities
-import net.crystopia.crystalshard.paper.dhl.shared.enums.packets.InfoUpdateAction
+import net.crystopia.crystalshard.dhl.shared.enums.packets.InfoUpdateAction
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.simulacrum.types.config.npc.NpcSkinData
 import net.crystopia.crystalshard.paper.simulacrum.types.interfaces.npcs.INpc
 import net.minecraft.world.entity.EquipmentSlot

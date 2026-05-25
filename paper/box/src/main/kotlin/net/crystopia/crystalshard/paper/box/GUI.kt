@@ -1,25 +1,23 @@
 package net.crystopia.crystalshard.paper.box
 
 import me.lucko.spark.paper.lib.protobuf.ExperimentalApi
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ServerPacketFactory
+import net.crystopia.crystalshard.dhl.shared.data.gui.Slot
+import net.crystopia.crystalshard.dhl.shared.data.packets.server.ButtonClickEvent
+import net.crystopia.crystalshard.dhl.shared.data.packets.server.ContainerClickEvent
+import net.crystopia.crystalshard.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.extension.hasServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
-import net.crystopia.crystalshard.paper.dhl.packets.client.closeContainer
-import net.crystopia.crystalshard.paper.dhl.packets.client.openScreen
-import net.crystopia.crystalshard.paper.dhl.packets.client.setContainerContent
-import net.crystopia.crystalshard.paper.dhl.packets.client.setContainerData
-import net.crystopia.crystalshard.paper.dhl.packets.client.setContainerSlot
+import net.crystopia.crystalshard.paper.dhl.extension.send
+import net.crystopia.crystalshard.paper.dhl.packets.client.*
 import net.crystopia.crystalshard.paper.dhl.packets.server.containerButtonClickEvent
 import net.crystopia.crystalshard.paper.dhl.packets.server.containerClickEvent
-import net.crystopia.crystalshard.paper.dhl.shared.data.gui.Slot
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.ButtonClickEvent
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.ContainerClickEvent
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.enums.gui.MenuType
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.craftbukkit.entity.CraftItem
+import org.bukkit.craftbukkit.inventory.CraftItemStack
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin
@@ -80,15 +78,10 @@ class GUI {
             this.items.map {
                 Slot(
                     id = it.value.slot,
-                    item = it.value.item
+                    item = CraftItemStack.asNMSCopy(it.value.item)
                 )
             }.toMutableList(),
-            Shard_ServerPacketData(
-                player = player,
-                name = containerClickEventKey,
-                plugin = plugin,
-                shouldPublish = shouldPublish
-            )
+            player, containerClickEventKey, shouldPublish
         ) {
             // CONTAINER CLICK
             if (this.containerId == inventoryId) {
@@ -104,12 +97,7 @@ class GUI {
             }
         }
         ServerPacketFactory.containerButtonClickEvent(
-            Shard_ServerPacketData(
-                player = player,
-                name = containerButtonClickEventKey,
-                plugin = plugin,
-                shouldPublish = shouldPublish
-            )
+            player, containerButtonClickEventKey, shouldPublish
         ) {
             // BUTTON CLICK
             if (this.containerId == inventoryId) {

@@ -1,14 +1,15 @@
 package net.crystopia.crystalshard.paper.simulacrum.displays
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.dhl.ServerPacketFactory
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.ServerPacketFactory
+import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
+import net.crystopia.crystalshard.dhl.shared.data.packets.server.InteractEvent
+import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializerType
+import net.crystopia.crystalshard.paper.core.CrystalShard
+import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
 import net.crystopia.crystalshard.paper.dhl.packets.client.setEntityData
 import net.crystopia.crystalshard.paper.dhl.packets.server.interactEvent
-import net.crystopia.crystalshard.paper.dhl.shared.data.entities.EntityMetadata
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.InteractEvent
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.server.Shard_ServerPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.paper.simulacrum.SimulacrumFactory
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
@@ -23,8 +24,8 @@ import org.bukkit.plugin.java.JavaPlugin
 open class DisplayInteraction<T : Display>(open var entity: T) {
     lateinit var interaction: Interaction
 
-    fun onHover(plugin: JavaPlugin, player: Player, detectScalar: Double? = 0.99, callback: (lock: Boolean) -> Unit) {
-        Bukkit.getServer().scheduler.runTaskTimer(plugin, Runnable {
+    fun onHover(player: Player, detectScalar: Double? = 0.99, callback: (lock: Boolean) -> Unit) {
+        Bukkit.getServer().globalRegionScheduler.runAtFixedRate(CrystalShard.plugin!!, {
             val toEntity = interaction.location.toVector().subtract(player.eyeLocation.toVector())
 
             if (toEntity.normalize().dot(player.eyeLocation.direction) > detectScalar!!) {
@@ -33,13 +34,13 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
                 callback(false)
             }
 
+
         }, 1L, 1L)
     }
 
 
     fun onInteract(
         key: NamespacedKey,
-        plugin: JavaPlugin,
         size: Pair<Float, Float>,
         player: Player,
         callback: InteractEvent.() -> Unit
@@ -73,7 +74,7 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
 
 
         ClientPacketFactory.setEntityData(
-            interaction.entityId, mutableListOf(
+            interaction, mutableListOf(
                 EntityMetadata(
                     index = 8, type = EntityDataSerializerType.FLOAT, value = size.first
                 ), EntityMetadata(
@@ -88,9 +89,9 @@ open class DisplayInteraction<T : Display>(open var entity: T) {
 
 
         ServerPacketFactory.interactEvent(
-            Shard_ServerPacketData(
-                player = player, name = key, shouldPublish = false, plugin = plugin
-            )
+            player,
+            key,
+            false,
         ) {
             if (entityId == interaction.entityId) {
                 callback(this)

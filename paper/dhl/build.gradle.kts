@@ -18,27 +18,36 @@ dependencies {
 
     implementation(project(":common"))
     implementation(project(":paper:core"))
-    implementation(project(":paper:dhl:implementations:1_21_1"))
-    implementation(project(":paper:dhl:implementations:1_21_9"))
-    implementation(project(":paper:dhl:implementations:1_21_10"))
-    implementation(project(":paper:dhl:implementations:1_21_11"))
-    implementation(project(":paper:dhl:shared"))
+    implementation(project(":dhl"))
+    implementation(project(":dhl:shared"))
+    implementation(project(":dhl:implementations:1_21_1"))
+    implementation(project(":dhl:implementations:1_21_9"))
+    implementation(project(":dhl:implementations:1_21_10"))
+    implementation(project(":dhl:implementations:1_21_11"))
+    implementation(project(":paper:dhl:converter:1_21_1"))
+    implementation(project(":paper:dhl:converter:1_21_9"))
+    implementation(project(":paper:dhl:converter:1_21_10"))
+    implementation(project(":paper:dhl:converter:1_21_11"))
+}
+
+kotlin {
+    jvmToolchain(22)
 }
 
 tasks {
-        assemble {
-            dependsOn(shadowJar)
-            dependsOn(reobfJar)
-        }
-        shadowJar {
-            dependsOn(":paper:core:shadowJar")
-            dependsOn(":paper:dhl:shared:shadowJar")
-            relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
-        }
-        java {
-            withSourcesJar()
-            withJavadocJar()
-        }
+    assemble {
+        dependsOn(shadowJar)
+        dependsOn(reobfJar)
+    }
+    shadowJar {
+        dependsOn(":paper:core:shadowJar")
+        dependsOn(":dhl:shadowJar")
+        relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
+    }
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
     publishing {
         repositories {
             maven {
@@ -64,6 +73,3 @@ tasks {
     }
 }
 
-kotlin {
-    jvmToolchain(22)
-}

@@ -1,0 +1,31 @@
+﻿package net.crystopia.crystalshard.dhl.shared.data.packets.client
+
+import net.crystopia.crystalshard.dhl.shared.data.scoreboard.FixedFormatData
+import net.crystopia.crystalshard.dhl.shared.data.scoreboard.ScoreData
+import net.minecraft.network.chat.Style
+import net.minecraft.network.chat.numbers.BlankFormat
+import net.minecraft.network.chat.numbers.FixedFormat
+import net.minecraft.network.chat.numbers.NumberFormat
+import net.minecraft.network.chat.numbers.StyledFormat
+
+data class ClientboundSetScorePacketData(
+    var score: ScoreData<*>
+) {
+
+    fun build(): NumberFormat {
+        val data = when (score.numberFormat) {
+            net.crystopia.crystalshard.dhl.shared.enums.scoreboard.NumberFormat.FIXED -> {
+                FixedFormat((score.format as FixedFormatData).text)
+            }
+
+            net.crystopia.crystalshard.dhl.shared.enums.scoreboard.NumberFormat.STYLED -> {
+                StyledFormat(Style.EMPTY)
+            }
+
+            net.crystopia.crystalshard.dhl.shared.enums.scoreboard.NumberFormat.BLANK -> {
+                BlankFormat.INSTANCE
+            }
+        }
+        return data
+    }
+}

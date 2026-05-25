@@ -1,0 +1,72 @@
+package net.crystopia.crystalshard.dhl.shared.interfaces.packets
+
+import net.crystopia.crystalshard.dhl.shared.data.packets.client.*
+import net.minecraft.network.protocol.Packet
+
+interface IPacketBuilder {
+
+    fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*>
+    fun damageEvent(data: ClientboundDamageEventPacketData): Packet<*>
+    fun takeItem(data: ClientboundTakeItemEntityPacketData): Packet<*>
+    fun setChunkBatchFinished(data: ClientboundChunkBatchFinishedPacketData): Packet<*>
+    fun startChunkBatch(): Packet<*>
+    fun sendChunkWithLight(data: ClientboundLevelChunkWithLightPacketData): Packet<*>
+    fun showDialog(data: ClientboundShowDialogPacketData): Packet<*>
+    fun updateTickingState(data: ClientboundTickingStatePacketData): Packet<*>
+    fun updateTickingStep(data: ClientboundTickingStepPacketData): Packet<*>
+    fun setTime(data: ClientboundSetTimePacketData): Packet<*>
+    fun setTabList(data: ClientboundTabListPacketData): Packet<*>
+    fun setDefaultSpawnPosition(data: ClientboundSetDefaultSpawnPositionPacketData): Packet<*>
+    fun sendLevelEvent(data: ClientboundLevelEventPacketData): Packet<*>
+    fun setMapItemData(data: ClientboundMapItemDataPacketData): Packet<*>
+    fun moveVehicle(data: ClientboundMoveVehiclePacketData): Packet<*>
+    fun moveMinecart(data: ClientboundMoveMinecartPacketData): Packet<*>
+    fun moveEntity(data: ClientboundMoveEntityPacketData): Packet<*>
+    fun updateEntityPositionSync(data: ClientboundEntityPositionSyncPacketData): Packet<*>
+    fun updatePlayerLookAt(data: ClientboundPlayerLookAtPacketData): Packet<*>
+    fun updatePlayerPosition(data: ClientboundPlayerPositionPacketData): Packet<*>
+    fun updatePlayerRotation(data: ClientboundPlayerRotationPacketData): Packet<*>
+    fun removeMobEffect(data: ClientboundRemoveMobEffectPacketData): Packet<*>
+    fun applyMobEffect(data: ClientboundUpdateMobEffectPacketData): Packet<*>
+    fun sendTeam(data: ClientboundSetPlayerTeamPacketData): Packet<*>
+    fun setMerchantOffer(data: ClientboundMerchantOffersPacketData): Packet<*>
+    fun spawnParticle(data: ClientboundLevelParticlesPacketData): Packet<*>
+    fun setWorldBorderSize(data: ClientboundBorderPacketData): Packet<*>
+    fun setWorldBorderCenter(data: ClientboundBorderPacketData): Packet<*>
+    fun setWorldBorderLerpSize(data: ClientboundBorderPacketData): Packet<*>
+    fun setWorldBorderWarningDelay(data: ClientboundBorderPacketData): Packet<*>
+    fun setWorldBorderWarningDistance(data: ClientboundBorderPacketData): Packet<*>
+    fun initWorldBorder(data: ClientboundBorderPacketData): Packet<*>
+    fun runGameEvent(data: ClientboundGameEventPacketData): Packet<*>
+    fun playRespawnPacket(data: ClientboundRespawnPacketData): Packet<*>
+    fun resetScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
+    fun setScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
+    fun sendObjectiveUpdate(data: ClientboundSetDisplayObjectivePacketData): Packet<*>
+    fun setDisplayObjective(data: ClientboundSetDisplayObjectivePacketData): Packet<*>
+    fun setHealth(data: ClientboundSetHealthPacketData): Packet<*>
+    fun setCarriedItem(data: ClientboundSetCarriedItemPacketData): Packet<*>
+    fun applyCooldown(data: ClientboundCooldownPacketData): Packet<*>
+    fun sendPlayerCombatKillPacket(data: ClientboundPlayerCombatKillPacketData): Packet<*>
+    fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*>
+    fun setContainerData(data: ClientboundContainerSetDataPacketData): Packet<*>
+    fun setContainerContent(data: ClientboundContainerSetContentPacketData): Packet<*>
+    fun setContainerSlot(data: ClientboundContainerSetSlotPacketData): Packet<*>
+    fun closeContainerPacket(data: ClientboundContainerClosePacketData): Packet<*>
+    fun openScreenPacket(data: ClientboundOpenScreenPacketData): Packet<*>
+    fun updateAttributesPacket(data: ClientboundUpdateAttributesPacketData): Packet<*>
+    fun entityEventPacket(data: ClientboundEntityEventPacketData): Packet<*>
+    fun animatePacket(data: ClientboundAnimatePacketData): Packet<*>
+    fun setBlockDestroyStagePacket(data: ClientboundBlockDestructionPacketData): Packet<*>
+    fun openSignEditorPacket(data: ClientboundOpenSignEditorPacketData): Packet<*>
+    fun blockEntityDataPacket(data: ClientboundBlockEntityDataPacketData): Packet<*>
+    fun blockUpdatePacket(data: ClientboundBlockUpdatePacketData): Packet<*>
+    fun equipmentPacket(data: ClientboundSetEquipmentPacketData): Packet<*>
+    fun playerInfoUpdatePacket(data: ClientboundPlayerInfoUpdatePacketData): Packet<*>
+    fun teleportEntityPacket(data: ClientboundTeleportEntityPacketData): Packet<*>
+    fun playerInfoRemovePacket(data: ClientboundPlayerInfoRemovePacketData): Packet<*>
+    fun removeEntitiesPacket(data: ClientboundRemoveEntitiesPacketData): Packet<*>
+    fun addEntitiesPacket(data: ClientboundAddEntityPacketData): Packet<*>
+    fun rotateHeadPacket(data: ClientboundRotateHeadPacketData): Packet<*>
+    fun setEntityDataPacket(data: ClientboundSetEntityDataPacketData): Packet<*>
+    fun setPassengersPacket(data: ClientboundSetPassengersPacketData): Packet<*>
+}

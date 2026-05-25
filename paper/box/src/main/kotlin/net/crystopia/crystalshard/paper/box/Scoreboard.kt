@@ -1,12 +1,18 @@
 package net.crystopia.crystalshard.paper.box
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
+import io.papermc.paper.adventure.PaperAdventure
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.packets.client.resetScoreInDisplayObject
 import net.crystopia.crystalshard.paper.dhl.packets.client.sendObjectiveUpdate
 import net.crystopia.crystalshard.paper.dhl.packets.client.setDisplayObjective
 import net.crystopia.crystalshard.paper.dhl.packets.client.setScoreInDisplayObject
-import net.crystopia.crystalshard.paper.dhl.shared.data.scoreboard.*
-import net.crystopia.crystalshard.paper.dhl.shared.enums.scoreboard.*
+import net.crystopia.crystalshard.dhl.shared.data.scoreboard.*
+import net.crystopia.crystalshard.dhl.shared.enums.scoreboard.*
+import net.crystopia.crystalshard.paper.dhl.extension.send
+import net.crystopia.crystalshard.paper.dhl.types.scoreboard.BlankFormatData
+import net.crystopia.crystalshard.paper.dhl.types.scoreboard.DisplayData
+import net.crystopia.crystalshard.paper.dhl.types.scoreboard.FixedFormatData
+import net.crystopia.crystalshard.paper.dhl.types.scoreboard.ScoreData
 import net.kyori.adventure.text.Component
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
@@ -21,13 +27,13 @@ class Scoreboard {
 
     private var id: NamespacedKey
     private var slot: DisplaySlot
-    private var data: DisplayData<*>
+    private var data: net.crystopia.crystalshard.paper.dhl.types.scoreboard.DisplayData<*>
     private var players: MutableList<Player> = mutableListOf()
 
     constructor(id: NamespacedKey, name: Component, slot: DisplaySlot) {
         this.id = id
         this.slot = slot
-        this.data = DisplayData(
+        this.data = net.crystopia.crystalshard.paper.dhl.types.scoreboard.DisplayData(
             name = id.toString(),
             displayName = name,
             displayAutoUpdate = false,
@@ -45,14 +51,14 @@ class Scoreboard {
         }
     }
 
-    fun <T : FormatData<*>> format(type: NumberFormat, format: FormatData<*>): Scoreboard {
+    fun <T : FormatData<*>> format(type: NumberFormat, format: net.crystopia.crystalshard.paper.dhl.types.scoreboard.FormatData<*>): Scoreboard {
 
-        this.data = DisplayData(
+        this.data = net.crystopia.crystalshard.paper.dhl.types.scoreboard.DisplayData(
             name = id.toString(),
             displayName = this.data.displayName,
             displayAutoUpdate = this.data.displayAutoUpdate,
             numberFormat = type,
-            format = format as T,
+            format = format,
             renderType = this.data.renderType,
             criteria = this.data.criteria
         )
@@ -109,11 +115,11 @@ class Scoreboard {
         score: Int,
         displayName: Component,
         numberFormat: NumberFormat,
-        format: FormatData<*>,
+        format: net.crystopia.crystalshard.paper.dhl.types.scoreboard.FormatData<*>,
     ) : Scoreboard {
         ClientPacketFactory.setScoreInDisplayObject(
-            ScoreData(
-                id.toString(), ownerName, score, displayName, numberFormat, format as T
+            net.crystopia.crystalshard.paper.dhl.types.scoreboard.ScoreData(
+                id.toString(), ownerName, score, displayName, numberFormat, format
             )
         ) { packet ->
             packet.send(this.players)

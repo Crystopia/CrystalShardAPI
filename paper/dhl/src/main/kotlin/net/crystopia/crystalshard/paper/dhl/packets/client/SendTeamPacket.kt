@@ -1,22 +1,33 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
-import net.crystopia.crystalshard.paper.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.dhl.shared.Shard_Packet
-import net.crystopia.crystalshard.paper.dhl.shared.data.packets.client.ClientboundSetPlayerTeamPacketData
-import net.crystopia.crystalshard.paper.dhl.shared.data.teams.Team
-import net.crystopia.crystalshard.paper.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.dhl.shared.enums.teams.TeamAction
-import net.crystopia.crystalshard.paper.dhl.shared.utils.ServerUtil
-import net.crystopia.crystalshard.paper.dhl.versions.v1_21_11.general.PacketBuilder
+import io.papermc.paper.adventure.PaperAdventure
+import net.crystopia.crystalshard.dhl.ClientPacketFactory
+import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetPlayerTeamPacketData
+import net.crystopia.crystalshard.dhl.shared.data.teams.Team
+import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.shared.enums.teams.TeamAction
+import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
 
 fun ClientPacketFactory.sendTeam(
     action: TeamAction,
-    team: Team,
+    team: net.crystopia.crystalshard.paper.dhl.types.teams.Team,
     callback: (packet: Shard_Packet<ClientboundSetPlayerTeamPacketData>) -> Unit
 ): Shard_Packet<ClientboundSetPlayerTeamPacketData> {
 
     val data = ClientboundSetPlayerTeamPacketData(
-        action, team
+        action, Team(
+            name = team.name,
+            teamDisplayName = PaperAdventure.asVanilla(team.teamDisplayName),
+            friendlyFlags = team.friendlyFlags,
+            nameTagVisibility = team.nameTagVisibility,
+            collisionRule = team.collisionRule,
+            teamColor = team.teamColor,
+            teamPrefix = PaperAdventure.asVanilla(team.teamPrefix),
+            teamSuffix = PaperAdventure.asVanilla(team.teamSuffix),
+            members = team.members,
+        )
     )
 
     val packet = when (ServerUtil.currentVersion()) {
@@ -27,19 +38,19 @@ fun ClientPacketFactory.sendTeam(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_10.general.PacketBuilder.sendTeam(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.sendTeam(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_9.general.PacketBuilder.sendTeam(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.sendTeam(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.paper.dhl.versions.v1_21_1.general.PacketBuilder.sendTeam(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.sendTeam(
                 data
             )
         }

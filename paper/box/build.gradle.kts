@@ -16,7 +16,8 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":paper:core"))
     implementation(project(":paper:dhl"))
-    implementation(project(":paper:dhl:shared"))
+    implementation(project(":dhl"))
+    implementation(project(":dhl:shared"))
 }
 
 kotlin {
@@ -30,7 +31,7 @@ tasks {
         }
         shadowJar {
             dependsOn(":paper:core:shadowJar")
-            dependsOn(":paper:dhl:shadowJar")
+            dependsOn(":dhl:shadowJar")
             relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
         }
         java {

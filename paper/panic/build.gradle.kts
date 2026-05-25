@@ -15,8 +15,9 @@ dependencies {
     paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
     implementation(project(":common"))
     implementation(project(":paper:core"))
+    implementation(project(":dhl"))
     implementation(project(":paper:dhl"))
-    implementation(project(":paper:dhl:shared"))
+    implementation(project(":dhl:shared"))
 }
 
 kotlin {
@@ -29,7 +30,7 @@ tasks {
             dependsOn(reobfJar)
         }
         shadowJar {
-            dependsOn(":paper:dhl:shadowJar")
+            dependsOn(":dhl:shadowJar")
             dependsOn(":paper:core:shadowJar")
 
             relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
