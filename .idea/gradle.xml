@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="corretto-22" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/common" />
+            <option value="$PROJECT_DIR$/dhl" />
+            <option value="$PROJECT_DIR$/dhl/implementations" />
+            <option value="$PROJECT_DIR$/dhl/implementations/1_21_1" />
+            <option value="$PROJECT_DIR$/dhl/implementations/1_21_10" />
+            <option value="$PROJECT_DIR$/dhl/implementations/1_21_11" />
+            <option value="$PROJECT_DIR$/dhl/implementations/1_21_9" />
+            <option value="$PROJECT_DIR$/dhl/shared" />
+            <option value="$PROJECT_DIR$/paper" />
+            <option value="$PROJECT_DIR$/paper/box" />
+            <option value="$PROJECT_DIR$/paper/core" />
+            <option value="$PROJECT_DIR$/paper/custom" />
+            <option value="$PROJECT_DIR$/paper/dhl" />
+            <option value="$PROJECT_DIR$/paper/dhl/converter" />
+            <option value="$PROJECT_DIR$/paper/dhl/converter/1_21_1" />
+            <option value="$PROJECT_DIR$/paper/dhl/converter/1_21_10" />
+            <option value="$PROJECT_DIR$/paper/dhl/converter/1_21_11" />
+            <option value="$PROJECT_DIR$/paper/dhl/converter/1_21_9" />
+            <option value="$PROJECT_DIR$/paper/folia" />
+            <option value="$PROJECT_DIR$/paper/pack" />
+            <option value="$PROJECT_DIR$/paper/panic" />
+            <option value="$PROJECT_DIR$/paper/simulacrum" />
+            <option value="$PROJECT_DIR$/tests" />
+            <option value="$PROJECT_DIR$/tests/modfabrictest" />
+            <option value="$PROJECT_DIR$/tests/papertest" />
+            <option value="$PROJECT_DIR$/tests/velocitytest" />
+            <option value="$PROJECT_DIR$/velocity" />
+          </set>
+        </option>
+        <option name="resolveExternalAnnotations" value="true" />
+        <option name="myGradleHome" value="$USER_HOME$/.sdkman/candidates/gradle/current" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
