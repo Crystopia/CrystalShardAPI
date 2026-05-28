@@ -18,13 +18,14 @@ fun ClientPacketFactory.damageEvent(
     callback: (packet: Shard_Packet<ClientboundDamageEventPacketData>) -> Unit
 ): Shard_Packet<ClientboundDamageEventPacketData> {
 
+
     val data = ClientboundDamageEventPacketData(
         (entity as CraftEntity).handle,
         if (damageSource.sourceLocation != null)
             net.minecraft.world.damagesource.DamageSource(
-                Holder.direct(CraftDamageType.bukkitToMinecraft(damageSource.damageType)),
-                (damageSource.directEntity as CraftEntity).handle,
-                (damageSource.causingEntity as CraftEntity).handle,
+                Holder.direct((damageSource.damageType as CraftDamageType).handle),
+                if (damageSource.directEntity != null) (damageSource.directEntity as CraftEntity).handle else null,
+                if (damageSource.causingEntity != null) (damageSource.causingEntity as CraftEntity).handle else null,
                 Vec3(
                     damageSource.sourceLocation!!.x,
                     damageSource.sourceLocation!!.y,
@@ -32,9 +33,9 @@ fun ClientPacketFactory.damageEvent(
                 )
             )
         else net.minecraft.world.damagesource.DamageSource(
-            Holder.direct(CraftDamageType.bukkitToMinecraft(damageSource.damageType)),
-            (damageSource.directEntity as CraftEntity).handle,
-            (damageSource.causingEntity as CraftEntity).handle
+            Holder.direct((damageSource.damageType as CraftDamageType).handle),
+            if (damageSource.directEntity != null) (damageSource.directEntity as CraftEntity).handle else null,
+            if (damageSource.causingEntity != null) (damageSource.causingEntity as CraftEntity).handle else null,
         )
     )
 

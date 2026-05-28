@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.common.log.Log
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
-abstract class ITest(var name: String, var sender: CommandSender, var args: CommandArguments) {
+abstract class ITest(val name: String, val sender: CommandSender, val args: CommandArguments) {
 
     private var msStart: Long? = null
     private var test: () -> Unit = {}

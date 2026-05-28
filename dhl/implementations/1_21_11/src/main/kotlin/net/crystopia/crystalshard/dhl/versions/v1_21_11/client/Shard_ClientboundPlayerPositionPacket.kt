@@ -14,7 +14,7 @@ class Shard_ClientboundPlayerPositionPacket : IPacket<ClientboundPlayerPositionP
         packetObj: ClientboundPlayerPositionPacketData
     ): ClientboundPlayerPositionPacket {
         return ClientboundPlayerPositionPacket(
-            packetObj.entityId,
+            packetObj.teleportId,
             PositionMoveRotation(
                 packetObj.change.position.build(),
                 packetObj.change.deltaMovement.build(),

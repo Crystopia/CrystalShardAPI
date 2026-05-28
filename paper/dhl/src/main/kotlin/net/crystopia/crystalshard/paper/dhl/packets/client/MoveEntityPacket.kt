@@ -7,10 +7,21 @@ import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityMoveMode
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.minecraft.network.protocol.common.CommonPacketTypes
+import net.minecraft.network.protocol.configuration.ConfigurationPacketTypes
+import net.minecraft.network.protocol.cookie.CookiePacketTypes
+import net.minecraft.network.protocol.game.ClientboundSetPlayerInventoryPacket
+import net.minecraft.network.protocol.game.GamePacketTypes
+import net.minecraft.network.protocol.handshake.HandshakePacketTypes
+import net.minecraft.network.protocol.login.LoginPacketTypes
+import net.minecraft.network.protocol.ping.PingPacketTypes
+import net.minecraft.network.protocol.status.StatusPacketTypes
+import org.bukkit.craftbukkit.entity.CraftEntity
+import org.bukkit.entity.Entity
 
 fun ClientPacketFactory.moveEntity(
     mode: EntityMoveMode,
-    entityId: Int,
+    entity: Entity,
     xa: Short,
     ya: Short,
     za: Short,
@@ -23,7 +34,7 @@ fun ClientPacketFactory.moveEntity(
 ): Shard_Packet<ClientboundMoveEntityPacketData> {
 
     val data = ClientboundMoveEntityPacketData(
-        mode, entityId, xa, ya, za, yRot, xRot, onGround, hasRot, hasPos
+        mode, (entity as CraftEntity).handle, xa, ya, za, yRot, xRot, onGround, hasRot, hasPos
     )
 
     val packet = when (ServerUtil.currentVersion()) {

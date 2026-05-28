@@ -7,16 +7,18 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundEnti
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import org.bukkit.craftbukkit.entity.CraftEntity
+import org.bukkit.entity.Entity
 
 fun ClientPacketFactory.updateEntityPositionSync(
-    entityId: Int,
+    entity: Entity,
     values: PositionMoveRotation,
     onGround: Boolean,
     callback: (packet: Shard_Packet<ClientboundEntityPositionSyncPacketData>) -> Unit
 ): Shard_Packet<ClientboundEntityPositionSyncPacketData> {
 
     val data = ClientboundEntityPositionSyncPacketData(
-        entityId, values, onGround
+        (entity as CraftEntity).handle, values, onGround
     )
 
     val packet = when (ServerUtil.currentVersion()) {

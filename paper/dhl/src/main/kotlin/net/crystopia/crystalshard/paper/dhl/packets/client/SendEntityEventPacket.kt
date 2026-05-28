@@ -11,11 +11,11 @@ import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.entity.CraftEntity
 import org.bukkit.entity.Entity
 
+/**
+ * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
+ */
 fun ClientPacketFactory.sendEntityEvent(
     entity: Entity,
-    /**
-     * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
-     */
     status: Byte,
     world: World,
     callback: (packet: Shard_Packet<ClientboundEntityEventPacketData>) -> Unit

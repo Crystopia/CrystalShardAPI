@@ -14,7 +14,6 @@ import org.ktorm.entity.Entity
 
 fun ClientPacketFactory.updatePlayerLookAt(
     entity: org.bukkit.entity.Entity,
-    world: World,
     fromAnchor: LookAnchor,
     toAnchor: LookAnchor,
     x: Double,
@@ -24,7 +23,7 @@ fun ClientPacketFactory.updatePlayerLookAt(
 ): Shard_Packet<ClientboundPlayerLookAtPacketData> {
 
     val data = ClientboundPlayerLookAtPacketData(
-        (entity as CraftEntity).handle, (world as CraftWorld).handle, fromAnchor, toAnchor, x, y, z
+        (entity as CraftEntity).handle, fromAnchor, toAnchor, x, y, z
     )
 
     val packet = when (ServerUtil.currentVersion()) {

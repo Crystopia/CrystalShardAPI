@@ -6,18 +6,19 @@ import net.crystopia.crystalshard.dhl.shared.data.entities.PositionMoveRotation
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerPositionPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.entities.RelativePosition
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
+import net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket
 
 fun ClientPacketFactory.updatePlayerPosition(
-    entityId: Int,
     change: PositionMoveRotation,
+    teleportId: Int,
     relatives: MutableSet<RelativePosition>,
     callback: (packet: Shard_Packet<ClientboundPlayerPositionPacketData>) -> Unit
 ): Shard_Packet<ClientboundPlayerPositionPacketData> {
 
     val data = ClientboundPlayerPositionPacketData(
-        entityId, change, relatives
+        teleportId, change, relatives
     )
 
     val packet = when (ServerUtil.currentVersion()) {

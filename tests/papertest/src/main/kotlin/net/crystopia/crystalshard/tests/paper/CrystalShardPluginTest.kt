@@ -10,14 +10,13 @@ import net.crystopia.crystalshard.common.extension.text
 import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.common.log.green
 import net.crystopia.crystalshard.common.log.red
-import net.crystopia.crystalshard.common.log.reset
 import net.crystopia.crystalshard.paper.core.crystalshard
 import net.crystopia.crystalshard.paper.custom.smart.SmartEvents
 import net.crystopia.crystalshard.paper.folia.threadedTask
 import net.crystopia.crystalshard.tests.paper.config.TestConfig
 import net.crystopia.crystalshard.tests.paper.databse.entities.UserEntity
 import net.crystopia.crystalshard.tests.paper.databse.models.users
-import net.crystopia.crystalshard.tests.paper.tests.EventTest
+import net.crystopia.crystalshard.tests.paper.tests.new.EventTest
 import net.crystopia.crystalshard.tests.paper.tests.base.TestCommand
 import org.bukkit.plugin.java.JavaPlugin
 import org.ktorm.entity.add

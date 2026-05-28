@@ -2,6 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.extension
 
 import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import org.bukkit.Bukkit
+import org.bukkit.NamespacedKey
 import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Player
@@ -11,6 +12,12 @@ fun Player.removeServerPacketListener(key: String) {
     val channel = serverPlayer.connection.connection.channel
 
     channel.pipeline().remove(key)
+}
+fun Player.removeServerPacketListener(key: NamespacedKey) {
+    val serverPlayer = (player as CraftPlayer).handle
+    val channel = serverPlayer.connection.connection.channel
+
+    channel.pipeline().remove("${key.namespace}_${key.key}")
 }
 
 fun Player.hasServerPacketListener(key: String) : Boolean {

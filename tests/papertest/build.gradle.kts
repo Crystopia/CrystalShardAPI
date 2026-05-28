@@ -32,6 +32,7 @@ dependencies {
     implementation(project(":paper:custom"))
     implementation(project(":dhl"))
     implementation(project(":dhl:shared"))
+    implementation(project(":dhl:implementations:1_21_11"))
     implementation(project(":paper:dhl"))
     implementation(project(":paper:pack"))
     implementation(project(":paper:panic"))

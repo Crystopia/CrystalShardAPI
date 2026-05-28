@@ -20,18 +20,6 @@ object PacketBuilder : IPacketBuilder {
         return Shard_ClientboundTakeItemEntityPacket().createPacket(data)
     }
 
-    override fun setChunkBatchFinished(data: ClientboundChunkBatchFinishedPacketData): Packet<*> {
-        return Shard_ClientboundChunkBatchFinishedPacket().createPacket(data)
-    }
-
-    override fun startChunkBatch(): Packet<*> {
-        return Shard_ClientboundChunkBatchStartPacket().createPacket(0)
-    }
-
-    override fun sendChunkWithLight(data: ClientboundLevelChunkWithLightPacketData): Packet<*> {
-        return Shard_ClientboundLevelChunkWithLightPacket().createPacket(data)
-    }
-
     override fun showDialog(data: ClientboundShowDialogPacketData): Packet<*> {
         return Shard_ClientboundShowDialogPacket().createPacket(data)
     }
@@ -138,10 +126,6 @@ object PacketBuilder : IPacketBuilder {
 
     override fun runGameEvent(data: ClientboundGameEventPacketData): Packet<*> {
         return Shard_ClientboundGameEventPacket().createPacket(data)
-    }
-
-    override fun playRespawnPacket(data: ClientboundRespawnPacketData): Packet<*> {
-        return Shard_ClientboundRespawnPacket().createPacket(data)
     }
 
     override fun resetScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*> {

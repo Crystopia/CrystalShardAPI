@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundAddE
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
+import net.minecraft.network.protocol.game.GamePacketTypes
 import org.bukkit.Location
 import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.entity.CraftEntityType

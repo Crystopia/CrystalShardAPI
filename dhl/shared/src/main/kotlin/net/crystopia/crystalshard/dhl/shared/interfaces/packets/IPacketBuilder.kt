@@ -8,9 +8,6 @@ interface IPacketBuilder {
     fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*>
     fun damageEvent(data: ClientboundDamageEventPacketData): Packet<*>
     fun takeItem(data: ClientboundTakeItemEntityPacketData): Packet<*>
-    fun setChunkBatchFinished(data: ClientboundChunkBatchFinishedPacketData): Packet<*>
-    fun startChunkBatch(): Packet<*>
-    fun sendChunkWithLight(data: ClientboundLevelChunkWithLightPacketData): Packet<*>
     fun showDialog(data: ClientboundShowDialogPacketData): Packet<*>
     fun updateTickingState(data: ClientboundTickingStatePacketData): Packet<*>
     fun updateTickingStep(data: ClientboundTickingStepPacketData): Packet<*>
@@ -38,7 +35,6 @@ interface IPacketBuilder {
     fun setWorldBorderWarningDistance(data: ClientboundBorderPacketData): Packet<*>
     fun initWorldBorder(data: ClientboundBorderPacketData): Packet<*>
     fun runGameEvent(data: ClientboundGameEventPacketData): Packet<*>
-    fun playRespawnPacket(data: ClientboundRespawnPacketData): Packet<*>
     fun resetScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
     fun setScoreInDisplayObject(data: ClientboundSetScorePacketData): Packet<*>
     fun sendObjectiveUpdate(data: ClientboundSetDisplayObjectivePacketData): Packet<*>

@@ -25,7 +25,7 @@ fun ClientboundMapItemDataPacketData.decorations(): MutableList<MapDecoration> {
 fun ClientboundMapItemDataPacketData.colorPatch(): MapItemSavedData.MapPatch {
     return MapItemSavedData.MapPatch(
         colorPatch.startX,
-        colorPatch.startY,
+        colorPatch.startZ,
         colorPatch.width,
         colorPatch.height,
         colorPatch.mapColors.toByteArray()

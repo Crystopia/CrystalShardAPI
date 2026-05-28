@@ -14,18 +14,18 @@ import org.bukkit.craftbukkit.attribute.CraftAttribute
 import org.bukkit.craftbukkit.entity.CraftEntity
 import org.bukkit.entity.Entity
 
+/**
+ * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
+ */
 fun ClientPacketFactory.updateAttributes(
     entity: Entity,
-    /**
-     * See more infos about status. [Entity_statuses](https://minecraft.wiki/w/Java_Edition_protocol/Entity_statuses)
-     */
     attributes: MutableList<net.crystopia.crystalshard.paper.dhl.types.attributes.Attribute>,
     callback: (packet: Shard_Packet<ClientboundUpdateAttributesPacketData>) -> Unit
 ): Shard_Packet<ClientboundUpdateAttributesPacketData> {
     val data = ClientboundUpdateAttributesPacketData(
         (entity as CraftEntity).handle, attributes.map { attr ->
             Attribute(
-                id = Holder.direct(CraftAttribute.bukkitToMinecraft(attr.id)),
+                id = Holder.direct((attr.id as CraftAttribute).handle),
                 value = attr.value,
                 modifiers = attr.modifiers.map {
                     AttributeModifiers(

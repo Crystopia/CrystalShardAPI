@@ -15,7 +15,7 @@ class Shard_ClientboundMoveEntityPacket : IPacket<ClientboundMoveEntityPacketDat
         when (packetObj.mode) {
             EntityMoveMode.POS -> {
                 return ClientboundMoveEntityPacket.Pos(
-                    packetObj.entityId,
+                    packetObj.entity.id,
                     packetObj.xa,
                     packetObj.ya,
                     packetObj.za,
@@ -25,7 +25,7 @@ class Shard_ClientboundMoveEntityPacket : IPacket<ClientboundMoveEntityPacketDat
 
             EntityMoveMode.ROT -> {
                 return ClientboundMoveEntityPacket.Rot(
-                    packetObj.entityId,
+                    packetObj.entity.id,
                     packetObj.yRot,
                     packetObj.xRot,
                     packetObj.onGround,
@@ -34,7 +34,7 @@ class Shard_ClientboundMoveEntityPacket : IPacket<ClientboundMoveEntityPacketDat
 
             EntityMoveMode.POS_ROT -> {
                 return ClientboundMoveEntityPacket.PosRot(
-                    packetObj.entityId,
+                    packetObj.entity.id,
                     packetObj.xa,
                     packetObj.ya,
                     packetObj.za,

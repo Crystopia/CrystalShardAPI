@@ -3,7 +3,7 @@ package net.crystopia.crystalshard.tests.paper.tests.base
 import dev.jorel.commandapi.kotlindsl.anyExecutor
 import dev.jorel.commandapi.kotlindsl.commandTree
 import dev.jorel.commandapi.kotlindsl.literalArgument
-import net.crystopia.crystalshard.tests.paper.tests.*
+import net.crystopia.crystalshard.tests.paper.tests.new.*
 
 object TestCommand {
 
@@ -14,141 +14,393 @@ object TestCommand {
             }
         }
 
-        literalArgument("packet") {
+        literalArgument("AdvancementTest") {
             anyExecutor { sender, arguments ->
-                PacketTest("packet", sender, arguments).command()
+                AdvancementTest("AdvancementTest", sender, arguments).command()
             }
         }
 
-        literalArgument("advancement") {
+        literalArgument("ApplyCooldownTest") {
             anyExecutor { sender, arguments ->
-                AdvancementTest("advancement", sender, arguments).command()
+                ApplyCooldownTest("ApplyCooldownTest", sender, arguments).command()
             }
         }
 
-        literalArgument("component") {
+        literalArgument("ApplyMobEffectTest") {
             anyExecutor { sender, arguments ->
-                ComponentTest("component", sender, arguments).command()
+                ApplyMobEffectTest("ApplyMobEffectTest", sender, arguments).command()
             }
         }
 
-        literalArgument("world") {
+        literalArgument("ClientModTest") {
             anyExecutor { sender, arguments ->
-                WorldTest("world", sender, arguments).command()
+                ClientModTest("ClientModTest", sender, arguments).command()
             }
         }
 
-        literalArgument("invfont") {
+        literalArgument("CloseContainerTest") {
             anyExecutor { sender, arguments ->
-                InvFontTest("invfont", sender, arguments).command()
+                CloseContainerTest("CloseContainerTest", sender, arguments).command()
             }
         }
 
-        literalArgument("cooldown") {
+        literalArgument("CreateAnimationTest") {
             anyExecutor { sender, arguments ->
-                CooldownTest("cooldown", sender, arguments).command()
+                CreateAnimationTest("CreateAnimationTest", sender, arguments).command()
             }
         }
 
-        literalArgument("clientmod") {
+        literalArgument("CreateBlockDestroyStageTest") {
             anyExecutor { sender, arguments ->
-                ClientModTest("clientmod", sender, arguments).command()
+                CreateBlockDestroyStageTest("CreateBlockDestroyStageTest", sender, arguments).command()
             }
         }
 
-        literalArgument("dialog") {
+        literalArgument("CreateBlockEntityDataTest") {
             anyExecutor { sender, arguments ->
-                DialogTest("dialog", sender, arguments).command()
+                CreateBlockEntityDataTest("CreateBlockEntityDataTest", sender, arguments).command()
             }
         }
 
-        literalArgument("mob-effect") {
+        literalArgument("CreateBlockUpdateTest") {
             anyExecutor { sender, arguments ->
-                MobEffectTest("mob-effect", sender, arguments).command()
+                CreateBlockUpdateTest("CreateBlockUpdateTest", sender, arguments).command()
             }
         }
 
-        literalArgument("team") {
+        literalArgument("CreateEquipmentTest") {
             anyExecutor { sender, arguments ->
-                TeamTest("team", sender, arguments).command()
+                CreateEquipmentTest("CreateEquipmentTest", sender, arguments).command()
             }
         }
 
-        literalArgument("particle") {
+        literalArgument("CreateOpenSignEditorTest") {
             anyExecutor { sender, arguments ->
-                ParticleTest("particle", sender, arguments).command()
+                CreateOpenSignEditorTest("CreateOpenSignEditorTest", sender, arguments).command()
             }
         }
 
-        literalArgument("teleport") {
+        literalArgument("DamageEventTest") {
             anyExecutor { sender, arguments ->
-                TeleportTest("teleport", sender, arguments).command()
+                DamageEventTest("DamageEventTest", sender, arguments).command()
             }
         }
 
-        literalArgument("world-border") {
+        literalArgument("DialogTest") {
             anyExecutor { sender, arguments ->
-                WorldborderTest("world-border", sender, arguments).command()
+                DialogTest("DialogTest", sender, arguments).command()
             }
         }
 
-        literalArgument("game-event") {
+        literalArgument("InitWorldBorderTest") {
             anyExecutor { sender, arguments ->
-                GameEventTest("game-event", sender, arguments).command()
+                InitWorldBorderTest("InitWorldBorderTest", sender, arguments).command()
             }
         }
 
-        literalArgument("animate") {
+        literalArgument("MoveEntityTest") {
             anyExecutor { sender, arguments ->
-                AnimateTest("animate", sender, arguments).command()
+                MoveEntityTest("MoveEntityTest", sender, arguments).command()
             }
         }
 
-        literalArgument("packet-gui") {
+        literalArgument("MoveMinecartTest") {
             anyExecutor { sender, arguments ->
-                PacketGUITest("packet-gui", sender, arguments).command()
+                MoveMinecartTest("MoveMinecartTest", sender, arguments).command()
             }
         }
 
-        literalArgument("packet-dialog") {
+        literalArgument("MoveVehicleTest") {
             anyExecutor { sender, arguments ->
-                PacketDialogTest("packet-dialog", sender, arguments).command()
+                MoveVehicleTest("MoveVehicleTest", sender, arguments).command()
             }
         }
 
-        literalArgument("VillagerType") {
+        literalArgument("NPCTest") {
             anyExecutor { sender, arguments ->
-                MerchantTest("VillagerType", sender, arguments).command()
+                NPCTest("NPCTest", sender, arguments).command()
             }
         }
 
-        literalArgument("scoreboard") {
+        literalArgument("OpenScreenTest") {
             anyExecutor { sender, arguments ->
-                ScoreboardTest("scoreboard", sender, arguments).command()
+                OpenScreenTest("OpenScreenTest", sender, arguments).command()
             }
         }
 
-        literalArgument("waypoint") {
+        literalArgument("PacketDialogTest") {
             anyExecutor { sender, arguments ->
-                WaypointTest("waypoint", sender, arguments).command()
+                PacketDialogTest("PacketDialogTest", sender, arguments).command()
             }
         }
 
-        literalArgument("pack") {
+        literalArgument("PacketGUITest") {
             anyExecutor { sender, arguments ->
-                PlayerHeadTest("pack", sender, arguments).command()
+                PacketGUITest("PacketGUITest", sender, arguments).command()
             }
         }
 
-        literalArgument("display") {
+        literalArgument("PlayerHeadTest") {
             anyExecutor { sender, arguments ->
-                DisplayTest("display", sender, arguments).command()
+                PlayerHeadTest("PlayerHeadTest", sender, arguments).command()
             }
         }
 
-        literalArgument("npc") {
+        literalArgument("PlayerInfoRemoveTest") {
             anyExecutor { sender, arguments ->
-                NPCTest("npc", sender, arguments).command()
+                PlayerInfoRemoveTest("PlayerInfoRemoveTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("PlayerInfoRemoveTest") {
+            anyExecutor { sender, arguments ->
+                PlayerInfoUpdateTest("PlayerInfoRemoveTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("RemoveEntitiesTest") {
+            anyExecutor { sender, arguments ->
+                RemoveEntitiesTest("RemoveEntitiesTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("RemoveMobEffectTest") {
+            anyExecutor { sender, arguments ->
+                RemoveMobEffectTest("RemoveMobEffectTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("RotateHeadTest") {
+            anyExecutor { sender, arguments ->
+                RotateHeadTest("RotateHeadTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("RunGameEventTest") {
+            anyExecutor { sender, arguments ->
+                RunGameEventTest("RunGameEventTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SpawnParticleTest") {
+            anyExecutor { sender, arguments ->
+                SpawnParticleTest("SpawnParticleTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("WaypointTest") {
+            anyExecutor { sender, arguments ->
+                WaypointTest("WaypointTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("WorldTest") {
+            anyExecutor { sender, arguments ->
+                WorldTest("WorldTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SendEntityEventTest") {
+            anyExecutor { sender, arguments ->
+                SendEntityEventTest("SendEntityEventTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SendObjectiveUpdateTest") {
+            anyExecutor { sender, arguments ->
+                SendObjectiveUpdateTest("SendObjectiveUpdateTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SendPlayerCombatKillTest") {
+            anyExecutor { sender, arguments ->
+                SendPlayerCombatKillTest("SendPlayerCombatKillTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SendTeamTest") {
+            anyExecutor { sender, arguments ->
+                SendTeamTest("SendTeamTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SendWorldEventTest") {
+            anyExecutor { sender, arguments ->
+                SendWorldEventTest("SendWorldEventTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetContainerContentTest") {
+            anyExecutor { sender, arguments ->
+                SetContainerContentTest("SetContainerContentTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetContainerDataTest") {
+            anyExecutor { sender, arguments ->
+                SetContainerDataTest("SetContainerDataTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetContainerSlotTest") {
+            anyExecutor { sender, arguments ->
+                SetContainerSlotTest("SetContainerSlotTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetDefaultSpawnPositionTest") {
+            anyExecutor { sender, arguments ->
+                SetDefaultSpawnPositionTest("SetDefaultSpawnPositionTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetDisplayObjectiveTest") {
+            anyExecutor { sender, arguments ->
+                SetDisplayObjectiveTest("SetDisplayObjectiveTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetEntityDataTest") {
+            anyExecutor { sender, arguments ->
+                SetEntityDataTest("SetEntityDataTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetHealthTest") {
+            anyExecutor { sender, arguments ->
+                SetHealthTest("SetHealthTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetItemOnCursorTest") {
+            anyExecutor { sender, arguments ->
+                SetItemOnCursorTest("SetItemOnCursorTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetMapItemDataTest") {
+            anyExecutor { sender, arguments ->
+                SetMapItemDataTest("SetMapItemDataTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetMerchantOfferTest") {
+            anyExecutor { sender, arguments ->
+                SetMerchantOfferTest("SetMerchantOfferTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetPassengersTest") {
+            anyExecutor { sender, arguments ->
+                SetPassengersTest("SetPassengersTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetScoreInDisplayObjectTest") {
+            anyExecutor { sender, arguments ->
+                SetScoreInDisplayObjectTest("SetScoreInDisplayObjectTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("ResetScoreInDisplayObjectTest") {
+            anyExecutor { sender, arguments ->
+                ResetScoreInDisplayObjectTest("ResetScoreInDisplayObjectTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetTabListTest") {
+            anyExecutor { sender, arguments ->
+                SetTabListTest("SetTabListTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetTimeTest") {
+            anyExecutor { sender, arguments ->
+                SetTimeTest("SetTimeTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetWorldBorderCenterTest") {
+            anyExecutor { sender, arguments ->
+                SetWorldBorderCenterTest("SetWorldBorderCenterTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetWorldBorderLerpSizeTest") {
+            anyExecutor { sender, arguments ->
+                SetWorldBorderLerpSizeTest("SetWorldBorderLerpSizeTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetWorldBorderSizeTest") {
+            anyExecutor { sender, arguments ->
+                SetWorldBorderSizeTest("SetWorldBorderSizeTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetWorldBorderWarningDelayTest") {
+            anyExecutor { sender, arguments ->
+                SetWorldBorderWarningDelayTest("SetWorldBorderWarningDelayTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("SetWorldBorderWarningDistanceTest") {
+            anyExecutor { sender, arguments ->
+                SetWorldBorderWarningDistanceTest("SetWorldBorderWarningDistanceTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("TakeItemTest") {
+            anyExecutor { sender, arguments ->
+                TakeItemTest("TakeItemTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("TeleportEntityTest") {
+            anyExecutor { sender, arguments ->
+                TeleportEntityTest("TeleportEntityTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("UpdateAttributesTest") {
+            anyExecutor { sender, arguments ->
+                UpdateAttributesTest("UpdateAttributesTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("UpdateEntityPositionSyncTest") {
+            anyExecutor { sender, arguments ->
+                UpdateEntityPositionSyncTest("UpdateEntityPositionSyncTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("UpdatePlayerLookAtTest") {
+            anyExecutor { sender, arguments ->
+                UpdatePlayerLookAtTest("UpdatePlayerLookAtTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("UpdatePlayerPositionTest") {
+            anyExecutor { sender, arguments ->
+                UpdatePlayerPositionTest("UpdatePlayerPositionTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("UpdatePlayerRotationTest") {
+            anyExecutor { sender, arguments ->
+                UpdatePlayerRotationTest("UpdatePlayerRotationTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("UpdateTickingStateTest") {
+            anyExecutor { sender, arguments ->
+                UpdateTickingStateTest("UpdateTickingStateTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("UpdateTickingStepTest") {
+            anyExecutor { sender, arguments ->
+                UpdateTickingStepTest("UpdateTickingStepTest", sender, arguments).command()
             }
         }
     }

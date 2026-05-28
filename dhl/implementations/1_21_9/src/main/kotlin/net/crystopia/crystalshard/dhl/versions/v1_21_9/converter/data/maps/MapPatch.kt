@@ -6,7 +6,7 @@ import net.minecraft.world.level.saveddata.maps.MapItemSavedData
 fun MapPatch.build(): MapItemSavedData.MapPatch {
     return MapItemSavedData.MapPatch(
         startX,
-        startY,
+        startZ,
         width,
         height,
         mapColors.toByteArray(),

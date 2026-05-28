@@ -14,7 +14,7 @@ Shard_ClientboundEntityPositionSyncPacket : IPacket<ClientboundEntityPositionSyn
         packetObj: ClientboundEntityPositionSyncPacketData
     ): ClientboundEntityPositionSyncPacket {
         return ClientboundEntityPositionSyncPacket(
-            packetObj.entityId,
+            packetObj.entity.id,
             PositionMoveRotation(
                 packetObj.values.position.build(),
                 packetObj.values.deltaMovement.build(),

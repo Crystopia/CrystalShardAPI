@@ -6,7 +6,6 @@ import net.minecraft.world.level.Level
 
 data class ClientboundPlayerLookAtPacketData(
     var entity: Entity,
-    var world: Level,
     var fromAnchor: LookAnchor,
     var toAnchor: LookAnchor,
     var x: Double,

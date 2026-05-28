@@ -22,7 +22,7 @@ class Shard_ClientboundPlayerPositionPacket : IPacket<ClientboundPlayerPositionP
             packetObj.change.xRot,
             packetObj.change.yRot,
             set.toMutableSet(),
-            packetObj.entityId,
+            packetObj.teleportId,
         )
     }
 }
