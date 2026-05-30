@@ -8,6 +8,4 @@ data class ClientboundPlayerPositionPacketData(
     var teleportId: Int ,
     var change: PositionMoveRotation,
     var relatives: MutableSet<RelativePosition>
-) {
-
-}
+)
