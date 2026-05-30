@@ -4,34 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="Removed respawn and chunk packets. Added tests. Fixed some packet stuff...">
-      <change afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/UpdateAdvancements.kt" afterDir="false" />
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed some packets and test move minecart packet.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/client/Shard_ClientboundMoveVehiclePacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/client/Shard_ClientboundMoveVehiclePacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/client/Shard_ClientboundPlayerPositionPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/client/Shard_ClientboundPlayerPositionPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/client/Shard_ClientboundTakeItemEntityPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/client/Shard_ClientboundTakeItemEntityPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/converter/data/world/Vec3.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/converter/data/world/Vec3.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/client/Shard_ClientboundMoveMinecartPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/client/Shard_ClientboundMoveMinecartPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/client/Shard_ClientboundTakeItemEntityPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/client/Shard_ClientboundTakeItemEntityPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/converter/data/world/Vec3.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/converter/data/world/Vec3.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/client/Shard_ClientboundMoveMinecartPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/client/Shard_ClientboundMoveMinecartPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/client/Shard_ClientboundTakeItemEntityPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/client/Shard_ClientboundTakeItemEntityPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/converter/data/world/Vec3.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/converter/data/world/Vec3.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/client/Shard_ClientboundMoveMinecartPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/client/Shard_ClientboundMoveMinecartPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/client/Shard_ClientboundTakeItemEntityPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/client/Shard_ClientboundTakeItemEntityPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/converter/data/world/Vec3.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/converter/data/world/Vec3.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/packets/client/ClientboundMoveMinecartPacketData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/packets/client/ClientboundMoveMinecartPacketData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/packets/client/ClientboundTakeItemEntityPacketData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/packets/client/ClientboundTakeItemEntityPacketData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/world/Vec3.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/world/Vec3.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/MoveMinecartPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/MoveMinecartPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/SendPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/SendPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/TakeItemPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/TakeItemPacket.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/base/TestCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/base/TestCommand.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/MoveEntityTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/MoveEntityTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/MoveMinecartTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/MoveMinecartTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/MoveVehicleTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/MoveVehicleTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/Others.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/Others.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/dialog/buttons/ActionButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/dialog/buttons/ActionButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/AddEntitiesPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/AddEntitiesPacket.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/CommonDialogData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/CommonDialogData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/Dialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/Dialog.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/DialogBody.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/DialogBody.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/buttons/Action.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/buttons/Action.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/buttons/ActionButton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/buttons/ActionButton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/buttons/CommonButtonData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/buttons/CommonButtonData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/input/DialogInput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/input/DialogInput.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -647,15 +630,7 @@
       <workItem from="1779906902231" duration="8963000" />
       <workItem from="1779987385523" duration="13987000" />
       <workItem from="1780085283590" duration="7507000" />
-      <workItem from="1780165659281" duration="8520000" />
-    </task>
-    <task id="LOCAL-00053" summary="pre-release for box-gui">
-      <option name="closed" value="true" />
-      <created>1771443117525</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1771443117525</updated>
+      <workItem from="1780165659281" duration="14174000" />
     </task>
     <task id="LOCAL-00054" summary="hot-fix for PacketGuis. Added PacketDialogs. Added tablist helper. bump version">
       <option name="closed" value="true" />
@@ -1041,7 +1016,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780001493903</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="fixed some packets and test move minecart packet.">
+      <option name="closed" value="true" />
+      <created>1780174373987</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1780174373988</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1059,7 +1042,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added event extension(cred to twilight)" />
     <MESSAGE value="fixed and updated smart events" />
     <MESSAGE value="removed todo" />
     <MESSAGE value="added extension for locations and so on." />
@@ -1084,7 +1066,8 @@
     <MESSAGE value="rework dhl for all minecraft platforms. re-code dhl-paper to use crystalshard-dhl." />
     <MESSAGE value="added fabric test mod" />
     <MESSAGE value="Removed respawn and chunk packets. Added tests. Fixed some packet stuff..." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed respawn and chunk packets. Added tests. Fixed some packet stuff..." />
+    <MESSAGE value="fixed some packets and test move minecart packet." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some packets and test move minecart packet." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

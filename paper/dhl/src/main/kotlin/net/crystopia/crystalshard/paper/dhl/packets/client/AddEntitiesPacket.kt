@@ -33,6 +33,7 @@ fun ClientPacketFactory.addEntity(
             pitch = location.pitch
         ), CraftEntityType.bukkitToMinecraft(entityType), data, yHeadRot
     )
+    
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
