@@ -11,9 +11,9 @@ class Shard_ClientboundMoveVehiclePacket : IPacket<ClientboundMoveVehiclePacketD
         packetObj: ClientboundMoveVehiclePacketData
     ): ClientboundMoveVehiclePacket {
         packetObj.entity.setPos(
-            packetObj.position.vec3i.x,
-            packetObj.position.vec3i.y,
-            packetObj.position.vec3i.z
+            packetObj.position.x,
+            packetObj.position.y,
+            packetObj.position.z
         )
         packetObj.entity.xRot = packetObj.yRot
         packetObj.entity.yRot = packetObj.yRot

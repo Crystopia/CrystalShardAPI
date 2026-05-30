@@ -12,7 +12,7 @@ class Shard_ClientboundTakeItemEntityPacket : IPacket<ClientboundTakeItemEntityP
     ): ClientboundTakeItemEntityPacket {
         return ClientboundTakeItemEntityPacket(
             packetObj.itemId,
-            packetObj.playerId,
+            packetObj.player.id,
             packetObj.amount,
         )
     }

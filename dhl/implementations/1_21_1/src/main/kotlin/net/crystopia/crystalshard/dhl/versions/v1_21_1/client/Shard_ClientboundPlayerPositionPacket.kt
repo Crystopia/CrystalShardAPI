@@ -16,9 +16,9 @@ class Shard_ClientboundPlayerPositionPacket : IPacket<ClientboundPlayerPositionP
         }
 
         return ClientboundPlayerPositionPacket(
-            packetObj.change.position.vec3i.x,
-            packetObj.change.position.vec3i.y,
-            packetObj.change.position.vec3i.z,
+            packetObj.change.position.x,
+            packetObj.change.position.y,
+            packetObj.change.position.z,
             packetObj.change.xRot,
             packetObj.change.yRot,
             set.toMutableSet(),

@@ -12,7 +12,7 @@ class Shard_ClientboundMoveMinecartPacket : IPacket<ClientboundMoveMinecartPacke
         packetObj: ClientboundMoveMinecartPacketData
     ): ClientboundMoveMinecartPacket {
         return ClientboundMoveMinecartPacket(
-            packetObj.entityId,
+            packetObj.entity.id,
             packetObj.lerpSteps()
         )
     }

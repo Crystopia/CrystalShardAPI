@@ -14,6 +14,18 @@ object TestCommand {
             }
         }
 
+        literalArgument("AddEntityTest") {
+            anyExecutor { sender, arguments ->
+                AddEntityTest("AddEntityTest", sender, arguments).command()
+            }
+        }
+
+        literalArgument("UpdateAdvancements") {
+            anyExecutor { sender, arguments ->
+                UpdateAdvancements("UpdateAdvancements", sender, arguments).command()
+            }
+        }
+
         literalArgument("AdvancementTest") {
             anyExecutor { sender, arguments ->
                 AdvancementTest("AdvancementTest", sender, arguments).command()

@@ -8,7 +8,6 @@ import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.dhl.shared.data.entities.PositionMoveRotation
 import net.crystopia.crystalshard.dhl.shared.data.maps.MapPatch
 import net.crystopia.crystalshard.dhl.shared.data.world.Vec3
-import net.crystopia.crystalshard.dhl.shared.data.world.Vec3i
 import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializerType
 import net.crystopia.crystalshard.dhl.shared.enums.entities.LookAnchor
 import net.crystopia.crystalshard.dhl.shared.enums.scoreboard.*
@@ -540,10 +539,9 @@ class TakeItemTest(name: String, sender: CommandSender, args: CommandArguments) 
     override fun command() {
         test {
             val player = sender as Player
-            // Simuliert die "Item aufnehmen"-Animation
             ClientPacketFactory.takeItem(
-                itemId = 9999,
-                playerId = player.entityId,
+                itemId = 1,
+                player = player,
                 amount = 1
             ) { it.send(mutableListOf(player)) }
             println("TakeItem OK")
@@ -594,8 +592,8 @@ class UpdateEntityPositionSyncTest(name: String, sender: CommandSender, args: Co
             ClientPacketFactory.updateEntityPositionSync(
                 entity = player,
                 values = PositionMoveRotation(
-                    position = Vec3(Vec3i(loc.x, loc.y + 3, loc.z), 0.0, 0.0, 0.0),
-                    deltaMovement = Vec3(Vec3i(0.0, 0.0, 0.0), 0.0, 0.0, 0.0),
+                    position = Vec3(0.0, 0.0, 0.0),
+                    deltaMovement = Vec3(0.0, 0.0, 0.0),
                     yRot = loc.yaw,
                     xRot = loc.pitch
                 ),
@@ -642,8 +640,8 @@ class UpdatePlayerPositionTest(name: String, sender: CommandSender, args: Comman
 
             ClientPacketFactory.updatePlayerPosition(
                 change = PositionMoveRotation(
-                    position = Vec3(Vec3i(loc.x, loc.y + 5, loc.z), 0.0, 0.0, 0.0),
-                    deltaMovement = Vec3(Vec3i(0.0, 0.0, 0.0), 0.0, 0.0, 0.0),
+                    position = Vec3(0.0, 0.0, 0.0),
+                    deltaMovement = Vec3(0.0, 0.0, 0.0),
                     yRot = loc.yaw,
                     xRot = loc.pitch
                 ),
@@ -675,10 +673,9 @@ class UpdateTickingStateTest(name: String, sender: CommandSender, args: CommandA
     override fun command() {
         test {
             val player = sender as Player
-            // Tick-Rate auf 5 setzen (Slow-Motion Effekt)
             ClientPacketFactory.updateTickingState(
                 tickRate = 5f,
-                isFrozen = false
+                isFrozen = true
             ) { it.send(mutableListOf(player)) }
             println("UpdateTickingState OK → TPS client-seitig auf 5 gesetzt")
         }

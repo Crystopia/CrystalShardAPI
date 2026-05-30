@@ -7,15 +7,17 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMove
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import org.bukkit.craftbukkit.entity.CraftEntity
+import org.bukkit.entity.Entity
 
 fun ClientPacketFactory.moveMinecart(
-    entityId: Int,
+    entity: Entity,
     lerpSteps: MutableList<MinecartStep>,
     callback: (packet: Shard_Packet<ClientboundMoveMinecartPacketData>) -> Unit
 ): Shard_Packet<ClientboundMoveMinecartPacketData> {
 
     val data = ClientboundMoveMinecartPacketData(
-        entityId, lerpSteps
+        (entity as CraftEntity).handle, lerpSteps
     )
 
     val packet = when (ServerUtil.currentVersion()) {

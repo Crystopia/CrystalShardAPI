@@ -6,16 +6,18 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTake
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import org.bukkit.craftbukkit.entity.CraftEntity
+import org.bukkit.entity.Entity
 
 fun ClientPacketFactory.takeItem(
     itemId: Int,
-    playerId: Int,
+    player: Entity,
     amount: Int,
     callback: (packet: Shard_Packet<ClientboundTakeItemEntityPacketData>) -> Unit
 ): Shard_Packet<ClientboundTakeItemEntityPacketData> {
 
     val data = ClientboundTakeItemEntityPacketData(
-        itemId, playerId, amount
+        itemId, (player as CraftEntity).handle, amount
     )
 
     val packet = when (ServerUtil.currentVersion()) {
