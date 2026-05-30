@@ -40,42 +40,42 @@ fun Entity.v1_21_1_MetaData(data: EntityMetadata<*>): SynchedEntityData.DataValu
         EntityDataSerializerType.DATA_PLAYER_MODE_CUSTOMISATION -> {
 
             val accessor = Player.DATA_PLAYER_MODE_CUSTOMISATION
-            return SynchedEntityData.DataValue.create(accessor, (data.value as Byte))
+            return SynchedEntityData.DataValue.create(accessor, data.value as Byte)
         }
 
         EntityDataSerializerType.BYTE -> {
 
             val serializer = EntityDataSerializers.BYTE
             val accessor = serializer.createAccessor(data.index)
-            return SynchedEntityData.DataValue.create(accessor, (data.value as Byte))
+            return SynchedEntityData.DataValue.create(accessor, data.value as Byte)
         }
 
         EntityDataSerializerType.INT -> {
 
             val serializer = EntityDataSerializers.INT
             val accessor = serializer.createAccessor(data.index)
-            return SynchedEntityData.DataValue.create(accessor, (data.value as Int))
+            return SynchedEntityData.DataValue.create(accessor, data.value as Int)
         }
 
         EntityDataSerializerType.LONG -> {
 
             val serializer = EntityDataSerializers.LONG
             val accessor = serializer.createAccessor(data.index)
-            return SynchedEntityData.DataValue.create(accessor, (data.value as Long))
+            return SynchedEntityData.DataValue.create(accessor, data.value as Long)
         }
 
         EntityDataSerializerType.FLOAT -> {
 
             val serializer = EntityDataSerializers.FLOAT
             val accessor = serializer.createAccessor(data.index)
-            return SynchedEntityData.DataValue.create(accessor, (data.value as Float))
+            return SynchedEntityData.DataValue.create(accessor, data.value as Float)
         }
 
         EntityDataSerializerType.STRING -> {
 
             val serializer = EntityDataSerializers.STRING
             val accessor = serializer.createAccessor(data.index)
-            return SynchedEntityData.DataValue.create(accessor, (data.value as String))
+            return SynchedEntityData.DataValue.create(accessor, data.value as String)
         }
 
         EntityDataSerializerType.COMPONENT, EntityDataSerializerType.OPTIONAL_COMPONENT -> {
@@ -184,8 +184,6 @@ fun Entity.v1_21_1_MetaData(data: EntityMetadata<*>): SynchedEntityData.DataValu
         }
 
         EntityDataSerializerType.VILLAGER_DATA -> {
-            val location = data.value as Location
-
             val serializer = EntityDataSerializers.VILLAGER_DATA
             val accessor = serializer.createAccessor(data.index)
             return SynchedEntityData.DataValue.create(
@@ -353,8 +351,6 @@ fun Entity.v1_21_1_MetaData(data: EntityMetadata<*>): SynchedEntityData.DataValu
 
         EntityDataSerializerType.QUATERNION -> {
             val vec = data.value as net.crystopia.crystalshard.dhl.shared.data.world.Quaternionf
-
-
             val serializer = EntityDataSerializers.QUATERNION
             val accessor = serializer.createAccessor(data.index)
             return SynchedEntityData.DataValue.create(
