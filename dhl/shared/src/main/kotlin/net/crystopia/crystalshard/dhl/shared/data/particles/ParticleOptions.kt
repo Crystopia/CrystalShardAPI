@@ -21,8 +21,7 @@ open class ParticleOptions<T : Any, R : Any>
 
 data class BlockParticleOption(
     var type: ParticleType, var block: Block
-) : ParticleOptions<net.crystopia.crystalshard.dhl.shared.data.particles.BlockParticleOption, BlockParticleOption>() {
-}
+) : ParticleOptions<net.crystopia.crystalshard.dhl.shared.data.particles.BlockParticleOption, BlockParticleOption>()
 
 data class ColorParticleOption(
     var type: ParticleType, var color: Int
