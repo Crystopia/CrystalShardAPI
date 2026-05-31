@@ -15,7 +15,7 @@ class MoveVehicleTest(name: String, sender: CommandSender, args: CommandArgument
         test {
             val player = sender as Player
             ClientPacketFactory.moveVehicle(
-                entity = player.getNearbyEntities(2.0, 2.0, 2.0).filter { it.type == EntityType.OAK_BOAT }
+                entity = player.getNearbyEntities(2.0, 2.0, 2.0).filter { it.type == EntityType.BOAT }
                     .toMutableList()[0],
                 position = Vec3(0.0, 0.0, 0.0),
                 yRot = 1F,

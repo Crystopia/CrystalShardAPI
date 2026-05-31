@@ -14,6 +14,12 @@ object TestCommand {
             }
         }
 
+        literalArgument("RecipeTest") {
+            anyExecutor { sender, arguments ->
+                RecipeTest("RecipeTest", sender, arguments).command()
+            }
+        }
+
         literalArgument("AddEntityTest") {
             anyExecutor { sender, arguments ->
                 AddEntityTest("AddEntityTest", sender, arguments).command()

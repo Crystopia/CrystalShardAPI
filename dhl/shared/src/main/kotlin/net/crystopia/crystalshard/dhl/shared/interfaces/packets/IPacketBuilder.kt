@@ -5,6 +5,7 @@ import net.minecraft.network.protocol.Packet
 
 interface IPacketBuilder {
 
+    fun addRecipeBook(data: ClientboundRecipeBookAddPacketData): Packet<*>
     fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*>
     fun damageEvent(data: ClientboundDamageEventPacketData): Packet<*>
     fun takeItem(data: ClientboundTakeItemEntityPacketData): Packet<*>

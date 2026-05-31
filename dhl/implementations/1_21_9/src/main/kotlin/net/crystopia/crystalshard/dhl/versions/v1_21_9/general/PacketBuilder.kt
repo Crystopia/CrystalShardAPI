@@ -8,6 +8,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun addRecipeBook(data: ClientboundRecipeBookAddPacketData): Packet<*> {
+        return Shard_ClientboundRecipeBookAddPacket().createPacket(data)
+    }
+
     override fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*> {
         return Shard_ClientboundUpdateAdvancementsPacket().createPacket(data)
     }

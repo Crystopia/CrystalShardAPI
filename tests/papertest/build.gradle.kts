@@ -14,7 +14,7 @@ group = "net.crystopia"
 dependencies {
     // Paper
     // compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
-    paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 
     // Kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
@@ -34,7 +34,6 @@ dependencies {
     implementation(project(":paper:custom"))
     implementation(project(":dhl"))
     implementation(project(":dhl:shared"))
-    implementation(project(":dhl:implementations:1_21_11"))
     implementation(project(":paper:dhl"))
     implementation(project(":paper:pack"))
     implementation(project(":paper:panic"))
@@ -54,6 +53,6 @@ tasks {
         // Configure the Minecraft version for our task.
         // This is the only required configuration besides applying the plugin.
         // Your plugin's jar (or shadowJar if present) will be used automatically.
-        minecraftVersion("1.21.11")
+        minecraftVersion("1.21.1")
     }
 }

@@ -4,12 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="added .toDhl functions for Dialog builder">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="cleanup some type converter for dhl.">
+      <change afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/client/Shard_ClientboundUpdateRecipesPacket.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/client/Shard_ClientboundRecipeBookAddPacket.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/converter/enums/recipes/RecipeBookCategories.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/converter/enums/recipes/RecipeBookCategories.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/client/Shard_ClientboundRecipeBookAddPacket.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/converter/enums/recipes/RecipeBookCategories.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/enums/recipes/RecipeBookCategories.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client/AddRecipeBook.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/RecipeTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_1/data/packets/ClientboundSetEntityDataPacketData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_1/data/packets/ClientboundSetEntityDataPacketData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_10/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_10/data/packets/ClientboundSetEntityDataPacketData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_10/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_10/data/packets/ClientboundSetEntityDataPacketData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_11/data/packets/ClientboundSetEntityDataPacketData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_11/data/packets/ClientboundSetEntityDataPacketData.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_9/data/packets/ClientboundSetEntityDataPacketData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_9/data/packets/ClientboundSetEntityDataPacketData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/general/PacketBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/general/PacketBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/general/PacketBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/general/PacketBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/client/Shard_ClientboundRecipeBookAddPacket.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/client/Shard_ClientboundRecipeBookAddPacket.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/general/PacketBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/general/PacketBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/general/PacketBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/general/PacketBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/packets/client/ClientboundRecipeBookAddPacketData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/packets/client/ClientboundRecipeBookAddPacketData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/recipes/RecipeEntry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/recipes/RecipeEntry.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/interfaces/packets/IPacketBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/interfaces/packets/IPacketBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/input/DialogInput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/dialog/input/DialogInput.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/recipes/RecipeEntry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types/recipes/RecipeEntry.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/papertest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/base/TestCommand.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/base/TestCommand.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/MoveVehicleTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/MoveVehicleTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/Others.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/Others.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +57,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="paper" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
                 <item name="tests" type="2d1252cf:ModuleNode" />
               </path>
               <path>
@@ -63,15 +78,7 @@
                 <item name="tests" type="2d1252cf:ModuleNode" />
                 <item name="papertest" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="run paper" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
-                <item name="papertest" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="run task shared" type="c8890929:TasksNode$1" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -92,8 +99,8 @@
         <option value="Kotlin Object" />
         <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Enum" />
         <option value="Kotlin File" />
+        <option value="Kotlin Enum" />
       </list>
     </option>
   </component>
@@ -143,7 +150,7 @@
 }</component>
   <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="$USER_HOME$/.gradle/wrapper/dists/gradle-9.0.0-bin/d6wjpkvcgsg3oed0qlfss3wgl/gradle-9.0.0/wrapper/dists/gradle-9.2.1-bin/2t0n5ozlw9xmuyvbp7dnzaxug/gradle-9.2.1" javaHome="$USER_HOME$/.jdks/ms-21.0.8" gradleVersion="9.2.1" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -186,7 +193,9 @@
     &quot;Gradle.CrystalShardAPI [:tests:modfabrictest:runDatagen].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CrystalShardAPI [:tests:modfabrictest:runServer].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CrystalShardAPI [:tests:paper:runServer].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CrystalShardAPI [:tests:papertest:build].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CrystalShardAPI [:tests:papertest:cleanPaperPluginsCache].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.CrystalShardAPI [:tests:papertest:clean].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CrystalShardAPI [:tests:papertest:runServer].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CrystalShardAPI [:tests:runServer].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.CrystalShardAPI [:tests:velocitytest:cleanVelocityPluginsCache].executor&quot;: &quot;Run&quot;,
@@ -216,7 +225,7 @@
     &quot;git-widget-placeholder&quot;: &quot;1.2.7&quot;,
     &quot;jdk.selected.JDK&quot;: &quot;ms-21&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/xyzjesper/Dokumente/GitHub/CrystalShardAPI/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/xyzjesper/Dokumente/GitHub/CrystalShardAPI/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/converter/enums&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -236,11 +245,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new" />
-      <recent name="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/server" />
-      <recent name="$PROJECT_DIR$/.github/workflows" />
-      <recent name="$PROJECT_DIR$/paper/dhl/converter/1_21_11/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_11" />
-      <recent name="$PROJECT_DIR$/paper/dhl/converter/1_21_10/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_10" />
+      <recent name="$PROJECT_DIR$/dhl/implementations/1_21_1/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_1/converter/enums" />
+      <recent name="$PROJECT_DIR$/dhl/implementations/1_21_9/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_9/converter/enums" />
+      <recent name="$PROJECT_DIR$/dhl/implementations/1_21_10/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_10/converter/enums" />
+      <recent name="$PROJECT_DIR$/dhl/implementations/1_21_11/src/main/kotlin/net/crystopia/crystalshard/dhl/versions/v1_21_11/converter/enums" />
+      <recent name="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/packets/client" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/types" />
@@ -250,11 +259,11 @@
       <recent name="$PROJECT_DIR$/paper/dhl" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_1.client" />
+      <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_9.client" />
+      <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_10.client" />
       <recent name="net.crystopia.crystalshard.tests.paper.tests.new" />
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.server" />
-      <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_1.server" />
-      <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_9.server" />
-      <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_10.server" />
     </key>
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="net.crystopia.crystalshard.tests.paper.tests.new" />
@@ -265,7 +274,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Gradle.CrystalShardAPI [:tests:papertest:runServer]">
-    <configuration name="CrystalShardAPI [:paper:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:tests:papertest:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -276,57 +285,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":paper:dhl:build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="CrystalShardAPI [:tests:modfabrictest:runDatagen]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":tests:modfabrictest:runDatagen" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="CrystalShardAPI [:tests:modfabrictest:runServer]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":tests:modfabrictest:runServer" />
+            <option value=":tests:papertest:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -365,6 +324,31 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="CrystalShardAPI [:tests:papertest:clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":tests:papertest:clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
     <configuration name="CrystalShardAPI [:tests:papertest:runServer]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -377,6 +361,31 @@
         <option name="taskNames">
           <list>
             <option value=":tests:papertest:runServer" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CrystalShardAPI [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -404,10 +413,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.CrystalShardAPI [:tests:papertest:runServer]" />
+        <item itemvalue="Gradle.CrystalShardAPI [clean]" />
+        <item itemvalue="Gradle.CrystalShardAPI [:tests:papertest:build]" />
+        <item itemvalue="Gradle.CrystalShardAPI [:tests:papertest:clean]" />
         <item itemvalue="Gradle.CrystalShardAPI [:tests:papertest:cleanPaperPluginsCache]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:tests:modfabrictest:runServer]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:tests:modfabrictest:runDatagen]" />
       </list>
     </recent_temporary>
   </component>
@@ -625,15 +634,9 @@
       <workItem from="1779906902231" duration="8963000" />
       <workItem from="1779987385523" duration="13987000" />
       <workItem from="1780085283590" duration="7507000" />
-      <workItem from="1780165659281" duration="14683000" />
-    </task>
-    <task id="LOCAL-00055" summary="re-implemented entity data stuff">
-      <option name="closed" value="true" />
-      <created>1773179489763</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1773179489764</updated>
+      <workItem from="1780165659281" duration="19627000" />
+      <workItem from="1780216847123" duration="18804000" />
+      <workItem from="1780248025673" duration="714000" />
     </task>
     <task id="LOCAL-00056" summary="updated SetEntityDataPacket for all versions.">
       <option name="closed" value="true" />
@@ -1019,7 +1022,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780180388086</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="cleanup some type converter for dhl.">
+      <option name="closed" value="true" />
+      <created>1780180896619</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1780180896619</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1037,7 +1048,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed todo" />
     <MESSAGE value="added extension for locations and so on." />
     <MESSAGE value="fixed location extension" />
     <MESSAGE value="fixed smartGUI" />
@@ -1062,7 +1072,8 @@
     <MESSAGE value="Removed respawn and chunk packets. Added tests. Fixed some packet stuff..." />
     <MESSAGE value="fixed some packets and test move minecart packet." />
     <MESSAGE value="added .toDhl functions for Dialog builder" />
-    <option name="LAST_COMMIT_MESSAGE" value="added .toDhl functions for Dialog builder" />
+    <MESSAGE value="cleanup some type converter for dhl." />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup some type converter for dhl." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1071,6 +1082,11 @@
           <url>jar://$PROJECT_DIR$/paper/core/.gradle/caches/paperweight/taskCache/mappedServerJar.jar!/net/minecraft/server/dialog/body/DialogBody.class</url>
           <line>13</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$PROJECT_DIR$/paper/box/.gradle/caches/paperweight/taskCache/mappedServerJar.jar!/net/minecraft/world/level/ItemLike.class</url>
+          <line>9</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

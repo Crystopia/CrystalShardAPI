@@ -572,7 +572,7 @@ class UpdateAttributesTest(name: String, sender: CommandSender, args: CommandArg
                 entity = player,
                 attributes = mutableListOf(
                     net.crystopia.crystalshard.paper.dhl.types.attributes.Attribute(
-                        id = Attribute.SCALE,
+                        id = Attribute.GENERIC_SCALE,
                         value = 40.0,
                         modifiers = mutableListOf()
                     )

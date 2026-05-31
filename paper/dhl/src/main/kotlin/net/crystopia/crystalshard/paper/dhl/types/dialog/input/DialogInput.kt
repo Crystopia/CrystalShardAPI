@@ -41,7 +41,7 @@ data class DialogTextInput(
     var labelVisible: Boolean,
     var initial: String,
     var maxLength: Int,
-    var multiline: DialogTextInputMultilineOptions
+    var multiline: net.crystopia.crystalshard.paper.dhl.types.dialog.input.DialogTextInputMultilineOptions
 ) : DialogInput<DialogTextInput>(id)
 
 fun DialogInput<*>.toDhl(): net.crystopia.crystalshard.dhl.shared.data.dialog.input.DialogInput<*> {
