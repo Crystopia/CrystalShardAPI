@@ -16,15 +16,21 @@ import net.crystopia.crystalshard.paper.folia.threadedTask
 import net.crystopia.crystalshard.tests.paper.config.TestConfig
 import net.crystopia.crystalshard.tests.paper.databse.entities.UserEntity
 import net.crystopia.crystalshard.tests.paper.databse.models.users
-import net.crystopia.crystalshard.tests.paper.tests.new.EventTest
 import net.crystopia.crystalshard.tests.paper.tests.base.TestCommand
+import net.crystopia.crystalshard.tests.paper.tests.new.EventTest
 import org.bukkit.plugin.java.JavaPlugin
 import org.ktorm.entity.add
 import java.io.File
 
-object CrystalShardPluginTest : JavaPlugin() {
+class CrystalShardPluginTest : JavaPlugin() {
 
-    val instance: CrystalShardPluginTest = this
+    companion object {
+        lateinit var instance: CrystalShardPluginTest
+    }
+
+    init {
+        instance = this
+    }
 
     val testConfig = config<TestConfig>(
         File("plugins/crystalshard/tests/paper.yml"),
@@ -48,7 +54,6 @@ object CrystalShardPluginTest : JavaPlugin() {
 
         server.broadcast(cmpb("<red>ERROR</red>").build())
         val cmp = cmpb("<red>ERROR</red>").text("<blue>ERROR</blue>").text("text", "font")
-
 
         println("Ohh this is a config value \"${testConfig.data.consoleMessage ?: "No Data"}\"".red() + "GREEN".green())
         testConfig.data.consoleMessage = "UPDATE"

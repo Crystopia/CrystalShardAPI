@@ -23,7 +23,7 @@ class RecipeTest(name: String, sender: CommandSender, args: CommandArguments) : 
             ClientPacketFactory.addRecipeBook(
                 recipes = mutableListOf(
                     RecipeEntry(
-                        id = NamespacedKey("", ""),
+                        id = NamespacedKey("recipe", "egg"),
                         order = 1,
                         recipe = smartRecipe(
                             ShapedRecipe(
@@ -52,7 +52,7 @@ class RecipeTest(name: String, sender: CommandSender, args: CommandArguments) : 
                         ingredients = mutableSetOf()
                     ),
                     RecipeEntry(
-                        id = NamespacedKey("", ""),
+                        id = NamespacedKey("recipe", "egg"),
                         order = 2,
                         recipe = smartRecipe(
                             ShapedRecipe(
