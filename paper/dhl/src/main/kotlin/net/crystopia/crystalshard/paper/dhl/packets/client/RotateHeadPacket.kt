@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRotateHeadPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -11,8 +11,8 @@ import org.bukkit.craftbukkit.entity.CraftEntity
 import org.bukkit.entity.Entity
 
 fun ClientPacketFactory.rotateHead(
-    entity: Entity, yaw: Float, callback: (packet: Shard_Packet<ClientboundRotateHeadPacketData>) -> Unit
-): Shard_Packet<ClientboundRotateHeadPacketData> {
+    entity: Entity, yaw: Float, callback: (packet: ClientPacket<ClientboundRotateHeadPacketData>) -> Unit
+): ClientPacket<ClientboundRotateHeadPacketData> {
 
     val data = ClientboundRotateHeadPacketData(
         (entity as CraftEntity).handle, yaw
@@ -48,7 +48,7 @@ fun ClientPacketFactory.rotateHead(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundRotateHeadPacketData>()
+    val shardPacket = ClientPacket<ClientboundRotateHeadPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

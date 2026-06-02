@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.maps.MapDecoration
 import net.crystopia.crystalshard.dhl.shared.data.maps.MapPatch
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMapItemDataPacketData
@@ -17,8 +17,8 @@ fun ClientPacketFactory.setMapItemData(
     locked: Boolean,
     decorations: MutableList<net.crystopia.crystalshard.paper.dhl.types.maps.MapDecoration>,
     colorPatch: MapPatch,
-    callback: (packet: Shard_Packet<ClientboundMapItemDataPacketData>) -> Unit
-): Shard_Packet<ClientboundMapItemDataPacketData> {
+    callback: (packet: ClientPacket<ClientboundMapItemDataPacketData>) -> Unit
+): ClientPacket<ClientboundMapItemDataPacketData> {
 
     val data = ClientboundMapItemDataPacketData(
         mapId, scale, locked, decorations.map {
@@ -62,7 +62,7 @@ fun ClientPacketFactory.setMapItemData(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundMapItemDataPacketData>()
+    val shardPacket = ClientPacket<ClientboundMapItemDataPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

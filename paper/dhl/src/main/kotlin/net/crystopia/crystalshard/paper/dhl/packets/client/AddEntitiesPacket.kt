@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundAddEntityPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -20,8 +20,8 @@ fun ClientPacketFactory.addEntity(
     entityType: EntityType,
     data: Int,
     yHeadRot: Double = 0.0,
-    callback: (packet: Shard_Packet<ClientboundAddEntityPacketData>) -> Unit
-): Shard_Packet<ClientboundAddEntityPacketData> {
+    callback: (packet: ClientPacket<ClientboundAddEntityPacketData>) -> Unit
+): ClientPacket<ClientboundAddEntityPacketData> {
 
     val data = ClientboundAddEntityPacketData(
         entityId, entityUUID, net.crystopia.crystalshard.dhl.shared.data.custom.Location(
@@ -65,7 +65,7 @@ fun ClientPacketFactory.addEntity(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundAddEntityPacketData>()
+    val shardPacket = ClientPacket<ClientboundAddEntityPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

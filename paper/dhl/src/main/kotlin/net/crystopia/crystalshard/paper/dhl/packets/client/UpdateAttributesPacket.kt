@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.attributes.Attribute
 import net.crystopia.crystalshard.dhl.shared.data.attributes.AttributeModifiers
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateAttributesPacketData
@@ -20,8 +20,8 @@ import org.bukkit.entity.Entity
 fun ClientPacketFactory.updateAttributes(
     entity: Entity,
     attributes: MutableList<net.crystopia.crystalshard.paper.dhl.types.attributes.Attribute>,
-    callback: (packet: Shard_Packet<ClientboundUpdateAttributesPacketData>) -> Unit
-): Shard_Packet<ClientboundUpdateAttributesPacketData> {
+    callback: (packet: ClientPacket<ClientboundUpdateAttributesPacketData>) -> Unit
+): ClientPacket<ClientboundUpdateAttributesPacketData> {
 
 
     val data = ClientboundUpdateAttributesPacketData(
@@ -70,7 +70,7 @@ fun ClientPacketFactory.updateAttributes(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundUpdateAttributesPacketData>()
+    val shardPacket = ClientPacket<ClientboundUpdateAttributesPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

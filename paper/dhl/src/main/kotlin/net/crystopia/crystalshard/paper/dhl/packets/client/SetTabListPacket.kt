@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTabListPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -13,8 +13,8 @@ import net.kyori.adventure.text.Component
 fun ClientPacketFactory.setTabList(
     footer: Component,
     header: Component,
-    callback: (packet: Shard_Packet<ClientboundTabListPacketData>) -> Unit
-): Shard_Packet<ClientboundTabListPacketData> {
+    callback: (packet: ClientPacket<ClientboundTabListPacketData>) -> Unit
+): ClientPacket<ClientboundTabListPacketData> {
 
     val data = ClientboundTabListPacketData(
         PaperAdventure.asVanilla(footer), PaperAdventure.asVanilla(header)
@@ -50,7 +50,7 @@ fun ClientPacketFactory.setTabList(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundTabListPacketData>()
+    val shardPacket = ClientPacket<ClientboundTabListPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

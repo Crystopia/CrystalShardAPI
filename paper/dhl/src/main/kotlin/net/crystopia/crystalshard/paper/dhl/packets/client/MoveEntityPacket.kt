@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMoveEntityPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityMoveMode
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -22,8 +22,8 @@ fun ClientPacketFactory.moveEntity(
     onGround: Boolean,
     hasRot: Boolean,
     hasPos: Boolean,
-    callback: (packet: Shard_Packet<ClientboundMoveEntityPacketData>) -> Unit
-): Shard_Packet<ClientboundMoveEntityPacketData> {
+    callback: (packet: ClientPacket<ClientboundMoveEntityPacketData>) -> Unit
+): ClientPacket<ClientboundMoveEntityPacketData> {
 
     val data = ClientboundMoveEntityPacketData(
         mode, (entity as CraftEntity).handle, xa, ya, za, yRot, xRot, onGround, hasRot, hasPos
@@ -59,7 +59,7 @@ fun ClientPacketFactory.moveEntity(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundMoveEntityPacketData>()
+    val shardPacket = ClientPacket<ClientboundMoveEntityPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_11.server
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
-import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
+import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.SignUpdateEvent
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
 import net.minecraft.network.protocol.game.ServerboundSignUpdatePacket
@@ -11,7 +11,7 @@ import net.minecraft.server.level.ServerPlayer
 class Shard_ServerboundSignUpdatePacket : IServerPacket<SignUpdateEvent> {
 
     override fun onEvent(
-        data: Shard_ServerPacket,
+        data: ServerPacket,
         callback: SignUpdateEvent.() -> Unit
     ) {
         val serverPlayer = (data.player as ServerPlayer)

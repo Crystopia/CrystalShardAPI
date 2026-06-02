@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundBorderPacketData
 import net.crystopia.crystalshard.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -12,8 +12,8 @@ import org.bukkit.craftbukkit.CraftWorld
 
 fun ClientPacketFactory.setWorldBorderCenter(
     border: net.crystopia.crystalshard.paper.dhl.types.world.WorldBorder,
-    callback: (packet: Shard_Packet<ClientboundBorderPacketData>) -> Unit
-): Shard_Packet<ClientboundBorderPacketData> {
+    callback: (packet: ClientPacket<ClientboundBorderPacketData>) -> Unit
+): ClientPacket<ClientboundBorderPacketData> {
 
     val data = ClientboundBorderPacketData(
         WorldBorder(
@@ -63,7 +63,7 @@ fun ClientPacketFactory.setWorldBorderCenter(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundBorderPacketData>()
+    val shardPacket = ClientPacket<ClientboundBorderPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

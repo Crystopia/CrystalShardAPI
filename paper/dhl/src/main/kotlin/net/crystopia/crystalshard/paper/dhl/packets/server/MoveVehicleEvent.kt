@@ -3,11 +3,10 @@ package net.crystopia.crystalshard.paper.dhl.packets.server
 import net.crystopia.crystalshard.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.MoveVehicleEvent
-import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
+import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.ServerNotSupported
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.server.Shard_ServerboundMoveVehiclePacket
 import org.bukkit.craftbukkit.entity.CraftPlayer
 
 fun ServerPacketFactory.moveVehicleEvent(
@@ -16,7 +15,7 @@ fun ServerPacketFactory.moveVehicleEvent(
     shouldPublish: Boolean,
     callback: MoveVehicleEvent.() -> Unit
 ) {
-    val data = Shard_ServerPacket(
+    val data = ServerPacket(
         (player as CraftPlayer).handle,
         NamespacedKey(name.namespace, name.key),
         shouldPublish

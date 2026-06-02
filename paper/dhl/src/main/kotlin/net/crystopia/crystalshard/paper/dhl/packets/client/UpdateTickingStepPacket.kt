@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTickingStepPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -10,8 +10,8 @@ import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuil
 
 fun ClientPacketFactory.updateTickingStep(
     tickSteps: Int,
-    callback: (packet: Shard_Packet<ClientboundTickingStepPacketData>) -> Unit
-): Shard_Packet<ClientboundTickingStepPacketData> {
+    callback: (packet: ClientPacket<ClientboundTickingStepPacketData>) -> Unit
+): ClientPacket<ClientboundTickingStepPacketData> {
 
     val data = ClientboundTickingStepPacketData(
         tickSteps
@@ -47,7 +47,7 @@ fun ClientPacketFactory.updateTickingStep(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundTickingStepPacketData>()
+    val shardPacket = ClientPacket<ClientboundTickingStepPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

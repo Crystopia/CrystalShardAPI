@@ -2,7 +2,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.merchant.MerchantOffer
 import net.crystopia.crystalshard.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMerchantOffersPacketData
@@ -20,8 +20,8 @@ fun ClientPacketFactory.setMerchantOffer(
     experience: Int,
     leveled: Boolean,
     refreshable: Boolean,
-    callback: (packet: Shard_Packet<ClientboundMerchantOffersPacketData>) -> Unit
-): Shard_Packet<ClientboundMerchantOffersPacketData> {
+    callback: (packet: ClientPacket<ClientboundMerchantOffersPacketData>) -> Unit
+): ClientPacket<ClientboundMerchantOffersPacketData> {
 
     val data = ClientboundMerchantOffersPacketData(
         windowId, MerchantOffers(
@@ -80,7 +80,7 @@ fun ClientPacketFactory.setMerchantOffer(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundMerchantOffersPacketData>()
+    val shardPacket = ClientPacket<ClientboundMerchantOffersPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

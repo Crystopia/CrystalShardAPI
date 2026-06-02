@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.builder.EntityMetadataBuilder
 import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetEntityDataPacketData
@@ -21,10 +21,10 @@ fun ClientPacketFactory.setEntityData(
      * Read more about [Entity_Metadata_Format](https://minecraft.wiki/w/Java_Edition_protocol/Entity_metadata#Entity_Metadata_Format)
      */
     entityData: MutableList<EntityMetadata<*>>,
-    callback: (packet: Shard_Packet<ClientboundSetEntityDataPacketData>) -> Unit
-): Shard_Packet<ClientboundSetEntityDataPacketData> {
+    callback: (packet: ClientPacket<ClientboundSetEntityDataPacketData>) -> Unit
+): ClientPacket<ClientboundSetEntityDataPacketData> {
 
-    val shardPacket = Shard_Packet<ClientboundSetEntityDataPacketData>()
+    val shardPacket = ClientPacket<ClientboundSetEntityDataPacketData>()
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {

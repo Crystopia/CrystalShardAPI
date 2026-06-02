@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerCombatKillPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -13,8 +13,8 @@ import net.kyori.adventure.text.Component
 fun ClientPacketFactory.sendPlayerCombatKill(
     entityId: Int,
     message: Component,
-    callback: (packet: Shard_Packet<ClientboundPlayerCombatKillPacketData>) -> Unit
-): Shard_Packet<ClientboundPlayerCombatKillPacketData> {
+    callback: (packet: ClientPacket<ClientboundPlayerCombatKillPacketData>) -> Unit
+): ClientPacket<ClientboundPlayerCombatKillPacketData> {
 
     val data = ClientboundPlayerCombatKillPacketData(
         entityId, PaperAdventure.asVanilla(message)
@@ -50,7 +50,7 @@ fun ClientPacketFactory.sendPlayerCombatKill(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundPlayerCombatKillPacketData>()
+    val shardPacket = ClientPacket<ClientboundPlayerCombatKillPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

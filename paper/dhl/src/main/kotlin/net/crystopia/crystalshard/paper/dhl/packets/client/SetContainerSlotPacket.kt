@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundContainerSetSlotPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -15,8 +15,8 @@ fun ClientPacketFactory.setContainerSlot(
     revision: Int,
     slot: Int,
     item: ItemStack,
-    callback: (packet: Shard_Packet<ClientboundContainerSetSlotPacketData>) -> Unit
-): Shard_Packet<ClientboundContainerSetSlotPacketData> {
+    callback: (packet: ClientPacket<ClientboundContainerSetSlotPacketData>) -> Unit
+): ClientPacket<ClientboundContainerSetSlotPacketData> {
 
     val data = ClientboundContainerSetSlotPacketData(
         id, revision, slot, CraftItemStack.asNMSCopy(item)
@@ -52,7 +52,7 @@ fun ClientPacketFactory.setContainerSlot(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundContainerSetSlotPacketData>()
+    val shardPacket = ClientPacket<ClientboundContainerSetSlotPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

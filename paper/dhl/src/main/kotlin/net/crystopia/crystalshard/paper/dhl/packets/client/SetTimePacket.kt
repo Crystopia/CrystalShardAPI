@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetTimePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -12,8 +12,8 @@ fun ClientPacketFactory.setTime(
     gameTime: Long,
     dayTime: Long,
     tickDayTime: Boolean,
-    callback: (packet: Shard_Packet<ClientboundSetTimePacketData>) -> Unit
-): Shard_Packet<ClientboundSetTimePacketData> {
+    callback: (packet: ClientPacket<ClientboundSetTimePacketData>) -> Unit
+): ClientPacket<ClientboundSetTimePacketData> {
 
     val data = ClientboundSetTimePacketData(
         gameTime, dayTime, tickDayTime
@@ -49,7 +49,7 @@ fun ClientPacketFactory.setTime(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundSetTimePacketData>()
+    val shardPacket = ClientPacket<ClientboundSetTimePacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

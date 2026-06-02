@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.builder.LocationBuilder
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTeleportEntityPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -19,9 +19,9 @@ fun ClientPacketFactory.teleportEntity(
     entity: org.bukkit.entity.Entity,
     location: Location,
     onGround: Boolean,
-    callback: (packet: Shard_Packet<ClientboundTeleportEntityPacketData>) -> Unit
-): Shard_Packet<ClientboundTeleportEntityPacketData> {
-    val shardPacket = Shard_Packet<ClientboundTeleportEntityPacketData>()
+    callback: (packet: ClientPacket<ClientboundTeleportEntityPacketData>) -> Unit
+): ClientPacket<ClientboundTeleportEntityPacketData> {
+    val shardPacket = ClientPacket<ClientboundTeleportEntityPacketData>()
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {

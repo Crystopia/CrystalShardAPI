@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundOpenSignEditorPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -12,8 +12,8 @@ import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuil
 fun ClientPacketFactory.createOpenSignEditor(
     blockPos: BlockPos,
     isFrontText: Boolean,
-    callback: (packet: Shard_Packet<ClientboundOpenSignEditorPacketData>) -> Unit
-): Shard_Packet<ClientboundOpenSignEditorPacketData> {
+    callback: (packet: ClientPacket<ClientboundOpenSignEditorPacketData>) -> Unit
+): ClientPacket<ClientboundOpenSignEditorPacketData> {
 
     val data = ClientboundOpenSignEditorPacketData(
         blockPos, isFrontText
@@ -49,7 +49,7 @@ fun ClientPacketFactory.createOpenSignEditor(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundOpenSignEditorPacketData>()
+    val shardPacket = ClientPacket<ClientboundOpenSignEditorPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

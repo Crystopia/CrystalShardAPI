@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundDamageEventPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -16,8 +16,8 @@ import org.bukkit.entity.Entity
 fun ClientPacketFactory.damageEvent(
     entity: Entity,
     damageSource: org.bukkit.damage.DamageSource,
-    callback: (packet: Shard_Packet<ClientboundDamageEventPacketData>) -> Unit
-): Shard_Packet<ClientboundDamageEventPacketData> {
+    callback: (packet: ClientPacket<ClientboundDamageEventPacketData>) -> Unit
+): ClientPacket<ClientboundDamageEventPacketData> {
 
 
     val data = ClientboundDamageEventPacketData(
@@ -70,7 +70,7 @@ fun ClientPacketFactory.damageEvent(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundDamageEventPacketData>()
+    val shardPacket = ClientPacket<ClientboundDamageEventPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

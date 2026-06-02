@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerInfoRemovePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -10,8 +10,8 @@ import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuil
 import java.util.*
 
 fun ClientPacketFactory.playerInfoRemove(
-    uuids: MutableList<UUID>, callback: (packet: Shard_Packet<ClientboundPlayerInfoRemovePacketData>) -> Unit
-): Shard_Packet<ClientboundPlayerInfoRemovePacketData> {
+    uuids: MutableList<UUID>, callback: (packet: ClientPacket<ClientboundPlayerInfoRemovePacketData>) -> Unit
+): ClientPacket<ClientboundPlayerInfoRemovePacketData> {
 
     val data = ClientboundPlayerInfoRemovePacketData(
         uuids
@@ -48,7 +48,7 @@ fun ClientPacketFactory.playerInfoRemove(
     }
 
 
-    val shardPacket = Shard_Packet<ClientboundPlayerInfoRemovePacketData>()
+    val shardPacket = ClientPacket<ClientboundPlayerInfoRemovePacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

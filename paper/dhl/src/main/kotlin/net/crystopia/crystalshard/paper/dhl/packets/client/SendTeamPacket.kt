@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetPlayerTeamPacketData
 import net.crystopia.crystalshard.dhl.shared.data.teams.Team
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -14,8 +14,8 @@ import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuil
 fun ClientPacketFactory.sendTeam(
     action: TeamAction,
     team: net.crystopia.crystalshard.paper.dhl.types.teams.Team,
-    callback: (packet: Shard_Packet<ClientboundSetPlayerTeamPacketData>) -> Unit
-): Shard_Packet<ClientboundSetPlayerTeamPacketData> {
+    callback: (packet: ClientPacket<ClientboundSetPlayerTeamPacketData>) -> Unit
+): ClientPacket<ClientboundSetPlayerTeamPacketData> {
 
     val data = ClientboundSetPlayerTeamPacketData(
         action, Team(
@@ -61,7 +61,7 @@ fun ClientPacketFactory.sendTeam(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundSetPlayerTeamPacketData>()
+    val shardPacket = ClientPacket<ClientboundSetPlayerTeamPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

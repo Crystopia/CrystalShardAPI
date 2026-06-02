@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetDisplayObjectivePacketData
 import net.crystopia.crystalshard.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.dhl.shared.enums.scoreboard.DisplaySlot
@@ -19,8 +19,8 @@ fun ClientPacketFactory.sendObjectiveUpdate(
     mode: ScoreBoardMode,
     displaySlot: DisplaySlot,
     displayData: net.crystopia.crystalshard.paper.dhl.types.scoreboard.DisplayData<*>,
-    callback: (packet: Shard_Packet<ClientboundSetDisplayObjectivePacketData>) -> Unit
-): Shard_Packet<ClientboundSetDisplayObjectivePacketData> {
+    callback: (packet: ClientPacket<ClientboundSetDisplayObjectivePacketData>) -> Unit
+): ClientPacket<ClientboundSetDisplayObjectivePacketData> {
 
     val data = ClientboundSetDisplayObjectivePacketData(
         mode, displaySlot, DisplayData(
@@ -84,7 +84,7 @@ fun ClientPacketFactory.sendObjectiveUpdate(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundSetDisplayObjectivePacketData>()
+    val shardPacket = ClientPacket<ClientboundSetDisplayObjectivePacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

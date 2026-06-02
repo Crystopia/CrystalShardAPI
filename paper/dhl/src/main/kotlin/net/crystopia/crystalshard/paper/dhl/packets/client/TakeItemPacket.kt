@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTakeItemEntityPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -14,8 +14,8 @@ fun ClientPacketFactory.takeItem(
     itemId: Int,
     player: Entity,
     amount: Int,
-    callback: (packet: Shard_Packet<ClientboundTakeItemEntityPacketData>) -> Unit
-): Shard_Packet<ClientboundTakeItemEntityPacketData> {
+    callback: (packet: ClientPacket<ClientboundTakeItemEntityPacketData>) -> Unit
+): ClientPacket<ClientboundTakeItemEntityPacketData> {
 
     val data = ClientboundTakeItemEntityPacketData(
         itemId, (player as CraftEntity).handle, amount
@@ -51,7 +51,7 @@ fun ClientPacketFactory.takeItem(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundTakeItemEntityPacketData>()
+    val shardPacket = ClientPacket<ClientboundTakeItemEntityPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

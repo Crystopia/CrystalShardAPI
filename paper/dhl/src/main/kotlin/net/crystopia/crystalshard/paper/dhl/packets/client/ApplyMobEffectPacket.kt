@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.entities.EffectInstance
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateMobEffectPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -13,8 +13,8 @@ fun ClientPacketFactory.applyMobEffect(
     entityId: Int,
     effect: EffectInstance,
     blend: Boolean,
-    callback: (packet: Shard_Packet<ClientboundUpdateMobEffectPacketData>) -> Unit
-): Shard_Packet<ClientboundUpdateMobEffectPacketData> {
+    callback: (packet: ClientPacket<ClientboundUpdateMobEffectPacketData>) -> Unit
+): ClientPacket<ClientboundUpdateMobEffectPacketData> {
 
     val data = ClientboundUpdateMobEffectPacketData(
         entityId, effect, blend
@@ -51,7 +51,7 @@ fun ClientPacketFactory.applyMobEffect(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundUpdateMobEffectPacketData>()
+    val shardPacket = ClientPacket<ClientboundUpdateMobEffectPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

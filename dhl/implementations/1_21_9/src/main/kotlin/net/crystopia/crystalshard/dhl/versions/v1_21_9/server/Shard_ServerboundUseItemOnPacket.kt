@@ -3,7 +3,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.server
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.BlockHitResult
-import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
+import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.UseItemOnEvent
 import net.crystopia.crystalshard.dhl.shared.enums.server.Direction
 import net.crystopia.crystalshard.dhl.shared.enums.server.InteractionHand
@@ -16,7 +16,7 @@ import net.minecraft.server.level.ServerPlayer
 class Shard_ServerboundUseItemOnPacket: IServerPacket<UseItemOnEvent> {
 
     override fun onEvent(
-        data: Shard_ServerPacket,
+        data: ServerPacket,
         callback: UseItemOnEvent.() -> Unit
     ) {
         val serverPlayer = (data.player as ServerPlayer)

@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundBlockEntityDataPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -13,8 +13,8 @@ fun ClientPacketFactory.createBlockEntityData(
     blockPos: BlockPos,
     type: net.crystopia.crystalshard.dhl.shared.enums.entities.BlockEntityType,
     nbt: String,
-    callback: (packet: Shard_Packet<ClientboundBlockEntityDataPacketData>) -> Unit
-): Shard_Packet<ClientboundBlockEntityDataPacketData> {
+    callback: (packet: ClientPacket<ClientboundBlockEntityDataPacketData>) -> Unit
+): ClientPacket<ClientboundBlockEntityDataPacketData> {
 
     val data = ClientboundBlockEntityDataPacketData(
         blockPos, type, nbt
@@ -50,7 +50,7 @@ fun ClientPacketFactory.createBlockEntityData(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundBlockEntityDataPacketData>()
+    val shardPacket = ClientPacket<ClientboundBlockEntityDataPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.server
 
 import net.crystopia.crystalshard.dhl.ServerPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
+import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.CustomClickEvent
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -15,7 +15,7 @@ fun ServerPacketFactory.customClickActionEvent(
     shouldPublish: Boolean,
     callback: CustomClickEvent.() -> Unit
 ) {
-    val data = Shard_ServerPacket(
+    val data = ServerPacket(
         (player as CraftPlayer).handle,
         NamespacedKey(name.namespace, name.key),
         shouldPublish

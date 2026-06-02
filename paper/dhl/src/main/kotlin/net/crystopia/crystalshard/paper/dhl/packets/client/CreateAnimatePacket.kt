@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundAnimatePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -11,8 +11,8 @@ import org.bukkit.craftbukkit.entity.CraftEntity
 import org.bukkit.entity.Entity
 
 fun ClientPacketFactory.createAnimation(
-    entity: Entity, animationId: Int, callback: (packet: Shard_Packet<ClientboundAnimatePacketData>) -> Unit
-): Shard_Packet<ClientboundAnimatePacketData> {
+    entity: Entity, animationId: Int, callback: (packet: ClientPacket<ClientboundAnimatePacketData>) -> Unit
+): ClientPacket<ClientboundAnimatePacketData> {
 
     val data = ClientboundAnimatePacketData(
         (entity as CraftEntity).handle, animationId
@@ -48,7 +48,7 @@ fun ClientPacketFactory.createAnimation(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundAnimatePacketData>()
+    val shardPacket = ClientPacket<ClientboundAnimatePacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

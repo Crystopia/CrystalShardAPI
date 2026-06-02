@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundOpenScreenPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -15,8 +15,8 @@ fun ClientPacketFactory.openScreen(
     id: Int,
     title: Component,
     type: MenuType,
-    callback: (packet: Shard_Packet<ClientboundOpenScreenPacketData>) -> Unit
-): Shard_Packet<ClientboundOpenScreenPacketData> {
+    callback: (packet: ClientPacket<ClientboundOpenScreenPacketData>) -> Unit
+): ClientPacket<ClientboundOpenScreenPacketData> {
 
     val data = ClientboundOpenScreenPacketData(
         id, type, PaperAdventure.asVanilla(title)
@@ -52,7 +52,7 @@ fun ClientPacketFactory.openScreen(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundOpenScreenPacketData>()
+    val shardPacket = ClientPacket<ClientboundOpenScreenPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

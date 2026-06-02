@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerLookAtPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.entities.LookAnchor
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -17,8 +17,8 @@ fun ClientPacketFactory.updatePlayerLookAt(
     x: Double,
     y: Double,
     z: Double,
-    callback: (packet: Shard_Packet<ClientboundPlayerLookAtPacketData>) -> Unit
-): Shard_Packet<ClientboundPlayerLookAtPacketData> {
+    callback: (packet: ClientPacket<ClientboundPlayerLookAtPacketData>) -> Unit
+): ClientPacket<ClientboundPlayerLookAtPacketData> {
 
     val data = ClientboundPlayerLookAtPacketData(
         (entity as CraftEntity).handle, fromAnchor, toAnchor, x, y, z
@@ -54,7 +54,7 @@ fun ClientPacketFactory.updatePlayerLookAt(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundPlayerLookAtPacketData>()
+    val shardPacket = ClientPacket<ClientboundPlayerLookAtPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

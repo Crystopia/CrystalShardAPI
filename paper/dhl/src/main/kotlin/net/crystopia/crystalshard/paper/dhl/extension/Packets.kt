@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.dhl.extension
 
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.craftbukkit.CraftWorld
@@ -27,7 +27,7 @@ fun Player.hasServerPacketListener(key: String) : Boolean {
     return channel.pipeline().get(key) != null
 }
 
-fun <T : Any> Shard_Packet<T>.send(players: MutableList<Player>): Shard_Packet<T> {
+fun <T : Any> ClientPacket<T>.send(players: MutableList<Player>): ClientPacket<T> {
     players.forEach { player ->
         val serverPlayer = (player as CraftPlayer).handle
 

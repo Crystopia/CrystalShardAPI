@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTrackedWaypointPacketData
 import net.crystopia.crystalshard.dhl.shared.data.waypoints.TrackedWaypoint
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -13,8 +13,8 @@ import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuil
 fun ClientPacketFactory.sendWaypoint(
     operation: WaypointOperation,
     waypoints: TrackedWaypoint<*>,
-    callback: (packet: Shard_Packet<ClientboundTrackedWaypointPacketData>) -> Unit
-): Shard_Packet<ClientboundTrackedWaypointPacketData> {
+    callback: (packet: ClientPacket<ClientboundTrackedWaypointPacketData>) -> Unit
+): ClientPacket<ClientboundTrackedWaypointPacketData> {
 
     val data = ClientboundTrackedWaypointPacketData(
         operation, TrackedWaypoint(
@@ -53,7 +53,7 @@ fun ClientPacketFactory.sendWaypoint(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundTrackedWaypointPacketData>()
+    val shardPacket = ClientPacket<ClientboundTrackedWaypointPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

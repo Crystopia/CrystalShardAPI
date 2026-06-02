@@ -4,10 +4,9 @@ import net.crystopia.crystalshard.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.gui.Slot
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.ContainerClickEvent
-import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
+import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.ServerNotSupported
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.server.Shard_ServerboundContainerClickPacket
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import org.bukkit.craftbukkit.entity.CraftPlayer
 
@@ -18,7 +17,7 @@ fun ServerPacketFactory.containerClickEvent(
     shouldPublish: Boolean,
     callback: ContainerClickEvent.() -> Unit
 ) {
-    val data = Shard_ServerPacket(
+    val data = ServerPacket(
         (player as CraftPlayer).handle,
         NamespacedKey(name.namespace, name.key),
         shouldPublish

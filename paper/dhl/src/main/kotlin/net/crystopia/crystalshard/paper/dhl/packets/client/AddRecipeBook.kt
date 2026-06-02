@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipeBookAddPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -17,10 +17,10 @@ import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 fun ClientPacketFactory.addRecipeBook(
     recipes: MutableList<RecipeEntry>,
     replace: Boolean,
-    callback: (packet: Shard_Packet<ClientboundRecipeBookAddPacketData>) -> Unit
-): Shard_Packet<ClientboundRecipeBookAddPacketData> {
+    callback: (packet: ClientPacket<ClientboundRecipeBookAddPacketData>) -> Unit
+): ClientPacket<ClientboundRecipeBookAddPacketData> {
 
-    val shardPacket = Shard_Packet<ClientboundRecipeBookAddPacketData>()
+    val shardPacket = ClientPacket<ClientboundRecipeBookAddPacketData>()
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
             val data = RecipeEntryBuilder.PAPER_1_21_11(

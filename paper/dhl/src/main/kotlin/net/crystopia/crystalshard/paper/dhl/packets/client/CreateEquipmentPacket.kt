@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetEquipmentPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -14,8 +14,8 @@ import org.bukkit.inventory.ItemStack
 fun ClientPacketFactory.createEquipment(
     entityId: Int,
     equipmentList: MutableList<Pair<EquipmentSlot, ItemStack>>,
-    callback: (packet: Shard_Packet<ClientboundSetEquipmentPacketData>) -> Unit
-): Shard_Packet<ClientboundSetEquipmentPacketData> {
+    callback: (packet: ClientPacket<ClientboundSetEquipmentPacketData>) -> Unit
+): ClientPacket<ClientboundSetEquipmentPacketData> {
 
     val data = ClientboundSetEquipmentPacketData(
         entityId, equipmentList.map {
@@ -57,7 +57,7 @@ fun ClientPacketFactory.createEquipment(
     }
 
 
-    val shardPacket = Shard_Packet<ClientboundSetEquipmentPacketData>()
+    val shardPacket = ClientPacket<ClientboundSetEquipmentPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

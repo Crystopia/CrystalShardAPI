@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.recipes.RecipeState
@@ -14,10 +14,10 @@ fun ClientPacketFactory.recipePacket(
     recipeIdsToChange: MutableList<org.bukkit.NamespacedKey>,
     recipeIdsToInit: MutableList<org.bukkit.NamespacedKey>,
     recipeBookSettings: net.crystopia.crystalshard.dhl.shared.data.recipes.RecipeBookSettings,
-    callback: (packet: Shard_Packet<ClientboundRecipePacketData>) -> Unit
-): Shard_Packet<ClientboundRecipePacketData> {
+    callback: (packet: ClientPacket<ClientboundRecipePacketData>) -> Unit
+): ClientPacket<ClientboundRecipePacketData> {
 
-    val shardPacket = Shard_Packet<ClientboundRecipePacketData>()
+    val shardPacket = ClientPacket<ClientboundRecipePacketData>()
 
     val data = ClientboundRecipePacketData(
         state = state,

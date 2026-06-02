@@ -3,7 +3,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_1.server
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.MoveVehicleEvent
-import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
+import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
 import net.minecraft.network.protocol.game.ServerboundMoveVehiclePacket
 import net.minecraft.server.level.ServerPlayer
@@ -11,7 +11,7 @@ import net.minecraft.server.level.ServerPlayer
 class Shard_ServerboundMoveVehiclePacket : IServerPacket<MoveVehicleEvent> {
 
     override fun onEvent(
-        data: Shard_ServerPacket,
+        data: ServerPacket,
         callback: MoveVehicleEvent.() -> Unit
     ) {
         val serverPlayer = (data.player as ServerPlayer)

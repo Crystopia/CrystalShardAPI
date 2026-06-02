@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundGameEventPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.game.GameEventType
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -15,8 +15,8 @@ fun ClientPacketFactory.runGameEvent(
      * More about action: https://minecraft.wiki/w/Java_Edition_protocol/Packets#Game_Event
      */
     action: Float,
-    callback: (packet: Shard_Packet<ClientboundGameEventPacketData>) -> Unit
-): Shard_Packet<ClientboundGameEventPacketData> {
+    callback: (packet: ClientPacket<ClientboundGameEventPacketData>) -> Unit
+): ClientPacket<ClientboundGameEventPacketData> {
 
     val data = ClientboundGameEventPacketData(
         type, action
@@ -52,7 +52,7 @@ fun ClientPacketFactory.runGameEvent(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundGameEventPacketData>()
+    val shardPacket = ClientPacket<ClientboundGameEventPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

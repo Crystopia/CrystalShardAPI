@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundBlockDestructionPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -14,8 +14,8 @@ fun ClientPacketFactory.createBlockDestroyStage(
     /**
      * Read more: [Packets#Block_Entity_Data](https://minecraft.wiki/w/Java_Edition_protocol/Packets#Block_Entity_Data)
      */
-    progress: Int, callback: (packet: Shard_Packet<ClientboundBlockDestructionPacketData>) -> Unit
-): Shard_Packet<ClientboundBlockDestructionPacketData> {
+    progress: Int, callback: (packet: ClientPacket<ClientboundBlockDestructionPacketData>) -> Unit
+): ClientPacket<ClientboundBlockDestructionPacketData> {
 
     val data = ClientboundBlockDestructionPacketData(
         entityId, pos, progress
@@ -51,7 +51,7 @@ fun ClientPacketFactory.createBlockDestroyStage(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundBlockDestructionPacketData>()
+    val shardPacket = ClientPacket<ClientboundBlockDestructionPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

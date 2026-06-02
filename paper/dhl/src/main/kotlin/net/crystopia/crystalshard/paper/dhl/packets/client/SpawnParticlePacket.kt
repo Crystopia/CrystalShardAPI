@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundLevelParticlesPacketData
 import net.crystopia.crystalshard.dhl.shared.data.particles.Particle
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -16,8 +16,8 @@ import org.bukkit.craftbukkit.inventory.CraftItemStack
 
 fun ClientPacketFactory.spawnParticle(
     particle: net.crystopia.crystalshard.paper.dhl.types.particles.Particle<*, *>,
-    callback: (packet: Shard_Packet<ClientboundLevelParticlesPacketData>) -> Unit
-): Shard_Packet<ClientboundLevelParticlesPacketData> {
+    callback: (packet: ClientPacket<ClientboundLevelParticlesPacketData>) -> Unit
+): ClientPacket<ClientboundLevelParticlesPacketData> {
 
     val data = ClientboundLevelParticlesPacketData(
         Particle(
@@ -151,7 +151,7 @@ fun ClientPacketFactory.spawnParticle(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundLevelParticlesPacketData>()
+    val shardPacket = ClientPacket<ClientboundLevelParticlesPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

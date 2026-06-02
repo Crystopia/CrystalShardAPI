@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetDefaultSpawnPositionPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -17,8 +17,8 @@ fun ClientPacketFactory.setDefaultSpawnPosition(
     yaw: Float,
     pitch: Float,
     angle: Float?,
-    callback: (packet: Shard_Packet<ClientboundSetDefaultSpawnPositionPacketData>) -> Unit
-): Shard_Packet<ClientboundSetDefaultSpawnPositionPacketData> {
+    callback: (packet: ClientPacket<ClientboundSetDefaultSpawnPositionPacketData>) -> Unit
+): ClientPacket<ClientboundSetDefaultSpawnPositionPacketData> {
 
     val data = ClientboundSetDefaultSpawnPositionPacketData(
         (world as CraftWorld).handle, pos, yaw, pitch, angle ?: 0F
@@ -54,7 +54,7 @@ fun ClientPacketFactory.setDefaultSpawnPosition(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundSetDefaultSpawnPositionPacketData>()
+    val shardPacket = ClientPacket<ClientboundSetDefaultSpawnPositionPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.entities.PositionMoveRotation
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerPositionPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.entities.RelativePosition
@@ -14,8 +14,8 @@ fun ClientPacketFactory.updatePlayerPosition(
     change: PositionMoveRotation,
     teleportId: Int,
     relatives: MutableSet<RelativePosition>,
-    callback: (packet: Shard_Packet<ClientboundPlayerPositionPacketData>) -> Unit
-): Shard_Packet<ClientboundPlayerPositionPacketData> {
+    callback: (packet: ClientPacket<ClientboundPlayerPositionPacketData>) -> Unit
+): ClientPacket<ClientboundPlayerPositionPacketData> {
 
     val data = ClientboundPlayerPositionPacketData(
         teleportId, change, relatives
@@ -51,7 +51,7 @@ fun ClientPacketFactory.updatePlayerPosition(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundPlayerPositionPacketData>()
+    val shardPacket = ClientPacket<ClientboundPlayerPositionPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

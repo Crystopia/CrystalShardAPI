@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundShowDialogPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -12,8 +12,8 @@ import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 
 fun ClientPacketFactory.showDialog(
     dialog: Dialog<*>,
-    callback: (packet: Shard_Packet<ClientboundShowDialogPacketData>) -> Unit
-): Shard_Packet<ClientboundShowDialogPacketData> {
+    callback: (packet: ClientPacket<ClientboundShowDialogPacketData>) -> Unit
+): ClientPacket<ClientboundShowDialogPacketData> {
     val data = ClientboundShowDialogPacketData(
         dialog.toDhl()
     )
@@ -48,7 +48,7 @@ fun ClientPacketFactory.showDialog(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundShowDialogPacketData>()
+    val shardPacket = ClientPacket<ClientboundShowDialogPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

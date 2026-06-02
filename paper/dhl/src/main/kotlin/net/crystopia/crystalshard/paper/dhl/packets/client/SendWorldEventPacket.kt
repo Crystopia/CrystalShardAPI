@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundLevelEventPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
@@ -14,8 +14,8 @@ fun ClientPacketFactory.sendWorldEvent(
     pos: BlockPos,
     data: Int,
     globalEvent: Boolean,
-    callback: (packet: Shard_Packet<ClientboundLevelEventPacketData>) -> Unit
-): Shard_Packet<ClientboundLevelEventPacketData> {
+    callback: (packet: ClientPacket<ClientboundLevelEventPacketData>) -> Unit
+): ClientPacket<ClientboundLevelEventPacketData> {
 
     val data = ClientboundLevelEventPacketData(
         type, pos, data, globalEvent
@@ -51,7 +51,7 @@ fun ClientPacketFactory.sendWorldEvent(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundLevelEventPacketData>()
+    val shardPacket = ClientPacket<ClientboundLevelEventPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

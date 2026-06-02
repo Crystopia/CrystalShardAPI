@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetPassengersPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -13,8 +13,8 @@ import org.bukkit.entity.Entity
 fun ClientPacketFactory.setPassengers(
     entity: Entity,
     passengers: MutableList<Entity>,
-    callback: (packet: Shard_Packet<ClientboundSetPassengersPacketData>) -> Unit
-): Shard_Packet<ClientboundSetPassengersPacketData> {
+    callback: (packet: ClientPacket<ClientboundSetPassengersPacketData>) -> Unit
+): ClientPacket<ClientboundSetPassengersPacketData> {
 
     val data = ClientboundSetPassengersPacketData(
         (entity as CraftEntity).handle, passengers.map { (it as CraftEntity).handle }.toMutableList()
@@ -50,7 +50,7 @@ fun ClientPacketFactory.setPassengers(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundSetPassengersPacketData>()
+    val shardPacket = ClientPacket<ClientboundSetPassengersPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

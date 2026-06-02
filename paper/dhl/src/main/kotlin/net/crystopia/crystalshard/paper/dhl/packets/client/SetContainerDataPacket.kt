@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundContainerSetDataPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -12,8 +12,8 @@ fun ClientPacketFactory.setContainerData(
     id: Int,
     property: Short,
     value: Short,
-    callback: (packet: Shard_Packet<ClientboundContainerSetDataPacketData>) -> Unit
-): Shard_Packet<ClientboundContainerSetDataPacketData> {
+    callback: (packet: ClientPacket<ClientboundContainerSetDataPacketData>) -> Unit
+): ClientPacket<ClientboundContainerSetDataPacketData> {
 
     val data = ClientboundContainerSetDataPacketData(
         id, property, value
@@ -49,7 +49,7 @@ fun ClientPacketFactory.setContainerData(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundContainerSetDataPacketData>()
+    val shardPacket = ClientPacket<ClientboundContainerSetDataPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)

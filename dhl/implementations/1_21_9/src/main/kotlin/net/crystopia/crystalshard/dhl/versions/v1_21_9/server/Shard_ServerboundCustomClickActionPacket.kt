@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.CustomClickEvent
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.Payload
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.PayloadType
-import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
+import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_9.converter.data.nbt.serialize
 import net.minecraft.nbt.CompoundTag
@@ -18,7 +18,7 @@ import net.minecraft.server.level.ServerPlayer
  */
 class Shard_ServerboundCustomClickActionPacket : IServerPacket<CustomClickEvent>  {
     override fun onEvent(
-        data: Shard_ServerPacket,
+        data: ServerPacket,
         callback: CustomClickEvent.() -> Unit
     ) {
         val serverPlayer = (data.player as ServerPlayer)

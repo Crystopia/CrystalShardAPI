@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.Shard_Packet
+import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerRotationPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
@@ -13,8 +13,8 @@ fun ClientPacketFactory.updatePlayerRotation(
     relativeY: Boolean,
     xRot: Float,
     relativeX: Boolean,
-    callback: (packet: Shard_Packet<ClientboundPlayerRotationPacketData>) -> Unit
-): Shard_Packet<ClientboundPlayerRotationPacketData> {
+    callback: (packet: ClientPacket<ClientboundPlayerRotationPacketData>) -> Unit
+): ClientPacket<ClientboundPlayerRotationPacketData> {
 
     val data = ClientboundPlayerRotationPacketData(
         yRot, relativeY, xRot, relativeX
@@ -44,7 +44,7 @@ fun ClientPacketFactory.updatePlayerRotation(
         }
     }
 
-    val shardPacket = Shard_Packet<ClientboundPlayerRotationPacketData>()
+    val shardPacket = ClientPacket<ClientboundPlayerRotationPacketData>()
     shardPacket.packetData = data
     shardPacket.packetObject = packet
     callback(shardPacket)
