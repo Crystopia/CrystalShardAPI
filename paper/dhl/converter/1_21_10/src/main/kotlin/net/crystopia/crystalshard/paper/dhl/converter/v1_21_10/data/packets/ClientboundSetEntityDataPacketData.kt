@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.data.packets
 import com.sun.jdi.InvalidTypeException
 import io.papermc.paper.adventure.PaperAdventure
 import io.papermc.paper.world.WeatheringCopperState
+import net.crystopia.crystalshard.dhl.shared.builder.EntityMetadataBuilder
 import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.dhl.shared.data.entities.EntityRotation
 import net.crystopia.crystalshard.dhl.shared.data.merchant.VillagerData
@@ -50,7 +51,7 @@ import java.util.*
 
 
 @Suppress("UNCHECKED_CAST")
-fun Entity.v1_21_10_MetaData(data: EntityMetadata<*>): SynchedEntityData.DataValue<*> {
+fun EntityMetadataBuilder.PAPER_1_21_10(data: EntityMetadata<*>): SynchedEntityData.DataValue<*> {
     when (data.type) {
         EntityDataSerializerType.INT -> {
 

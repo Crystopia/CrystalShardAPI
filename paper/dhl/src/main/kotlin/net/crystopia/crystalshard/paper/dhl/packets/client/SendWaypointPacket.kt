@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTrac
 import net.crystopia.crystalshard.dhl.shared.data.waypoints.TrackedWaypoint
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.enums.waypoints.WaypointOperation
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 
@@ -48,7 +49,7 @@ fun ClientPacketFactory.sendWaypoint(
         }
 
         else -> {
-            throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            throw NoPacketMethodFound("${ServerUtil.currentVersion()}")
         }
     }
 

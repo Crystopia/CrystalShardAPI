@@ -1,6 +1,7 @@
 package net.crystopia.crystalshard.dhl.versions.v1_21_1.general
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.*
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacketBuilder
 import net.crystopia.crystalshard.dhl.versions.v1_21_1.client.*
 import net.minecraft.network.protocol.Packet
@@ -29,7 +30,7 @@ object ClientPacketBuilder : IClientPacketBuilder {
     }
 
     override fun showDialog(data: ClientboundShowDialogPacketData): Packet<*> {
-        throw Exception("Move Minecart Packet not available on 1.21.1")
+        throw NoPacketMethodFound("Packet no exists on 1.21.1")
     }
 
     override fun updateTickingState(data: ClientboundTickingStatePacketData): Packet<*> {
@@ -65,7 +66,7 @@ object ClientPacketBuilder : IClientPacketBuilder {
     }
 
     override fun moveMinecart(data: ClientboundMoveMinecartPacketData): Packet<*> {
-        throw Exception("Move Minecart Packet not available on 1.21.1")
+        throw NoPacketMethodFound("Packet no exists on 1.21.1")
     }
 
     override fun moveEntity(data: ClientboundMoveEntityPacketData): Packet<*> {
@@ -73,7 +74,7 @@ object ClientPacketBuilder : IClientPacketBuilder {
     }
 
     override fun updateEntityPositionSync(data: ClientboundEntityPositionSyncPacketData): Packet<*> {
-        throw Exception("Entity Position Sync not available on 1.21.1")
+        throw NoPacketMethodFound("Packet no exists on 1.21.1")
     }
 
     override fun updatePlayerLookAt(data: ClientboundPlayerLookAtPacketData): Packet<*> {
@@ -85,7 +86,7 @@ object ClientPacketBuilder : IClientPacketBuilder {
     }
 
     override fun updatePlayerRotation(data: ClientboundPlayerRotationPacketData): Packet<*> {
-        throw Exception("Rotation Packet not available on 1.21.1")
+        throw NoPacketMethodFound("Packet no exists on 1.21.1")
     }
 
     override fun removeMobEffect(data: ClientboundRemoveMobEffectPacketData): Packet<*> {
@@ -169,7 +170,7 @@ object ClientPacketBuilder : IClientPacketBuilder {
     }
 
     override fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*> {
-        throw Exception("Waypoints are not supported in 1.21.1")
+        throw NoPacketMethodFound("Packet no exists on 1.21.1")
     }
 
     override fun setContainerData(data: ClientboundContainerSetDataPacketData): Packet<*> {

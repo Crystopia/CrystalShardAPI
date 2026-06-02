@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.entities.PositionMoveRotation
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerPositionPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.entities.RelativePosition
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 
@@ -46,7 +47,7 @@ fun ClientPacketFactory.updatePlayerPosition(
         }
 
         else -> {
-            throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            throw NoPacketMethodFound("${ServerUtil.currentVersion()}")
         }
     }
 

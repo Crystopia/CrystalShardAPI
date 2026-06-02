@@ -4,6 +4,7 @@ import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundShowDialogPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.types.dialog.Dialog
 import net.crystopia.crystalshard.paper.dhl.types.dialog.toDhl
@@ -36,8 +37,14 @@ fun ClientPacketFactory.showDialog(
             )
         }
 
+        ServerVersion.v1_21_1 -> {
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.showDialog(
+                data
+            )
+        }
+
         else -> {
-            throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            throw NoPacketMethodFound("${ServerUtil.currentVersion()}")
         }
     }
 

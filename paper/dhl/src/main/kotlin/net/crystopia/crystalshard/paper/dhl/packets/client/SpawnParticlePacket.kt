@@ -5,6 +5,8 @@ import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundLevelParticlesPacketData
 import net.crystopia.crystalshard.dhl.shared.data.particles.Particle
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoDhlTypeToConvert
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.types.particles.*
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
@@ -103,7 +105,7 @@ fun ClientPacketFactory.spawnParticle(
                     )
                 }
 
-                else -> null
+                else -> throw NoDhlTypeToConvert("No type found")
 
             },
             overrideLimiter = particle.overrideLimiter,
@@ -145,7 +147,7 @@ fun ClientPacketFactory.spawnParticle(
         }
 
         else -> {
-            throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            throw NoPacketMethodFound("${ServerUtil.currentVersion()}")
         }
     }
 

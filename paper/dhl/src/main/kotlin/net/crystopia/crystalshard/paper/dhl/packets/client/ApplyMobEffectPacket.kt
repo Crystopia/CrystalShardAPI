@@ -5,6 +5,7 @@ import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.entities.EffectInstance
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateMobEffectPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 
@@ -46,7 +47,7 @@ fun ClientPacketFactory.applyMobEffect(
         }
 
         else -> {
-            throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            throw NoPacketMethodFound("${ServerUtil.currentVersion()}")
         }
     }
 

@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.recipes.RecipeState
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 
 fun ClientPacketFactory.recipePacket(
@@ -31,7 +32,7 @@ fun ClientPacketFactory.recipePacket(
         ServerVersion.v1_21_11,
         ServerVersion.v1_21_9,
         ServerVersion.v1_21_10 -> {
-            throw Exception("This is an 1.21.1 only Packet...")
+            throw Exception("This packet has been removed in 1.21.1+")
         }
 
         ServerVersion.v1_21_1 -> {
@@ -41,7 +42,7 @@ fun ClientPacketFactory.recipePacket(
         }
 
         else -> {
-            throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            throw NoPacketMethodFound("${ServerUtil.currentVersion()}")
         }
     }
     shardPacket.packetObject = packet

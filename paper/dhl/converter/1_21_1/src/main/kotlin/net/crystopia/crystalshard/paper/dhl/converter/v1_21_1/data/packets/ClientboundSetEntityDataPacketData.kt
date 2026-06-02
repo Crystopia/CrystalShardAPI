@@ -2,6 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets
 
 import com.sun.jdi.InvalidTypeException
 import io.papermc.paper.adventure.PaperAdventure
+import net.crystopia.crystalshard.dhl.shared.builder.EntityMetadataBuilder
 import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.dhl.shared.data.entities.EntityRotation
 import net.crystopia.crystalshard.dhl.shared.data.merchant.VillagerData
@@ -28,14 +29,13 @@ import org.bukkit.craftbukkit.CraftParticle
 import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.block.CraftBlockType
 import org.bukkit.craftbukkit.inventory.CraftItemStack
-import org.bukkit.entity.Entity
 import org.bukkit.inventory.ItemStack
 import org.joml.Quaternionf
 import org.joml.Vector3f
 import java.util.*
 
 @Suppress("UNCHECKED_CAST")
-fun Entity.v1_21_1_MetaData(data: EntityMetadata<*>): SynchedEntityData.DataValue<*> {
+fun EntityMetadataBuilder.PAPER_1_21_1(data: EntityMetadata<*>): SynchedEntityData.DataValue<*> {
     when (data.type) {
         EntityDataSerializerType.DATA_PLAYER_MODE_CUSTOMISATION -> {
 

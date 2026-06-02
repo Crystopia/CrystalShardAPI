@@ -1,6 +1,7 @@
 package net.crystopia.crystalshard.dhl.versions.v1_21_9.general
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.*
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacketBuilder
 import net.crystopia.crystalshard.dhl.versions.v1_21_9.client.*
 import net.minecraft.network.protocol.Packet
@@ -9,7 +10,7 @@ import net.minecraft.network.protocol.game.*
 object ClientPacketBuilder : IClientPacketBuilder {
 
     override fun recipePacket(data: ClientboundRecipePacketData): Packet<*> {
-        throw Exception("Recipe packets not supported")
+        throw NoPacketMethodFound("Packet no exists on 1.21.9")
     }
 
     override fun addRecipeBook(data: ClientboundRecipeBookAddPacketData): Packet<*> {

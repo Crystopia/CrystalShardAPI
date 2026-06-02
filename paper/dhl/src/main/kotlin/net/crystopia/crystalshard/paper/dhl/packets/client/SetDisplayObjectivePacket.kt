@@ -8,6 +8,7 @@ import net.crystopia.crystalshard.dhl.shared.data.scoreboard.DisplayData
 import net.crystopia.crystalshard.dhl.shared.enums.scoreboard.DisplaySlot
 import net.crystopia.crystalshard.dhl.shared.enums.scoreboard.ScoreBoardMode
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
+import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.types.scoreboard.BlankFormatData
@@ -78,7 +79,7 @@ fun ClientPacketFactory.setDisplayObjective(
         }
 
         else -> {
-            throw IllegalArgumentException("Unsupported server version: ${ServerUtil.currentVersion()}")
+            throw NoPacketMethodFound("${ServerUtil.currentVersion()}")
         }
     }
 
