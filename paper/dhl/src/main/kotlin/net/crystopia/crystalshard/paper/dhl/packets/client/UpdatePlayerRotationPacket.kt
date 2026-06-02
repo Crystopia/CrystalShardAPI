@@ -28,13 +28,13 @@ fun ClientPacketFactory.updatePlayerRotation(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.updatePlayerRotation(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.updatePlayerRotation(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.updatePlayerRotation(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.updatePlayerRotation(
                 data
             )
         }

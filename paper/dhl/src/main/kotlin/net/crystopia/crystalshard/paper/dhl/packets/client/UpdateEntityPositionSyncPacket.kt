@@ -30,13 +30,13 @@ fun ClientPacketFactory.updateEntityPositionSync(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.updateEntityPositionSync(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.updateEntityPositionSync(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.updateEntityPositionSync(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.updateEntityPositionSync(
                 data
             )
         }

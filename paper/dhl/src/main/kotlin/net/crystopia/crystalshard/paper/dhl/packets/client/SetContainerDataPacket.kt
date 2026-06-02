@@ -27,19 +27,19 @@ fun ClientPacketFactory.setContainerData(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.setContainerData(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.setContainerData(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.setContainerData(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.setContainerData(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.setContainerData(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ClientPacketBuilder.setContainerData(
                 data
             )
         }

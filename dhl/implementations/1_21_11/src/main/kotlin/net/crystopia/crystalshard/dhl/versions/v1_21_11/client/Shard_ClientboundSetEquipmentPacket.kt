@@ -17,7 +17,7 @@ class Shard_ClientboundSetEquipmentPacket : IClientPacket<ClientboundSetEquipmen
         packetObj.equipmentList.forEach { (slot, stack) ->
             list.add(
                 Pair(
-                    net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.enums.gui.EquipmentSlot.convert(slot).type,
+                    net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.enums.gui.EquipmentSlot.convert(slot).type,
                     stack
                 )
             )

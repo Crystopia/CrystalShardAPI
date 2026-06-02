@@ -41,7 +41,7 @@ fun ClientPacketFactory.teleportEntity(
                 LocationBuilder.PAPER_1_21_10(location), onGround
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.teleportEntityPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.teleportEntityPacket(
                 data
             )
         }
@@ -52,7 +52,7 @@ fun ClientPacketFactory.teleportEntity(
                 LocationBuilder.PAPER_1_21_9(location), onGround
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.teleportEntityPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.teleportEntityPacket(
                 data
             )
         }
@@ -63,7 +63,7 @@ fun ClientPacketFactory.teleportEntity(
                 LocationBuilder.PAPER_1_21_1(location), onGround
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.teleportEntityPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ClientPacketBuilder.teleportEntityPacket(
                 data
             )
         }

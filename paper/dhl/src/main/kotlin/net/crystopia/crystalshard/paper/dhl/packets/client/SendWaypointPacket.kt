@@ -33,13 +33,13 @@ fun ClientPacketFactory.sendWaypoint(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.sendWaypointPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.sendWaypointPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.sendWaypointPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.sendWaypointPacket(
                 data
             )
         }

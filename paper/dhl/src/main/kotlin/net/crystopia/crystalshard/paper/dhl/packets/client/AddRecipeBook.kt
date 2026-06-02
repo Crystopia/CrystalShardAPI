@@ -37,7 +37,7 @@ fun ClientPacketFactory.addRecipeBook(
                 recipes, replace
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.addRecipeBook(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.addRecipeBook(
                 data
             )
         }
@@ -47,7 +47,7 @@ fun ClientPacketFactory.addRecipeBook(
                 recipes, replace
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.addRecipeBook(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.addRecipeBook(
                 data
             )
         }
@@ -57,7 +57,7 @@ fun ClientPacketFactory.addRecipeBook(
                 recipes, replace
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.addRecipeBook(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ClientPacketBuilder.addRecipeBook(
                 data
             )
         }

@@ -30,21 +30,21 @@ fun ServerPacketFactory.movePlayerEvent(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ServerPacketBuilder.movePlayerEvent(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ServerPacketBuilder.movePlayerEvent(
                 data,
                 callback
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ServerPacketBuilder.movePlayerEvent(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ServerPacketBuilder.movePlayerEvent(
                 data,
                 callback
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ServerPacketBuilder.movePlayerEvent(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ServerPacketBuilder.movePlayerEvent(
                 data,
                 callback
             )

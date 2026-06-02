@@ -25,19 +25,19 @@ fun ClientPacketFactory.updateTickingStep(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.updateTickingStep(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.updateTickingStep(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.updateTickingStep(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.updateTickingStep(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.updateTickingStep(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ClientPacketBuilder.updateTickingStep(
                 data
             )
         }

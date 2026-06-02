@@ -52,7 +52,7 @@ fun ClientPacketFactory.updateAdvancements(
                 showAdvancements
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.updateAdvancements(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.updateAdvancements(
                 data
             )
         }
@@ -68,7 +68,7 @@ fun ClientPacketFactory.updateAdvancements(
                 showAdvancements
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.updateAdvancements(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.updateAdvancements(
                 data
             )
         }
@@ -84,7 +84,7 @@ fun ClientPacketFactory.updateAdvancements(
                 showAdvancements
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.updateAdvancements(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ClientPacketBuilder.updateAdvancements(
                 data
             )
         }

@@ -3,7 +3,7 @@ package net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.data.packets
 import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipeBookAddPacketData
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.enums.recipes.RecipeBookCategories
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.enums.recipes.RecipeBookCategories
 import net.crystopia.crystalshard.paper.dhl.types.recipes.display
 import net.crystopia.crystalshard.paper.dhl.types.recipes.ingredients
 import net.crystopia.crystalshard.paper.dhl.types.recipes.recipe

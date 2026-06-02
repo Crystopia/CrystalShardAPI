@@ -41,19 +41,19 @@ fun ClientPacketFactory.setWorldBorderCenter(
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.setWorldBorderCenter(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.setWorldBorderCenter(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.setWorldBorderCenter(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.setWorldBorderCenter(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.setWorldBorderCenter(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ClientPacketBuilder.setWorldBorderCenter(
                 data
             )
         }

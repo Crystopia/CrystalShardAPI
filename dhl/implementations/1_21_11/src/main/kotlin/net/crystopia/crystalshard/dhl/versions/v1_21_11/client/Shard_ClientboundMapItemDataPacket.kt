@@ -3,7 +3,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_11.client
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMapItemDataPacketData
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.maps.build
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.data.maps.build
 import net.minecraft.network.protocol.game.ClientboundMapItemDataPacket
 import net.minecraft.world.level.saveddata.maps.MapDecoration
 import net.minecraft.world.level.saveddata.maps.MapId

@@ -44,7 +44,7 @@ fun ClientPacketFactory.setEntityData(
                 entityData.map { EntityMetadataBuilder.PAPER_1_21_10(it) }.toMutableList()
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.setEntityDataPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.setEntityDataPacket(
                 data
             )
         }
@@ -55,7 +55,7 @@ fun ClientPacketFactory.setEntityData(
                 entityData.map { EntityMetadataBuilder.PAPER_1_21_9(it) }.toMutableList()
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.setEntityDataPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.setEntityDataPacket(
                 data
             )
         }
@@ -66,7 +66,7 @@ fun ClientPacketFactory.setEntityData(
                 entityData.map { EntityMetadataBuilder.PAPER_1_21_1(it) }.toMutableList()
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.setEntityDataPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ClientPacketBuilder.setEntityDataPacket(
                 data
             )
         }

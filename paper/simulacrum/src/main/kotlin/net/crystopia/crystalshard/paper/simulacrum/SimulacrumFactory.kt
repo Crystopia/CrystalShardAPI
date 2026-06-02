@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.simulacrum
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_10.general.EntityBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.EntityBuilder
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
@@ -54,7 +54,7 @@ object SimulacrumFactory {
             }
 
             ServerVersion.v1_21_9 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_9.general.EntityBuilder.createEntityInstance(
+                net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.EntityBuilder.createEntityInstance(
                     CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
                         (location.world as CraftWorld).handle,
                         location.x,
@@ -67,7 +67,7 @@ object SimulacrumFactory {
             }
 
             ServerVersion.v1_21_1 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_1.general.EntityBuilder.createEntityInstance(
+                net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.EntityBuilder.createEntityInstance(
                     CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
                         (location.world as CraftWorld).handle,
                         location.x,
@@ -108,13 +108,13 @@ object SimulacrumFactory {
             }
 
             ServerVersion.v1_21_9 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_9.general.EntityBuilder.createServerPlayer(
+                net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.EntityBuilder.createServerPlayer(
                     (location.world as CraftWorld).handle, name, server
                 )
             }
 
             ServerVersion.v1_21_1 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_1.general.EntityBuilder.createServerPlayer(
+                net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.EntityBuilder.createServerPlayer(
                     (location.world as CraftWorld).handle, name, server
                 )
             }
@@ -173,7 +173,7 @@ object SimulacrumFactory {
             }
 
             ServerVersion.v1_21_9 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_9.general.EntityBuilder.createDisplayEntity(
+                net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.EntityBuilder.createDisplayEntity(
                     CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
                         (location.world as CraftWorld).handle,
                         location.x,
@@ -186,7 +186,7 @@ object SimulacrumFactory {
             }
 
             ServerVersion.v1_21_1 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_1.general.EntityBuilder.createDisplayEntity(
+                net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.EntityBuilder.createDisplayEntity(
                     CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
                         (location.world as CraftWorld).handle,
                         location.x,

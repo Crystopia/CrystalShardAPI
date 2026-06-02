@@ -4,7 +4,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_11.client
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundLevelParticlesPacketData
 import net.crystopia.crystalshard.dhl.shared.data.particles.*
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.particles.build
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.data.particles.build
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket
 
@@ -30,7 +30,7 @@ class Shard_ClientboundLevelParticlesPacket : IClientPacket<ClientboundLevelPart
         }
 
         val particleData =
-            if (packetObj.particle.options == null) net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.enums.particles.ParticleType.convert(
+            if (packetObj.particle.options == null) net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.enums.particles.ParticleType.convert(
                 packetObj.particle.particle
             ).id else particle as ParticleOptions
 

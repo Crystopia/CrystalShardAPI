@@ -15,7 +15,7 @@ import net.crystopia.crystalshard.dhl.shared.data.world.Vec3i
 import net.crystopia.crystalshard.dhl.shared.enums.entities.ArmadilloState
 import net.crystopia.crystalshard.dhl.shared.enums.entities.CopperGolemState
 import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializerType
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.merchant.build
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.data.merchant.build
 import net.kyori.adventure.text.Component
 import net.minecraft.core.*
 import net.minecraft.network.syncher.EntityDataSerializers

@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_11.server
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt.serialize
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.data.nbt.serialize
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.CustomClickEvent
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.Payload
