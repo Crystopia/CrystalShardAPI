@@ -5,7 +5,7 @@ import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundLevelParticlesPacketData
 import net.crystopia.crystalshard.dhl.shared.data.particles.Particle
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.types.particles.*
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import org.bukkit.craftbukkit.block.data.CraftBlockData
@@ -121,25 +121,25 @@ fun ClientPacketFactory.spawnParticle(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.spawnParticle(
+            ClientPacketBuilder.spawnParticle(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.spawnParticle(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.spawnParticle(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.spawnParticle(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.spawnParticle(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.spawnParticle(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.spawnParticle(
                 data
             )
         }

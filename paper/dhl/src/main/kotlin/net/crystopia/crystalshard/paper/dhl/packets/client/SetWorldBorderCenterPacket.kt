@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundBord
 import net.crystopia.crystalshard.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import org.bukkit.craftbukkit.CraftWorld
 
 fun ClientPacketFactory.setWorldBorderCenter(
@@ -34,25 +34,25 @@ fun ClientPacketFactory.setWorldBorderCenter(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.setWorldBorderCenter(
+            ClientPacketBuilder.setWorldBorderCenter(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.setWorldBorderCenter(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.setWorldBorderCenter(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.setWorldBorderCenter(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.setWorldBorderCenter(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.setWorldBorderCenter(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.setWorldBorderCenter(
                 data
             )
         }

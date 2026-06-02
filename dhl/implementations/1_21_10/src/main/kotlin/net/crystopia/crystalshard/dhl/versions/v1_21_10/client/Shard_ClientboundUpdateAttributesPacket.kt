@@ -1,14 +1,14 @@
 package net.crystopia.crystalshard.dhl.versions.v1_21_10.client
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateAttributesPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.ai.attributes.AttributeInstance
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import java.util.function.Consumer
 
-class Shard_ClientboundUpdateAttributesPacket : IPacket<ClientboundUpdateAttributesPacketData> {
+class Shard_ClientboundUpdateAttributesPacket : IClientPacket<ClientboundUpdateAttributesPacketData> {
     override fun createPacket(packetObj: ClientboundUpdateAttributesPacketData): ClientboundUpdateAttributesPacket {
 
         val attributes: MutableList<AttributeInstance> = mutableListOf()

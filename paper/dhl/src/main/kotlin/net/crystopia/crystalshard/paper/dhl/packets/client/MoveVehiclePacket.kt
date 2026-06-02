@@ -5,7 +5,7 @@ import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMoveVehiclePacketData
 import net.crystopia.crystalshard.dhl.shared.data.world.Vec3
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import org.bukkit.craftbukkit.entity.CraftEntity
 import org.bukkit.entity.Entity
@@ -24,25 +24,25 @@ fun ClientPacketFactory.moveVehicle(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.moveVehicle(
+            ClientPacketBuilder.moveVehicle(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.moveVehicle(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.moveVehicle(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.moveVehicle(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.moveVehicle(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.moveVehicle(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.moveVehicle(
                 data
             )
         }

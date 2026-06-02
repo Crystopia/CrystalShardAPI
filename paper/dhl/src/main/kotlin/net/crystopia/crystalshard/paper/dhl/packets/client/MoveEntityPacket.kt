@@ -6,16 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMove
 import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityMoveMode
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
-import net.minecraft.network.protocol.common.CommonPacketTypes
-import net.minecraft.network.protocol.configuration.ConfigurationPacketTypes
-import net.minecraft.network.protocol.cookie.CookiePacketTypes
-import net.minecraft.network.protocol.game.ClientboundSetPlayerInventoryPacket
-import net.minecraft.network.protocol.game.GamePacketTypes
-import net.minecraft.network.protocol.handshake.HandshakePacketTypes
-import net.minecraft.network.protocol.login.LoginPacketTypes
-import net.minecraft.network.protocol.ping.PingPacketTypes
-import net.minecraft.network.protocol.status.StatusPacketTypes
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import org.bukkit.craftbukkit.entity.CraftEntity
 import org.bukkit.entity.Entity
 
@@ -39,25 +30,25 @@ fun ClientPacketFactory.moveEntity(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.moveEntity(
+            ClientPacketBuilder.moveEntity(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.moveEntity(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.moveEntity(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.moveEntity(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.moveEntity(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.moveEntity(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.moveEntity(
                 data
             )
         }

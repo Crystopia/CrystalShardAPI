@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.waypoints.WaypointDataChunk
 import net.crystopia.crystalshard.dhl.shared.data.waypoints.WaypointDataVec3i
 import net.crystopia.crystalshard.dhl.shared.enums.waypoints.WaypointOperation
 import net.crystopia.crystalshard.dhl.shared.enums.waypoints.WaypointType
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.core.Vec3i
 import net.minecraft.network.protocol.game.ClientboundTrackedWaypointPacket
 import net.minecraft.world.level.ChunkPos
@@ -14,7 +14,7 @@ import net.minecraft.world.waypoints.TrackedWaypoint
 import net.minecraft.world.waypoints.Waypoint
 import net.minecraft.world.waypoints.WaypointStyleAssets
 
-class Shard_ClientboundTrackedWaypointPacket : IPacket<ClientboundTrackedWaypointPacketData> {
+class Shard_ClientboundTrackedWaypointPacket : IClientPacket<ClientboundTrackedWaypointPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundTrackedWaypointPacketData

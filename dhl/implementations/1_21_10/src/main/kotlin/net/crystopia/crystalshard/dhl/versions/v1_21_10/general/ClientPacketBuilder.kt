@@ -1,12 +1,12 @@
-package net.crystopia.crystalshard.dhl.versions.v1_21_11.general
+package net.crystopia.crystalshard.dhl.versions.v1_21_10.general
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.*
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacketBuilder
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.client.*
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_10.client.*
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.*
 
-object PacketBuilder : IPacketBuilder {
+object ClientPacketBuilder : IClientPacketBuilder {
 
     override fun recipePacket(data: ClientboundRecipePacketData): Packet<*> {
         throw Exception("Recipe packets not supported")

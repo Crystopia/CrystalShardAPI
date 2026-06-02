@@ -1,11 +1,11 @@
 package net.crystopia.crystalshard.dhl.versions.v1_21_1.client
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMerchantOffersPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_1.converter.data.merchant.build
 import net.minecraft.network.protocol.game.ClientboundMerchantOffersPacket
 
-class Shard_ClientboundMerchantOffersPacket : IPacket<ClientboundMerchantOffersPacketData> {
+class Shard_ClientboundMerchantOffersPacket : IClientPacket<ClientboundMerchantOffersPacketData> {
     override fun createPacket(packetObj: ClientboundMerchantOffersPacketData): ClientboundMerchantOffersPacket {
         return ClientboundMerchantOffersPacket(
             packetObj.windowId,

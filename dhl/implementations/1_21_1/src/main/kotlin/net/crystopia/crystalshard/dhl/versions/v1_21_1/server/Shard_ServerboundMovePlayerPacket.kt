@@ -3,15 +3,15 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_1.server
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.MovePlayerEvent
-import net.crystopia.crystalshard.dhl.shared.data.packets.server.Shard_ServerPacketData
+import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
 import net.minecraft.network.protocol.game.ServerboundMovePlayerPacket
 import net.minecraft.server.level.ServerPlayer
 
 class Shard_ServerboundMovePlayerPacket : IServerPacket<MovePlayerEvent> {
 
-    override fun attach(
-        data: Shard_ServerPacketData, callback: MovePlayerEvent.() -> Unit
+    override fun onEvent(
+        data: Shard_ServerPacket, callback: MovePlayerEvent.() -> Unit
     ) {
         val serverPlayer = data.player as ServerPlayer
         val channel = serverPlayer.connection.connection.channel

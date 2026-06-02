@@ -5,7 +5,7 @@ import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipeBookAddPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.PAPER_1_21_1
 import net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.data.packets.PAPER_1_21_10
 import net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.data.packets.PAPER_1_21_11
@@ -26,7 +26,7 @@ fun ClientPacketFactory.addRecipeBook(
                 recipes, replace
             )
             shardPacket.packetData = data
-            PacketBuilder.addRecipeBook(
+            ClientPacketBuilder.addRecipeBook(
                 data
             )
         }
@@ -36,7 +36,7 @@ fun ClientPacketFactory.addRecipeBook(
                 recipes, replace
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.addRecipeBook(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.addRecipeBook(
                 data
             )
         }
@@ -46,7 +46,7 @@ fun ClientPacketFactory.addRecipeBook(
                 recipes, replace
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.addRecipeBook(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.addRecipeBook(
                 data
             )
         }
@@ -56,7 +56,7 @@ fun ClientPacketFactory.addRecipeBook(
                 recipes, replace
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.addRecipeBook(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.addRecipeBook(
                 data
             )
         }

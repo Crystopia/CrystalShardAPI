@@ -3,7 +3,7 @@ package net.crystopia.crystalshard.dhl.shared.interfaces.packets
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.*
 import net.minecraft.network.protocol.Packet
 
-interface IPacketBuilder {
+interface IClientPacketBuilder {
 
     fun recipePacket(data: ClientboundRecipePacketData): Packet<*>
     fun addRecipeBook(data: ClientboundRecipeBookAddPacketData): Packet<*>

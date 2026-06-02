@@ -2,11 +2,11 @@
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetScorePacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundSetScorePacket
 import java.util.*
 
-class Shard_ClientboundSetScorePacket : IPacket<ClientboundSetScorePacketData> {
+class Shard_ClientboundSetScorePacket : IClientPacket<ClientboundSetScorePacketData> {
 
     override fun createPacket(
         packetObj: ClientboundSetScorePacketData

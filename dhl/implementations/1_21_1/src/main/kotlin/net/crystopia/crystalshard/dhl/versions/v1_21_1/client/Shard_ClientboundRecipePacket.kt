@@ -1,13 +1,13 @@
 package net.crystopia.crystalshard.dhl.versions.v1_21_1.client
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipePacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundRecipePacket
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.stats.RecipeBookSettings
 import net.minecraft.world.inventory.RecipeBookType
 
-class Shard_ClientboundRecipePacket : IPacket<ClientboundRecipePacketData> {
+class Shard_ClientboundRecipePacket : IClientPacket<ClientboundRecipePacketData> {
 
     override fun createPacket(
         packetObj: ClientboundRecipePacketData

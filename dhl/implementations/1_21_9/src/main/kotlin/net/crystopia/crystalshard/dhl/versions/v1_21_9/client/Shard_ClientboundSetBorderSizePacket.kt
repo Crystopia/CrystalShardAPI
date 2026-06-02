@@ -2,11 +2,11 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.client
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundBorderPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_9.converter.data.world.build
 import net.minecraft.network.protocol.game.ClientboundSetBorderSizePacket
 
-class Shard_ClientboundSetBorderSizePacket : IPacket<ClientboundBorderPacketData> {
+class Shard_ClientboundSetBorderSizePacket : IClientPacket<ClientboundBorderPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundBorderPacketData

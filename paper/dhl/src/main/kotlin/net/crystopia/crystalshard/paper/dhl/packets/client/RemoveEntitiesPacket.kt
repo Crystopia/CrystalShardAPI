@@ -5,7 +5,7 @@ import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRemoveEntitiesPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 
 fun ClientPacketFactory.removeEntities(
     entityIds: List<Int>, callback: (packet: Shard_Packet<ClientboundRemoveEntitiesPacketData>) -> Unit
@@ -17,25 +17,25 @@ fun ClientPacketFactory.removeEntities(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.removeEntitiesPacket(
+            ClientPacketBuilder.removeEntitiesPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.removeEntitiesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.removeEntitiesPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.removeEntitiesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.removeEntitiesPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.removeEntitiesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.removeEntitiesPacket(
                 data
             )
         }

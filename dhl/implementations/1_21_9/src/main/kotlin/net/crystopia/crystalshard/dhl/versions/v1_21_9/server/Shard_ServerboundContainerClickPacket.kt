@@ -4,7 +4,7 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
 import net.crystopia.crystalshard.dhl.shared.data.gui.Slot
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.ContainerClickEvent
-import net.crystopia.crystalshard.dhl.shared.data.packets.server.Shard_ServerPacketData
+import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
 import net.crystopia.crystalshard.dhl.shared.enums.gui.ButtonType
 import net.crystopia.crystalshard.dhl.shared.enums.server.ClickType
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
@@ -20,8 +20,8 @@ class Shard_ServerboundContainerClickPacket :
         // IGNORED...
     }
 
-    override fun attach(
-        data: Shard_ServerPacketData,
+    override fun onEvent(
+        data: Shard_ServerPacket,
         callback: ContainerClickEvent.() -> Unit
     ) {
         val serverPlayer = data.player as ServerPlayer

@@ -3,12 +3,12 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_10.client
 
 import net.crystopia.crystalshard.dhl.shared.data.dialog.*
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundShowDialogPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.data.dialog.build
 import net.minecraft.core.Holder
 import net.minecraft.network.protocol.common.ClientboundShowDialogPacket
 
-class Shard_ClientboundShowDialogPacket : IPacket<ClientboundShowDialogPacketData> {
+class Shard_ClientboundShowDialogPacket : IClientPacket<ClientboundShowDialogPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundShowDialogPacketData

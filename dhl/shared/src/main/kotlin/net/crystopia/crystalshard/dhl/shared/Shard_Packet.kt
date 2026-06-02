@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.dhl.shared
 
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.Packet
 
 class Shard_Packet<DATA : Any> {
@@ -13,7 +13,7 @@ class Shard_Packet<DATA : Any> {
         return this
     }
 
-    fun <T : IPacket<DATA>> build(packetClass: T): Shard_Packet<DATA> {
+    fun <T : IClientPacket<DATA>> build(packetClass: T): Shard_Packet<DATA> {
         packetObject = packetClass.createPacket(packetData)
         return this
     }

@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.entities.PositionMoveRotation
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundEntityPositionSyncPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import org.bukkit.craftbukkit.entity.CraftEntity
 import org.bukkit.entity.Entity
 
@@ -23,19 +23,19 @@ fun ClientPacketFactory.updateEntityPositionSync(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.updateEntityPositionSync(
+            ClientPacketBuilder.updateEntityPositionSync(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.updateEntityPositionSync(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.updateEntityPositionSync(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.updateEntityPositionSync(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.updateEntityPositionSync(
                 data
             )
         }

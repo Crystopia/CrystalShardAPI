@@ -2,12 +2,10 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.Shard_Packet
-import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMoveEntityPacketData
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerRotationPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
-import net.minecraft.network.protocol.game.ClientboundPlayerPositionPacket
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 
 fun ClientPacketFactory.updatePlayerRotation(
     yRot: Float,
@@ -23,19 +21,19 @@ fun ClientPacketFactory.updatePlayerRotation(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.updatePlayerRotation(
+            ClientPacketBuilder.updatePlayerRotation(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.updatePlayerRotation(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.updatePlayerRotation(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.updatePlayerRotation(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.updatePlayerRotation(
                 data
             )
         }

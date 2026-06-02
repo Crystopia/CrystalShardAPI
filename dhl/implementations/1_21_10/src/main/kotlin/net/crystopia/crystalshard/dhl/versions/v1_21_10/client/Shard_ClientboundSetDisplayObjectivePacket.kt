@@ -2,12 +2,12 @@
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetDisplayObjectivePacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.data.packets.build
 import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.enums.scoreboard.DisplaySlot
 import net.minecraft.network.protocol.game.ClientboundSetDisplayObjectivePacket
 
-class Shard_ClientboundSetDisplayObjectivePacket : IPacket<ClientboundSetDisplayObjectivePacketData> {
+class Shard_ClientboundSetDisplayObjectivePacket : IClientPacket<ClientboundSetDisplayObjectivePacketData> {
 
     override fun createPacket(
         packetObj: ClientboundSetDisplayObjectivePacketData

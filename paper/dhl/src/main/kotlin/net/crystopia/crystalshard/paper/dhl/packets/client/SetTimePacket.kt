@@ -5,7 +5,7 @@ import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetTimePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 
 fun ClientPacketFactory.setTime(
     gameTime: Long,
@@ -20,25 +20,25 @@ fun ClientPacketFactory.setTime(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.setTime(
+            ClientPacketBuilder.setTime(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.setTime(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.setTime(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.setTime(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.setTime(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.setTime(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.setTime(
                 data
             )
         }

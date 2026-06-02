@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.server
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
-import net.crystopia.crystalshard.dhl.shared.data.packets.server.Shard_ServerPacketData
+import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.SwingArmEvent
 import net.crystopia.crystalshard.dhl.shared.enums.server.InteractionHand
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
@@ -11,8 +11,8 @@ import net.minecraft.server.level.ServerPlayer
 
 class Shard_ServerboundSwingPacket : IServerPacket<SwingArmEvent> {
 
-    override fun attach(
-        data: Shard_ServerPacketData,
+    override fun onEvent(
+        data: Shard_ServerPacket,
         callback: SwingArmEvent.() -> Unit
     ) {
         val serverPlayer = (data.player as ServerPlayer)

@@ -1,7 +1,7 @@
 package net.crystopia.modfabrictest
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTabListPacketData
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents
 import net.minecraft.network.chat.Component
@@ -18,7 +18,7 @@ object Modfabrictest : ModInitializer {
 
         ServerPlayerEvents.JOIN.register { player ->
             println("Joined ${player.name}")
-            val packet = PacketBuilder.setTabList(
+            val packet = ClientPacketBuilder.setTabList(
                 ClientboundTabListPacketData(
                     Component.literal("EIER"),
                     Component.literal("EIER")

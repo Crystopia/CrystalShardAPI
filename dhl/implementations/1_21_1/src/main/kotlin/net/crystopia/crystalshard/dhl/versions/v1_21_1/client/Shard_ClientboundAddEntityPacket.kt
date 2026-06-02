@@ -4,7 +4,7 @@ import net.minecraft.network.protocol.game.ClientboundAddEntityPacket
 import net.minecraft.world.phys.Vec3
 
 class Shard_ClientboundAddEntityPacket :
-    net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket<net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundAddEntityPacketData> {
+    net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket<net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundAddEntityPacketData> {
 
     override fun createPacket(
         packetObj: net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundAddEntityPacketData

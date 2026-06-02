@@ -7,20 +7,16 @@ import net.crystopia.crystalshard.dhl.shared.data.particles.ColorParticleOption
 import net.crystopia.crystalshard.dhl.shared.data.particles.DustColorTransitionOptions
 import net.crystopia.crystalshard.dhl.shared.data.particles.DustParticleOptions
 import net.crystopia.crystalshard.dhl.shared.data.particles.ItemParticleOption
-import net.crystopia.crystalshard.dhl.shared.data.particles.PowerParticleOption
 import net.crystopia.crystalshard.dhl.shared.data.particles.SculkChargeParticleOptions
 import net.crystopia.crystalshard.dhl.shared.data.particles.ShriekParticleOption
-import net.crystopia.crystalshard.dhl.shared.data.particles.SpellParticleOption
-import net.crystopia.crystalshard.dhl.shared.data.particles.TrailParticleOption
 import net.crystopia.crystalshard.dhl.shared.data.particles.VibrationParticleOption
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_1.converter.data.particles.build
 import net.crystopia.crystalshard.dhl.versions.v1_21_1.converter.enums.particles.ParticleType
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket
-import net.minecraft.server.level.ServerPlayer
 
-class Shard_ClientboundLevelParticlesPacket : IPacket<ClientboundLevelParticlesPacketData> {
+class Shard_ClientboundLevelParticlesPacket : IClientPacket<ClientboundLevelParticlesPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundLevelParticlesPacketData

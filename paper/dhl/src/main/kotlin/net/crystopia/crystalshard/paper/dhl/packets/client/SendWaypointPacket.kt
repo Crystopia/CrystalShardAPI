@@ -7,7 +7,7 @@ import net.crystopia.crystalshard.dhl.shared.data.waypoints.TrackedWaypoint
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.enums.waypoints.WaypointOperation
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 
 fun ClientPacketFactory.sendWaypoint(
     operation: WaypointOperation,
@@ -26,19 +26,19 @@ fun ClientPacketFactory.sendWaypoint(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.sendWaypointPacket(
+            ClientPacketBuilder.sendWaypointPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.sendWaypointPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.sendWaypointPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.sendWaypointPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.sendWaypointPacket(
                 data
             )
         }

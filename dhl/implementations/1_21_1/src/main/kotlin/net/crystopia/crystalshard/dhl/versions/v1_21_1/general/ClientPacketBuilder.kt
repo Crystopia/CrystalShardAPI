@@ -1,19 +1,19 @@
-package net.crystopia.crystalshard.dhl.versions.v1_21_9.general
+package net.crystopia.crystalshard.dhl.versions.v1_21_1.general
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.*
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacketBuilder
-import net.crystopia.crystalshard.dhl.versions.v1_21_9.client.*
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_1.client.*
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.game.*
 
-object PacketBuilder : IPacketBuilder {
+object ClientPacketBuilder : IClientPacketBuilder {
 
     override fun recipePacket(data: ClientboundRecipePacketData): Packet<*> {
-        throw Exception("Recipe packets not supported")
+        return Shard_ClientboundRecipePacket().createPacket(data)
     }
 
     override fun addRecipeBook(data: ClientboundRecipeBookAddPacketData): Packet<*> {
-        return Shard_ClientboundRecipeBookAddPacket().createPacket(data)
+        return Shard_ClientboundUpdateRecipesPacket().createPacket(data)
     }
 
     override fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*> {
@@ -29,7 +29,7 @@ object PacketBuilder : IPacketBuilder {
     }
 
     override fun showDialog(data: ClientboundShowDialogPacketData): Packet<*> {
-        return Shard_ClientboundShowDialogPacket().createPacket(data)
+        throw Exception("Move Minecart Packet not available on 1.21.1")
     }
 
     override fun updateTickingState(data: ClientboundTickingStatePacketData): Packet<*> {
@@ -65,7 +65,7 @@ object PacketBuilder : IPacketBuilder {
     }
 
     override fun moveMinecart(data: ClientboundMoveMinecartPacketData): Packet<*> {
-        return Shard_ClientboundMoveMinecartPacket().createPacket(data)
+        throw Exception("Move Minecart Packet not available on 1.21.1")
     }
 
     override fun moveEntity(data: ClientboundMoveEntityPacketData): Packet<*> {
@@ -73,7 +73,7 @@ object PacketBuilder : IPacketBuilder {
     }
 
     override fun updateEntityPositionSync(data: ClientboundEntityPositionSyncPacketData): Packet<*> {
-        return Shard_ClientboundEntityPositionSyncPacket().createPacket(data)
+        throw Exception("Entity Position Sync not available on 1.21.1")
     }
 
     override fun updatePlayerLookAt(data: ClientboundPlayerLookAtPacketData): Packet<*> {
@@ -85,7 +85,7 @@ object PacketBuilder : IPacketBuilder {
     }
 
     override fun updatePlayerRotation(data: ClientboundPlayerRotationPacketData): Packet<*> {
-        return Shard_ClientboundPlayerRotationPacket().createPacket(data)
+        throw Exception("Rotation Packet not available on 1.21.1")
     }
 
     override fun removeMobEffect(data: ClientboundRemoveMobEffectPacketData): Packet<*> {
@@ -169,7 +169,7 @@ object PacketBuilder : IPacketBuilder {
     }
 
     override fun sendWaypointPacket(data: ClientboundTrackedWaypointPacketData): Packet<*> {
-        return Shard_ClientboundTrackedWaypointPacket().createPacket(data)
+        throw Exception("Waypoints are not supported in 1.21.1")
     }
 
     override fun setContainerData(data: ClientboundContainerSetDataPacketData): Packet<*> {

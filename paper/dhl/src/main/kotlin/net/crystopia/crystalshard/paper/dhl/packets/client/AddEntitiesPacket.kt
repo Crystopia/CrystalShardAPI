@@ -4,9 +4,8 @@ import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundAddEntityPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.minecraft.network.protocol.game.GamePacketTypes
 import org.bukkit.Location
 import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.entity.CraftEntityType
@@ -37,25 +36,25 @@ fun ClientPacketFactory.addEntity(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.addEntitiesPacket(
+            ClientPacketBuilder.addEntitiesPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.addEntitiesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.addEntitiesPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.addEntitiesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.addEntitiesPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.addEntitiesPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.addEntitiesPacket(
                 data
             )
         }

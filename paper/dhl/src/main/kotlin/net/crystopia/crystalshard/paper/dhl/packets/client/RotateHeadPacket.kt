@@ -4,7 +4,7 @@ import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRotateHeadPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import org.bukkit.craftbukkit.entity.CraftEntity
 import org.bukkit.entity.Entity
@@ -19,25 +19,25 @@ fun ClientPacketFactory.rotateHead(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.rotateHeadPacket(
+            ClientPacketBuilder.rotateHeadPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.rotateHeadPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.rotateHeadPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.rotateHeadPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.rotateHeadPacket(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.rotateHeadPacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.rotateHeadPacket(
                 data
             )
         }

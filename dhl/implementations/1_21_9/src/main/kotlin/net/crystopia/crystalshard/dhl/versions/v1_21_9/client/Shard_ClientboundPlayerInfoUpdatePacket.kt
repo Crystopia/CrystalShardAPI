@@ -4,7 +4,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.client
 import com.mojang.authlib.GameProfile
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerInfoUpdatePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.packets.InfoUpdateAction
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.Optionull
 import net.minecraft.network.chat.RemoteChatSession
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket
@@ -13,7 +13,7 @@ import java.util.*
 import java.util.function.Function
 
 
-class Shard_ClientboundPlayerInfoUpdatePacket : IPacket<ClientboundPlayerInfoUpdatePacketData> {
+class Shard_ClientboundPlayerInfoUpdatePacket : IClientPacket<ClientboundPlayerInfoUpdatePacketData> {
 
     override fun createPacket(
         packetObj: ClientboundPlayerInfoUpdatePacketData

@@ -2,11 +2,11 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_10.client
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundContainerSetContentPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.core.NonNullList
 import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket
 
-class Shard_ClientboundContainerSetContentPacket : IPacket<ClientboundContainerSetContentPacketData> {
+class Shard_ClientboundContainerSetContentPacket : IClientPacket<ClientboundContainerSetContentPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundContainerSetContentPacketData

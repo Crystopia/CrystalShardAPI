@@ -5,15 +5,8 @@ import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerInfoUpdatePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.minecraft.network.Connection
-import net.minecraft.network.protocol.PacketFlow
-import net.minecraft.server.level.ClientInformation
-import net.minecraft.server.network.CommonListenerCookie
-import net.minecraft.server.network.ServerGamePacketListenerImpl
-import org.bukkit.Bukkit
-import org.bukkit.craftbukkit.CraftServer
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Player
 
@@ -30,25 +23,25 @@ fun ClientPacketFactory.playerInfoUpdate(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.playerInfoUpdatePacket(
+            ClientPacketBuilder.playerInfoUpdatePacket(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.playerInfoUpdatePacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.playerInfoUpdatePacket(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.playerInfoUpdatePacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.playerInfoUpdatePacket(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.playerInfoUpdatePacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.playerInfoUpdatePacket(
                 data
             )
         }

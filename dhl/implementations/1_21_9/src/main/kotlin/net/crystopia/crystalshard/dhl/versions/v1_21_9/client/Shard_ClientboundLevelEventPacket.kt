@@ -2,11 +2,11 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.client
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundLevelEventPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.core.BlockPos
 import net.minecraft.network.protocol.game.ClientboundLevelEventPacket
 
-class Shard_ClientboundLevelEventPacket : IPacket<ClientboundLevelEventPacketData> {
+class Shard_ClientboundLevelEventPacket : IClientPacket<ClientboundLevelEventPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundLevelEventPacketData

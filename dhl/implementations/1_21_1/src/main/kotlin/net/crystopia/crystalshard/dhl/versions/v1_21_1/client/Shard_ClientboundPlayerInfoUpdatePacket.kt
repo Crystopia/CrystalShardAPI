@@ -3,12 +3,12 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_1.client
 
 import com.mojang.authlib.GameProfile
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerInfoUpdatePacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket
 import net.minecraft.server.level.ServerPlayer
 import java.util.*
 
-class Shard_ClientboundPlayerInfoUpdatePacket : IPacket<ClientboundPlayerInfoUpdatePacketData> {
+class Shard_ClientboundPlayerInfoUpdatePacket : IClientPacket<ClientboundPlayerInfoUpdatePacketData> {
 
     override fun createPacket(
         packetObj: ClientboundPlayerInfoUpdatePacketData

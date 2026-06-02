@@ -4,14 +4,12 @@ import io.papermc.paper.adventure.PaperAdventure
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetDisplayObjectivePacketData
-import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetScorePacketData
 import net.crystopia.crystalshard.dhl.shared.data.scoreboard.DisplayData
-import net.crystopia.crystalshard.dhl.shared.data.scoreboard.ScoreData
 import net.crystopia.crystalshard.dhl.shared.enums.scoreboard.DisplaySlot
 import net.crystopia.crystalshard.dhl.shared.enums.scoreboard.ScoreBoardMode
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.types.scoreboard.BlankFormatData
 import net.crystopia.crystalshard.paper.dhl.types.scoreboard.FixedFormatData
 import net.crystopia.crystalshard.paper.dhl.types.scoreboard.StyledFormatData
@@ -56,25 +54,25 @@ fun ClientPacketFactory.setDisplayObjective(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.setDisplayObjective(
+            ClientPacketBuilder.setDisplayObjective(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.setDisplayObjective(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.setDisplayObjective(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.setDisplayObjective(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.setDisplayObjective(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.setDisplayObjective(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.setDisplayObjective(
                 data
             )
         }

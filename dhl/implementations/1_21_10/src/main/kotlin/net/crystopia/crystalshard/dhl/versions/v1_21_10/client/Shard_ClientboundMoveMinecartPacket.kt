@@ -3,12 +3,12 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_10.client
 
 import net.crystopia.crystalshard.dhl.shared.data.entities.MinecartStep
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMoveMinecartPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.data.world.build
 import net.minecraft.network.protocol.game.ClientboundMoveMinecartPacket
 import net.minecraft.world.entity.vehicle.NewMinecartBehavior
 
-class Shard_ClientboundMoveMinecartPacket : IPacket<ClientboundMoveMinecartPacketData> {
+class Shard_ClientboundMoveMinecartPacket : IClientPacket<ClientboundMoveMinecartPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundMoveMinecartPacketData

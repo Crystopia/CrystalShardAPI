@@ -2,11 +2,11 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_1.client
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetDefaultSpawnPositionPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.core.BlockPos
 import net.minecraft.network.protocol.game.ClientboundSetDefaultSpawnPositionPacket
 
-class Shard_ClientboundSetDefaultSpawnPositionPacket : IPacket<ClientboundSetDefaultSpawnPositionPacketData> {
+class Shard_ClientboundSetDefaultSpawnPositionPacket : IClientPacket<ClientboundSetDefaultSpawnPositionPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundSetDefaultSpawnPositionPacketData

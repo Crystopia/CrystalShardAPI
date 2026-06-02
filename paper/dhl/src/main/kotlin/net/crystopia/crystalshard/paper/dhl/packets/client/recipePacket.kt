@@ -35,7 +35,7 @@ fun ClientPacketFactory.recipePacket(
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.recipePacket(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.recipePacket(
                 data
             )
         }

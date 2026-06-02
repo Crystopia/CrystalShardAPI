@@ -3,10 +3,10 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.client
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMoveEntityPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityMoveMode
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundMoveEntityPacket
 
-class Shard_ClientboundMoveEntityPacket : IPacket<ClientboundMoveEntityPacketData> {
+class Shard_ClientboundMoveEntityPacket : IClientPacket<ClientboundMoveEntityPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundMoveEntityPacketData

@@ -4,7 +4,7 @@ import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.Shard_Packet
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateAdvancementsPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.data.packets.advancementProgressToShard
 import net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.data.packets.advancementToShard
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
@@ -35,7 +35,7 @@ fun ClientPacketFactory.updateAdvancements(
                 showAdvancements
             )
             shardPacket.packetData = data
-            PacketBuilder.updateAdvancements(
+            ClientPacketBuilder.updateAdvancements(
                 data
             )
         }
@@ -51,7 +51,7 @@ fun ClientPacketFactory.updateAdvancements(
                 showAdvancements
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.updateAdvancements(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.updateAdvancements(
                 data
             )
         }
@@ -67,7 +67,7 @@ fun ClientPacketFactory.updateAdvancements(
                 showAdvancements
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.updateAdvancements(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.updateAdvancements(
                 data
             )
         }
@@ -83,7 +83,7 @@ fun ClientPacketFactory.updateAdvancements(
                 showAdvancements
             )
             shardPacket.packetData = data
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.updateAdvancements(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.updateAdvancements(
                 data
             )
         }

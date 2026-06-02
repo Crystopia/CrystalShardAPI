@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.CustomClickEvent
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.Payload
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.PayloadType
-import net.crystopia.crystalshard.dhl.shared.data.packets.server.Shard_ServerPacketData
+import net.crystopia.crystalshard.dhl.shared.Shard_ServerPacket
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.nbt.serialize
 import net.minecraft.nbt.CompoundTag
@@ -17,8 +17,8 @@ import net.minecraft.server.level.ServerPlayer
  * Util class for attaching and working with the ServerboundCustomClickActionPacket for user-defined clicks by the player.
  */
 class Shard_ServerboundCustomClickActionPacket : IServerPacket<CustomClickEvent>  {
-    override fun attach(
-        data: Shard_ServerPacketData,
+    override fun onEvent(
+        data: Shard_ServerPacket,
         callback: CustomClickEvent.() -> Unit
     ) {
         val serverPlayer = (data.player as ServerPlayer)

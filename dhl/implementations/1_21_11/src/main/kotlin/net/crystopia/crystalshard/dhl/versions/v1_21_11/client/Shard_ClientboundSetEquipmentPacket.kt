@@ -3,12 +3,12 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_11.client
 
 import com.mojang.datafixers.util.Pair
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetEquipmentPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.item.ItemStack
 
-class Shard_ClientboundSetEquipmentPacket : IPacket<ClientboundSetEquipmentPacketData> {
+class Shard_ClientboundSetEquipmentPacket : IClientPacket<ClientboundSetEquipmentPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundSetEquipmentPacketData

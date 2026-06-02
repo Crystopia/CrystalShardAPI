@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundBord
 import net.crystopia.crystalshard.dhl.shared.data.world.WorldBorder
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import org.bukkit.craftbukkit.CraftWorld
 
 fun ClientPacketFactory.setWorldBorderWarningDistance(
@@ -34,25 +34,25 @@ fun ClientPacketFactory.setWorldBorderWarningDistance(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.setWorldBorderWarningDistance(
+            ClientPacketBuilder.setWorldBorderWarningDistance(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.setWorldBorderWarningDistance(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.setWorldBorderWarningDistance(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.setWorldBorderWarningDistance(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.setWorldBorderWarningDistance(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.setWorldBorderWarningDistance(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.setWorldBorderWarningDistance(
                 data
             )
         }

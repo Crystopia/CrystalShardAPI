@@ -2,10 +2,10 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.client
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerCombatKillPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundPlayerCombatKillPacket
 
-class Shard_ClientboundPlayerCombatKillPacket : IPacket<ClientboundPlayerCombatKillPacketData> {
+class Shard_ClientboundPlayerCombatKillPacket : IClientPacket<ClientboundPlayerCombatKillPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundPlayerCombatKillPacketData

@@ -3,11 +3,11 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.client
 
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRemoveEntitiesPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket
 
 class
-Shard_ClientboundRemoveEntitiesPacket : IPacket<ClientboundRemoveEntitiesPacketData> {
+Shard_ClientboundRemoveEntitiesPacket : IClientPacket<ClientboundRemoveEntitiesPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundRemoveEntitiesPacketData

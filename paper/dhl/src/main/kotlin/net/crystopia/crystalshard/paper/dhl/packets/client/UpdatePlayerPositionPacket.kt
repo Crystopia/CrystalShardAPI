@@ -6,9 +6,8 @@ import net.crystopia.crystalshard.dhl.shared.data.entities.PositionMoveRotation
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlayerPositionPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.entities.RelativePosition
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.minecraft.network.protocol.game.ClientboundMoveVehiclePacket
 
 fun ClientPacketFactory.updatePlayerPosition(
     change: PositionMoveRotation,
@@ -23,25 +22,25 @@ fun ClientPacketFactory.updatePlayerPosition(
 
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            PacketBuilder.updatePlayerPosition(
+            ClientPacketBuilder.updatePlayerPosition(
                 data
             )
         }
 
         ServerVersion.v1_21_10 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.PacketBuilder.updatePlayerPosition(
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.general.ClientPacketBuilder.updatePlayerPosition(
                 data
             )
         }
 
         ServerVersion.v1_21_9 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.PacketBuilder.updatePlayerPosition(
+            net.crystopia.crystalshard.dhl.versions.v1_21_9.general.ClientPacketBuilder.updatePlayerPosition(
                 data
             )
         }
 
         ServerVersion.v1_21_1 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.PacketBuilder.updatePlayerPosition(
+            net.crystopia.crystalshard.dhl.versions.v1_21_1.general.ClientPacketBuilder.updatePlayerPosition(
                 data
             )
         }

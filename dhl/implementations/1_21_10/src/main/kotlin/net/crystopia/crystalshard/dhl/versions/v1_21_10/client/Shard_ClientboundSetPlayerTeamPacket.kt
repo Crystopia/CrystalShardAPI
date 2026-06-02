@@ -2,11 +2,11 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_10.client
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetPlayerTeamPacketData
-import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.data.packets.build
 import net.minecraft.network.protocol.game.ClientboundSetPlayerTeamPacket
 
-class Shard_ClientboundSetPlayerTeamPacket : IPacket<ClientboundSetPlayerTeamPacketData> {
+class Shard_ClientboundSetPlayerTeamPacket : IClientPacket<ClientboundSetPlayerTeamPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundSetPlayerTeamPacketData
