@@ -5,7 +5,6 @@ import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.dhl.shared.data.blocks.BlockPos
 import net.crystopia.crystalshard.dhl.shared.enums.entities.BlockEntityType
-import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.createBlockEntityData
 import net.crystopia.crystalshard.paper.dhl.packets.client.createBlockUpdate
@@ -14,9 +13,10 @@ import net.crystopia.crystalshard.paper.dhl.packets.server.signUpdateEvent
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
+import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Player
 
-class ClientMods(val player: Player) {
+class ClientMods(val player: Player, val signNBT: String) {
     val listenerKey = "${this.player.uniqueId.toString().replace("-", "")}_moddetect"
     private val blockPos = BlockPos(
         player.location.x.toInt(), player.location.y.toInt(), player.location.z.toInt()
@@ -39,7 +39,7 @@ class ClientMods(val player: Player) {
                 false
             ) {
                 println(lines)
-                if (lines[0] != "NONE") {
+                if (lines[0] != "NONE" && !lines[0].isEmpty()) {
                     callback(true)
                 } else callback(false)
 
@@ -48,7 +48,7 @@ class ClientMods(val player: Player) {
         }
 
         fun disconnect() {
-            player.connection.disconnect(
+            (player as CraftPlayer).handle.connection.disconnect(
                 component ?: Component.text().text("<color:#ff6b66>You are using blocked mods.</color>").build()
             )
         }
@@ -70,7 +70,7 @@ class ClientMods(val player: Player) {
         }
 
         ClientPacketFactory.createBlockEntityData(
-            blockPos, BlockEntityType.SIGN, buildNBT(key)
+            blockPos, BlockEntityType.SIGN, signNBT
         ) { packet ->
             packet.send(mutableListOf(player))
         }
@@ -88,11 +88,5 @@ class ClientMods(val player: Player) {
         ) { packet ->
             packet.send(mutableListOf(player))
         }
-    }
-
-    private fun buildNBT(key: String): String {
-        return """
-          {front_text:{messages:[{"translate":"$key","fallback":"NONE"},{"translate":"$key","fallback":"NONE"},{"translate":"$key","fallback":"NONE"},{"translate":"$key","fallback":"NONE"}]}}
-      """.trimIndent()
     }
 }

@@ -20,7 +20,7 @@ object EntityBuilder : IEntityBuilder {
         location: Location
     ): net.minecraft.world.entity.Entity {
         val instance = type.create(
-            location.world,
+            location.world as ServerLevel,
             EntitySpawnReason.COMMAND,
         )
         return instance!!
@@ -40,18 +40,18 @@ object EntityBuilder : IEntityBuilder {
     override fun createDisplayEntity(type: EntityType<*>, location: Location): Display? {
         when (type) {
             EntityType.TEXT_DISPLAY -> {
-                val entity = Display.TextDisplay(type, location.world)
+                val entity = Display.TextDisplay(type, location.world as ServerLevel)
                 return entity as Display.TextDisplay
             }
 
             EntityType.ITEM_DISPLAY -> {
 
-                val entity = Display.ItemDisplay(type, location.world)
+                val entity = Display.ItemDisplay(type, location.world as ServerLevel)
                 return entity as Display.ItemDisplay
             }
 
             EntityType.BLOCK_DISPLAY -> {
-                val entity = Display.BlockDisplay(type, location.world)
+                val entity = Display.BlockDisplay(type, location.world as ServerLevel)
                 return entity as Display.BlockDisplay
             }
 

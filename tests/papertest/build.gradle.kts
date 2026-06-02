@@ -33,6 +33,7 @@ dependencies {
     implementation(project(":paper:box"))
     implementation(project(":paper:custom"))
     implementation(project(":dhl"))
+    implementation(project(":paper:dhl:types"))
     implementation(project(":dhl:shared"))
     implementation(project(":paper:dhl"))
     implementation(project(":paper:pack"))

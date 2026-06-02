@@ -2,13 +2,13 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.server
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
-import net.crystopia.crystalshard.dhl.shared.converter.serialize
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.CustomClickEvent
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.Payload
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.PayloadType
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.Shard_ServerPacketData
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
+import net.crystopia.crystalshard.dhl.versions.v1_21_9.converter.data.nbt.serialize
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.common.ServerboundCustomClickActionPacket
 import net.minecraft.server.level.ServerPlayer

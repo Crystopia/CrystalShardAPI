@@ -1,9 +1,10 @@
 package net.crystopia.crystalshard.dhl.shared.data.custom
 
-import net.minecraft.world.level.Level
-
 data class Location(
-    val world: Level,
+    /**
+     * ServerLevel
+     */
+    val world: Any,
     val x: Double, var y: Double, var z: Double,
     var yaw: Float, var pitch: Float
 )

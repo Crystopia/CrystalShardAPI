@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":paper:core"))
     implementation(project(":dhl"))
     implementation(project(":dhl:shared"))
+    implementation(project(":paper:dhl:types"))
     implementation(project(":dhl:implementations:1_21_1"))
     implementation(project(":dhl:implementations:1_21_9"))
     implementation(project(":dhl:implementations:1_21_10"))

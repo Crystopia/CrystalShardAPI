@@ -8,7 +8,6 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpda
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.PacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.minecraft.core.Holder
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import org.bukkit.craftbukkit.attribute.CraftAttribute
 import org.bukkit.craftbukkit.entity.CraftEntity
@@ -22,10 +21,12 @@ fun ClientPacketFactory.updateAttributes(
     attributes: MutableList<net.crystopia.crystalshard.paper.dhl.types.attributes.Attribute>,
     callback: (packet: Shard_Packet<ClientboundUpdateAttributesPacketData>) -> Unit
 ): Shard_Packet<ClientboundUpdateAttributesPacketData> {
+
+
     val data = ClientboundUpdateAttributesPacketData(
         (entity as CraftEntity).handle, attributes.map { attr ->
             Attribute(
-                id = Holder.direct((attr.id as CraftAttribute).handle),
+                id = CraftAttribute.bukkitToMinecraftHolder(attr.id as org.bukkit.attribute.Attribute),
                 value = attr.value,
                 modifiers = attr.modifiers.map {
                     AttributeModifiers(

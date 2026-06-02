@@ -2,16 +2,45 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_1.client
 
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundLevelParticlesPacketData
+import net.crystopia.crystalshard.dhl.shared.data.particles.BlockParticleOption
+import net.crystopia.crystalshard.dhl.shared.data.particles.ColorParticleOption
+import net.crystopia.crystalshard.dhl.shared.data.particles.DustColorTransitionOptions
+import net.crystopia.crystalshard.dhl.shared.data.particles.DustParticleOptions
+import net.crystopia.crystalshard.dhl.shared.data.particles.ItemParticleOption
+import net.crystopia.crystalshard.dhl.shared.data.particles.PowerParticleOption
+import net.crystopia.crystalshard.dhl.shared.data.particles.SculkChargeParticleOptions
+import net.crystopia.crystalshard.dhl.shared.data.particles.ShriekParticleOption
+import net.crystopia.crystalshard.dhl.shared.data.particles.SpellParticleOption
+import net.crystopia.crystalshard.dhl.shared.data.particles.TrailParticleOption
+import net.crystopia.crystalshard.dhl.shared.data.particles.VibrationParticleOption
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
+import net.crystopia.crystalshard.dhl.versions.v1_21_1.converter.data.particles.build
+import net.crystopia.crystalshard.dhl.versions.v1_21_1.converter.enums.particles.ParticleType
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.network.protocol.game.ClientboundLevelParticlesPacket
+import net.minecraft.server.level.ServerPlayer
 
 class Shard_ClientboundLevelParticlesPacket : IPacket<ClientboundLevelParticlesPacketData> {
 
     override fun createPacket(
         packetObj: ClientboundLevelParticlesPacketData
     ): ClientboundLevelParticlesPacket {
-        val particleData = if (packetObj.particle.options == null) packetObj.particle.particle else packetObj.particle.options
+        val particle = when (packetObj.particle.options) {
+            is BlockParticleOption -> (packetObj.particle.options as BlockParticleOption).build()
+            is ColorParticleOption -> (packetObj.particle.options as ColorParticleOption).build()
+            is DustColorTransitionOptions -> (packetObj.particle.options as DustColorTransitionOptions).build()
+            is ItemParticleOption -> (packetObj.particle.options as ItemParticleOption).build()
+            is DustParticleOptions -> (packetObj.particle.options as DustParticleOptions).build()
+            is SculkChargeParticleOptions -> (packetObj.particle.options as SculkChargeParticleOptions).build()
+            is ShriekParticleOption -> (packetObj.particle.options as ShriekParticleOption).build()
+            is VibrationParticleOption -> (packetObj.particle.options as VibrationParticleOption).build()
+            else -> {}
+        }
+
+        val particleData =
+            if (packetObj.particle.options == null) ParticleType.convert(
+                packetObj.particle.particle
+            ).id else particle as ParticleOptions
 
         return ClientboundLevelParticlesPacket(
             particleData as ParticleOptions,

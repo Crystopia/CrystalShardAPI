@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_9.client
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipeBookAddPacketData
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IPacket
 import net.minecraft.network.protocol.game.ClientboundRecipeBookAddPacket
+import net.minecraft.world.item.crafting.display.RecipeDisplayEntry
 
 class Shard_ClientboundRecipeBookAddPacket : IPacket<ClientboundRecipeBookAddPacketData> {
 
@@ -11,9 +12,9 @@ override fun createPacket(
 ): ClientboundRecipeBookAddPacket {
     
 
-    val data = packetObj.recipeDisplayEntries.map {
+    val data = packetObj.recipeEntries.map {
         ClientboundRecipeBookAddPacket.Entry(
-            it.recipeDisplay,
+            it.recipeDisplay!! as RecipeDisplayEntry,
             it.flags
         )
     }.toList()

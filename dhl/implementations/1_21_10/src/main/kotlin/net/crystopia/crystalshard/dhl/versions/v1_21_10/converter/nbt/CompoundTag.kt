@@ -1,10 +1,11 @@
-﻿package net.crystopia.crystalshard.dhl.shared.converter
+﻿package net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.nbt
 
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.nbt.Tag
+import net.minecraft.nbt.TagParser
 
 fun CompoundTag.deserialize(nbt: String): CompoundTag {
-    return net.minecraft.nbt.TagParser.parseCompoundFully(nbt)
+    return TagParser.parseCompoundFully(nbt)
 }
 
 fun CompoundTag.serialize(

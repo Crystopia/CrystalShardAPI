@@ -25,6 +25,8 @@ import net.crystopia.crystalshard.paper.dhl.types.teams.Team
 import net.crystopia.crystalshard.paper.dhl.types.world.WorldBorder
 import net.crystopia.crystalshard.tests.paper.tests.base.ITest
 import net.kyori.adventure.text.Component
+import org.bukkit.Bukkit
+import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.attribute.Attribute
@@ -553,7 +555,7 @@ class TeleportEntityTest(name: String, sender: CommandSender, args: CommandArgum
     override fun command() {
         test {
             val player = sender as Player
-            val targetLoc = player.location.clone().add(0.0, 5.0, 0.0)
+            val targetLoc = Location(Bukkit.getWorld("world_the_end"), 0.0, 0.0, 0.0)
             ClientPacketFactory.teleportEntity(
                 entity = player,
                 location = targetLoc,

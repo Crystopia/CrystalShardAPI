@@ -13,5 +13,9 @@ enum class RecipeBookCategories {
     SMOKER_FOOD,
     STONECUTTER,
     SMITHING,
-    CAMPFIRE
+    CAMPFIRE,
+    MISC,
+    EQUIPMENT,
+    REDSTONE,
+    BUILDING,
 }

@@ -2,7 +2,6 @@ package net.crystopia.crystalshard.paper.panic.extension
 
 import net.crystopia.crystalshard.paper.panic.experimental.ClientMods
 import org.bukkit.entity.Player
-import org.bukkit.plugin.java.JavaPlugin
 
 /**
  * **EXPERIMENTAL**
@@ -32,8 +31,8 @@ import org.bukkit.plugin.java.JavaPlugin
  * }
  * ```
  */
-fun Player.clientMods(callback: ClientMods.() -> Unit): Player {
-    val clientMods = ClientMods(this)
+fun Player.clientMods(signNbt: String, callback: ClientMods.() -> Unit): Player {
+    val clientMods = ClientMods(this, signNbt)
     callback(
         clientMods
     )

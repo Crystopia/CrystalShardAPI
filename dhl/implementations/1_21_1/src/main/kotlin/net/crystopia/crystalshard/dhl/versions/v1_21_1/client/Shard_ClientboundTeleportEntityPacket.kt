@@ -10,7 +10,6 @@ class Shard_ClientboundTeleportEntityPacket : IPacket<ClientboundTeleportEntityP
     override fun createPacket(
         packetObj: ClientboundTeleportEntityPacketData
     ): ClientboundTeleportEntityPacket {
-
         packetObj.entity.setPos(packetObj.location.x, packetObj.location.y, packetObj.location.z)
         packetObj.entity.yRot = packetObj.location.yaw
         packetObj.entity.xRot = packetObj.location.pitch

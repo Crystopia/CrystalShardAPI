@@ -8,6 +8,10 @@ import net.minecraft.network.protocol.game.*
 
 object PacketBuilder : IPacketBuilder {
 
+    override fun recipePacket(data: ClientboundRecipePacketData): Packet<*> {
+        throw Exception("Recipe packets not supported")
+    }
+
     override fun addRecipeBook(data: ClientboundRecipeBookAddPacketData): Packet<*> {
         return Shard_ClientboundRecipeBookAddPacket().createPacket(data)
     }

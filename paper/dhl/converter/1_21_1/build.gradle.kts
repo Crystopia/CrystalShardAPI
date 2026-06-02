@@ -16,6 +16,7 @@ dependencies {
     // Paper
     paperweight.paperDevBundle("1.20.6-R0.1-SNAPSHOT")
     implementation(project(":dhl:implementations:1_21_1"))
+    implementation(project(":paper:dhl:types"))
     implementation(project(":dhl:shared"))
 }
 

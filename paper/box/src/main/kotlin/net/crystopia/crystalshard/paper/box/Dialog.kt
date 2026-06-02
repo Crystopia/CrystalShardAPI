@@ -2,14 +2,13 @@ package net.crystopia.crystalshard.paper.box
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.ServerPacketFactory
-import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
-import net.crystopia.crystalshard.paper.dhl.packets.client.showDialog
-import net.crystopia.crystalshard.paper.dhl.packets.server.customClickActionEvent
 import net.crystopia.crystalshard.dhl.shared.data.dialog.*
 import net.crystopia.crystalshard.dhl.shared.data.dialog.buttons.ActionCustomAll
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.CustomClickEvent
-import net.crystopia.crystalshard.dhl.shared.data.packets.server.Shard_ServerPacketData
+import net.crystopia.crystalshard.paper.dhl.extension.removeServerPacketListener
 import net.crystopia.crystalshard.paper.dhl.extension.send
+import net.crystopia.crystalshard.paper.dhl.packets.client.showDialog
+import net.crystopia.crystalshard.paper.dhl.packets.server.customClickActionEvent
 import net.crystopia.crystalshard.paper.dhl.types.dialog.ConfirmationDialog
 import net.crystopia.crystalshard.paper.dhl.types.dialog.DialogListDialog
 import net.crystopia.crystalshard.paper.dhl.types.dialog.MultiActionDialog

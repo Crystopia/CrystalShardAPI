@@ -1,12 +1,11 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.types.recipes
 
 import net.minecraft.core.Holder
+import net.minecraft.world.item.crafting.CookingBookCategory
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.ShapedRecipePattern
 import net.minecraft.world.item.crafting.TransmuteResult
 import net.minecraft.world.item.crafting.display.*
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.enums.recipes.RecipeBookCategories
-import net.minecraft.world.item.crafting.CookingBookCategory
 import net.minecraft.world.item.equipment.trim.TrimPattern
 import org.bukkit.NamespacedKey
 import org.bukkit.craftbukkit.inventory.*
