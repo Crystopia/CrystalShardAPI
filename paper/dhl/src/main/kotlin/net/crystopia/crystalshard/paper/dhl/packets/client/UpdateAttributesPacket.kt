@@ -7,7 +7,7 @@ import net.crystopia.crystalshard.dhl.shared.data.attributes.AttributeModifiers
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateAttributesPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import org.bukkit.craftbukkit.attribute.CraftAttribute

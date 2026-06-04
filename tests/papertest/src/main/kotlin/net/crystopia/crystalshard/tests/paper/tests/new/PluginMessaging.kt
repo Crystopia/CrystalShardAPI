@@ -6,11 +6,11 @@ import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.paper.custom.messaging.ChannelType
 import net.crystopia.crystalshard.paper.custom.messaging.PluginMessage
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class PluginMessaging(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class PluginMessaging(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
 
     override fun command() {
         test {

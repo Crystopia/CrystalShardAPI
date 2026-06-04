@@ -9,6 +9,22 @@ import net.minecraft.network.protocol.game.*
 
 object ClientPacketBuilder : IClientPacketBuilder {
 
+    override fun removeRecipeBook(data: ClientboundRecipeBookRemovePacketData): Packet<*> {
+        throw NoPacketMethodFound("Packet no exists on 1.21.1")
+    }
+
+    override fun recipeBookSettings(data: ClientboundRecipeBookSettingsPacketData): Packet<*> {
+        throw NoPacketMethodFound("Packet no exists on 1.21.1")
+    }
+
+    override fun placeGhostRecipe(data: ClientboundPlaceGhostRecipePacketData): Packet<*> {
+        return Shard_ClientboundPlaceGhostRecipePacket().createPacket(data)
+    }
+
+    override fun selectAdvancementTab(data: ClientboundSelectAdvancementsTabPacketData): Packet<*> {
+        return Shard_ClientboundSelectAdvancementsTabPacket().createPacket(data)
+    }
+
     override fun recipePacket(data: ClientboundRecipePacketData): Packet<*> {
         return Shard_ClientboundRecipePacket().createPacket(data)
     }

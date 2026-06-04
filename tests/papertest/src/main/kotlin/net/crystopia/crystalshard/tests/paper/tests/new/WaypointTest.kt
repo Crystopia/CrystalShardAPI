@@ -20,7 +20,7 @@ import net.crystopia.crystalshard.paper.custom.smart.smartRecipe
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.sendWaypoint
 import net.crystopia.crystalshard.paper.pack.font.toGuiRow
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Material
@@ -32,7 +32,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.ShapelessRecipe
 import java.util.UUID
 
-class WaypointTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class WaypointTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
 
     override fun command() {
         test {
@@ -50,7 +50,7 @@ class WaypointTest(name: String, sender: CommandSender, args: CommandArguments) 
                     )
                 )
             ) { packet ->
-                packet.send(mutableListOf(sender as Player))
+                packet.send(mutableListOf(sender!!as Player))
             }
         }
     }
@@ -89,7 +89,7 @@ object EventTest {
     }
 }
 
-class InvFontTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class InvFontTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
 
 
     fun reopenInv(player: Player) {
@@ -138,7 +138,7 @@ class InvFontTest(name: String, sender: CommandSender, args: CommandArguments) :
 
     override fun command() {
         test {
-            (sender as Player).openInventory(basicGui(currentPage))
+            (sender!!as Player).openInventory(basicGui(currentPage))
         }
     }
 

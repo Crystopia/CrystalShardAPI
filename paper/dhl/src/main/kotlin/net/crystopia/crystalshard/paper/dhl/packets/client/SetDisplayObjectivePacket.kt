@@ -10,7 +10,7 @@ import net.crystopia.crystalshard.dhl.shared.enums.scoreboard.ScoreBoardMode
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.types.scoreboard.BlankFormatData
 import net.crystopia.crystalshard.paper.dhl.types.scoreboard.FixedFormatData
 import net.crystopia.crystalshard.paper.dhl.types.scoreboard.StyledFormatData

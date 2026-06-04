@@ -30,13 +30,6 @@ fun Player.hasServerPacketListener(key: String) : Boolean {
 fun <T : Any> ClientPacket<T>.send(players: MutableList<Player>): ClientPacket<T> {
     players.forEach { player ->
         val serverPlayer = (player as CraftPlayer).handle
-
-
-        val world = Bukkit.getWorld("world") as CraftWorld
-
-        world.handle.dimensionType()
-
-
         val connection = serverPlayer.connection
         connection.send(packetObject)
     }

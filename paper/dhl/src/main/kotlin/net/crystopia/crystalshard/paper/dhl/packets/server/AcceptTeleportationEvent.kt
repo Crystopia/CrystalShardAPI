@@ -23,7 +23,7 @@ fun ServerPacketFactory.acceptTeleportationEvent(
 
     when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ServerPacketBuilder.acceptTeleportationEvent(
+            net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ServerPacketBuilder.acceptTeleportationEvent(
                 data,
                 callback
             )

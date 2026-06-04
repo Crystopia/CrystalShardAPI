@@ -16,7 +16,8 @@ import net.crystopia.crystalshard.paper.folia.threadedTask
 import net.crystopia.crystalshard.tests.paper.config.TestConfig
 import net.crystopia.crystalshard.tests.paper.databse.entities.UserEntity
 import net.crystopia.crystalshard.tests.paper.databse.models.users
-import net.crystopia.crystalshard.tests.paper.tests.base.TestCommand
+import net.crystopia.crystalshard.tests.paper.tests.new.AdvancementTabTest
+import net.crystopia.crystalshard.tests.paper.tests.new.AdvancementTest
 import net.crystopia.crystalshard.tests.paper.tests.new.EventTest
 import org.bukkit.plugin.java.JavaPlugin
 import org.ktorm.entity.add
@@ -62,7 +63,10 @@ class CrystalShardPluginTest : JavaPlugin() {
 
         EventTest
         EventTest.recipe
-        TestCommand
+
+        AdvancementTest
+        AdvancementTabTest
+
         server.pluginManager.registerEvents(SmartEvents, this)
         Log.info("Plugin loaded!")
     }

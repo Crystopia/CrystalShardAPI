@@ -6,6 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.advancements.AdvancementHolder
 import net.minecraft.advancements.AdvancementProgress
 import net.minecraft.advancements.AdvancementRequirements
+import net.minecraft.network.protocol.game.ClientboundSelectAdvancementsTabPacket
 import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket
 import net.minecraft.resources.ResourceLocation
 

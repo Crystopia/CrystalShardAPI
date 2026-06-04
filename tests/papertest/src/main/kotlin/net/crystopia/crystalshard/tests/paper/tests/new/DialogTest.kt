@@ -13,15 +13,15 @@ import net.crystopia.crystalshard.paper.dhl.types.dialog.buttons.ActionButton
 import net.crystopia.crystalshard.paper.dhl.types.dialog.buttons.ActionCustomAll
 import net.crystopia.crystalshard.paper.dhl.types.dialog.buttons.ActionStaticAction
 import net.crystopia.crystalshard.paper.dhl.types.dialog.buttons.CommonButtonData
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import net.kyori.adventure.text.Component
 import org.bukkit.NamespacedKey
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class DialogTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class DialogTest : Test("DialogTest") {
     override fun command() {
-        test {
+       test {
 
             ClientPacketFactory.showDialog(
                 ConfirmationDialog(
@@ -63,7 +63,7 @@ class DialogTest(name: String, sender: CommandSender, args: CommandArguments) : 
                     )
                 )
             ) { packet ->
-                packet.send(mutableListOf(sender as Player))
+                packet.send(mutableListOf(sender!!as Player))
             }
         }
     }

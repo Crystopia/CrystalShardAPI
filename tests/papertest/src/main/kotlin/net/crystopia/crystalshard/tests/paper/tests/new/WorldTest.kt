@@ -3,13 +3,13 @@ package net.crystopia.crystalshard.tests.paper.tests.new
 import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.paper.custom.world.customWorld
 import net.crystopia.crystalshard.paper.custom.world.data.WorldSettings
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.NamespacedKey
 import org.bukkit.World
 import org.bukkit.WorldType
 import org.bukkit.command.CommandSender
 
-class WorldTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class WorldTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
             customWorld {

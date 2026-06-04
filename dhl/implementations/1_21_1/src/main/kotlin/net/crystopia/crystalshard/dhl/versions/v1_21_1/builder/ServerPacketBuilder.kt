@@ -8,6 +8,14 @@ import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacketBui
 import net.crystopia.crystalshard.dhl.versions.v1_21_1.server.*
 
 object ServerPacketBuilder : IServerPacketBuilder {
+
+    override fun seenAdvancementsEvent(
+        data: ServerPacket,
+        event: (data: SeenAdvancementsEvent) -> Unit
+    ) {
+        Shard_ServerboundSeenAdvancementsPacket().onEvent(data, event)
+    }
+
     override fun acceptTeleportationEvent(
         data: ServerPacket,
         event: (id: Int) -> Unit

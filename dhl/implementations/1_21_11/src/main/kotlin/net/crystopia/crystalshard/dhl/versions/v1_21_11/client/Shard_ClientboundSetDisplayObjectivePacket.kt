@@ -3,8 +3,8 @@
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundSetDisplayObjectivePacketData
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.data.packets.build
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.enums.scoreboard.DisplaySlot
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.packets.build
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.enums.scoreboard.DisplaySlot
 import net.minecraft.network.protocol.game.ClientboundSetDisplayObjectivePacket
 
 class Shard_ClientboundSetDisplayObjectivePacket : IClientPacket<ClientboundSetDisplayObjectivePacketData> {

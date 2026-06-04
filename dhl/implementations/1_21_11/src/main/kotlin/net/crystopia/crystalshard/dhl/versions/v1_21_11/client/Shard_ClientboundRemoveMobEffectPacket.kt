@@ -3,7 +3,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_11.client
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRemoveMobEffectPacketData
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.enums.entities.EffectType
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.enums.entities.EffectType
 import net.minecraft.network.protocol.game.ClientboundRemoveMobEffectPacket
 
 class Shard_ClientboundRemoveMobEffectPacket : IClientPacket<ClientboundRemoveMobEffectPacketData> {

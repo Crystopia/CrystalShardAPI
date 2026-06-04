@@ -5,15 +5,15 @@ import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.openScreen
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import net.kyori.adventure.text.Component
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class OpenScreenTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class OpenScreenTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.openScreen(
                 id = 1,
                 title = Component.text("Test Inventory"),

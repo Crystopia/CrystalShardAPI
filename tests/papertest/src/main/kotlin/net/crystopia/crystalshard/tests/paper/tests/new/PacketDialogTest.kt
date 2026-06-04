@@ -6,13 +6,13 @@ import net.crystopia.crystalshard.paper.box.packetDialog
 import net.crystopia.crystalshard.dhl.shared.enums.dialog.DialogAction
 import net.crystopia.crystalshard.paper.dhl.types.dialog.ConfirmationDialog
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import net.kyori.adventure.text.Component
 import org.bukkit.NamespacedKey
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class PacketDialogTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class PacketDialogTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
             packetDialog(
@@ -105,7 +105,7 @@ class PacketDialogTest(name: String, sender: CommandSender, args: CommandArgumen
                 listen {
                     println(this.payload.type.data)
                 }
-                open(mutableListOf(sender as Player))
+                open(mutableListOf(sender!!as Player))
             }
         }
     }

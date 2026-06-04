@@ -23,7 +23,7 @@ import net.crystopia.crystalshard.paper.dhl.types.scoreboard.DisplayData
 import net.crystopia.crystalshard.paper.dhl.types.scoreboard.ScoreData
 import net.crystopia.crystalshard.paper.dhl.types.teams.Team
 import net.crystopia.crystalshard.paper.dhl.types.world.WorldBorder
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -34,10 +34,10 @@ import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
-class SendEntityEventTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SendEntityEventTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             // Status 3 = Player death animation
             ClientPacketFactory.sendEntityEvent(
                 entity = player,
@@ -49,10 +49,10 @@ class SendEntityEventTest(name: String, sender: CommandSender, args: CommandArgu
     }
 }
 
-class SendObjectiveUpdateTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SendObjectiveUpdateTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.sendObjectiveUpdate(
                 mode = ScoreBoardMode.CREATE,
                 displaySlot = DisplaySlot.SIDEBAR,
@@ -72,10 +72,10 @@ class SendObjectiveUpdateTest(name: String, sender: CommandSender, args: Command
 }
 
 class SendPlayerCombatKillTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.sendPlayerCombatKill(
                 entityId = player.entityId,
                 message = Component.text("${player.name} wurde von einem Test besiegt")
@@ -85,10 +85,10 @@ class SendPlayerCombatKillTest(name: String, sender: CommandSender, args: Comman
     }
 }
 
-class SendTeamTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SendTeamTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.sendTeam(
                 action = TeamAction.ADD,
                 team = Team(
@@ -108,10 +108,10 @@ class SendTeamTest(name: String, sender: CommandSender, args: CommandArguments) 
     }
 }
 
-class SendWorldEventTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SendWorldEventTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             val loc = player.location
             // 1004 = Feuerball-Sound
             ClientPacketFactory.sendWorldEvent(
@@ -125,10 +125,10 @@ class SendWorldEventTest(name: String, sender: CommandSender, args: CommandArgum
     }
 }
 
-class SetContainerContentTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetContainerContentTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setContainerContent(
                 id = 0,
                 stateId = 1,
@@ -144,10 +144,10 @@ class SetContainerContentTest(name: String, sender: CommandSender, args: Command
     }
 }
 
-class SetContainerDataTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetContainerDataTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             // Property 0 = Furnace fire icon
             ClientPacketFactory.setContainerData(
                 id = 0,
@@ -159,10 +159,10 @@ class SetContainerDataTest(name: String, sender: CommandSender, args: CommandArg
     }
 }
 
-class SetContainerSlotTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetContainerSlotTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setContainerSlot(
                 id = 0,
                 revision = 1,
@@ -175,10 +175,10 @@ class SetContainerSlotTest(name: String, sender: CommandSender, args: CommandArg
 }
 
 class SetDefaultSpawnPositionTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             val loc = player.location
             ClientPacketFactory.setDefaultSpawnPosition(
                 world = player.world,
@@ -192,10 +192,10 @@ class SetDefaultSpawnPositionTest(name: String, sender: CommandSender, args: Com
     }
 }
 
-class SetDisplayObjectiveTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetDisplayObjectiveTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setDisplayObjective(
                 displaySlot = DisplaySlot.SIDEBAR,
                 displayData = DisplayData(
@@ -213,10 +213,10 @@ class SetDisplayObjectiveTest(name: String, sender: CommandSender, args: Command
     }
 }
 
-class SetEntityDataTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetEntityDataTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             // Index 0, Byte: Flags (0x20 = invisible)
             ClientPacketFactory.setEntityData(
                 entity = player,
@@ -233,10 +233,10 @@ class SetEntityDataTest(name: String, sender: CommandSender, args: CommandArgume
     }
 }
 
-class SetHealthTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetHealthTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setHealth(
                 health = 10f,
                 food = 20,
@@ -247,10 +247,10 @@ class SetHealthTest(name: String, sender: CommandSender, args: CommandArguments)
     }
 }
 
-class SetItemOnCursorTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetItemOnCursorTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setItemOnCursor(
                 item = ItemStack(Material.DIAMOND),
                 slot = 0
@@ -260,10 +260,10 @@ class SetItemOnCursorTest(name: String, sender: CommandSender, args: CommandArgu
     }
 }
 
-class SetMapItemDataTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetMapItemDataTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             // Leerer Farbpatch: 128x128 weiße Map
             val colors = ByteArray(128 * 128) { 0 }
             ClientPacketFactory.setMapItemData(
@@ -284,10 +284,10 @@ class SetMapItemDataTest(name: String, sender: CommandSender, args: CommandArgum
     }
 }
 
-class SetMerchantOfferTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetMerchantOfferTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setMerchantOffer(
                 windowId = 1,
                 merchantOffers = net.crystopia.crystalshard.paper.dhl.types.merchant.MerchantOffers(
@@ -320,10 +320,10 @@ class SetMerchantOfferTest(name: String, sender: CommandSender, args: CommandArg
     }
 }
 
-class SetPassengersTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetPassengersTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             // Fake-Entity muss vorher gespawnt sein (z.B. via AddEntity)
             // Hier nur als Beispiel mit leerem Passagier-Array
             ClientPacketFactory.setPassengers(
@@ -336,10 +336,10 @@ class SetPassengersTest(name: String, sender: CommandSender, args: CommandArgume
 }
 
 class SetScoreInDisplayObjectTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setScoreInDisplayObject(
                 score = ScoreData(
                     displayId = "test_display",
@@ -356,10 +356,10 @@ class SetScoreInDisplayObjectTest(name: String, sender: CommandSender, args: Com
 }
 
 class ResetScoreInDisplayObjectTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.resetScoreInDisplayObject(
                 score = ScoreData(
                     displayId = "test_display",
@@ -375,10 +375,10 @@ class ResetScoreInDisplayObjectTest(name: String, sender: CommandSender, args: C
     }
 }
 
-class SetTabListTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetTabListTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setTabList(
                 header = Component.text("§6=== Test Server ==="),
                 footer = Component.text("§7Packet Test läuft")
@@ -388,10 +388,10 @@ class SetTabListTest(name: String, sender: CommandSender, args: CommandArguments
     }
 }
 
-class SetTimeTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetTimeTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             // 6000 = Mittag
             ClientPacketFactory.setTime(
                 gameTime = player.world.fullTime,
@@ -404,10 +404,10 @@ class SetTimeTest(name: String, sender: CommandSender, args: CommandArguments) :
 }
 
 class SetWorldBorderCenterTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setWorldBorderCenter(
                 border = WorldBorder(
                     world = player.world,
@@ -431,10 +431,10 @@ class SetWorldBorderCenterTest(name: String, sender: CommandSender, args: Comman
 }
 
 class SetWorldBorderLerpSizeTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setWorldBorderLerpSize(
                 border = WorldBorder(
                     world = player.world,
@@ -457,10 +457,10 @@ class SetWorldBorderLerpSizeTest(name: String, sender: CommandSender, args: Comm
     }
 }
 
-class SetWorldBorderSizeTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class SetWorldBorderSizeTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setWorldBorderSize(
                 border = WorldBorder(
                     world = player.world,
@@ -484,10 +484,10 @@ class SetWorldBorderSizeTest(name: String, sender: CommandSender, args: CommandA
 }
 
 class SetWorldBorderWarningDelayTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setWorldBorderWarningDelay(
                 border = WorldBorder(
                     world = player.world,
@@ -511,10 +511,10 @@ class SetWorldBorderWarningDelayTest(name: String, sender: CommandSender, args: 
 }
 
 class SetWorldBorderWarningDistanceTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.setWorldBorderWarningDistance(
                 border = WorldBorder(
                     world = player.world,
@@ -537,10 +537,10 @@ class SetWorldBorderWarningDistanceTest(name: String, sender: CommandSender, arg
     }
 }
 
-class TakeItemTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class TakeItemTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.takeItem(
                 itemId = 1,
                 player = player,
@@ -551,10 +551,10 @@ class TakeItemTest(name: String, sender: CommandSender, args: CommandArguments) 
     }
 }
 
-class TeleportEntityTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class TeleportEntityTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             val targetLoc = Location(Bukkit.getWorld("world_the_end"), 0.0, 0.0, 0.0)
             ClientPacketFactory.teleportEntity(
                 entity = player,
@@ -566,10 +566,10 @@ class TeleportEntityTest(name: String, sender: CommandSender, args: CommandArgum
     }
 }
 
-class UpdateAttributesTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class UpdateAttributesTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.updateAttributes(
                 entity = player,
                 attributes = mutableListOf(
@@ -586,10 +586,10 @@ class UpdateAttributesTest(name: String, sender: CommandSender, args: CommandArg
 }
 
 class UpdateEntityPositionSyncTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             val loc = player.location
             ClientPacketFactory.updateEntityPositionSync(
                 entity = player,
@@ -606,10 +606,10 @@ class UpdateEntityPositionSyncTest(name: String, sender: CommandSender, args: Co
     }
 }
 
-class UpdatePlayerLookAtTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class UpdatePlayerLookAtTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             val loc = player.location
             ClientPacketFactory.updatePlayerLookAt(
                 entity = player,
@@ -625,10 +625,10 @@ class UpdatePlayerLookAtTest(name: String, sender: CommandSender, args: CommandA
 }
 
 class UpdatePlayerPositionTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             val loc = player.location
             val teleportId = 42
 
@@ -656,10 +656,10 @@ class UpdatePlayerPositionTest(name: String, sender: CommandSender, args: Comman
 }
 
 class UpdatePlayerRotationTest(name: String, sender: CommandSender, args: CommandArguments) :
-    ITest(name, sender, args) {
+    Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.updatePlayerRotation(
                 yRot = 180f,
                 relativeY = false,
@@ -671,10 +671,10 @@ class UpdatePlayerRotationTest(name: String, sender: CommandSender, args: Comman
     }
 }
 
-class UpdateTickingStateTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class UpdateTickingStateTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.updateTickingState(
                 tickRate = 5f,
                 isFrozen = true
@@ -684,10 +684,10 @@ class UpdateTickingStateTest(name: String, sender: CommandSender, args: CommandA
     }
 }
 
-class UpdateTickingStepTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class UpdateTickingStepTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.updateTickingStep(
                 tickSteps = 20
             ) { it.send(mutableListOf(player)) }

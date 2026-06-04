@@ -28,7 +28,7 @@ object SimulacrumFactory {
 
         val instance = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_11 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_11.general.EntityBuilder.createEntityInstance(
+                net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.EntityBuilder.createEntityInstance(
                     CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
                         (location.world as CraftWorld).handle,
                         location.x,
@@ -96,7 +96,7 @@ object SimulacrumFactory {
 
         val serverplayer = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_11 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_11.general.EntityBuilder.createServerPlayer(
+                net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.EntityBuilder.createServerPlayer(
                     (location.world as CraftWorld).handle, name, server
                 )
             }
@@ -147,7 +147,7 @@ object SimulacrumFactory {
 
         val displayEntity = when (ServerUtil.currentVersion()) {
             ServerVersion.v1_21_11 -> {
-                net.crystopia.crystalshard.dhl.versions.v1_21_11.general.EntityBuilder.createDisplayEntity(
+                net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.EntityBuilder.createDisplayEntity(
                     CraftEntityType.bukkitToMinecraft(type), net.crystopia.crystalshard.dhl.shared.data.custom.Location(
                         (location.world as CraftWorld).handle,
                         location.x,

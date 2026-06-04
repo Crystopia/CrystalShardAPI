@@ -23,7 +23,7 @@ fun ServerPacketFactory.moveVehicleEvent(
 
     when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ServerPacketBuilder.moveVehicleEvent(
+            net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ServerPacketBuilder.moveVehicleEvent(
                 data,
                 callback
             )

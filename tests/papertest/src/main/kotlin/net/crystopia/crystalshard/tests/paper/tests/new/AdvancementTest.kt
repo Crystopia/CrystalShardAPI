@@ -15,14 +15,14 @@ import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
 import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntity
 import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntityEntity
 import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntityPlayer
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.json.JSONComponentSerializer
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.command.CommandSender
 
-class AdvancementTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+object AdvancementTest : Test("AdvancementTest") {
 
     override fun command() {
         test {

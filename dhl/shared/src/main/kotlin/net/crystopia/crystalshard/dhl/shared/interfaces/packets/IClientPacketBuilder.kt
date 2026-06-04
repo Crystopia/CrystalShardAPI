@@ -6,8 +6,12 @@ import net.minecraft.network.protocol.Packet
 interface IClientPacketBuilder {
 
     fun recipePacket(data: ClientboundRecipePacketData): Packet<*>
+    fun removeRecipeBook(data: ClientboundRecipeBookRemovePacketData): Packet<*>
+    fun recipeBookSettings(data: ClientboundRecipeBookSettingsPacketData): Packet<*>
+    fun placeGhostRecipe(data: ClientboundPlaceGhostRecipePacketData): Packet<*>
     fun addRecipeBook(data: ClientboundRecipeBookAddPacketData): Packet<*>
     fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*>
+    fun selectAdvancementTab(data: ClientboundSelectAdvancementsTabPacketData): Packet<*>
     fun damageEvent(data: ClientboundDamageEventPacketData): Packet<*>
     fun takeItem(data: ClientboundTakeItemEntityPacketData): Packet<*>
     fun showDialog(data: ClientboundShowDialogPacketData): Packet<*>

@@ -6,7 +6,7 @@ import net.crystopia.crystalshard.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.box.GUI
 import net.crystopia.crystalshard.paper.box.packetGUI
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Material
@@ -16,7 +16,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 
-class PacketGUITest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class PacketGUITest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
 
@@ -42,7 +42,7 @@ class PacketGUITest(name: String, sender: CommandSender, args: CommandArguments)
                 true,
                 CrystalShardPluginTest.instance
             ) {
-                player(sender as Player)
+                player(sender!!as Player)
                 slot(
                     GUI.Data.Slot(
                         item = item,
@@ -75,7 +75,7 @@ class PacketGUITest(name: String, sender: CommandSender, args: CommandArguments)
                 }
                 open()
                 click {
-                    println((sender as Player).inventory.getItem(this.slotNum.toInt()))
+                    println((sender!!as Player).inventory.getItem(this.slotNum.toInt()))
                     println("CLICK $this")
                 }
                 buttonClick {

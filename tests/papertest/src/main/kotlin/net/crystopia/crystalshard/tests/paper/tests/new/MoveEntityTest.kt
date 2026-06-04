@@ -5,15 +5,15 @@ import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityMoveMode
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.moveEntity
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
 
-class MoveEntityTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class MoveEntityTest : Test("MoveEntityTest") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
 
             ClientPacketFactory.moveEntity(
                 mode = EntityMoveMode.POS_ROT,

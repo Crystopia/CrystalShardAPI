@@ -5,14 +5,14 @@ import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.initWorldBorder
 import net.crystopia.crystalshard.paper.dhl.types.world.WorldBorder
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class InitWorldBorderTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class InitWorldBorderTest : Test("InitWorldBorderTest") {
     override fun command() {
         test {
-            val player = sender as Player
+            val player = sender!!as Player
             ClientPacketFactory.initWorldBorder(
                 border = WorldBorder(
                     world = player.world,

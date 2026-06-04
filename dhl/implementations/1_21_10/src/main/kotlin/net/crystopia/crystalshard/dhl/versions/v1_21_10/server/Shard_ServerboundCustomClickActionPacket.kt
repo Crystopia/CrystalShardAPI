@@ -8,7 +8,7 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.server.Payload
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.PayloadType
 import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IServerPacket
-import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.nbt.serialize
+import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.data.nbt.serialize
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.network.protocol.common.ServerboundCustomClickActionPacket
 import net.minecraft.server.level.ServerPlayer

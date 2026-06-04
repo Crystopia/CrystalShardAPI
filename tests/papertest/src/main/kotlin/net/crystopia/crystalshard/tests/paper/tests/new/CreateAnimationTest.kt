@@ -4,14 +4,14 @@ import dev.jorel.commandapi.executors.CommandArguments
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.packets.client.createAnimation
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-class CreateAnimationTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class CreateAnimationTest : Test("CreateAnimationTest") {
     override fun command() {
-        test {
-            val player = sender as Player
+       test {
+            val player = sender!!as Player
             // Animation ID 0 = Swing main arm
             ClientPacketFactory.createAnimation(
                 entity = player,

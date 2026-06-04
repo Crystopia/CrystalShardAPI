@@ -23,7 +23,7 @@ fun ServerPacketFactory.selectTradeEvent(
 
     when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ServerPacketBuilder.selectTradeEvent(
+            net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ServerPacketBuilder.selectTradeEvent(
                 data,
                 callback
             )

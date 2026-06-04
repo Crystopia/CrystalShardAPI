@@ -3,8 +3,10 @@ package net.crystopia.crystalshard.dhl.shared.interfaces.packets
 import net.crystopia.crystalshard.dhl.shared.ServerPacket
 import net.crystopia.crystalshard.dhl.shared.data.gui.Slot
 import net.crystopia.crystalshard.dhl.shared.data.packets.server.*
+import net.crystopia.crystalshard.dhl.shared.enums.packets.SelectAdvancementTabAction
 
 interface IServerPacketBuilder {
+    fun seenAdvancementsEvent(data: ServerPacket, event: (data: SeenAdvancementsEvent) -> Unit)
     fun acceptTeleportationEvent(data: ServerPacket, event: (id: Int) -> Unit)
     fun containerButtonClickEvent(data: ServerPacket, event: (data: ButtonClickEvent) -> Unit)
     fun containerClickEvent(

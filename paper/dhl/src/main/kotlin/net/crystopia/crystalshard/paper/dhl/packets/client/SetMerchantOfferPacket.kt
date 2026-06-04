@@ -8,7 +8,7 @@ import net.crystopia.crystalshard.dhl.shared.data.merchant.MerchantOffers
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundMerchantOffersPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import net.minecraft.world.item.trading.ItemCost
 import org.bukkit.craftbukkit.inventory.CraftItemStack

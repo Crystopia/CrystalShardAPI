@@ -23,7 +23,7 @@ fun ServerPacketFactory.containerButtonClickEvent(
 
     when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ServerPacketBuilder.containerButtonClickEvent(
+            net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ServerPacketBuilder.containerButtonClickEvent(
                 data,
                 callback
             )

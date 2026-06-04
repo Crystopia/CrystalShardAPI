@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets
 
 import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
-import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipeBookAddPacketData
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.types.RecipeEntry
 import net.minecraft.core.NonNullList
 import net.minecraft.world.item.crafting.CookingBookCategory
 import net.minecraft.world.item.crafting.Ingredient
@@ -12,18 +12,12 @@ import org.bukkit.inventory.*
 import kotlin.experimental.or
 
 fun RecipeEntryBuilder.PAPER_1_21_1(
-    recipes: MutableList<net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry>,
-    replace: Boolean,
-): ClientboundRecipeBookAddPacketData {
-    return ClientboundRecipeBookAddPacketData(
-        recipeEntries = recipes.map { choice ->
-            net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.types.RecipeEntry(
-                flags = (choice.highlight or choice.showNotification), // TODO: TEST THIS!!
-                id = NamespacedKey(choice.id.namespace, choice.id.key),
-                recipe = choice.recipe_1_21_1()
-            )
-        }.toMutableList(),
-        replace = replace,
+    recipe: net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry,
+): RecipeEntry {
+    return RecipeEntry(
+        flags = (recipe.highlight or recipe.showNotification), // TODO: TEST THIS!!
+        id = NamespacedKey(recipe.id.namespace, recipe.id.key),
+        recipe = recipe.recipe_1_21_1()
     )
 }
 

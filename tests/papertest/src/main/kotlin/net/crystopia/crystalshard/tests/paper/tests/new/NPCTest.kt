@@ -20,7 +20,7 @@ import net.crystopia.crystalshard.paper.dhl.packets.server.interactEvent
 import net.crystopia.crystalshard.paper.simulacrum.SimulacrumFactory
 import net.crystopia.crystalshard.paper.simulacrum.npc.Npc
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
-import net.crystopia.crystalshard.tests.paper.tests.base.ITest
+import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
@@ -31,7 +31,7 @@ import org.bukkit.entity.ItemDisplay
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemStack
 
-class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITest(name, sender, args) {
+class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
     override fun command() {
         test {
             SimulacrumFactory.createNpc<Npc>(
@@ -44,7 +44,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                 playerEntity.customName(MINI_MESSAGE.deserialize("<gray>NPC</gray>"))
 
                 playerEntity.isCustomNameVisible = true
-                (sender as Player).isCustomNameVisible = true
+                (sender!!as Player).isCustomNameVisible = true
 
                 val actions = mutableListOf<InfoUpdateAction>()
                 actions.add(InfoUpdateAction.ADD_PLAYER)
@@ -66,7 +66,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                     playerEntity,
                     actions,
                 ) { packet ->
-                    packet.send(mutableListOf((sender as Player)))
+                    packet.send(mutableListOf((sender!!as Player)))
                 }
 
                 ClientPacketFactory.addEntity(
@@ -77,7 +77,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                     data = 0,
                     yHeadRot = 0.0,
                 ) { packet ->
-                    packet.send(mutableListOf((sender as Player)))
+                    packet.send(mutableListOf((sender!!as Player)))
                 }
 
 
@@ -91,7 +91,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                 ClientPacketFactory.createEquipment(
                     playerEntity.entityId, equipmentList
                 ) { packet ->
-                    packet.send(mutableListOf((sender as Player)))
+                    packet.send(mutableListOf((sender!!as Player)))
                 }
 
 
@@ -104,7 +104,7 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                         )
                     )
                 ) { packet ->
-                    packet.send(mutableListOf((sender as Player)))
+                    packet.send(mutableListOf((sender!!as Player)))
                 }
 
 
@@ -113,17 +113,17 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                     Location(Bukkit.getWorld("world"), 0.0, 0.0, 0.0),
                     false
                 ) { packet ->
-                    packet.send(mutableListOf((sender as Player)))
+                    packet.send(mutableListOf((sender!!as Player)))
                 }
 
 
                 ServerPacketFactory.interactEvent(
-                    player = (sender as Player),
+                    player = (sender!!as Player),
                     name = NamespacedKey(CrystalShardPluginTest.instance, "testnpcinteraction"),
                     shouldPublish = true
 
                 ) {
-                    (sender as Player).sendMessage("COOL")
+                    (sender!!as Player).sendMessage("COOL")
 
                     val fakeDisplay = SimulacrumFactory.createEntityInstance<ItemDisplay>(
                         EntityType.ITEM_DISPLAY,
@@ -138,12 +138,12 @@ class NPCTest(name: String, sender: CommandSender, args: CommandArguments) : ITe
                             0,
                             0.0
                         ) { packet ->
-                            packet.send(mutableListOf((sender as Player)))
+                            packet.send(mutableListOf((sender!!as Player)))
                         }
                     }
 
                     ClientPacketFactory.setPassengers(fakeDisplay, mutableListOf(playerEntity)) { packet ->
-                        packet.send(mutableListOf((sender as Player)))
+                        packet.send(mutableListOf((sender!!as Player)))
                     }
                 }
 

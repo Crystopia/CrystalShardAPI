@@ -1,7 +1,7 @@
 package net.crystopia.modfabrictest
 
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundTabListPacketData
-import net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ClientPacketBuilder
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ClientPacketBuilder
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents
 import net.minecraft.network.chat.Component

@@ -23,7 +23,7 @@ fun ServerPacketFactory.playerActionEvent(
 
     when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
-            net.crystopia.crystalshard.dhl.versions.v1_21_11.general.ServerPacketBuilder.playerActionEvent(
+            net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ServerPacketBuilder.playerActionEvent(
                 data,
                 callback
             )

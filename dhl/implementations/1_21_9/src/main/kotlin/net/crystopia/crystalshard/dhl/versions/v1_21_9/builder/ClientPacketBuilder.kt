@@ -13,12 +13,28 @@ object ClientPacketBuilder : IClientPacketBuilder {
         throw NoPacketMethodFound("Packet no exists on 1.21.9")
     }
 
+    override fun removeRecipeBook(data: ClientboundRecipeBookRemovePacketData): Packet<*> {
+        return Shard_ClientboundRecipeBookRemovePacket().createPacket(data)
+    }
+
+    override fun recipeBookSettings(data: ClientboundRecipeBookSettingsPacketData): Packet<*> {
+        return Shard_ClientboundRecipeBookSettingsPacket().createPacket(data)
+    }
+
+    override fun placeGhostRecipe(data: ClientboundPlaceGhostRecipePacketData): Packet<*> {
+        return Shard_ClientboundPlaceGhostRecipePacket().createPacket(data)
+    }
+
     override fun addRecipeBook(data: ClientboundRecipeBookAddPacketData): Packet<*> {
         return Shard_ClientboundRecipeBookAddPacket().createPacket(data)
     }
 
     override fun updateAdvancements(data: ClientboundUpdateAdvancementsPacketData): Packet<*> {
         return Shard_ClientboundUpdateAdvancementsPacket().createPacket(data)
+    }
+
+    override fun selectAdvancementTab(data: ClientboundSelectAdvancementsTabPacketData): Packet<*> {
+        return Shard_ClientboundSelectAdvancementsTabPacket().createPacket(data)
     }
 
     override fun damageEvent(data: ClientboundDamageEventPacketData): Packet<*> {

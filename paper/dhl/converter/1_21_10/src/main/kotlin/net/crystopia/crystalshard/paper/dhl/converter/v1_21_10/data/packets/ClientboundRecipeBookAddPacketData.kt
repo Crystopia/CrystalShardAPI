@@ -2,9 +2,7 @@ package net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.data.packets
 
 import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
-import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundRecipeBookAddPacketData
 import net.crystopia.crystalshard.dhl.shared.data.recipes.RecipeEntry
-import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.enums.recipes.RecipeBookCategories
 import net.crystopia.crystalshard.paper.dhl.types.recipes.display
 import net.crystopia.crystalshard.paper.dhl.types.recipes.ingredients
 import net.crystopia.crystalshard.paper.dhl.types.recipes.recipe
@@ -14,28 +12,22 @@ import java.util.*
 import kotlin.experimental.or
 
 fun RecipeEntryBuilder.PAPER_1_21_10(
-    recipes: MutableList<net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry>,
-    replace: Boolean,
-): ClientboundRecipeBookAddPacketData {
-    return ClientboundRecipeBookAddPacketData(
-        recipeEntries = recipes.map { choice ->
-            RecipeEntry(
-                flags = (choice.highlight or choice.showNotification), // TODO: TEST THIS!!
-                recipeDisplay = RecipeDisplayEntry(
-                    RecipeDisplayId(choice.order),
-                    choice.display(),
-                    OptionalInt.of(choice.group),
-                    RecipeBookCategories.convert(
-                        choice.category
-                    ).category,
-                    Optional.ofNullable(
-                        choice.ingredients()
-                    )
-                ),
-                id = NamespacedKey(choice.id.namespace, choice.id.key),
-                recipe = choice.recipe()
+    recipe: net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry,
+): RecipeEntry {
+    return net.crystopia.crystalshard.dhl.shared.data.recipes.RecipeEntry(
+        flags = (recipe.highlight or recipe.showNotification), // TODO: TEST THIS!!
+        recipeDisplay = RecipeDisplayEntry(
+            RecipeDisplayId(recipe.order),
+            recipe.display(),
+            OptionalInt.of(recipe.group),
+            net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.enums.recipes.RecipeBookCategories.convert(
+                recipe.category
+            ).category,
+            Optional.ofNullable(
+                recipe.ingredients()
             )
-        }.toMutableList(),
-        replace = replace,
+        ),
+        id = NamespacedKey(recipe.id.namespace, recipe.id.key),
+        recipe = recipe.recipe()
     )
 }
