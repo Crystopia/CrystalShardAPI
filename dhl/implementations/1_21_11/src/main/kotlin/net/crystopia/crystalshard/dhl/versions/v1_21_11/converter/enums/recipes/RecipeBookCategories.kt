@@ -8,6 +8,7 @@ enum class RecipeBookCategories(val category: RecipeBookCategory) {
     CRAFTING_REDSTONE(RecipeBookCategories.CRAFTING_REDSTONE),
     CRAFTING_EQUIPMENT(RecipeBookCategories.CRAFTING_EQUIPMENT),
     CRAFTING_MISC(RecipeBookCategories.CRAFTING_MISC),
+    MISC(RecipeBookCategories.CRAFTING_MISC),
     FURNACE_FOOD(RecipeBookCategories.FURNACE_FOOD),
     FURNACE_BLOCKS(RecipeBookCategories.FURNACE_BLOCKS),
     FURNACE_MISC(RecipeBookCategories.FURNACE_MISC),

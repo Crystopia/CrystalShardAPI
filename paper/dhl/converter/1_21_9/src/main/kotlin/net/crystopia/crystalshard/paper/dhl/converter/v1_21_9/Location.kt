@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.data.packets
+package net.crystopia.crystalshard.paper.dhl.converter.v1_21_9
 
 import net.crystopia.crystalshard.dhl.shared.builder.LocationBuilder
 import net.crystopia.crystalshard.dhl.shared.data.custom.Location

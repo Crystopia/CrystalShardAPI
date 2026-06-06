@@ -12,7 +12,7 @@ override fun createPacket(
 ): ClientboundRecipeBookAddPacket {
     val data = packetObj.recipeEntries.map {
         ClientboundRecipeBookAddPacket.Entry(
-            it.recipeDisplay!! as RecipeDisplayEntry,
+            it.recipeDisplayEntry!! as RecipeDisplayEntry,
             it.flags
         )
     }.toList()

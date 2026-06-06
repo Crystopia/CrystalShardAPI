@@ -3,14 +3,15 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.ClientPacket
 import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
+import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlaceGhostRecipePacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ClientPacketBuilder
 import net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.PAPER_1_21_1
-import net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.data.packets.PAPER_1_21_10
-import net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.data.packets.PAPER_1_21_11
-import net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.data.packets.PAPER_1_21_9
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.PAPER_1_21_10
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.PAPER_1_21_11
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.PAPER_1_21_9
 import net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 
@@ -19,7 +20,6 @@ fun ClientPacketFactory.placeGhostRecipe(
     recipe: RecipeEntry,
     callback: (packet: ClientPacket<ClientboundPlaceGhostRecipePacketData>) -> Unit
 ): ClientPacket<ClientboundPlaceGhostRecipePacketData> {
-
     val shardPacket = ClientPacket<ClientboundPlaceGhostRecipePacketData>()
     val packet = when (ServerUtil.currentVersion()) {
         ServerVersion.v1_21_11 -> {
@@ -27,9 +27,10 @@ fun ClientPacketFactory.placeGhostRecipe(
                 recipe
             )
             val data = ClientboundPlaceGhostRecipePacketData(
+                id = NamespacedKey(recipe.id.namespace, recipe.id.key),
                 containerId = containerId,
-                recipeDisplay = entry.recipeDisplay!!,
-                recipe = entry.recipe!!
+                recipeDisplayEntry = entry.recipeDisplayEntry,
+                recipe = entry.recipe
             )
             shardPacket.packetData = data
             ClientPacketBuilder.placeGhostRecipe(
@@ -42,9 +43,10 @@ fun ClientPacketFactory.placeGhostRecipe(
                 recipe
             )
             val data = ClientboundPlaceGhostRecipePacketData(
+                id = NamespacedKey(recipe.id.namespace, recipe.id.key),
                 containerId = containerId,
-                recipeDisplay = entry.recipeDisplay!!,
-                recipe = entry.recipe!!
+                recipeDisplayEntry = entry.recipeDisplayEntry,
+                recipe = entry.recipe
             )
             shardPacket.packetData = data
             net.crystopia.crystalshard.dhl.versions.v1_21_10.builder.ClientPacketBuilder.placeGhostRecipe(
@@ -57,9 +59,10 @@ fun ClientPacketFactory.placeGhostRecipe(
                 recipe
             )
             val data = ClientboundPlaceGhostRecipePacketData(
+                id = NamespacedKey(recipe.id.namespace, recipe.id.key),
                 containerId = containerId,
-                recipeDisplay = entry.recipeDisplay!!,
-                recipe = entry.recipe!!
+                recipeDisplayEntry = entry.recipeDisplayEntry,
+                recipe = entry.recipe
             )
             shardPacket.packetData = data
             net.crystopia.crystalshard.dhl.versions.v1_21_9.builder.ClientPacketBuilder.placeGhostRecipe(
@@ -72,9 +75,10 @@ fun ClientPacketFactory.placeGhostRecipe(
                 recipe
             )
             val data = ClientboundPlaceGhostRecipePacketData(
+                id = NamespacedKey(recipe.id.namespace, recipe.id.key),
                 containerId = containerId,
-                recipeDisplay = entry.recipeDisplay!!,
-                recipe = entry.recipe!!
+                recipeDisplayEntry = entry.recipeDisplayEntry,
+                recipe = entry.recipe
             )
             shardPacket.packetData = data
             net.crystopia.crystalshard.dhl.versions.v1_21_1.builder.ClientPacketBuilder.placeGhostRecipe(

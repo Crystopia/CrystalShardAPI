@@ -1,37 +1,90 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.types.recipes
 
 import net.minecraft.core.Holder
-import net.minecraft.world.item.crafting.CookingBookCategory
-import net.minecraft.world.item.crafting.Ingredient
-import net.minecraft.world.item.crafting.ShapedRecipePattern
-import net.minecraft.world.item.crafting.TransmuteResult
+import net.minecraft.world.item.crafting.*
 import net.minecraft.world.item.crafting.display.*
 import net.minecraft.world.item.equipment.trim.TrimPattern
 import org.bukkit.NamespacedKey
 import org.bukkit.craftbukkit.inventory.*
 import org.bukkit.craftbukkit.inventory.trim.CraftTrimPattern
 import org.bukkit.inventory.*
+import org.bukkit.inventory.BlastingRecipe
+import org.bukkit.inventory.Recipe
+import org.bukkit.inventory.ShapedRecipe
+import org.bukkit.inventory.ShapelessRecipe
+import org.bukkit.inventory.SmithingTransformRecipe
+import org.bukkit.inventory.SmithingTrimRecipe
+import org.bukkit.inventory.SmokingRecipe
+import org.bukkit.inventory.TransmuteRecipe
 import java.util.*
 
 data class RecipeEntry(
     var id: NamespacedKey,
-    var order: Int,
     var showNotification: Byte = 0x01,
     var highlight: Byte = 0x02,
-    var group: Int,
+    var group: String,
     var recipe: Recipe,
     var category: net.crystopia.crystalshard.dhl.shared.enums.recipes.RecipeBookCategories,
-    var ingredients: MutableSet<ItemStack>
 )
 
-// TODO Change to holder... from ItemLike (maybe)
 fun RecipeEntry.ingredients(): MutableList<Ingredient> {
-    return ingredients.map { Ingredient.ofStacks(mutableListOf(CraftItemStack.asNMSCopy(it))) }.toMutableList()
+    return when (val cast = recipe) {
+        is ShapedRecipe -> cast.choiceMap.values.map { choice ->
+            // TODO
+            CraftRecipe.toIngredient(choice, true)
+        }.toMutableList()
+
+        is ShapelessRecipe -> cast.choiceList.map { choice ->
+            CraftRecipe.toIngredient(choice, false)
+        }.toMutableList()
+
+        is FurnaceRecipe -> mutableListOf(
+            CraftRecipe.toIngredient(cast.inputChoice, false)
+        )
+
+        is BlastingRecipe -> mutableListOf(
+            CraftRecipe.toIngredient(cast.inputChoice, false)
+        )
+
+        is SmokingRecipe -> mutableListOf(
+            CraftRecipe.toIngredient(cast.inputChoice, false)
+        )
+
+        is CampfireCookingRecipe -> mutableListOf(
+            cast.input()
+        )
+
+        is StonecuttingRecipe -> mutableListOf(
+            CraftRecipe.toIngredient(cast.inputChoice, false)
+        )
+
+        is SmithingTransformRecipe -> mutableListOf(
+            CraftRecipe.toIngredient(cast.template, false),
+            CraftRecipe.toIngredient(cast.base, false),
+            CraftRecipe.toIngredient(cast.addition, false)
+        )
+
+        is SmithingTrimRecipe -> mutableListOf(
+            CraftRecipe.toIngredient(cast.template, false),
+            CraftRecipe.toIngredient(cast.base, false),
+            CraftRecipe.toIngredient(cast.addition, false)
+        )
+
+        is TransmuteRecipe -> mutableListOf(
+            CraftRecipe.toIngredient(cast.input, false),
+            CraftRecipe.toIngredient(cast.material, false)
+        )
+
+        is ComplexRecipe, is MerchantRecipe -> mutableListOf()
+
+        else -> mutableListOf()
+    }
 }
 
 fun RecipeEntry.slotDisplays(): List<SlotDisplay> {
+    // TODO
     val choices: List<RecipeChoice?> = when (val recipe = this.recipe) {
-        is ShapedRecipe -> recipe.choiceMap.values.toList()
+        is ShapedRecipe -> recipe.choiceMap.values.toMutableList()
         is ShapelessRecipe -> recipe.choiceList
         is FurnaceRecipe -> listOf(recipe.inputChoice)
         is BlastingRecipe -> listOf(recipe.inputChoice)
@@ -70,9 +123,13 @@ fun RecipeEntry.display(): RecipeDisplay {
     return when (this.recipe) {
         is ShapedRecipe -> {
             val recipe = CraftShapedRecipe.fromBukkitRecipe(this.recipe as ShapedRecipe)
-            val slotDisplays = this.slotDisplays().toMutableList()
+            val slotDisplays = this.slotDisplays()
+
+            println(slotDisplays)
+
             ShapedCraftingRecipeDisplay(
-                1, 2,
+                1,
+                slotDisplays.size,
                 slotDisplays,
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),

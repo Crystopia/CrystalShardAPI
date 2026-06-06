@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.data.packets
+package net.crystopia.crystalshard.paper.dhl.converter.v1_21_11
 
 import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
@@ -15,12 +15,12 @@ import kotlin.experimental.or
 fun RecipeEntryBuilder.PAPER_1_21_11(
     recipe: net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry,
 ): RecipeEntry {
-    return net.crystopia.crystalshard.dhl.shared.data.recipes.RecipeEntry(
+    return RecipeEntry(
             flags = (recipe.highlight or recipe.showNotification), // TODO: TEST THIS!!
-            recipeDisplay = RecipeDisplayEntry(
-                RecipeDisplayId(recipe.order),
+            recipeDisplayEntry = RecipeDisplayEntry(
+                RecipeDisplayId(recipe.hashCode()),
                 recipe.display(),
-                OptionalInt.of(recipe.group),
+                OptionalInt.of(recipe.group.hashCode()),
                 RecipeBookCategories.convert(
                     recipe.category
                 ).category,

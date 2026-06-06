@@ -2,12 +2,16 @@ package net.crystopia.crystalshard.paper.dhl.packets.client
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.shared.ClientPacket
+import net.crystopia.crystalshard.dhl.shared.builder.AdvancementBuilder
+import net.crystopia.crystalshard.dhl.shared.builder.AdvancementProgressBuilder
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateAdvancementsPacketData
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ClientPacketBuilder
-import net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.data.packets.advancementProgressToShard
-import net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.data.packets.advancementToShard
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.PAPER_1_21_1
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.PAPER_1_21_10
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.PAPER_1_21_11
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.PAPER_1_21_9
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import org.bukkit.NamespacedKey
 import org.bukkit.advancement.Advancement
@@ -28,11 +32,11 @@ fun ClientPacketFactory.updateAdvancements(
         ServerVersion.v1_21_11 -> {
             val data = ClientboundUpdateAdvancementsPacketData(
                 reset,
-                net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.data.packets.advancementToShard(added),
+                AdvancementBuilder.PAPER_1_21_11(added),
                 removed.map {
                     net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey(it.namespace, it.key)
                 }.toMutableSet(),
-                net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.data.packets.advancementProgressToShard(progress),
+                AdvancementProgressBuilder.PAPER_1_21_11(progress),
                 showAdvancements
             )
             shardPacket.packetData = data
@@ -44,11 +48,11 @@ fun ClientPacketFactory.updateAdvancements(
         ServerVersion.v1_21_10 -> {
             val data = ClientboundUpdateAdvancementsPacketData(
                 reset,
-                net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.data.packets.advancementToShard(added),
+                AdvancementBuilder.PAPER_1_21_10(added),
                 removed.map {
                     net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey(it.namespace, it.key)
                 }.toMutableSet(),
-                net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.data.packets.advancementProgressToShard(progress),
+                AdvancementProgressBuilder.PAPER_1_21_10(progress),
                 showAdvancements
             )
             shardPacket.packetData = data
@@ -60,11 +64,11 @@ fun ClientPacketFactory.updateAdvancements(
         ServerVersion.v1_21_9 -> {
             val data = ClientboundUpdateAdvancementsPacketData(
                 reset,
-                advancementToShard(added),
+                AdvancementBuilder.PAPER_1_21_9(added),
                 removed.map {
                     net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey(it.namespace, it.key)
                 }.toMutableSet(),
-                advancementProgressToShard(progress),
+                AdvancementProgressBuilder.PAPER_1_21_9(progress),
                 showAdvancements
             )
             shardPacket.packetData = data
@@ -76,11 +80,11 @@ fun ClientPacketFactory.updateAdvancements(
         ServerVersion.v1_21_1 -> {
             val data = ClientboundUpdateAdvancementsPacketData(
                 reset,
-                net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.advancementToShard(added),
+                AdvancementBuilder.PAPER_1_21_1(added),
                 removed.map {
                     net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey(it.namespace, it.key)
                 }.toMutableSet(),
-                net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.advancementProgressToShard(progress),
+                AdvancementProgressBuilder.PAPER_1_21_1(progress),
                 showAdvancements
             )
             shardPacket.packetData = data

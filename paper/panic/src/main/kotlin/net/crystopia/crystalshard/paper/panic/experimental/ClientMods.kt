@@ -38,7 +38,6 @@ class ClientMods(val player: Player, val signNBT: String) {
                 NamespacedKey("moddetect", listenerKey),
                 false
             ) {
-                println(lines)
                 if (lines[0] != "NONE" && !lines[0].isEmpty()) {
                     callback(true)
                 } else callback(false)

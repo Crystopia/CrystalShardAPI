@@ -1,13 +1,16 @@
 package net.crystopia.crystalshard.dhl.shared.data.packets.client
 
+import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
+
 data class ClientboundPlaceGhostRecipePacketData(
+    var id: NamespacedKey,
     var containerId: Int,
     /**
      * RecipeDisplay
      */
-    var recipeDisplay: Any,
+    var recipeDisplayEntry: Any?,
     /**
      * RecipeHolder<*>
      */
-    var recipe: Any
+    var recipe: Any?
 )

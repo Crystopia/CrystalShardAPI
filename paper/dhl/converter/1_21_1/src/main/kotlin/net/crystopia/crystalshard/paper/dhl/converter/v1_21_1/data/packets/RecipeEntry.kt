@@ -17,16 +17,16 @@ fun RecipeEntryBuilder.PAPER_1_21_1(
     return RecipeEntry(
         flags = (recipe.highlight or recipe.showNotification), // TODO: TEST THIS!!
         id = NamespacedKey(recipe.id.namespace, recipe.id.key),
-        recipe = recipe.recipe_1_21_1()
+        recipe = recipe.PAPER_1_21_1()
     )
 }
 
-fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.recipe_1_21_1(): net.minecraft.world.item.crafting.Recipe<*> {
+private fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.PAPER_1_21_1(): net.minecraft.world.item.crafting.Recipe<*> {
     return when (val recipe = this.recipe) {
         is ShapedRecipe -> {
             val bukkit = CraftShapedRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.ShapedRecipe(
-                bukkit.group,
+                this.group,
                 net.minecraft.world.item.crafting.CraftingBookCategory.valueOf(bukkit.category.name),
                 ShapedRecipePattern.of(
                     bukkit.choiceMap.map { Pair(it.key, CraftRecipe.toIngredient(it.value, false)) }.toMap(),
@@ -41,7 +41,7 @@ fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.recipe_1_21_1
             val list = NonNullList.create<Ingredient>()
             bukkit.choiceList.forEach { list.add(CraftRecipe.toIngredient(it, false)) }
             net.minecraft.world.item.crafting.ShapelessRecipe(
-                bukkit.group,
+                this.group,
                 net.minecraft.world.item.crafting.CraftingBookCategory.valueOf(bukkit.category.name),
                 CraftItemStack.asNMSCopy(bukkit.result),
                 list
@@ -51,7 +51,7 @@ fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.recipe_1_21_1
         is FurnaceRecipe -> {
             val bukkit = CraftFurnaceRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.SmeltingRecipe(
-                bukkit.group,
+                this.group,
                 net.minecraft.world.item.crafting.CookingBookCategory.valueOf(bukkit.category.name),
                 CraftRecipe.toIngredient(bukkit.inputChoice, false),
                 CraftItemStack.asNMSCopy(bukkit.result),
@@ -63,7 +63,7 @@ fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.recipe_1_21_1
         is BlastingRecipe -> {
             val bukkit = CraftBlastingRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.BlastingRecipe(
-                bukkit.group,
+                this.group,
                 net.minecraft.world.item.crafting.CookingBookCategory.valueOf(bukkit.category.name),
                 CraftRecipe.toIngredient(bukkit.inputChoice, false),
                 CraftItemStack.asNMSCopy(bukkit.result),
@@ -75,7 +75,7 @@ fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.recipe_1_21_1
         is SmokingRecipe -> {
             val bukkit = CraftSmokingRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.SmokingRecipe(
-                bukkit.group,
+                this.group,
                 CookingBookCategory.valueOf(
                     this.category.name
                 ),
@@ -89,7 +89,7 @@ fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.recipe_1_21_1
         is CampfireRecipe -> {
             val bukkit = CraftCampfireRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.CampfireCookingRecipe(
-                bukkit.group,
+                this.group,
                 net.minecraft.world.item.crafting.CookingBookCategory.valueOf(this.category.name),
                 CraftRecipe.toIngredient(bukkit.inputChoice, false),
                 CraftItemStack.asNMSCopy(bukkit.result),
@@ -101,7 +101,7 @@ fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.recipe_1_21_1
         is StonecuttingRecipe -> {
             val bukkit = CraftStonecuttingRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.StonecutterRecipe(
-                bukkit.group,
+                this.group,
                 CraftRecipe.toIngredient(bukkit.inputChoice, false),
                 CraftItemStack.asNMSCopy(bukkit.result),
             )

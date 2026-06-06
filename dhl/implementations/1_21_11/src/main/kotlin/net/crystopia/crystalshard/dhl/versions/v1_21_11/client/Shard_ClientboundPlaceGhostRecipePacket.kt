@@ -4,6 +4,7 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundPlac
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundPlaceGhostRecipePacket
 import net.minecraft.world.item.crafting.display.RecipeDisplay
+import net.minecraft.world.item.crafting.display.RecipeDisplayEntry
 
 class Shard_ClientboundPlaceGhostRecipePacket : IClientPacket<ClientboundPlaceGhostRecipePacketData> {
 
@@ -11,7 +12,7 @@ class Shard_ClientboundPlaceGhostRecipePacket : IClientPacket<ClientboundPlaceGh
         packetObj: ClientboundPlaceGhostRecipePacketData
     ): ClientboundPlaceGhostRecipePacket {
         return ClientboundPlaceGhostRecipePacket(
-            packetObj.containerId, packetObj.recipeDisplay as RecipeDisplay,
+            packetObj.containerId, (packetObj.recipeDisplayEntry as RecipeDisplayEntry).display,
         )
     }
 }

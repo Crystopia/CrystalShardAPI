@@ -14,8 +14,10 @@ enum class RecipeBookCategories {
     STONECUTTER,
     SMITHING,
     CAMPFIRE,
-    MISC,
     EQUIPMENT,
     REDSTONE,
     BUILDING,
+    FOOD,
+    MISC,
+    BLOCKS,
 }

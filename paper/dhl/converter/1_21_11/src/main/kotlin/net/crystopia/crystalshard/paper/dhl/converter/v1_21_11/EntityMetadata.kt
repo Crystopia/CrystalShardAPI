@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.data.packets
+package net.crystopia.crystalshard.paper.dhl.converter.v1_21_11
 
 import com.sun.jdi.InvalidTypeException
 import io.papermc.paper.adventure.PaperAdventure
@@ -7,29 +7,25 @@ import net.crystopia.crystalshard.dhl.shared.builder.EntityMetadataBuilder
 import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
 import net.crystopia.crystalshard.dhl.shared.data.entities.EntityRotation
 import net.crystopia.crystalshard.dhl.shared.data.merchant.VillagerData
-import net.crystopia.crystalshard.dhl.shared.data.variant.PaintigVariant
+import net.crystopia.crystalshard.dhl.shared.data.variant.*
 import net.crystopia.crystalshard.dhl.shared.data.world.Vec3i
 import net.crystopia.crystalshard.dhl.shared.enums.entities.ArmadilloState
+import net.crystopia.crystalshard.dhl.shared.enums.entities.CopperGolemState
 import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializerType
-import net.crystopia.crystalshard.dhl.versions.v1_21_9.converter.data.merchant.build
+import net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.merchant.build
 import net.kyori.adventure.text.Component
 import net.minecraft.core.*
 import net.minecraft.network.syncher.EntityDataSerializers
 import net.minecraft.network.syncher.SynchedEntityData
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.resources.Identifier
 import net.minecraft.world.entity.EntityReference
 import net.minecraft.world.entity.Pose
-import net.minecraft.world.entity.animal.CatVariant
-import net.minecraft.world.entity.animal.ChickenVariant
-import net.minecraft.world.entity.animal.CowVariant
-import net.minecraft.world.entity.animal.PigVariant
 import net.minecraft.world.entity.animal.armadillo.Armadillo
-import net.minecraft.world.entity.animal.coppergolem.CopperGolemState
 import net.minecraft.world.entity.animal.frog.FrogVariant
 import net.minecraft.world.entity.animal.sniffer.Sniffer
 import net.minecraft.world.entity.animal.wolf.WolfSoundVariant
 import net.minecraft.world.entity.animal.wolf.WolfVariant
-import net.minecraft.world.entity.decoration.PaintingVariant
+import net.minecraft.world.entity.decoration.painting.PaintingVariant
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.entity.variant.ModelAndTexture
 import net.minecraft.world.entity.variant.SpawnPrioritySelectors
@@ -48,9 +44,17 @@ import org.joml.Quaternionf
 import org.joml.Vector3f
 import java.util.*
 
+
 @Suppress("UNCHECKED_CAST")
-fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityData.DataValue<*> {
+fun EntityMetadataBuilder.PAPER_1_21_11(data: EntityMetadata<*>): SynchedEntityData.DataValue<*> {
     when (data.type) {
+        EntityDataSerializerType.INT -> {
+
+            val serializer = EntityDataSerializers.INT
+            val accessor = serializer.createAccessor(data.index)
+            return SynchedEntityData.DataValue.create(accessor, data.value as Int)
+        }
+
         EntityDataSerializerType.DATA_PLAYER_MODE_CUSTOMISATION -> {
 
             val accessor = Player.DATA_PLAYER_MODE_CUSTOMISATION
@@ -62,13 +66,6 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
             val serializer = EntityDataSerializers.BYTE
             val accessor = serializer.createAccessor(data.index)
             return SynchedEntityData.DataValue.create(accessor, data.value as Byte)
-        }
-
-        EntityDataSerializerType.INT -> {
-
-            val serializer = EntityDataSerializers.INT
-            val accessor = serializer.createAccessor(data.index)
-            return SynchedEntityData.DataValue.create(accessor, data.value as Int)
         }
 
         EntityDataSerializerType.LONG -> {
@@ -230,15 +227,15 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
         }
 
         EntityDataSerializerType.CAT_VARIANT -> {
-            val variant = data.value as net.crystopia.crystalshard.dhl.shared.data.variant.CatVariant
+            val variant = data.value as CatVariant
             val serializer = EntityDataSerializers.CAT_VARIANT
             val accessor = serializer.createAccessor(data.index)
             return SynchedEntityData.DataValue.create(
                 accessor,
                 Holder.direct(
-                    CatVariant(
+                    net.minecraft.world.entity.animal.feline.CatVariant(
                         ClientAsset.ResourceTexture(
-                            ResourceLocation.tryBuild(variant.type.namespace, variant.type.key)!!
+                            Identifier.tryBuild(variant.type.namespace, variant.type.key)!!
                         ),
                         SpawnPrioritySelectors.fallback(variant.spawnPrioritySelectors)
                     )
@@ -247,20 +244,19 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
         }
 
         EntityDataSerializerType.CHICKEN_VARIANT -> {
-            val variant = data.value as net.crystopia.crystalshard.dhl.shared.data.variant.ChickenVariant
+            val variant = data.value as ChickenVariant
             val model = when (variant.type) {
                 net.crystopia.crystalshard.dhl.shared.enums.entities.ChickenVariant.WARM -> {
-                    ChickenVariant.ModelType.NORMAL
+                    net.minecraft.world.entity.animal.chicken.ChickenVariant.ModelType.NORMAL
                 }
 
                 net.crystopia.crystalshard.dhl.shared.enums.entities.ChickenVariant.COLD -> {
-                    ChickenVariant.ModelType.COLD
+                    net.minecraft.world.entity.animal.chicken.ChickenVariant.ModelType.COLD
                 }
 
                 net.crystopia.crystalshard.dhl.shared.enums.entities.ChickenVariant.TEMPERATE -> {
-                    ChickenVariant.ModelType.NORMAL
+                    net.minecraft.world.entity.animal.chicken.ChickenVariant.ModelType.NORMAL
                 }
-
             }
 
             val serializer = EntityDataSerializers.CHICKEN_VARIANT
@@ -268,11 +264,11 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
             return SynchedEntityData.DataValue.create(
                 accessor,
                 Holder.direct(
-                    ChickenVariant(
-                        ModelAndTexture<ChickenVariant.ModelType>(
+                    net.minecraft.world.entity.animal.chicken.ChickenVariant(
+                        ModelAndTexture<net.minecraft.world.entity.animal.chicken.ChickenVariant.ModelType>(
                             model,
                             ClientAsset.ResourceTexture(
-                                ResourceLocation.tryBuild(variant.type.namespace, variant.type.key)!!
+                                Identifier.tryBuild(variant.type.namespace, variant.type.key)!!
                             )
                         ),
                         SpawnPrioritySelectors.fallback(variant.spawnPrioritySelectors)
@@ -282,18 +278,18 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
         }
 
         EntityDataSerializerType.COW_VARIANT -> {
-            val variant = data.value as net.crystopia.crystalshard.dhl.shared.data.variant.CowVariant
+            val variant = data.value as CowVariant
             val model = when (variant.type) {
                 net.crystopia.crystalshard.dhl.shared.enums.entities.CowVariant.COLD -> {
-                    CowVariant.ModelType.COLD
+                    net.minecraft.world.entity.animal.cow.CowVariant.ModelType.COLD
                 }
 
                 net.crystopia.crystalshard.dhl.shared.enums.entities.CowVariant.WARM -> {
-                    CowVariant.ModelType.WARM
+                    net.minecraft.world.entity.animal.cow.CowVariant.ModelType.WARM
                 }
 
                 net.crystopia.crystalshard.dhl.shared.enums.entities.CowVariant.NORMAL -> {
-                    CowVariant.ModelType.NORMAL
+                    net.minecraft.world.entity.animal.cow.CowVariant.ModelType.NORMAL
                 }
 
             }
@@ -303,10 +299,10 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
             return SynchedEntityData.DataValue.create(
                 accessor,
                 Holder.direct(
-                    CowVariant(
+                    net.minecraft.world.entity.animal.cow.CowVariant(
                         ModelAndTexture(
                             model,
-                            ResourceLocation.tryBuild(variant.type.namespace, variant.type.key)!!
+                            Identifier.tryBuild(variant.type.namespace, variant.type.key)!!
                         ),
                         SpawnPrioritySelectors.fallback(variant.spawnPrioritySelectors)
                     )
@@ -324,11 +320,11 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
                     WolfVariant(
                         WolfVariant.AssetInfo(
                             ClientAsset.ResourceTexture(
-                                ResourceLocation.tryBuild(variant.type.namespace, variant.type.key)!!
+                                Identifier.tryBuild(variant.type.namespace, variant.type.key)!!
                             ), ClientAsset.ResourceTexture(
-                                ResourceLocation.tryBuild(variant.type.namespace, variant.type.key)!!
+                                Identifier.tryBuild(variant.type.namespace, variant.type.key)!!
                             ), ClientAsset.ResourceTexture(
-                                ResourceLocation.tryBuild(variant.type.namespace, variant.type.key)!!
+                                Identifier.tryBuild(variant.type.namespace, variant.type.key)!!
                             )
                         ),
                         SpawnPrioritySelectors.fallback(variant.spawnPrioritySelectors)
@@ -372,7 +368,7 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
                 Holder.direct(
                     FrogVariant(
                         ClientAsset.ResourceTexture(
-                            ResourceLocation.tryBuild(variant.type.namespace, variant.type.key)!!
+                            Identifier.tryBuild(variant.type.namespace, variant.type.key)!!
                         ),
                         SpawnPrioritySelectors.fallback(variant.spawnPrioritySelectors)
                     )
@@ -381,28 +377,28 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
         }
 
         EntityDataSerializerType.PIG_VARIANT -> {
-            val variant = data.value as net.crystopia.crystalshard.dhl.shared.data.variant.PigVariant
+            val variant = data.value as PigVariant
             val serializer = EntityDataSerializers.PIG_VARIANT
             val accessor = serializer.createAccessor(data.index)
 
             val model = when (variant.type) {
                 net.crystopia.crystalshard.dhl.shared.enums.entities.PigVariant.COLD -> {
-                    PigVariant.ModelType.COLD
+                    net.minecraft.world.entity.animal.pig.PigVariant.ModelType.COLD
                 }
 
                 net.crystopia.crystalshard.dhl.shared.enums.entities.PigVariant.NORMAL -> {
-                    PigVariant.ModelType.NORMAL
+                    net.minecraft.world.entity.animal.pig.PigVariant.ModelType.NORMAL
                 }
             }
 
             return SynchedEntityData.DataValue.create(
                 accessor,
                 Holder.direct(
-                    PigVariant(
+                    net.minecraft.world.entity.animal.pig.PigVariant(
                         ModelAndTexture(
                             model,
                             ClientAsset.ResourceTexture(
-                                ResourceLocation.tryBuild(variant.type.namespace, variant.type.key)!!
+                                Identifier.tryBuild(variant.type.namespace, variant.type.key)!!
                             )
                         ),
                         SpawnPrioritySelectors.fallback(variant.spawnPrioritySelectors)
@@ -420,7 +416,7 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
                 Holder.direct(
                     PaintingVariant(
                         variant.width, variant.height,
-                        ResourceLocation.tryBuild(variant.assetId.namespace, variant.assetId.key)!!,
+                        Identifier.tryBuild(variant.assetId.namespace, variant.assetId.key)!!,
                         Optional.ofNullable(variant.title),
                         Optional.ofNullable(variant.author)
                     )
@@ -526,25 +522,25 @@ fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityDa
 
         EntityDataSerializerType.COPPER_GOLEM_STATE -> {
             val state =
-                when (data.value as net.crystopia.crystalshard.dhl.shared.enums.entities.CopperGolemState) {
-                    net.crystopia.crystalshard.dhl.shared.enums.entities.CopperGolemState.IDLE -> {
-                        CopperGolemState.IDLE
+                when (data.value as CopperGolemState) {
+                    CopperGolemState.IDLE -> {
+                        net.minecraft.world.entity.animal.golem.CopperGolemState.IDLE
                     }
 
-                    net.crystopia.crystalshard.dhl.shared.enums.entities.CopperGolemState.GETTING_ITEM -> {
-                        CopperGolemState.GETTING_ITEM
+                    CopperGolemState.GETTING_ITEM -> {
+                        net.minecraft.world.entity.animal.golem.CopperGolemState.GETTING_ITEM
                     }
 
-                    net.crystopia.crystalshard.dhl.shared.enums.entities.CopperGolemState.DROPPING_ITEM -> {
-                        CopperGolemState.DROPPING_ITEM
+                    CopperGolemState.DROPPING_ITEM -> {
+                        net.minecraft.world.entity.animal.golem.CopperGolemState.DROPPING_ITEM
                     }
 
-                    net.crystopia.crystalshard.dhl.shared.enums.entities.CopperGolemState.DROPPING_NO_ITEM -> {
-                        CopperGolemState.DROPPING_NO_ITEM
+                    CopperGolemState.DROPPING_NO_ITEM -> {
+                        net.minecraft.world.entity.animal.golem.CopperGolemState.DROPPING_NO_ITEM
                     }
 
-                    net.crystopia.crystalshard.dhl.shared.enums.entities.CopperGolemState.GETTING_NO_ITEM -> {
-                        CopperGolemState.GETTING_NO_ITEM
+                    CopperGolemState.GETTING_NO_ITEM -> {
+                        net.minecraft.world.entity.animal.golem.CopperGolemState.GETTING_NO_ITEM
                     }
                 }
 

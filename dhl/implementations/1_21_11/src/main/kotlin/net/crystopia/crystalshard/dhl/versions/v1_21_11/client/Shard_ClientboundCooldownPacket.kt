@@ -11,7 +11,6 @@ class Shard_ClientboundCooldownPacket : IClientPacket<ClientboundCooldownPacketD
     override fun createPacket(
         packetObj: ClientboundCooldownPacketData
     ): ClientboundCooldownPacket {
-        println(packetObj.item.toString())
         return ClientboundCooldownPacket(
             Identifier.parse(packetObj.item.toString().split(" ")[1]),
             packetObj.duration

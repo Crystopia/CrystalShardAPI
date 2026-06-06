@@ -13,7 +13,6 @@ class Shard_ClientboundUpdateRecipesPacket : IClientPacket<ClientboundRecipeBook
         packetObj: ClientboundRecipeBookAddPacketData
     ): ClientboundUpdateRecipesPacket {
         val recipes = packetObj.recipeEntries.map {
-            println(it.recipe)
             RecipeHolder(
                 ResourceLocation.tryBuild(it.id.namespace, it.id.key)!!,
                 it.recipe!! as Recipe<*>

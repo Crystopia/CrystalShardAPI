@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.data.packets
+package net.crystopia.crystalshard.paper.dhl.converter.v1_21_9
 
 import com.sun.jdi.InvalidTypeException
 import io.papermc.paper.adventure.PaperAdventure
@@ -11,7 +11,7 @@ import net.crystopia.crystalshard.dhl.shared.data.variant.PaintigVariant
 import net.crystopia.crystalshard.dhl.shared.data.world.Vec3i
 import net.crystopia.crystalshard.dhl.shared.enums.entities.ArmadilloState
 import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializerType
-import net.crystopia.crystalshard.dhl.versions.v1_21_10.converter.data.merchant.build
+import net.crystopia.crystalshard.dhl.versions.v1_21_9.converter.data.merchant.build
 import net.kyori.adventure.text.Component
 import net.minecraft.core.*
 import net.minecraft.network.syncher.EntityDataSerializers
@@ -43,23 +43,14 @@ import org.bukkit.craftbukkit.CraftWorld
 import org.bukkit.craftbukkit.block.CraftBlockType
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.craftbukkit.inventory.CraftItemStack
-import org.bukkit.entity.Entity
 import org.bukkit.inventory.ItemStack
 import org.joml.Quaternionf
 import org.joml.Vector3f
 import java.util.*
 
-
 @Suppress("UNCHECKED_CAST")
-fun EntityMetadataBuilder.PAPER_1_21_10(data: EntityMetadata<*>): SynchedEntityData.DataValue<*> {
+fun EntityMetadataBuilder.PAPER_1_21_9(data: EntityMetadata<*>): SynchedEntityData.DataValue<*> {
     when (data.type) {
-        EntityDataSerializerType.INT -> {
-
-            val serializer = EntityDataSerializers.INT
-            val accessor = serializer.createAccessor(data.index)
-            return SynchedEntityData.DataValue.create(accessor, data.value as Int)
-        }
-
         EntityDataSerializerType.DATA_PLAYER_MODE_CUSTOMISATION -> {
 
             val accessor = Player.DATA_PLAYER_MODE_CUSTOMISATION
@@ -71,6 +62,13 @@ fun EntityMetadataBuilder.PAPER_1_21_10(data: EntityMetadata<*>): SynchedEntityD
             val serializer = EntityDataSerializers.BYTE
             val accessor = serializer.createAccessor(data.index)
             return SynchedEntityData.DataValue.create(accessor, data.value as Byte)
+        }
+
+        EntityDataSerializerType.INT -> {
+
+            val serializer = EntityDataSerializers.INT
+            val accessor = serializer.createAccessor(data.index)
+            return SynchedEntityData.DataValue.create(accessor, data.value as Int)
         }
 
         EntityDataSerializerType.LONG -> {
@@ -262,6 +260,7 @@ fun EntityMetadataBuilder.PAPER_1_21_10(data: EntityMetadata<*>): SynchedEntityD
                 net.crystopia.crystalshard.dhl.shared.enums.entities.ChickenVariant.TEMPERATE -> {
                     ChickenVariant.ModelType.NORMAL
                 }
+
             }
 
             val serializer = EntityDataSerializers.CHICKEN_VARIANT
@@ -296,6 +295,7 @@ fun EntityMetadataBuilder.PAPER_1_21_10(data: EntityMetadata<*>): SynchedEntityD
                 net.crystopia.crystalshard.dhl.shared.enums.entities.CowVariant.NORMAL -> {
                     CowVariant.ModelType.NORMAL
                 }
+
             }
 
             val serializer = EntityDataSerializers.COW_VARIANT
@@ -393,7 +393,6 @@ fun EntityMetadataBuilder.PAPER_1_21_10(data: EntityMetadata<*>): SynchedEntityD
                 net.crystopia.crystalshard.dhl.shared.enums.entities.PigVariant.NORMAL -> {
                     PigVariant.ModelType.NORMAL
                 }
-
             }
 
             return SynchedEntityData.DataValue.create(

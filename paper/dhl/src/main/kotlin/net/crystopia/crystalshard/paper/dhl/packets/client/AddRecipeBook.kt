@@ -7,7 +7,10 @@ import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundReci
 import net.crystopia.crystalshard.dhl.shared.enums.server.ServerVersion
 import net.crystopia.crystalshard.dhl.shared.exceptions.NoPacketMethodFound
 import net.crystopia.crystalshard.dhl.versions.v1_21_11.builder.ClientPacketBuilder
-import net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.data.packets.PAPER_1_21_11
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.PAPER_1_21_1
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_10.PAPER_1_21_10
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_11.PAPER_1_21_11
+import net.crystopia.crystalshard.paper.dhl.converter.v1_21_9.PAPER_1_21_9
 import net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 
@@ -37,7 +40,7 @@ fun ClientPacketFactory.addRecipeBook(
         ServerVersion.v1_21_10 -> {
             val data = ClientboundRecipeBookAddPacketData(
                 recipeEntries = recipes.map {
-                    RecipeEntryBuilder.PAPER_1_21_11(
+                    RecipeEntryBuilder.PAPER_1_21_10(
                         it,
                     )
                 },
@@ -52,7 +55,7 @@ fun ClientPacketFactory.addRecipeBook(
         ServerVersion.v1_21_9 -> {
             val data = ClientboundRecipeBookAddPacketData(
                 recipeEntries = recipes.map {
-                    RecipeEntryBuilder.PAPER_1_21_11(
+                    RecipeEntryBuilder.PAPER_1_21_9(
                         it,
                     )
                 },
@@ -67,7 +70,7 @@ fun ClientPacketFactory.addRecipeBook(
         ServerVersion.v1_21_1 -> {
             val data = ClientboundRecipeBookAddPacketData(
                 recipeEntries = recipes.map {
-                    RecipeEntryBuilder.PAPER_1_21_11(
+                    RecipeEntryBuilder.PAPER_1_21_1(
                         it,
                     )
                 },
