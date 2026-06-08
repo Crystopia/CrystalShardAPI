@@ -7,6 +7,7 @@ import eu.vendeli.rethis.command.string.get
 import eu.vendeli.rethis.command.string.set
 import eu.vendeli.rethis.shared.types.RType
 import eu.vendeli.rethis.types.common.RespVer
+import eu.vendeli.rethis.types.interfaces.MessageEventHandler
 
 /**
  * Build a redis Database instance to Connect to a Redis-Database Server.
@@ -67,9 +68,9 @@ class RedisDatabase(
     ): String? {
         try {
             var message: String? = null
-            client.subscribe(name) { _, msg ->
+            client.subscribe(name, callback = MessageEventHandler { _, msg ->
                 message = msg
-            }
+            })
             if (message != null) {
                 callback(message)
             }

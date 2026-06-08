@@ -1,8 +1,8 @@
 plugins {
     id("java-library")
-    kotlin("jvm") version "2.3.+"
+    kotlin("jvm")
     kotlin("plugin.serialization")
-    id("com.gradleup.shadow") version "9.2.2"
+    id("com.gradleup.shadow")
     id("maven-publish")
 }
 
@@ -17,25 +17,25 @@ dependencies {
     implementation("net.kyori:adventure-text-serializer-legacy:5.+")
 
     // Database
-    api("org.ktorm:ktorm-core:4.1.1")
-    api("org.ktorm:ktorm-support-postgresql:4.1.1")
-    api("org.ktorm:ktorm-support-mysql:4.1.1")
-    api("org.postgresql:postgresql:42.7.2")
-    api("eu.vendeli:rethis:0.3.2")
+    api("org.ktorm:ktorm-core:4.+")
+    api("org.ktorm:ktorm-support-postgresql:4.+")
+    api("org.ktorm:ktorm-support-mysql:4.+")
+    api("org.postgresql:postgresql:42.+")
+    api("eu.vendeli:rethis:0.4.3")
 
     // Kotlin
-    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    api("org.jetbrains.kotlinx:kotlinx-serialization-json:1.+")
     api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // ENV
-    api("io.github.cdimascio:dotenv-kotlin:6.5.1")
+    api("io.github.cdimascio:dotenv-kotlin:6.+")
 
     // yamlkt
-    api("net.mamoe.yamlkt:yamlkt:0.13.0")
+    api("net.mamoe.yamlkt:yamlkt:0.+")
 }
 
 kotlin {
-    jvmToolchain(22)
+    jvmToolchain(25)
 }
 
 tasks {

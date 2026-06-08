@@ -1,9 +1,6 @@
 package net.crystopia.crystalshard.tests.paper.tests.new
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.dhl.shared.data.recipes.RecipeBookSettings
-import net.crystopia.crystalshard.dhl.shared.enums.recipes.RecipeBookCategories
-import net.crystopia.crystalshard.dhl.shared.enums.recipes.RecipeState
 import net.crystopia.crystalshard.paper.custom.smart.smartRecipe
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.extension.toDhlRecipeEntry
@@ -16,6 +13,7 @@ import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.ShapedRecipe
+import org.bukkit.inventory.recipe.CraftingBookCategory
 
 object RecipeTest : Test("RecipeTest") {
     override fun command() {
@@ -39,6 +37,7 @@ object RecipeTest : Test("RecipeTest") {
                             ItemStack(Material.EGG),
                         )
                     ) {
+                        category = CraftingBookCategory.EQUIPMENT
                         shape(
                             "AAA",
                             "ACA",
@@ -53,10 +52,9 @@ object RecipeTest : Test("RecipeTest") {
                             Material.APPLE
                         )
                     },
-                    showNotification = 0x00,
-                    highlight = 0x00,
+                    showNotification = 0x01,
+                    highlight = 0x02,
                     group = "eier",
-                    category = RecipeBookCategories.MISC
                 ),
                 RecipeEntry(
                     id = NamespacedKey("recipe", "egg"),
@@ -66,6 +64,7 @@ object RecipeTest : Test("RecipeTest") {
                             ItemStack(Material.DIAMOND),
                         )
                     ) {
+                        category = CraftingBookCategory.EQUIPMENT
                         shape(
                             "AAA",
                             "ACA",
@@ -80,10 +79,9 @@ object RecipeTest : Test("RecipeTest") {
                             Material.APPLE
                         )
                     },
-                    showNotification = 0x00,
-                    highlight = 0x00,
+                    showNotification = 0x01,
+                    highlight = 0x02,
                     group = "eier",
-                    category = RecipeBookCategories.MISC,
                 )
             )
 
@@ -103,6 +101,7 @@ object RecipeTest : Test("RecipeTest") {
                 it.send(mutableListOf(player))
             }
 
+            /* 1.21.1 only
             ClientPacketFactory.recipePacket(
                 state = RecipeState.ADD,
                 recipeIdsToChange = list,
@@ -120,6 +119,7 @@ object RecipeTest : Test("RecipeTest") {
             ) {
                 it.send(mutableListOf(player))
             }
+             */
 
             println("Successfully added ${player.name}")
         }

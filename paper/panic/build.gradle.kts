@@ -1,7 +1,7 @@
 plugins {
     id("java-library")
-    kotlin("jvm") version "2.3.+"
-    id("com.gradleup.shadow") version "9.2.2"
+    kotlin("jvm")
+    id("com.gradleup.shadow")
     id("io.papermc.paperweight.userdev")
     kotlin("plugin.serialization")
     id("maven-publish")
@@ -21,7 +21,7 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(22)
+    jvmToolchain(25)
 }
 
 tasks {

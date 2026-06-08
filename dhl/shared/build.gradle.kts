@@ -1,19 +1,31 @@
 plugins {
     id("java-library")
     id("maven-publish")
-    kotlin("jvm") version "2.3.+"
-    id("com.gradleup.shadow") version "9.2.2"
+    kotlin("jvm")
+    id("io.papermc.paperweight.userdev")
+    id("com.gradleup.shadow")
 }
+
+paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
 
 group = "net.crystopia.crystalshard.dhl"
 
 repositories {
     maven("https://libraries.minecraft.net")
 }
-
 dependencies {
+    paperweight.paperDevBundle("26.1.2.build.+")
     implementation("com.mojang:brigadier:1.0.+")
-    compileOnly(files("/home/xyzjesper/Dokumente/JVMLibs/26.1-net.minecraft.jar"))
+}
+
+paperweight {
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+kotlin {
+    jvmToolchain(25)
 }
 
 tasks {

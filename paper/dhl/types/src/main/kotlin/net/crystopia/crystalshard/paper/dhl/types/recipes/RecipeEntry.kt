@@ -1,6 +1,7 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.types.recipes
 
 import net.minecraft.core.Holder
+import net.minecraft.references.Items
 import net.minecraft.world.item.crafting.*
 import net.minecraft.world.item.crafting.display.*
 import net.minecraft.world.item.equipment.trim.TrimPattern
@@ -24,67 +25,72 @@ data class RecipeEntry(
     var highlight: Byte = 0x02,
     var group: String,
     var recipe: Recipe,
-    var category: net.crystopia.crystalshard.dhl.shared.enums.recipes.RecipeBookCategories,
 )
 
-fun RecipeEntry.ingredients(): MutableList<Ingredient> {
+fun RecipeEntry.ingredients(): Optional<MutableList<Ingredient>> {
     return when (val cast = recipe) {
-        is ShapedRecipe -> cast.choiceMap.values.map { choice ->
-            // TODO
+        is ShapedRecipe -> {
+            val shape = cast.shape
+            val width = shape.maxOf { it.length }
+            Optional.of(shape.flatMap { row ->
+                row.padEnd(width).mapNotNull { char ->
+                    val choice = cast.choiceMap[char]
+                    if (choice == null) null
+                    else CraftRecipe.toIngredient(choice, true)
+                }
+            }.toMutableList())
+        }
+        is ShapelessRecipe -> Optional.of(cast.choiceList.map { choice ->
             CraftRecipe.toIngredient(choice, true)
-        }.toMutableList()
-
-        is ShapelessRecipe -> cast.choiceList.map { choice ->
-            CraftRecipe.toIngredient(choice, false)
-        }.toMutableList()
-
-        is FurnaceRecipe -> mutableListOf(
-            CraftRecipe.toIngredient(cast.inputChoice, false)
-        )
-
-        is BlastingRecipe -> mutableListOf(
-            CraftRecipe.toIngredient(cast.inputChoice, false)
-        )
-
-        is SmokingRecipe -> mutableListOf(
-            CraftRecipe.toIngredient(cast.inputChoice, false)
-        )
-
-        is CampfireCookingRecipe -> mutableListOf(
+        }.toMutableList())
+        is FurnaceRecipe -> Optional.of(mutableListOf(
+            CraftRecipe.toIngredient(cast.inputChoice, true)
+        ))
+        is BlastingRecipe -> Optional.of(mutableListOf(
+            CraftRecipe.toIngredient(cast.inputChoice, true)
+        ))
+        is SmokingRecipe -> Optional.of(mutableListOf(
+            CraftRecipe.toIngredient(cast.inputChoice, true)
+        ))
+        is CampfireCookingRecipe -> Optional.of(mutableListOf(
             cast.input()
-        )
-
-        is StonecuttingRecipe -> mutableListOf(
-            CraftRecipe.toIngredient(cast.inputChoice, false)
-        )
-
-        is SmithingTransformRecipe -> mutableListOf(
-            CraftRecipe.toIngredient(cast.template, false),
-            CraftRecipe.toIngredient(cast.base, false),
-            CraftRecipe.toIngredient(cast.addition, false)
-        )
-
-        is SmithingTrimRecipe -> mutableListOf(
-            CraftRecipe.toIngredient(cast.template, false),
-            CraftRecipe.toIngredient(cast.base, false),
-            CraftRecipe.toIngredient(cast.addition, false)
-        )
-
-        is TransmuteRecipe -> mutableListOf(
-            CraftRecipe.toIngredient(cast.input, false),
-            CraftRecipe.toIngredient(cast.material, false)
-        )
-
-        is ComplexRecipe, is MerchantRecipe -> mutableListOf()
-
-        else -> mutableListOf()
+        ))
+        is StonecuttingRecipe -> Optional.of(mutableListOf(
+            CraftRecipe.toIngredient(cast.inputChoice, true)
+        ))
+        is SmithingTransformRecipe -> Optional.of(mutableListOf(
+            CraftRecipe.toIngredient(cast.template, true),
+            CraftRecipe.toIngredient(cast.base, true),
+            CraftRecipe.toIngredient(cast.addition, true)
+        ))
+        is SmithingTrimRecipe -> Optional.of(mutableListOf(
+            CraftRecipe.toIngredient(cast.template, true),
+            CraftRecipe.toIngredient(cast.base, true),
+            CraftRecipe.toIngredient(cast.addition, true)
+        ))
+        is TransmuteRecipe -> Optional.of(mutableListOf(
+            CraftRecipe.toIngredient(cast.input, true),
+            CraftRecipe.toIngredient(cast.material, true)
+        ))
+        is ComplexRecipe, is MerchantRecipe -> Optional.empty()
+        else -> Optional.empty()
     }
 }
 
 fun RecipeEntry.slotDisplays(): List<SlotDisplay> {
-    // TODO
     val choices: List<RecipeChoice?> = when (val recipe = this.recipe) {
-        is ShapedRecipe -> recipe.choiceMap.values.toMutableList()
+        is ShapedRecipe -> {
+            val shape = recipe.shape
+            val width = shape.maxOf { it.length }
+
+            shape.flatMap { row ->
+                row.padEnd(width).map { char ->
+                    val choice = recipe.choiceMap[char]
+                    choice
+                }
+            }.toMutableList()
+        }
+
         is ShapelessRecipe -> recipe.choiceList
         is FurnaceRecipe -> listOf(recipe.inputChoice)
         is BlastingRecipe -> listOf(recipe.inputChoice)
@@ -124,12 +130,11 @@ fun RecipeEntry.display(): RecipeDisplay {
         is ShapedRecipe -> {
             val recipe = CraftShapedRecipe.fromBukkitRecipe(this.recipe as ShapedRecipe)
             val slotDisplays = this.slotDisplays()
-
-            println(slotDisplays)
-
+            val width = recipe.shape.maxOf { it.length }
+            val height = recipe.shape.size
             ShapedCraftingRecipeDisplay(
-                1,
-                slotDisplays.size,
+                width,
+                height,
                 slotDisplays,
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
@@ -151,7 +156,7 @@ fun RecipeEntry.display(): RecipeDisplay {
             val slotDisplays = slotDisplays()
             FurnaceRecipeDisplay(
                 slotDisplays.firstOrNull() ?: SlotDisplay.Empty.INSTANCE,
-                CraftRecipe.toIngredient(recipe.inputChoice, false).display(),
+                CraftRecipe.toIngredient(recipe.inputChoice, true).display(),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 recipe.cookingTime,
@@ -164,7 +169,7 @@ fun RecipeEntry.display(): RecipeDisplay {
             val slotDisplays = slotDisplays()
             FurnaceRecipeDisplay(
                 slotDisplays.firstOrNull() ?: SlotDisplay.Empty.INSTANCE,
-                CraftRecipe.toIngredient(recipe.inputChoice, false).display(),
+                CraftRecipe.toIngredient(recipe.inputChoice, true).display(),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 recipe.cookingTime,
@@ -177,7 +182,7 @@ fun RecipeEntry.display(): RecipeDisplay {
             val slotDisplays = slotDisplays()
             FurnaceRecipeDisplay(
                 slotDisplays.firstOrNull() ?: SlotDisplay.Empty.INSTANCE,
-                CraftRecipe.toIngredient(recipe.inputChoice, false).display(),
+                CraftRecipe.toIngredient(recipe.inputChoice, true).display(),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 recipe.cookingTime,
@@ -190,7 +195,7 @@ fun RecipeEntry.display(): RecipeDisplay {
             val slotDisplays = slotDisplays()
             FurnaceRecipeDisplay(
                 slotDisplays.firstOrNull() ?: SlotDisplay.Empty.INSTANCE,
-                CraftRecipe.toIngredient(recipe.inputChoice, false).display(),
+                CraftRecipe.toIngredient(recipe.inputChoice, true).display(),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 SlotDisplay.ItemStackSlotDisplay(CraftItemStack.asNMSCopy(recipe.result)),
                 recipe.cookingTime,
@@ -252,13 +257,19 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
     return when (val recipe = this.recipe) {
         is ShapedRecipe -> {
             val bukkit = CraftShapedRecipe.fromBukkitRecipe(recipe)
+            val shape = bukkit.shape
+            val width = shape.maxOf { it.length }
+            val ingredients = shape.flatMap { row ->
+                row.padEnd(width).map { char ->
+                    val choice = bukkit.choiceMap[char]
+                    if (choice == null) Optional.empty()
+                    else Optional.of(CraftRecipe.toIngredient(choice, true))
+                }
+            }
             net.minecraft.world.item.crafting.ShapedRecipe(
                 bukkit.group,
-                net.minecraft.world.item.crafting.CraftingBookCategory.valueOf(bukkit.category.name),
-                ShapedRecipePattern.of(
-                    bukkit.choiceMap.map { Pair(it.key, CraftRecipe.toIngredient(it.value, false)) }.toMap(),
-                    *bukkit.shape
-                ),
+                CraftRecipe.getCategory(bukkit.category),
+                ShapedRecipePattern(width, shape.size, ingredients, Optional.empty()),
                 CraftItemStack.asNMSCopy(bukkit.result),
             )
         }
@@ -267,18 +278,17 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
             val bukkit = CraftShapelessRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.ShapelessRecipe(
                 bukkit.group,
-                net.minecraft.world.item.crafting.CraftingBookCategory.valueOf(bukkit.category.name),
+                CraftRecipe.getCategory(bukkit.category),
                 CraftItemStack.asNMSCopy(bukkit.result),
-                bukkit.choiceList.map { CraftRecipe.toIngredient(it, false) }
-            )
+                bukkit.choiceList.map { CraftRecipe.toIngredient(it, true) })
         }
 
         is FurnaceRecipe -> {
             val bukkit = CraftFurnaceRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.SmeltingRecipe(
                 bukkit.group,
-                net.minecraft.world.item.crafting.CookingBookCategory.valueOf(bukkit.category.name),
-                CraftRecipe.toIngredient(bukkit.inputChoice, false),
+                CraftRecipe.getCategory(bukkit.category),
+                CraftRecipe.toIngredient(bukkit.inputChoice, true),
                 CraftItemStack.asNMSCopy(bukkit.result),
                 bukkit.experience,
                 bukkit.cookingTime,
@@ -289,8 +299,8 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
             val bukkit = CraftBlastingRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.BlastingRecipe(
                 bukkit.group,
-                net.minecraft.world.item.crafting.CookingBookCategory.valueOf(bukkit.category.name),
-                CraftRecipe.toIngredient(bukkit.inputChoice, false),
+                CraftRecipe.getCategory(bukkit.category),
+                CraftRecipe.toIngredient(bukkit.inputChoice, true),
                 CraftItemStack.asNMSCopy(bukkit.result),
                 bukkit.experience,
                 bukkit.cookingTime,
@@ -301,10 +311,8 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
             val bukkit = CraftSmokingRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.SmokingRecipe(
                 bukkit.group,
-                CookingBookCategory.valueOf(
-                    this.category.name
-                ),
-                CraftRecipe.toIngredient(bukkit.inputChoice, false),
+                CraftRecipe.getCategory(bukkit.category),
+                CraftRecipe.toIngredient(bukkit.inputChoice, true),
                 CraftItemStack.asNMSCopy(bukkit.result),
                 bukkit.experience,
                 bukkit.cookingTime,
@@ -315,8 +323,8 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
             val bukkit = CraftCampfireRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.CampfireCookingRecipe(
                 bukkit.group,
-                net.minecraft.world.item.crafting.CookingBookCategory.valueOf(this.category.name),
-                CraftRecipe.toIngredient(bukkit.inputChoice, false),
+                CraftRecipe.getCategory(bukkit.category),
+                CraftRecipe.toIngredient(bukkit.inputChoice, true),
                 CraftItemStack.asNMSCopy(bukkit.result),
                 bukkit.experience,
                 bukkit.cookingTime,
@@ -325,9 +333,9 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
 
         is StonecuttingRecipe -> {
             val bukkit = CraftStonecuttingRecipe.fromBukkitRecipe(recipe)
-            net.minecraft.world.item.crafting.StonecutterRecipe(
+            StonecutterRecipe(
                 bukkit.group,
-                CraftRecipe.toIngredient(bukkit.inputChoice, false),
+                CraftRecipe.toIngredient(bukkit.inputChoice, true),
                 CraftItemStack.asNMSCopy(bukkit.result),
             )
         }
@@ -335,9 +343,9 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
         is SmithingTransformRecipe -> {
             val bukkit = CraftSmithingTransformRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.SmithingTransformRecipe(
-                Optional.of(CraftRecipe.toIngredient(bukkit.template, false)),
-                CraftRecipe.toIngredient(bukkit.base, false),
-                Optional.of(CraftRecipe.toIngredient(bukkit.addition, false)),
+                Optional.of(CraftRecipe.toIngredient(bukkit.template, true)),
+                CraftRecipe.toIngredient(bukkit.base, true),
+                Optional.of(CraftRecipe.toIngredient(bukkit.addition, true)),
                 TransmuteResult(
                     CraftItemStack.asNMSCopy(bukkit.result).item
                 )
@@ -347,9 +355,9 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
         is SmithingTrimRecipe -> {
             val bukkit = CraftSmithingTrimRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.SmithingTrimRecipe(
-                CraftRecipe.toIngredient(bukkit.template, false),
-                CraftRecipe.toIngredient(bukkit.base, false),
-                CraftRecipe.toIngredient(bukkit.addition, false),
+                CraftRecipe.toIngredient(bukkit.template, true),
+                CraftRecipe.toIngredient(bukkit.base, true),
+                CraftRecipe.toIngredient(bukkit.addition, true),
                 Holder.direct(
                     TrimPattern(
                         CraftTrimPattern.bukkitToMinecraftHolder(bukkit.trimPattern).value().assetId,
@@ -364,9 +372,9 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
             val bukkit = CraftTransmuteRecipe.fromBukkitRecipe(recipe)
             net.minecraft.world.item.crafting.TransmuteRecipe(
                 bukkit.group,
-                net.minecraft.world.item.crafting.CraftingBookCategory.valueOf(bukkit.category.name),
-                CraftRecipe.toIngredient(bukkit.input, false),
-                CraftRecipe.toIngredient(bukkit.material, false),
+                CraftRecipe.getCategory(bukkit.category),
+                CraftRecipe.toIngredient(bukkit.input, true),
+                CraftRecipe.toIngredient(bukkit.material, true),
                 TransmuteResult(
                     CraftItemStack.asNMSCopy(bukkit.result).item
                 ),

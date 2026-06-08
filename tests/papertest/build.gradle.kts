@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.3.+"
-    kotlin("plugin.serialization") version "2.3.+"
+    kotlin("jvm")
+    kotlin("plugin.serialization")
     id("xyz.jpenilla.run-paper") version "3.+"
     id("com.gradleup.shadow")
     // id("io.papermc.paperweight.userdev")
@@ -17,7 +17,7 @@ dependencies {
     // paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 
     // Kotlin
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     // Command API
@@ -42,7 +42,7 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(22)
+    jvmToolchain(25)
 }
 
 tasks {

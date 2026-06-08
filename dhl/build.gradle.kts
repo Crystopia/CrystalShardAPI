@@ -1,7 +1,7 @@
 plugins {
     id("java-library")
-    kotlin("jvm") version "2.3.+"
-    id("com.gradleup.shadow") version "9.2.2"
+    kotlin("jvm")
+    id("com.gradleup.shadow")
     kotlin("plugin.serialization")
     id("maven-publish")
 }
@@ -9,7 +9,7 @@ plugins {
 group = "net.crystopia.crystalshard"
 
 dependencies {
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.+")
 
     implementation(project(":common"))
     implementation(project(":dhl:implementations:1_21_1"))
@@ -17,6 +17,10 @@ dependencies {
     implementation(project(":dhl:implementations:1_21_10"))
     implementation(project(":dhl:implementations:1_21_11"))
     implementation(project(":dhl:shared"))
+}
+
+kotlin {
+    jvmToolchain(25)
 }
 
 tasks {
@@ -55,8 +59,4 @@ tasks {
             }
         }
     }
-}
-
-kotlin {
-    jvmToolchain(22)
 }

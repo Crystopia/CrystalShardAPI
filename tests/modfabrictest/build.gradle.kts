@@ -61,12 +61,12 @@ tasks.processResources {
 }
 
 tasks.withType<JavaCompile>().configureEach {
-	options.release = 22
+	options.release = 25
 }
 
 kotlin {
 	compilerOptions {
-		jvmTarget = JvmTarget.JVM_22
+		jvmTarget = JvmTarget.JVM_25
 	}
 }
 
@@ -76,8 +76,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_22
-	targetCompatibility = JavaVersion.VERSION_22
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
 }
 
 tasks.jar {

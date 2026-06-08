@@ -7,6 +7,8 @@ import eu.vendeli.rethis.command.string.get
 import eu.vendeli.rethis.command.string.set
 import eu.vendeli.rethis.shared.types.RType
 import eu.vendeli.rethis.types.common.RespVer
+import eu.vendeli.rethis.types.interfaces.MessageEventHandler
+import kotlinx.coroutines.CompletableDeferred
 
 /**
  *
@@ -70,19 +72,18 @@ object RedisDatabaseManager {
     suspend fun subscribe(
         name: String, callback: (message: String) -> Unit = {}
     ): String? {
-        try {
-            var message: String? = null
-            client.subscribe(name) { _, msg ->
-                message = msg
-            }
-            if (message != null) {
-                callback(message)
-            }
-            return message
+        val deferred = CompletableDeferred<String>()
+        return try {
+            client.subscribe(name, callback = MessageEventHandler { _, msg ->
+                deferred.complete(msg)
+            })
+            val message = deferred.await()
+            callback(message)
+            message
         } catch (e: Exception) {
             e.printStackTrace()
+            null
         }
-        return null
     }
 
 

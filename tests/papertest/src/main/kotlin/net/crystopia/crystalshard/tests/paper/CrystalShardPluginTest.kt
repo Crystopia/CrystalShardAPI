@@ -11,7 +11,6 @@ import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.common.log.green
 import net.crystopia.crystalshard.common.log.red
 import net.crystopia.crystalshard.dhl.PacketFactory
-import net.crystopia.crystalshard.dhl.shared.enums.recipes.RecipeBookCategories
 import net.crystopia.crystalshard.paper.core.crystalshard
 import net.crystopia.crystalshard.paper.custom.smart.SmartEvents
 import net.crystopia.crystalshard.paper.custom.smart.smartEvent
@@ -33,6 +32,7 @@ import org.bukkit.NamespacedKey
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.ShapedRecipe
+import org.bukkit.inventory.recipe.CraftingBookCategory
 import org.bukkit.plugin.java.JavaPlugin
 import org.ktorm.entity.add
 import java.io.File
@@ -68,14 +68,12 @@ class CrystalShardPluginTest : JavaPlugin() {
         }
 
         val event = smartEvent<PlayerJoinEvent> {
-            println("eier")
             PacketFactory.server.containerClickEvent(
                 items = mutableListOf(),
                 player = player,
                 name = NamespacedKey("fsdf", "sdf"),
                 shouldPublish = true
             ) {
-                println(this.containerId)
                 PacketFactory.client.placeGhostRecipe(
                     containerId = this.containerId,
                     recipe = RecipeEntry(
@@ -86,6 +84,7 @@ class CrystalShardPluginTest : JavaPlugin() {
                                 ItemStack(Material.EGG),
                             )
                         ) {
+                            category = CraftingBookCategory.EQUIPMENT
                             shape(
                                 "AAA",
                                 "ACA",
@@ -103,7 +102,6 @@ class CrystalShardPluginTest : JavaPlugin() {
                         showNotification = 0x00,
                         highlight = 0x00,
                         group = "eier",
-                        category = RecipeBookCategories.MISC
                     )
                 ) {
                     it.send(mutableListOf(player))
