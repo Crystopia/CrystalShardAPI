@@ -15,8 +15,8 @@ dependencies {
     paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
+    implementation("zip.jespersen:Kore.kt:0.1.0")
 
-    implementation(project(":common"))
     implementation(project(":paper:core"))
     implementation(project(":dhl"))
     implementation(project(":dhl:shared"))

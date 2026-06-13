@@ -1,9 +1,9 @@
 ﻿package net.crystopia.crystalshard.paper.dhl.nms
 
 import net.crystopia.crystalshard.dhl.shared.enums.server.SoftwareType
-import net.crystopia.crystalshard.common.log.Log
 import net.crystopia.crystalshard.paper.dhl.utils.ServerUtil
 import org.bukkit.Bukkit
+import zip.jespersen.korekt.logging.log.Log
 
 /**
  *
@@ -49,5 +49,5 @@ class EasyNMSManager<T : Any> : INMSManager<T> {
         }
     }
 
-   
+
 }

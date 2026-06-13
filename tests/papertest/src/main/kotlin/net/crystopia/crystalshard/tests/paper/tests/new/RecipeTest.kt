@@ -1,12 +1,11 @@
 package net.crystopia.crystalshard.tests.paper.tests.new
 
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
-import net.crystopia.crystalshard.paper.custom.smart.smartRecipe
 import net.crystopia.crystalshard.paper.dhl.extension.send
 import net.crystopia.crystalshard.paper.dhl.extension.toDhlRecipeEntry
 import net.crystopia.crystalshard.paper.dhl.packets.client.addRecipeBook
-import net.crystopia.crystalshard.paper.dhl.packets.client.recipePacket
 import net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry
+import net.crystopia.crystalshard.paper.util.smart.smartRecipe
 import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.Bukkit
 import org.bukkit.Material

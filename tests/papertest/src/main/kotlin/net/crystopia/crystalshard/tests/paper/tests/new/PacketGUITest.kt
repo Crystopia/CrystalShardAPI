@@ -1,7 +1,7 @@
 package net.crystopia.crystalshard.tests.paper.tests.new
 
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
+import net.crystopia.crystalshard.common.components.MINI_MESSAGE
 import net.crystopia.crystalshard.dhl.shared.enums.gui.MenuType
 import net.crystopia.crystalshard.paper.box.GUI
 import net.crystopia.crystalshard.paper.box.packetGUI

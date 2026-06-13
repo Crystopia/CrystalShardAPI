@@ -26,17 +26,16 @@ dependencies {
     implementation("dev.jorel:commandapi-kotlin-paper:11.+")
     
     // Crystalshard
-    implementation(project(":common"))
+    implementation(project(":traveler"))
     implementation(project(":paper"))
     implementation(project(":paper:core"))
     implementation(project(":paper:folia"))
     implementation(project(":paper:box"))
-    implementation(project(":paper:custom"))
+    implementation(project(":paper:util"))
     implementation(project(":dhl"))
     implementation(project(":paper:dhl:types"))
     implementation(project(":dhl:shared"))
     implementation(project(":paper:dhl"))
-    implementation(project(":paper:pack"))
     implementation(project(":paper:panic"))
     implementation(project(":paper:simulacrum"))
 }

@@ -1,8 +1,8 @@
 package net.crystopia.crystalshard.tests.paper.tests.new
 
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.paper.custom.world.customWorld
-import net.crystopia.crystalshard.paper.custom.world.data.WorldSettings
+import net.crystopia.crystalshard.paper.util.world.customWorld
+import net.crystopia.crystalshard.paper.util.world.data.WorldSettings
 import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.NamespacedKey
 import org.bukkit.World

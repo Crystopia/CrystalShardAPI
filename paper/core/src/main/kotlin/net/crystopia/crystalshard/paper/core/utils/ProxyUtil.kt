@@ -1,8 +1,8 @@
 package net.crystopia.crystalshard.paper.core.utils
 
-import net.crystopia.crystalshard.common.log.Log
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
+import zip.jespersen.korekt.logging.log.Log
 import java.io.ByteArrayOutputStream
 import java.io.DataOutputStream
 

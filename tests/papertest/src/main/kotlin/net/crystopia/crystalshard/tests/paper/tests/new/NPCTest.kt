@@ -2,7 +2,7 @@ package net.crystopia.crystalshard.tests.paper.tests.new
 
 import com.destroystokyo.paper.profile.ProfileProperty
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.common.extension.MINI_MESSAGE
+import net.crystopia.crystalshard.common.components.MINI_MESSAGE
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.dhl.shared.data.entities.EntityMetadata
@@ -10,12 +10,7 @@ import net.crystopia.crystalshard.dhl.shared.enums.entities.EntityDataSerializer
 import net.crystopia.crystalshard.dhl.shared.enums.gui.EquipmentSlot
 import net.crystopia.crystalshard.dhl.shared.enums.packets.InfoUpdateAction
 import net.crystopia.crystalshard.paper.dhl.extension.send
-import net.crystopia.crystalshard.paper.dhl.packets.client.addEntity
-import net.crystopia.crystalshard.paper.dhl.packets.client.createEquipment
-import net.crystopia.crystalshard.paper.dhl.packets.client.playerInfoUpdate
-import net.crystopia.crystalshard.paper.dhl.packets.client.setEntityData
-import net.crystopia.crystalshard.paper.dhl.packets.client.setPassengers
-import net.crystopia.crystalshard.paper.dhl.packets.client.teleportEntity
+import net.crystopia.crystalshard.paper.dhl.packets.client.*
 import net.crystopia.crystalshard.paper.dhl.packets.server.interactEvent
 import net.crystopia.crystalshard.paper.simulacrum.SimulacrumFactory
 import net.crystopia.crystalshard.paper.simulacrum.npc.Npc

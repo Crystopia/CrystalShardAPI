@@ -3,8 +3,6 @@ package net.crystopia.crystalshard.tests.paper.tests.base
 import dev.jorel.commandapi.executors.CommandArguments
 import dev.jorel.commandapi.kotlindsl.anyExecutor
 import dev.jorel.commandapi.kotlindsl.commandTree
-import net.crystopia.crystalshard.common.log.Log
-import net.crystopia.crystalshard.common.log.green
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.command.CommandSender
 
@@ -19,7 +17,7 @@ abstract class Test(val name: String) {
     private var instance: Test
 
     init {
-        println("Test has been created with name $name".green())
+        println("Test has been created with name $name")
         register()
         instance = this
     }

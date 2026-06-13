@@ -2,9 +2,8 @@ package net.crystopia.crystalshard.tests.paper.tests.new
 
 import com.google.common.io.ByteStreams
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.common.log.Log
-import net.crystopia.crystalshard.paper.custom.messaging.ChannelType
-import net.crystopia.crystalshard.paper.custom.messaging.PluginMessage
+import net.crystopia.crystalshard.paper.util.messaging.ChannelType
+import net.crystopia.crystalshard.paper.util.messaging.PluginMessage
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
 import net.crystopia.crystalshard.tests.paper.tests.base.Test
 import org.bukkit.command.CommandSender
@@ -29,7 +28,7 @@ class PluginMessaging(name: String, sender: CommandSender, args: CommandArgument
                     if (subchannel.equals("testy")) {
                         // This is our response to the PlayerCount request
                         val testy = data.readUTF();
-                        Log.info("$testy")
+                        println("$testy")
                     }
                 }
             ).register()

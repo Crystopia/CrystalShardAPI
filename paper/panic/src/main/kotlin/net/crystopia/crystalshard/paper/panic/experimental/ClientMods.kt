@@ -1,6 +1,6 @@
 package net.crystopia.crystalshard.paper.panic.experimental
 
-import net.crystopia.crystalshard.common.extension.text
+import net.crystopia.crystalshard.common.components.text
 import net.crystopia.crystalshard.dhl.ClientPacketFactory
 import net.crystopia.crystalshard.dhl.ServerPacketFactory
 import net.crystopia.crystalshard.dhl.shared.data.blocks.BlockPos

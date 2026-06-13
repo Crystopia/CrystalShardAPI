@@ -7,7 +7,7 @@ plugins {
 
 dependencies {
     // Crystalshard
-    implementation(project(":common"))
+    implementation(project(":traveler"))
     implementation(project(":velocity"))
 
     compileOnly("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")

@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         projects: [
-          common,
+          traveler,
           velocity
         ]
     steps:

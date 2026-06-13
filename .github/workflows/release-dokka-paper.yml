@@ -14,9 +14,8 @@ jobs:
         projects: [
           paper/box,
           paper/core,
-          paper/custom,
+          paper/util,
           paper/dhl,
-          paper/pack,
           paper/panic,
           paper/simulacrum,
           paper/folia

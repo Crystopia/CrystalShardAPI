@@ -1,16 +1,15 @@
 package net.crystopia.crystalshard.tests.paper.tests.new
 
-import dev.jorel.commandapi.executors.CommandArguments
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
-import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.custom.advancements.advancement
-import net.crystopia.crystalshard.paper.custom.advancements.models.AdvancementModel
-import net.crystopia.crystalshard.paper.custom.advancements.models.criteria.AdvancementCriteria
-import net.crystopia.crystalshard.paper.custom.advancements.models.criteria.CriteriaTrigger
-import net.crystopia.crystalshard.paper.custom.advancements.models.display.AdvancementDisplay
-import net.crystopia.crystalshard.paper.custom.advancements.models.display.AdvancementDisplayIcon
-import net.crystopia.crystalshard.paper.custom.advancements.models.rewards.AdvancementRewards
+import net.crystopia.crystalshard.common.components.text
+import net.crystopia.crystalshard.paper.util.advancements.advancement
+import net.crystopia.crystalshard.paper.util.advancements.models.AdvancementModel
+import net.crystopia.crystalshard.paper.util.advancements.models.criteria.AdvancementCriteria
+import net.crystopia.crystalshard.paper.util.advancements.models.criteria.CriteriaTrigger
+import net.crystopia.crystalshard.paper.util.advancements.models.display.AdvancementDisplay
+import net.crystopia.crystalshard.paper.util.advancements.models.display.AdvancementDisplayIcon
+import net.crystopia.crystalshard.paper.util.advancements.models.rewards.AdvancementRewards
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
 import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntity
 import net.crystopia.crystalshard.tests.paper.models.PlayerKilledEntityEntity
@@ -20,7 +19,6 @@ import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.json.JSONComponentSerializer
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
-import org.bukkit.command.CommandSender
 
 object AdvancementTest : Test("AdvancementTest") {
 

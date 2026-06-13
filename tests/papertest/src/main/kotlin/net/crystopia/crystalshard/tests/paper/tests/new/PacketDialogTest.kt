@@ -1,9 +1,9 @@
 package net.crystopia.crystalshard.tests.paper.tests.new
 
 import dev.jorel.commandapi.executors.CommandArguments
-import net.crystopia.crystalshard.common.extension.text
-import net.crystopia.crystalshard.paper.box.packetDialog
+import net.crystopia.crystalshard.common.components.text
 import net.crystopia.crystalshard.dhl.shared.enums.dialog.DialogAction
+import net.crystopia.crystalshard.paper.box.packetDialog
 import net.crystopia.crystalshard.paper.dhl.types.dialog.ConfirmationDialog
 import net.crystopia.crystalshard.tests.paper.CrystalShardPluginTest
 import net.crystopia.crystalshard.tests.paper.tests.base.Test

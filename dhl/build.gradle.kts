@@ -11,7 +11,6 @@ group = "net.crystopia.crystalshard"
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.+")
 
-    implementation(project(":common"))
     implementation(project(":dhl:implementations:1_21_1"))
     implementation(project(":dhl:implementations:1_21_9"))
     implementation(project(":dhl:implementations:1_21_10"))

@@ -16,18 +16,17 @@ It supports both **PaperMC** and **Velocity**, offering modular packages for GUI
 
 ## Modules
 
-| Platform  | ID                                                                                            | Description                                                             |
-|-----------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| ALL       | [`common`](https://crystopia.github.io/CrystalShardAPI/common/html)                           | Common utils and extensions for crystalshard                            |
-| PAPER     | [`paper-core`](https://crystopia.github.io/CrystalShardAPI/paper/paper-core/html)             | Core methods and extensions for PaperMC                                 |
-| PAPER     | [`paper-folia`](https://crystopia.github.io/CrystalShardAPI/paper/paper-folia/html)          | Folia Addon for CrystalShard Paper.                                     |
-| PAPER     | [`paper-box`](https://crystopia.github.io/CrystalShardAPI/paper/paper-box/html)               | Package-based GUI library for PaperMC *(WIP)*                           |
-| PAPER     | [`paper-custom`](https://crystopia.github.io/CrystalShardAPI/paper/paper-custom/html)         | Utility library for custom elements and enhancements for Paper & Bukkit |
-| PAPER     | [`paper-dhl`](https://crystopia.github.io/CrystalShardAPI/paper/paper-dhl/html)               | Package library with factories and helpers for PaperMC *(BETA)*         |
-| PAPER     | [`paper-pack`](https://crystopia.github.io/CrystalShardAPI/paper/paper-pack/html)             | Resource pack utilities and helpers for PaperMC                         |
-| PAPER     | [`paper-panic`](https://crystopia.github.io/CrystalShardAPI/paper/paper-panic/html)           | Experimental library for unsafe and unstable PaperMC/Bukkit features    |
-| PAPER     | [`paper-simulacrum`](https://crystopia.github.io/CrystalShardAPI/paper/paper-simulacrum/html) | Fancy NPCs, displays, and visual entities                               |
-| VELOCITY  | [`velocity`](https://crystopia.github.io/CrystalShardAPI/velocity/html)                       | Core utilities and extensions for Velocity                              |
+| Platform | ID                                                                                            | Description                                                             |
+|----------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| ALL      | [`traveler`](https://crystopia.github.io/CrystalShardAPI/traveler/html)                       | Extensions API for advanture, etc. and Minecraft+                       |
+| PAPER    | [`paper-core`](https://crystopia.github.io/CrystalShardAPI/paper/paper-core/html)             | Core methods and extensions for PaperMC                                 |
+| PAPER    | [`paper-folia`](https://crystopia.github.io/CrystalShardAPI/paper/paper-folia/html)           | Folia Addon for CrystalShard Paper.                                     |
+| PAPER    | [`paper-box`](https://crystopia.github.io/CrystalShardAPI/paper/paper-box/html)               | Package-based GUI library for PaperMC *(WIP)*                           |
+| PAPER    | [`paper-util`](https://crystopia.github.io/CrystalShardAPI/paper/paper-util/html)             | Utility library for custom elements and enhancements for Paper & Bukkit |
+| PAPER    | [`paper-dhl`](https://crystopia.github.io/CrystalShardAPI/paper/paper-dhl/html)               | Package library with factories and helpers for PaperMC *(BETA)*         |
+| PAPER    | [`paper-panic`](https://crystopia.github.io/CrystalShardAPI/paper/paper-panic/html)           | Experimental library for unsafe and unstable PaperMC/Bukkit features    |
+| PAPER    | [`paper-simulacrum`](https://crystopia.github.io/CrystalShardAPI/paper/paper-simulacrum/html) | Fancy NPCs, displays, and visual entities                               |
+| VELOCITY | [`velocity`](https://crystopia.github.io/CrystalShardAPI/velocity/html)                       | Core utilities and extensions for Velocity                              |
 
 ---
 
@@ -76,6 +75,8 @@ file for more details.
 
 Special thanks to the following projects and developers for inspiration and ideas:
 - FancyInnovations/FancyPlugins
+- PaperMC
+- Adventure Platform
 - flytegg/twilight
 
 

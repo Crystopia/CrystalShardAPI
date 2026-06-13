@@ -16,7 +16,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
-    implementation(project(":common"))
+    implementation(project(":traveler"))
     implementation(project(":paper:core"))
     implementation(project(":dhl"))
     implementation(project(":dhl:shared"))

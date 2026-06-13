@@ -12,7 +12,7 @@ import com.velocitypowered.api.plugin.Plugin
 import com.velocitypowered.api.proxy.ProxyServer
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier
 import com.velocitypowered.api.proxy.player.ResourcePackInfo
-import net.crystopia.crystalshard.common.extension.text
+import net.crystopia.crystalshard.common.components.text
 import net.crystopia.crystalshard.velocity.extensions.motd
 import net.crystopia.crystalshard.velocity.messaging.ProxyMessage
 import net.kyori.adventure.text.Component
