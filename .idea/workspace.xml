@@ -4,94 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="upgraded to java 25. Added recipe packets... and stuff for recipes.">
-      <changelist_data name="Jesper" email="jesper.l.richert@gmail.com" automatic="false" />
-      <change afterPath="$PROJECT_DIR$/traveler/src/main/kotlin/net/crystopia/crystalshard/common/components/ClickEvent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/traveler/src/main/kotlin/net/crystopia/crystalshard/common/components/Converter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/traveler/src/main/kotlin/net/crystopia/crystalshard/common/components/Dsl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/traveler/src/main/kotlin/net/crystopia/crystalshard/common/components/Text.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/traveler/src/main/kotlin/net/crystopia/crystalshard/common/components/Tooltip.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/traveler/src/main/kotlin/net/crystopia/crystalshard/common/extension/String.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/release-common.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-traveler.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/release-dokka-main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-dokka-main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/release-dokka-paper.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-dokka-paper.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/release-paper.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-paper.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/traveler/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/config/Config.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/config/ConfigManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/config/ConfigType.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/config/Configurable.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/config/FileExtensions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/database/RedisDatabaseManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/database/SQLDatabaseManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/database/custom/RedisDatabase.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/database/custom/SQLDatabase.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/extension/Boolean.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/extension/Component.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/extension/String.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/log/Extension.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/log/ILog.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/kotlin/net/crystopia/crystalshard/common/log/Log.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/box/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/box/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/core/src/main/kotlin/net/crystopia/crystalshard/paper/core/utils/PluginUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/core/src/main/kotlin/net/crystopia/crystalshard/paper/core/utils/PluginUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/core/src/main/kotlin/net/crystopia/crystalshard/paper/core/utils/ProxyUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/core/src/main/kotlin/net/crystopia/crystalshard/paper/core/utils/ProxyUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/traveler/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/Advancement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/Advancement.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/AdvancementModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/AdvancementModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/criteria/AdvancementCriteria.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/criteria/AdvancementCriteria.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/criteria/CriteriaTrigger.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/criteria/CriteriaTrigger.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/display/AdvancementDisplay.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/display/AdvancementDisplay.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/display/AdvancementDisplayIcon.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/display/AdvancementDisplayIcon.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/rewards/AdvancementRewards.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/advancements/models/rewards/AdvancementRewards.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/extension/Events.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/extension/Events.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/extension/Recipe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/extension/Recipe.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/messaging/ChannelType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/messaging/ChannelType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/messaging/MessageType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/messaging/MessageType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/messaging/MessagingUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/messaging/MessagingUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/messaging/PluginMessage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/messaging/PluginMessage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/smart/CustomGUI.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/smart/CustomGUI.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/smart/RecipeCreator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/smart/RecipeCreator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/smart/SmartEvents.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/smart/SmartEvents.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/world/CustomWorld.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/world/CustomWorld.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/world/WorldHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/world/WorldHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/custom/src/main/kotlin/net/crystopia/crystalshard/paper/custom/world/data/WorldSettings.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/src/main/kotlin/net/crystopia/crystalshard/paper/custom/world/data/WorldSettings.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/nms/EasyNMSManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/nms/EasyNMSManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/types/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/types/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/folia/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/folia/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/pack/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/pack/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/pack/src/main/kotlin/net/crystopia/crystalshard/paper/pack/font/SpacingFont.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/pack/src/main/kotlin/net/crystopia/crystalshard/paper/pack/font/TextHeads.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/pack/src/main/kotlin/net/crystopia/crystalshard/paper/pack/toasts/DefaultToastData.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/pack/src/main/kotlin/net/crystopia/crystalshard/paper/pack/toasts/Extensions.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/pack/src/main/kotlin/net/crystopia/crystalshard/paper/pack/toasts/Toast.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/panic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/panic/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/panic/src/main/kotlin/net/crystopia/crystalshard/paper/panic/experimental/ClientMods.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/panic/src/main/kotlin/net/crystopia/crystalshard/paper/panic/experimental/ClientMods.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/simulacrum/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/simulacrum/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/CrystalShardPluginTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/CrystalShardPluginTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/base/Test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/base/Test.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/AdvancementTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/AdvancementTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/NPCTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/NPCTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/PacketDialogTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/PacketDialogTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/PacketGUITest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/PacketGUITest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/PlayerHeadTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/PluginMessaging.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/PluginMessaging.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/RecipeTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/RecipeTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/WaypointTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/WaypointTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/WorldTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/WorldTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velocitytest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/velocitytest/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velocitytest/src/main/kotlin/net/crystopia/crystalshard/tests/velocity/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/velocitytest/src/main/kotlin/net/crystopia/crystalshard/tests/velocity/Main.kt" afterDir="false" />
-    </list>
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="snapshot of the 1.2.7 release." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -755,15 +668,7 @@
       <workItem from="1781045279014" duration="138000" />
       <workItem from="1781045428824" duration="107000" />
       <workItem from="1781045544326" duration="1090000" />
-      <workItem from="1781347201356" duration="10963000" />
-    </task>
-    <task id="LOCAL-00065" summary="moved log utils to common.log. fixed imports...">
-      <option name="closed" value="true" />
-      <created>1774130815302</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1774130815302</updated>
+      <workItem from="1781347201356" duration="11054000" />
     </task>
     <task id="LOCAL-00066" summary="fixed test plugin.">
       <option name="closed" value="true" />
@@ -1149,7 +1054,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780958168907</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="snapshot of the 1.2.7 release.">
+      <option name="closed" value="true" />
+      <created>1781388680777</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1781388680778</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1167,7 +1080,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed entity event packet" />
     <MESSAGE value="bump version" />
     <MESSAGE value="improved client packet factory with extensions." />
     <MESSAGE value="improved database and config." />
@@ -1192,7 +1104,8 @@
     <MESSAGE value="renamed general package in dhl-nms to builder." />
     <MESSAGE value="added recipe packets (todo tests). Fixed package structure. Updated test plugin test system. bug fixes." />
     <MESSAGE value="upgraded to java 25. Added recipe packets... and stuff for recipes." />
-    <option name="LAST_COMMIT_MESSAGE" value="upgraded to java 25. Added recipe packets... and stuff for recipes." />
+    <MESSAGE value="snapshot of the 1.2.7 release." />
+    <option name="LAST_COMMIT_MESSAGE" value="snapshot of the 1.2.7 release." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

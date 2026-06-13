@@ -63,7 +63,7 @@ tasks {
         publications {
             create<MavenPublication>("reposilite") {
                 from(components["java"])
-                artifactId = "common"
+                artifactId = "traveler"
                 groupId = group as String
                 version = version
             }
