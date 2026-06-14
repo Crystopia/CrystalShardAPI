@@ -9,10 +9,8 @@ plugins {
 
 group = "net.crystopia.crystalshard.paper"
 
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 dependencies {
-    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("26.1.2.build.+")
 
     implementation(project(":traveler"))
     implementation(project(":paper:core"))
@@ -28,7 +26,6 @@ kotlin {
 tasks {
         assemble {
             dependsOn(shadowJar)
-            dependsOn(reobfJar)
         }
         shadowJar {
             dependsOn(":dhl:shadowJar")

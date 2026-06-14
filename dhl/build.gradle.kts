@@ -11,11 +11,11 @@ group = "net.crystopia.crystalshard"
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.+")
 
-    implementation(project(":dhl:implementations:1_21_1"))
-    implementation(project(":dhl:implementations:1_21_9"))
-    implementation(project(":dhl:implementations:1_21_10"))
-    implementation(project(":dhl:implementations:1_21_11"))
-    implementation(project(":dhl:shared"))
+    api(project(":dhl:implementations:1_21_1"))
+    api(project(":dhl:implementations:1_21_9"))
+    api(project(":dhl:implementations:1_21_10"))
+    api(project(":dhl:implementations:1_21_11"))
+    api(project(":dhl:shared"))
 }
 
 kotlin {
@@ -23,18 +23,13 @@ kotlin {
 }
 
 tasks {
-        assemble {
-            dependsOn(shadowJar)
-        }
-        shadowJar {
-            dependsOn(":paper:core:shadowJar")
-            dependsOn(":dhl:shared:shadowJar")
-            relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
-        }
-        java {
-            withSourcesJar()
-            withJavadocJar()
-        }
+    assemble {
+        dependsOn(shadowJar)
+    }
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
     publishing {
         repositories {
             maven {

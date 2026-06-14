@@ -53,13 +53,15 @@ maven {
 implementation("net.crystopia.crystalshard:common:<version>")
 
 // Paper
-implementation("net.crystopia.crystalshard:paper-core:<version>")
-implementation("net.crystopia.crystalshard:paper-box:<version>")      
-implementation("net.crystopia.crystalshard:paper-custom:<version>")
-implementation("net.crystopia.crystalshard:paper-dhl:<version>")    
-implementation("net.crystopia.crystalshard:paper-pack:<version>")
-implementation("net.crystopia.crystalshard:paper-panic:<version>")
-implementation("net.crystopia.crystalshard:paper-simulacrum:<version>")
+implementation("net.crystopia.crystalshard.paper:core:<version>")
+implementation("net.crystopia.crystalshard.paper:box:<version>")      
+implementation("net.crystopia.crystalshard.paper:util:<version>")
+implementation("net.crystopia.crystalshard.paper:dhl:<version>")    
+implementation("net.crystopia.crystalshard.paper:panic:<version>")
+implementation("net.crystopia.crystalshard.paper:simulacrum:<version>")
+
+// Dhl
+implementation("net.crystopia.crystalshard:dhl:<version>")
 
 // Velocity
 implementation("net.crystopia.crystalshard:velocity:<version>")

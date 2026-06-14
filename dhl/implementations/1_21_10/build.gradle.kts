@@ -23,10 +23,6 @@ tasks {
         dependsOn(shadowJar)
         dependsOn(reobfJar)
     }
-    shadowJar {
-        dependsOn(":dhl:shared:shadowJar")
-        relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
-    }
     java {
         withSourcesJar()
         withJavadocJar()

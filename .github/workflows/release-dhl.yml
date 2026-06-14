@@ -10,7 +10,7 @@ jobs:
   publish:
     strategy:
       matrix:
-        tasks: ["dhl:shared", "dhl:implementations:1_21_1", "dhl:implementations:1_21_9", "dhl:implementations:1_21_10", "dhl:implementations:1_21_11"]
+        tasks: [ "dhl", "dhl:shared", "dhl:implementations:1_21_1", "dhl:implementations:1_21_9", "dhl:implementations:1_21_10", "dhl:implementations:1_21_11" ]
     runs-on: ubuntu-latest
 
 

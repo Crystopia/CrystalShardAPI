@@ -9,26 +9,24 @@ plugins {
 
 group = "net.crystopia.crystalshard.paper"
 
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 dependencies {
-    paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
-
+    paperweight.paperDevBundle("26.1.2.build.+")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
-    implementation("zip.jespersen:Kore.kt:0.1.0")
+    implementation("zip.jespersen:Kore.kt:0.1.2")
 
     implementation(project(":paper:core"))
-    implementation(project(":dhl"))
-    implementation(project(":dhl:shared"))
-    implementation(project(":paper:dhl:types"))
-    implementation(project(":dhl:implementations:1_21_1"))
-    implementation(project(":dhl:implementations:1_21_9"))
-    implementation(project(":dhl:implementations:1_21_10"))
-    implementation(project(":dhl:implementations:1_21_11"))
-    implementation(project(":paper:dhl:converter:1_21_1"))
-    implementation(project(":paper:dhl:converter:1_21_9"))
-    implementation(project(":paper:dhl:converter:1_21_10"))
-    implementation(project(":paper:dhl:converter:1_21_11"))
+
+    api(project(":dhl"))
+    api(project(":dhl:shared"))
+    api(project(":paper:dhl:types"))
+    api(project(":dhl:implementations:1_21_1"))
+    api(project(":dhl:implementations:1_21_9"))
+    api(project(":dhl:implementations:1_21_10"))
+    api(project(":dhl:implementations:1_21_11"))
+    api(project(":paper:dhl:converter:1_21_1"))
+    api(project(":paper:dhl:converter:1_21_9"))
+    api(project(":paper:dhl:converter:1_21_10"))
+    api(project(":paper:dhl:converter:1_21_11"))
 }
 
 kotlin {
@@ -38,7 +36,6 @@ kotlin {
 tasks {
     assemble {
         dependsOn(shadowJar)
-        dependsOn(reobfJar)
     }
     shadowJar {
         dependsOn(":paper:core:shadowJar")

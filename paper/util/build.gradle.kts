@@ -9,29 +9,24 @@ plugins {
 
 group = "net.crystopia.crystalshard.paper"
 
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 dependencies {
-    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("26.1.2.build.+")
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("zip.jespersen:Kore.kt:0.1.0")
 
     implementation(project(":paper:core"))
-    implementation(project(":dhl"))
 }
 
 tasks {
     assemble {
         dependsOn(shadowJar)
-        dependsOn(reobfJar)
     }
     reobfJar {
-        dependsOn(":paper:custom:jar")
+        dependsOn(":paper:util:jar")
     }
     shadowJar {
         dependsOn(":paper:core:shadowJar")
-        dependsOn(":dhl:shadowJar")
         relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
     }
     java {

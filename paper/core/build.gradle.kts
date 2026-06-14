@@ -9,11 +9,9 @@ plugins {
 
 group = "net.crystopia.crystalshard.paper"
 
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 dependencies {
-    paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
-    implementation("zip.jespersen:Kore.kt:0.1.0")
+    paperweight.paperDevBundle("26.1.2.build.+")
+    implementation("zip.jespersen:Kore.kt:0.1.2")
 }
 
 kotlin {
@@ -23,7 +21,6 @@ kotlin {
 tasks {
         assemble {
             dependsOn(shadowJar)
-            dependsOn(reobfJar)
         }
         shadowJar {
             relocate("com.mojang.authlib", "net.crystopia.libs.authlib")

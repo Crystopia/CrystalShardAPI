@@ -1,21 +1,16 @@
-package net.crystopia.crystalshard.paper.dhl.converter.v1_21_9
+package net.crystopia.crystalshard.paper.dhl.converter.v1_21_11
 
 
 import net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry
 import net.minecraft.core.Holder
-import net.minecraft.world.item.crafting.*
+import net.minecraft.world.item.crafting.ShapedRecipePattern
+import net.minecraft.world.item.crafting.StonecutterRecipe
+import net.minecraft.world.item.crafting.TransmuteResult
 import net.minecraft.world.item.crafting.display.*
 import net.minecraft.world.item.equipment.trim.TrimPattern
 import org.bukkit.craftbukkit.inventory.*
 import org.bukkit.craftbukkit.inventory.trim.CraftTrimPattern
 import org.bukkit.inventory.*
-import org.bukkit.inventory.BlastingRecipe
-import org.bukkit.inventory.ShapedRecipe
-import org.bukkit.inventory.ShapelessRecipe
-import org.bukkit.inventory.SmithingTransformRecipe
-import org.bukkit.inventory.SmithingTrimRecipe
-import org.bukkit.inventory.SmokingRecipe
-import org.bukkit.inventory.TransmuteRecipe
 import java.util.*
 
 fun RecipeEntry.slotDisplays(): List<SlotDisplay> {
@@ -226,7 +221,7 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
 
         is FurnaceRecipe -> {
             val bukkit = CraftFurnaceRecipe.fromBukkitRecipe(recipe)
-            SmeltingRecipe(
+            net.minecraft.world.item.crafting.SmeltingRecipe(
                 bukkit.group,
                 CraftRecipe.getCategory(bukkit.category),
                 CraftRecipe.toIngredient(bukkit.inputChoice, true),
@@ -262,7 +257,7 @@ fun RecipeEntry.recipe(): net.minecraft.world.item.crafting.Recipe<*> {
 
         is CampfireRecipe -> {
             val bukkit = CraftCampfireRecipe.fromBukkitRecipe(recipe)
-            CampfireCookingRecipe(
+            net.minecraft.world.item.crafting.CampfireCookingRecipe(
                 bukkit.group,
                 CraftRecipe.getCategory(bukkit.category),
                 CraftRecipe.toIngredient(bukkit.inputChoice, true),

@@ -1,4 +1,4 @@
-package net.crystopia.crystalshard.paper.dhl.converter.v1_21_11
+package net.crystopia.crystalshard.paper.dhl.converter.v1_21_9
 
 import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
 import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
@@ -12,7 +12,7 @@ import org.bukkit.inventory.recipe.CookingBookCategory
 import java.util.*
 import kotlin.experimental.or
 
-fun RecipeEntryBuilder.PAPER_1_21_11(
+fun RecipeEntryBuilder.PAPER_1_21_9(
     recipe: net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry,
 ): RecipeEntry {
 

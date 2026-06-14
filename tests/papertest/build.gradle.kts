@@ -14,6 +14,7 @@ group = "net.crystopia"
 dependencies {
     // Paper
     compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    implementation("zip.jespersen:Kore.kt:0.1.2")
     // paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
 
     // Kotlin
