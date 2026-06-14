@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="added debug in gh action for paper:box">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/release-paper.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-paper.yml" afterDir="false" />
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="moved error catch for paper gh action.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,12 +93,6 @@
       <list>
         <option value="Jesper &lt;jesper.l.richert@gmail.com&gt;" />
       </list>
-    </option>
-    <option name="PUSH_TAGS">
-      <GitPushTagMode>
-        <option name="argument" value="--tags" />
-        <option name="title" value="All" />
-      </GitPushTagMode>
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -673,15 +668,7 @@
       <workItem from="1781392488174" duration="1560000" />
       <workItem from="1781430572604" duration="12083000" />
       <workItem from="1781442893380" duration="291000" />
-      <workItem from="1781446779119" duration="2224000" />
-    </task>
-    <task id="LOCAL-00085" summary="fixed component extension">
-      <option name="closed" value="true" />
-      <created>1775427843195</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1775427843195</updated>
+      <workItem from="1781446779119" duration="2688000" />
     </task>
     <task id="LOCAL-00086" summary="fixed tasks. Added better workflow for bukkit tasks and bossbars">
       <option name="closed" value="true" />
@@ -1067,7 +1054,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781448828096</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="moved error catch for paper gh action.">
+      <option name="closed" value="true" />
+      <created>1781449020701</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1781449020701</updated>
+    </task>
+    <option name="localTasksCounter" value="135" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1085,7 +1080,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="moved server packet events to ServerPacketBuilder." />
     <MESSAGE value="improved Exception for dhl. updated ClientPacketBuilder." />
     <MESSAGE value="renamed internal packet holder." />
     <MESSAGE value="renamed general package in dhl-nms to builder." />
@@ -1110,7 +1104,8 @@
     <MESSAGE value="bump version" />
     <MESSAGE value="fixed building for box and panic." />
     <MESSAGE value="added debug in gh action for paper:box" />
-    <option name="LAST_COMMIT_MESSAGE" value="added debug in gh action for paper:box" />
+    <MESSAGE value="moved error catch for paper gh action." />
+    <option name="LAST_COMMIT_MESSAGE" value="moved error catch for paper gh action." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

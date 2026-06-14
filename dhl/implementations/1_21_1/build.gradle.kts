@@ -16,6 +16,10 @@ dependencies {
     compileOnly(project(":dhl:shared"))
 }
 
+kotlin {
+    jvmToolchain(22)
+}
+
 tasks {
     assemble {
         dependsOn(shadowJar)
