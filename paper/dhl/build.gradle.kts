@@ -37,11 +37,6 @@ tasks {
     assemble {
         dependsOn(shadowJar)
     }
-    shadowJar {
-        dependsOn(":paper:core:shadowJar")
-        dependsOn(":dhl:shadowJar")
-        relocate("com.mojang.authlib", "net.crystopia.libs.authlib")
-    }
     java {
         withSourcesJar()
         withJavadocJar()
