@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed gh actions. and building.">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="bump version">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/release-traveler.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-traveler.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/folia/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/folia/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +169,7 @@
     "Gradle.CrystalShardAPI [:paper:dhl:publishToMavenLocal].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:dhl:types:paperweightUserdevSetup].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:dhl:types:reobfJar].executor": "Run",
+    "Gradle.CrystalShardAPI [:paper:folia:build].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:publish].executor": "Run",
     "Gradle.CrystalShardAPI [:tests:modfabrictest:runClient].executor": "Run",
     "Gradle.CrystalShardAPI [:tests:modfabrictest:runDatagen].executor": "Run",
@@ -256,8 +260,8 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [:traveler:build]">
-    <configuration name="CrystalShardAPI [:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [:paper:folia:build]">
+    <configuration name="CrystalShardAPI [:paper:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -268,7 +272,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":dhl:build" />
+            <option value=":paper:dhl:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -282,7 +286,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [:paper:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:paper:folia:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -293,7 +297,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":paper:dhl:build" />
+            <option value=":paper:folia:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -395,11 +399,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CrystalShardAPI [:paper:folia:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:traveler:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:velocity:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:dhl:build]" />
       </list>
     </recent_temporary>
   </component>
@@ -645,15 +649,7 @@
       <workItem from="1781045544326" duration="1090000" />
       <workItem from="1781347201356" duration="14562000" />
       <workItem from="1781392488174" duration="1560000" />
-      <workItem from="1781430572604" duration="4885000" />
-    </task>
-    <task id="LOCAL-00069" summary="fixed maven repo">
-      <option name="closed" value="true" />
-      <created>1774801382168</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1774801382168</updated>
+      <workItem from="1781430572604" duration="5044000" />
     </task>
     <task id="LOCAL-00070" summary="add simple null-extension">
       <option name="closed" value="true" />
@@ -1039,7 +1035,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781435499480</updated>
     </task>
-    <option name="localTasksCounter" value="118" />
+    <task id="LOCAL-00118" summary="bump version">
+      <option name="closed" value="true" />
+      <created>1781435524288</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1781435524288</updated>
+    </task>
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1057,7 +1061,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added tests" />
     <MESSAGE value="updated to adventure 5.0.0" />
     <MESSAGE value="updated to adventure 5.0.0." />
     <MESSAGE value="updated and improved logs" />
@@ -1082,7 +1085,8 @@
     <MESSAGE value="update name from common to traveler" />
     <MESSAGE value="fixed building and fixed type conversion." />
     <MESSAGE value="fixed gh actions. and building." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed gh actions. and building." />
+    <MESSAGE value="bump version" />
+    <option name="LAST_COMMIT_MESSAGE" value="bump version" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

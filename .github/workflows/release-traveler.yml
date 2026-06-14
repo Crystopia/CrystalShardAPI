@@ -1,4 +1,4 @@
-﻿name: Build CrystalShard-Common
+﻿name: Build CrystalShard-Traveler
 
 on:
   push:
