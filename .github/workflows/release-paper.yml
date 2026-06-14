@@ -24,11 +24,11 @@ jobs:
           distribution: 'temurin'
           java-version: '26'
 
-      - name: Print reobfJar log
-        if: failure()
-        run: find . -name "reobfJar.log" -exec cat {} \;
-
       - name: Grant execute permission for Gradle
         run: chmod +x gradlew
       - name: Build crystalshard-paper-${{ matrix.tasks }}
         run: ./gradlew paper:${{ matrix.tasks }}:publish -DREPOSILITE_USER=${{ secrets.REPOSILITE_USER }} -DREPOSILITE_TOKEN=${{ secrets.REPOSILITE_TOKEN }}
+
+      - name: Print reobfJar log
+        if: failure()
+        run: find . -name "reobfJar.log" -exec cat {} \;
