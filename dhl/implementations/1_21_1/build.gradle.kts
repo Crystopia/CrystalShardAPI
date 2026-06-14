@@ -19,7 +19,6 @@ dependencies {
 tasks {
     assemble {
         dependsOn(shadowJar)
-        dependsOn(reobfJar)
     }
     java {
         withSourcesJar()
