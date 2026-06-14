@@ -256,7 +256,9 @@ fun EntityMetadataBuilder.PAPER_1_21_1(data: EntityMetadata<*>): SynchedEntityDa
                 accessor,
                 Holder.direct(
                     PaintingVariant(
-                        variant.width, variant.height,
+                        variant.width,
+                        variant.height,
+                        ResourceLocation.tryBuild(variant.assetId.namespace, variant.assetId.key)!!
                     )
                 )
             )

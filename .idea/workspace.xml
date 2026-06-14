@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="try to fix dhl 1.21.1.">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="try to fix dhl">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_1/data/packets/EntityMetadata.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_1/data/packets/EntityMetadata.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,18 +36,45 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
                 <item name="dhl" type="2d1252cf:ModuleNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
                 <item name="dhl" type="2d1252cf:ModuleNode" />
+                <item name="converter" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+                <item name="dhl" type="2d1252cf:ModuleNode" />
+                <item name="converter" type="2d1252cf:ModuleNode" />
+                <item name="1_21_1" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+                <item name="dhl" type="2d1252cf:ModuleNode" />
+                <item name="converter" type="2d1252cf:ModuleNode" />
+                <item name="1_21_1" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
                 <item name="dhl" type="2d1252cf:ModuleNode" />
+                <item name="converter" type="2d1252cf:ModuleNode" />
+                <item name="1_21_1" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -181,6 +209,7 @@
     "Gradle.CrystalShardAPI [:dhl:implementations:1_21_9:build].executor": "Run",
     "Gradle.CrystalShardAPI [:dhl:shared:assemble].executor": "Run",
     "Gradle.CrystalShardAPI [:dhl:shared:build].executor": "Run",
+    "Gradle.CrystalShardAPI [:paper:box:assemble].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:box:build].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:box:publishToMavenLocal].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:custom:build].executor": "Run",
@@ -189,6 +218,7 @@
     "Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_10:build].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_11:build].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:assemble].executor": "Run",
+    "Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:buildDependents].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:build].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_9:build].executor": "Run",
     "Gradle.CrystalShardAPI [:paper:dhl:publishToMavenLocal].executor": "Run",
@@ -288,7 +318,7 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [:dhl:build]">
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:build]">
     <configuration name="CrystalShardAPI [:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -314,7 +344,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:paper:box:assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -325,7 +355,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
+            <option value=":paper:box:assemble" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -339,7 +369,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:paper:box:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -350,7 +380,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="clean" />
+            <option value=":paper:box:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -364,7 +394,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [publishAllPublicationsToReposiliteRepository]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:paper:dhl:converter:1_21_1:buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -375,7 +405,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="publishAllPublicationsToReposiliteRepository" />
+            <option value=":paper:dhl:converter:1_21_1:buildDependents" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -389,7 +419,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [publish]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:paper:dhl:converter:1_21_1:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -400,7 +430,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="publish" />
+            <option value=":paper:dhl:converter:1_21_1:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -427,11 +457,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:build]" />
+        <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:buildDependents]" />
+        <item itemvalue="Gradle.CrystalShardAPI [:paper:box:build]" />
+        <item itemvalue="Gradle.CrystalShardAPI [:paper:box:assemble]" />
         <item itemvalue="Gradle.CrystalShardAPI [:dhl:build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [clean]" />
-        <item itemvalue="Gradle.CrystalShardAPI [publish]" />
-        <item itemvalue="Gradle.CrystalShardAPI [publishAllPublicationsToReposiliteRepository]" />
-        <item itemvalue="Gradle.CrystalShardAPI [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -677,15 +707,7 @@
       <workItem from="1781045544326" duration="1090000" />
       <workItem from="1781347201356" duration="14562000" />
       <workItem from="1781392488174" duration="1560000" />
-      <workItem from="1781430572604" duration="10427000" />
-    </task>
-    <task id="LOCAL-00079" summary="added event extension(cred to twilight)">
-      <option name="closed" value="true" />
-      <created>1775085631075</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1775085631075</updated>
+      <workItem from="1781430572604" duration="11236000" />
     </task>
     <task id="LOCAL-00080" summary="fixed and updated smart events">
       <option name="closed" value="true" />
@@ -1071,7 +1093,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781439859239</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="try to fix dhl">
+      <option name="closed" value="true" />
+      <created>1781441090298</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1781441090298</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1089,7 +1119,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added .toDhl functions for Dialog builder" />
     <MESSAGE value="cleanup some type converter for dhl." />
     <MESSAGE value="Added addRecipeBook (todo)." />
     <MESSAGE value="Fixed Recipe stuff. switched to 1.21.1 test" />
@@ -1114,7 +1143,8 @@
     <MESSAGE value="fixed paperuserdev. bump version" />
     <MESSAGE value="fixed dhl. bump." />
     <MESSAGE value="try to fix dhl 1.21.1." />
-    <option name="LAST_COMMIT_MESSAGE" value="try to fix dhl 1.21.1." />
+    <MESSAGE value="try to fix dhl" />
+    <option name="LAST_COMMIT_MESSAGE" value="try to fix dhl" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
