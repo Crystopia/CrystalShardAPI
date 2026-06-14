@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="bump version">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/release-traveler.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-traveler.yml" afterDir="false" />
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="updated paper:folia to java 25">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/folia/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/folia/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/velocitytest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/velocitytest/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +31,32 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="tests" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="tests" type="2d1252cf:ModuleNode" />
+                <item name="velocitytest" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="tests" type="2d1252cf:ModuleNode" />
+                <item name="velocitytest" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="tests" type="2d1252cf:ModuleNode" />
+                <item name="velocitytest" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -180,6 +205,7 @@
     "Gradle.CrystalShardAPI [:tests:papertest:clean].executor": "Run",
     "Gradle.CrystalShardAPI [:tests:papertest:runServer].executor": "Run",
     "Gradle.CrystalShardAPI [:tests:runServer].executor": "Run",
+    "Gradle.CrystalShardAPI [:tests:velocitytest:build].executor": "Run",
     "Gradle.CrystalShardAPI [:tests:velocitytest:cleanVelocityPluginsCache].executor": "Run",
     "Gradle.CrystalShardAPI [:tests:velocitytest:runVelocity].executor": "Run",
     "Gradle.CrystalShardAPI [:traveler:build].executor": "Run",
@@ -260,7 +286,7 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [:paper:folia:build]">
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [:tests:velocitytest:build]">
     <configuration name="CrystalShardAPI [:paper:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -298,6 +324,31 @@
         <option name="taskNames">
           <list>
             <option value=":paper:folia:build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="CrystalShardAPI [:tests:velocitytest:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":tests:velocitytest:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -361,31 +412,6 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--stacktrace" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="build" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="CrystalShardAPI.main" />
       <method v="2">
@@ -399,11 +425,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CrystalShardAPI [:tests:velocitytest:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:folia:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:traveler:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:velocity:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [build]" />
       </list>
     </recent_temporary>
   </component>
@@ -649,15 +675,7 @@
       <workItem from="1781045544326" duration="1090000" />
       <workItem from="1781347201356" duration="14562000" />
       <workItem from="1781392488174" duration="1560000" />
-      <workItem from="1781430572604" duration="5044000" />
-    </task>
-    <task id="LOCAL-00070" summary="add simple null-extension">
-      <option name="closed" value="true" />
-      <created>1774816886840</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1774816886841</updated>
+      <workItem from="1781430572604" duration="5300000" />
     </task>
     <task id="LOCAL-00071" summary="bump version">
       <option name="closed" value="true" />
@@ -1043,7 +1061,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781435524288</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="updated paper:folia to java 25">
+      <option name="closed" value="true" />
+      <created>1781435676728</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1781435676728</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1061,7 +1087,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated to adventure 5.0.0" />
     <MESSAGE value="updated to adventure 5.0.0." />
     <MESSAGE value="updated and improved logs" />
     <MESSAGE value="improved AdvancementProgress packet" />
@@ -1086,7 +1111,8 @@
     <MESSAGE value="fixed building and fixed type conversion." />
     <MESSAGE value="fixed gh actions. and building." />
     <MESSAGE value="bump version" />
-    <option name="LAST_COMMIT_MESSAGE" value="bump version" />
+    <MESSAGE value="updated paper:folia to java 25" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated paper:folia to java 25" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
