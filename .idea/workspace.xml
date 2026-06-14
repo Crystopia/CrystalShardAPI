@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="updated paper:folia to java 25">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/velocitytest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/velocitytest/build.gradle.kts" afterDir="false" />
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed test java version.">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/release-paper.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-paper.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -675,15 +673,7 @@
       <workItem from="1781045544326" duration="1090000" />
       <workItem from="1781347201356" duration="14562000" />
       <workItem from="1781392488174" duration="1560000" />
-      <workItem from="1781430572604" duration="5300000" />
-    </task>
-    <task id="LOCAL-00071" summary="bump version">
-      <option name="closed" value="true" />
-      <created>1774816904887</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1774816904887</updated>
+      <workItem from="1781430572604" duration="5517000" />
     </task>
     <task id="LOCAL-00072" summary="improved advancement building....">
       <option name="closed" value="true" />
@@ -1069,7 +1059,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781435676728</updated>
     </task>
-    <option name="localTasksCounter" value="120" />
+    <task id="LOCAL-00120" summary="fixed test java version.">
+      <option name="closed" value="true" />
+      <created>1781435936717</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1781435936717</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1087,7 +1085,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated to adventure 5.0.0." />
     <MESSAGE value="updated and improved logs" />
     <MESSAGE value="improved AdvancementProgress packet" />
     <MESSAGE value="rework dhl for all minecraft platforms. recode dhl paper to use crystalshard-paper." />
@@ -1112,7 +1109,8 @@
     <MESSAGE value="fixed gh actions. and building." />
     <MESSAGE value="bump version" />
     <MESSAGE value="updated paper:folia to java 25" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated paper:folia to java 25" />
+    <MESSAGE value="fixed test java version." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed test java version." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

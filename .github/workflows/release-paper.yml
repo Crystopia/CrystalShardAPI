@@ -10,7 +10,7 @@ jobs:
   publish:
     strategy:
       matrix:
-        tasks: [ "box", "core", "util", "dhl", "dhl:converter:1_21_1", "dhl:converter:1_21_9", "dhl:converter:1_21_10", "dhl:converter:1_21_11", "pack", "panic", "simulacrum", "folia" ]
+        tasks: [ "box", "core", "util", "dhl", "dhl:converter:1_21_1", "dhl:converter:1_21_9", "dhl:converter:1_21_10", "dhl:converter:1_21_11", "panic", "simulacrum", "folia" ]
     runs-on: ubuntu-latest
 
 
