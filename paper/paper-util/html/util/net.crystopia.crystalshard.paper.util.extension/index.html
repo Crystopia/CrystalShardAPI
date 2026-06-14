@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>net.crystopia.crystalshard.paper.util.extension</title>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+        <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+      if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      } else {
+        const savedDarkMode = JSON.parse(storage)
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+      }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/safe-local-storage_blocking.js"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../ui-kit/ui-kit.min.js" defer="defer"></script>
+</head>
+<body>
+<div class="root">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+            <a class="library-name--link" href="../../index.html" tabindex="1">
+                    util
+            </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+1.2.7-SNAPSHOT-22        </div>
+        <div class="navigation-controls">
+        <ul class="filter-section filter-section_loading" id="filter-section" aria-label="Target filter">
+                <button class="platform-tag platform-selector jvm-like" data-active="" aria-pressed="true"
+                        data-filter=":paper:util/main">jvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox" aria-label="Target filter">
+                    <div class="dropdown--header"><span>Target filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close target filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":paper:util/main"
+                                       data-filter=":paper:util/main"/>
+                                <span class="checkbox--icon"></span>
+                                jvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </ul>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </header>
+    <div id="container">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION" data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox" aria-label="Table of contents">
+                    <div class="dropdown--header">
+                            <span>
+                                    util
+                            </span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
+<div class="main-content" data-page-type="package" id="content" pageIds="util::net.crystopia.crystalshard.paper.util.extension////PointingToDeclaration//72042608">
+  <div class="breadcrumbs"><a href="../../index.html">util</a><span class="delimiter">/</span><span class="current">net.crystopia.crystalshard.paper.util.extension</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="EXTENSION_FUNCTION">
+        <h2 class="tableheader">Functions</h2>
+        <div class="table"><a data-name="-1326249189%2FFunctions%2F72042608" anchor-label="craftItemEvent" id="-1326249189%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="craft-item-event.html"><span>craft</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1326249189%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/ItemStack///PointingToDeclaration/">ItemStack</span><span class="token punctuation">.</span><a href="craft-item-event.html"><span class="token function">craftItemEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.inventory/CraftItemEvent///PointingToDeclaration/">CraftItemEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the CraftItemEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1514068214%2FFunctions%2F72042608" anchor-label="onBlockBreak" id="1514068214%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-block-break.html"><span>on</span><wbr></wbr><span>Block</span><wbr></wbr><span><span>Break</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1514068214%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-block-break.html"><span class="token function">onBlockBreak</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.block/BlockBreakEvent///PointingToDeclaration/">BlockBreakEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the BlockBreakEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1107015398%2FFunctions%2F72042608" anchor-label="onBlockPlace" id="1107015398%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-block-place.html"><span>on</span><wbr></wbr><span>Block</span><wbr></wbr><span><span>Place</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1107015398%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-block-place.html"><span class="token function">onBlockPlace</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.block/BlockPlaceEvent///PointingToDeclaration/">BlockPlaceEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the BlockPlaceEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="167844716%2FFunctions%2F72042608" anchor-label="onChat" id="167844716%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-chat.html"><span>on</span><wbr></wbr><span><span>Chat</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="167844716%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-chat.html"><span class="token function">onChat</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="io.papermc.paper.event.player/AsyncChatEvent///PointingToDeclaration/">AsyncChatEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the AsyncChatEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-325647183%2FFunctions%2F72042608" anchor-label="onClick" id="-325647183%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-click.html"><span>on</span><wbr></wbr><span><span>Click</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-325647183%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/Inventory///PointingToDeclaration/">Inventory</span><span class="token punctuation">.</span><a href="on-click.html"><span class="token function">onClick</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.inventory/InventoryClickEvent///PointingToDeclaration/">InventoryClickEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the InventoryClickEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-28574767%2FFunctions%2F72042608" anchor-label="onClose" id="-28574767%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-close.html"><span>on</span><wbr></wbr><span><span>Close</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-28574767%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/Inventory///PointingToDeclaration/">Inventory</span><span class="token punctuation">.</span><a href="on-close.html"><span class="token function">onClose</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.inventory/InventoryCloseEvent///PointingToDeclaration/">InventoryCloseEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the InventoryCloseEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1971658891%2FFunctions%2F72042608" anchor-label="onCraftItem" id="-1971658891%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-craft-item.html"><span>on</span><wbr></wbr><span>Craft</span><wbr></wbr><span><span>Item</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1971658891%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/Recipe///PointingToDeclaration/">Recipe</span><span class="token punctuation">.</span><a href="on-craft-item.html"><span class="token function">onCraftItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.inventory/CraftItemEvent///PointingToDeclaration/">CraftItemEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the CraftItemEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-958801381%2FFunctions%2F72042608" anchor-label="onDamage" id="-958801381%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-damage.html"><span>on</span><wbr></wbr><span><span>Damage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-958801381%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Entity///PointingToDeclaration/">Entity</span><span class="token punctuation">.</span><a href="on-damage.html"><span class="token function">onDamage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.entity/EntityDamageEvent///PointingToDeclaration/">EntityDamageEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the EntityDamageEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1510036283%2FFunctions%2F72042608" anchor-label="onDamageByBlock" id="1510036283%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-damage-by-block.html"><span>on</span><wbr></wbr><span>Damage</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Block</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1510036283%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Entity///PointingToDeclaration/">Entity</span><span class="token punctuation">.</span><a href="on-damage-by-block.html"><span class="token function">onDamageByBlock</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.entity/EntityDamageByBlockEvent///PointingToDeclaration/">EntityDamageByBlockEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the EntityDamageByBlockEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1253380773%2FFunctions%2F72042608" anchor-label="onDamageByEntity" id="-1253380773%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-damage-by-entity.html"><span>on</span><wbr></wbr><span>Damage</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Entity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1253380773%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Entity///PointingToDeclaration/">Entity</span><span class="token punctuation">.</span><a href="on-damage-by-entity.html"><span class="token function">onDamageByEntity</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.entity/EntityDamageByEntityEvent///PointingToDeclaration/">EntityDamageByEntityEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the EntityDamageByEntityEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1531221800%2FFunctions%2F72042608" anchor-label="onDeath" id="1531221800%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-death.html"><span>on</span><wbr></wbr><span><span>Death</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1531221800%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Entity///PointingToDeclaration/">Entity</span><span class="token punctuation">.</span><a href="on-death.html"><span class="token function">onDeath</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.entity/EntityDeathEvent///PointingToDeclaration/">EntityDeathEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the EntityDeathEvent. Register SmartEvents and use the Event Manager.</p></div><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-death.html"><span class="token function">onDeath</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.entity/PlayerDeathEvent///PointingToDeclaration/">PlayerDeathEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerDeathEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1950217290%2FFunctions%2F72042608" anchor-label="onDrop" id="1950217290%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-drop.html"><span>on</span><wbr></wbr><span><span>Drop</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1950217290%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-drop.html"><span class="token function">onDrop</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerDropItemEvent///PointingToDeclaration/">PlayerDropItemEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerDropItemEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-300374934%2FFunctions%2F72042608" anchor-label="onInteractEntity" id="-300374934%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-interact-entity.html"><span>on</span><wbr></wbr><span>Interact</span><wbr></wbr><span><span>Entity</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-300374934%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-interact-entity.html"><span class="token function">onInteractEntity</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerInteractAtEntityEvent///PointingToDeclaration/">PlayerInteractAtEntityEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerInteractAtEntityEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-939448303%2FFunctions%2F72042608" anchor-label="onInventoryClick" id="-939448303%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-inventory-click.html"><span>on</span><wbr></wbr><span>Inventory</span><wbr></wbr><span><span>Click</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-939448303%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-inventory-click.html"><span class="token function">onInventoryClick</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.inventory/InventoryClickEvent///PointingToDeclaration/">InventoryClickEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the InventoryClickEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1772713167%2FFunctions%2F72042608" anchor-label="onInventoryClose" id="-1772713167%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-inventory-close.html"><span>on</span><wbr></wbr><span>Inventory</span><wbr></wbr><span><span>Close</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1772713167%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-inventory-close.html"><span class="token function">onInventoryClose</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.inventory/InventoryCloseEvent///PointingToDeclaration/">InventoryCloseEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the InventoryCloseEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-49903509%2FFunctions%2F72042608" anchor-label="onItemDamage" id="-49903509%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-item-damage.html"><span>on</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>Damage</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-49903509%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Entity///PointingToDeclaration/">Entity</span><span class="token punctuation">.</span><a href="on-item-damage.html"><span class="token function">onItemDamage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="io.papermc.paper.event.entity/EntityDamageItemEvent///PointingToDeclaration/">EntityDamageItemEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the EntityDamageItemEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1644875419%2FFunctions%2F72042608" anchor-label="onItemSwap" id="-1644875419%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-item-swap.html"><span>on</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>Swap</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1644875419%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-item-swap.html"><span class="token function">onItemSwap</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerSwapHandItemsEvent///PointingToDeclaration/">PlayerSwapHandItemsEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerSwapHandItemsEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2001973053%2FFunctions%2F72042608" anchor-label="onJoin" id="2001973053%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-join.html"><span>on</span><wbr></wbr><span><span>Join</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2001973053%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-join.html"><span class="token function">onJoin</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerJoinEvent///PointingToDeclaration/">PlayerJoinEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerJoinEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1573028899%2FFunctions%2F72042608" anchor-label="onMove" id="-1573028899%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-move.html"><span>on</span><wbr></wbr><span><span>Move</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1573028899%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-move.html"><span class="token function">onMove</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerMoveEvent///PointingToDeclaration/">PlayerMoveEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerMoveEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1128097784%2FFunctions%2F72042608" anchor-label="onPickUp" id="-1128097784%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-pick-up.html"><span>on</span><wbr></wbr><span>Pick</span><wbr></wbr><span><span>Up</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1128097784%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Entity///PointingToDeclaration/">Entity</span><span class="token punctuation">.</span><a href="on-pick-up.html"><span class="token function">onPickUp</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.entity/EntityPickupItemEvent///PointingToDeclaration/">EntityPickupItemEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the EntityPickupItemEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1678563921%2FFunctions%2F72042608" anchor-label="onPrepareCraftItem" id="-1678563921%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-prepare-craft-item.html"><span>on</span><wbr></wbr><span>Prepare</span><wbr></wbr><span>Craft</span><wbr></wbr><span><span>Item</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1678563921%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/Recipe///PointingToDeclaration/">Recipe</span><span class="token punctuation">.</span><a href="on-prepare-craft-item.html"><span class="token function">onPrepareCraftItem</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.inventory/PrepareItemCraftEvent///PointingToDeclaration/">PrepareItemCraftEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PrepareItemCraftEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1243420899%2FFunctions%2F72042608" anchor-label="onQuit" id="-1243420899%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-quit.html"><span>on</span><wbr></wbr><span><span>Quit</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1243420899%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">.</span><a href="on-quit.html"><span class="token function">onQuit</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerQuitEvent///PointingToDeclaration/">PlayerQuitEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerQuitEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1666380796%2FFunctions%2F72042608" anchor-label="onSlotClick" id="-1666380796%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-slot-click.html"><span>on</span><wbr></wbr><span>Slot</span><wbr></wbr><span><span>Click</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1666380796%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/Inventory///PointingToDeclaration/">Inventory</span><span class="token punctuation">.</span><a href="on-slot-click.html"><span class="token function">onSlotClick</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">slot<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-int/index.html">Int</a><span class="token punctuation">, </span></span><span class="parameter ">callback<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.inventory/InventoryClickEvent///PointingToDeclaration/">InventoryClickEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the InventoryClickEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="21594917%2FFunctions%2F72042608" anchor-label="playerInteractEntityEvent" id="21594917%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-interact-entity-event.html"><span>player</span><wbr></wbr><span>Interact</span><wbr></wbr><span>Entity</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="21594917%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.entity/Display///PointingToDeclaration/">Display</span><span class="token punctuation">.</span><a href="player-interact-entity-event.html"><span class="token function">playerInteractEntityEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">player<span class="token operator">: </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">, </span></span><span class="parameter ">interactionHeight<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">interactionWidth<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-float/index.html">Float</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerInteractEntityEvent///PointingToDeclaration/">PlayerInteractEntityEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerInteractEntityEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-988478147%2FFunctions%2F72042608" anchor-label="playerInteractEvent" id="-988478147%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-interact-event.html"><span>player</span><wbr></wbr><span>Interact</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-988478147%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/ItemStack///PointingToDeclaration/">ItemStack</span><span class="token punctuation">.</span><a href="player-interact-event.html"><span class="token function">playerInteractEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">player<span class="token operator">: </span><span data-unresolved-link="org.bukkit.entity/Player///PointingToDeclaration/">Player</span><span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerInteractEvent///PointingToDeclaration/">PlayerInteractEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerInteractEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1041547451%2FFunctions%2F72042608" anchor-label="playerInteractWithItemEvent" id="1041547451%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-interact-with-item-event.html"><span>player</span><wbr></wbr><span>Interact</span><wbr></wbr><span>With</span><wbr></wbr><span>Item</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1041547451%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/ItemStack///PointingToDeclaration/">ItemStack</span><span class="token punctuation">.</span><a href="player-interact-with-item-event.html"><span class="token function">playerInteractWithItemEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerInteractEvent///PointingToDeclaration/">PlayerInteractEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerInteractEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1675415964%2FFunctions%2F72042608" anchor-label="playerInteractWithItemHasContainerEvent" id="-1675415964%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="player-interact-with-item-has-container-event.html"><span>player</span><wbr></wbr><span>Interact</span><wbr></wbr><span>With</span><wbr></wbr><span>Item</span><wbr></wbr><span>Has</span><wbr></wbr><span>Container</span><wbr></wbr><span><span>Event</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1675415964%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/ItemStack///PointingToDeclaration/">ItemStack</span><span class="token punctuation">.</span><a href="player-interact-with-item-has-container-event.html"><span class="token function">playerInteractWithItemHasContainerEvent</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><span data-unresolved-link="org.bukkit/NamespacedKey///PointingToDeclaration/">NamespacedKey</span><span class="token punctuation">, </span></span><span class="parameter ">type<span class="token operator">: </span><span data-unresolved-link="org.bukkit.persistence/PersistentDataType///PointingToDeclaration/">PersistentDataType</span><span class="token operator">&lt;</span><span class="token operator">*</span><span class="token punctuation">, </span><span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.bukkit.event.player/PlayerInteractEvent///PointingToDeclaration/">PlayerInteractEvent</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Custom Interaction Method for the PlayerInteractEvent. Register SmartEvents and use the Event Manager.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2034918707%2FFunctions%2F72042608" anchor-label="register" id="-2034918707%2FFunctions%2F72042608" data-filterable-set=":paper:util/main"></a>
+          <div class="table-row table-row_content" data-filterable-current=":paper:util/main" data-filterable-set=":paper:util/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="register.html"><span><span>register</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2034918707%2FFunctions%2F72042608"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":paper:util/main"><div class="symbol monospace"><span class="token keyword">fun </span><span data-unresolved-link="org.bukkit.inventory/Recipe///PointingToDeclaration/">Recipe</span><span class="token punctuation">.</span><a href="register.html"><span class="token function">register</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">resendRecipe<span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="org.bukkit.inventory/Recipe///PointingToDeclaration/">Recipe</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <div class="footer--container">
+            <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+            <div class="footer--content">
+                <div>
+                    <span>Generated by </span>
+                    <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                        Dokka
+                    </a>
+                    <div>© 2026 Copyright</div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
