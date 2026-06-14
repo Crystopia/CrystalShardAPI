@@ -23,7 +23,6 @@ dependencies {
 tasks {
     assemble {
         dependsOn(shadowJar)
-        dependsOn(reobfJar)
     }
     shadowJar {
         dependsOn(":dhl:shared:shadowJar")
