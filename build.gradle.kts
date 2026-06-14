@@ -17,7 +17,7 @@ subprojects {
 
 allprojects {
     group = "net.crystopia.crystalshard"
-    version = "1.2.7-SNAPSHOT-18"
+    version = "1.2.7-SNAPSHOT-19"
 
     repositories {
         mavenCentral()

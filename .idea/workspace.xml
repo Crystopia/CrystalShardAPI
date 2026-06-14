@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="moved error catch for paper gh action.">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed java version for dhl:1.21.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" afterDir="false" />
@@ -35,13 +35,13 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="paper" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="paper" type="2d1252cf:ModuleNode" />
-                <item name="box" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -277,7 +277,7 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [:paper:box:build]">
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [build]">
     <configuration name="CrystalShardAPI [:paper:box:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -416,8 +416,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.CrystalShardAPI [:paper:box:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [build]" />
+        <item itemvalue="Gradle.CrystalShardAPI [:paper:box:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_11:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:buildDependents]" />
@@ -668,15 +668,7 @@
       <workItem from="1781392488174" duration="1560000" />
       <workItem from="1781430572604" duration="12083000" />
       <workItem from="1781442893380" duration="291000" />
-      <workItem from="1781446779119" duration="2688000" />
-    </task>
-    <task id="LOCAL-00086" summary="fixed tasks. Added better workflow for bukkit tasks and bossbars">
-      <option name="closed" value="true" />
-      <created>1775654345510</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1775654345511</updated>
+      <workItem from="1781446779119" duration="2926000" />
     </task>
     <task id="LOCAL-00087" summary="added better Runnable (credits twilight)&#10;&#10;That will change in time.">
       <option name="closed" value="true" />
@@ -1062,7 +1054,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781449020701</updated>
     </task>
-    <option name="localTasksCounter" value="135" />
+    <task id="LOCAL-00135" summary="fixed java version for dhl:1.21.1">
+      <option name="closed" value="true" />
+      <created>1781449491751</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1781449491751</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1080,7 +1080,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved Exception for dhl. updated ClientPacketBuilder." />
     <MESSAGE value="renamed internal packet holder." />
     <MESSAGE value="renamed general package in dhl-nms to builder." />
     <MESSAGE value="added recipe packets (todo tests). Fixed package structure. Updated test plugin test system. bug fixes." />
@@ -1105,7 +1104,8 @@
     <MESSAGE value="fixed building for box and panic." />
     <MESSAGE value="added debug in gh action for paper:box" />
     <MESSAGE value="moved error catch for paper gh action." />
-    <option name="LAST_COMMIT_MESSAGE" value="moved error catch for paper gh action." />
+    <MESSAGE value="fixed java version for dhl:1.21.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed java version for dhl:1.21.1" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
