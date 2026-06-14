@@ -1,4 +1,4 @@
-﻿name: Build CrystalShard-Paper
+﻿name: Build CrystalShard-Dhl
 
 on:
   workflow_dispatch:

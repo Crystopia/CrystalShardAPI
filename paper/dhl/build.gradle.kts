@@ -16,17 +16,17 @@ dependencies {
 
     implementation(project(":paper:core"))
 
-    api(project(":dhl"))
-    api(project(":dhl:shared"))
-    api(project(":paper:dhl:types"))
-    api(project(":dhl:implementations:1_21_1"))
-    api(project(":dhl:implementations:1_21_9"))
-    api(project(":dhl:implementations:1_21_10"))
-    api(project(":dhl:implementations:1_21_11"))
-    api(project(":paper:dhl:converter:1_21_1"))
-    api(project(":paper:dhl:converter:1_21_9"))
-    api(project(":paper:dhl:converter:1_21_10"))
-    api(project(":paper:dhl:converter:1_21_11"))
+    implementation(project(":dhl"))
+    implementation(project(":dhl:shared"))
+    implementation(project(":paper:dhl:types"))
+    implementation(project(":dhl:implementations:1_21_1"))
+    implementation(project(":dhl:implementations:1_21_9"))
+    implementation(project(":dhl:implementations:1_21_10"))
+    implementation(project(":dhl:implementations:1_21_11"))
+    implementation(project(":paper:dhl:converter:1_21_1"))
+    implementation(project(":paper:dhl:converter:1_21_9"))
+    implementation(project(":paper:dhl:converter:1_21_10"))
+    implementation(project(":paper:dhl:converter:1_21_11"))
 }
 
 kotlin {

@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed test java version.">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/release-paper.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-paper.yml" afterDir="false" />
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed paper gh action.">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/release-dhl.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-dhl.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/release-dokka-main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-dokka-main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/release-dokka-paper.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-dokka-paper.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,26 +39,18 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
+                <item name="dhl" type="2d1252cf:ModuleNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
-                <item name="velocitytest" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
-                <item name="velocitytest" type="2d1252cf:ModuleNode" />
+                <item name="dhl" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
-                <item name="velocitytest" type="2d1252cf:ModuleNode" />
+                <item name="dhl" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -284,8 +282,8 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [:tests:velocitytest:build]">
-    <configuration name="CrystalShardAPI [:paper:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [:dhl:build]">
+    <configuration name="CrystalShardAPI [:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -296,7 +294,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":paper:dhl:build" />
+            <option value=":dhl:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -423,11 +421,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CrystalShardAPI [:dhl:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:tests:velocitytest:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:folia:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:traveler:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:velocity:build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:build]" />
       </list>
     </recent_temporary>
   </component>
@@ -673,15 +671,7 @@
       <workItem from="1781045544326" duration="1090000" />
       <workItem from="1781347201356" duration="14562000" />
       <workItem from="1781392488174" duration="1560000" />
-      <workItem from="1781430572604" duration="5517000" />
-    </task>
-    <task id="LOCAL-00072" summary="improved advancement building....">
-      <option name="closed" value="true" />
-      <created>1774912320980</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1774912320981</updated>
+      <workItem from="1781430572604" duration="6190000" />
     </task>
     <task id="LOCAL-00073" summary="bump version">
       <option name="closed" value="true" />
@@ -1067,7 +1057,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781435936717</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="fixed paper gh action.">
+      <option name="closed" value="true" />
+      <created>1781436183274</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1781436183274</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1085,7 +1083,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated and improved logs" />
     <MESSAGE value="improved AdvancementProgress packet" />
     <MESSAGE value="rework dhl for all minecraft platforms. recode dhl paper to use crystalshard-paper." />
     <MESSAGE value="rework dhl for all minecraft platforms. re-code dhl-paper to use crystalshard-dhl." />
@@ -1110,7 +1107,8 @@
     <MESSAGE value="bump version" />
     <MESSAGE value="updated paper:folia to java 25" />
     <MESSAGE value="fixed test java version." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed test java version." />
+    <MESSAGE value="fixed paper gh action." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed paper gh action." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

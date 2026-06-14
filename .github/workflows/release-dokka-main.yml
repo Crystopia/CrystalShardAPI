@@ -1,4 +1,4 @@
-﻿name: Deploy crystalshard to GitHub Pages
+﻿name: Deploy Crystalshard to GitHub Pages
 
 on:
   workflow_dispatch:
