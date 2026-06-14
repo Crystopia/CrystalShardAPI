@@ -28,6 +28,5 @@ include(":paper:panic")
 include(":paper:util")
 include(":tests:papertest")
 include(":tests:velocitytest")
-include(":tests:modfabrictest")
 
 rootProject.name = "CrystalShardAPI"

@@ -1,5 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar.Companion.shadowJar
-
 plugins {
     id("java-library")
     kotlin("jvm")
@@ -10,44 +8,42 @@ plugins {
 
 group = "net.crystopia.crystalshard.dhl.versions"
 
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 dependencies {
-    // Paper
     paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
     implementation(project(":dhl:shared"))
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 tasks {
     assemble {
         dependsOn(shadowJar)
-        dependsOn(reobfJar)
     }
-    java {
-        withSourcesJar()
-        withJavadocJar()
-    }
-    publishing {
-        repositories {
-            maven {
-                name = "Reposilite"
-                url = uri("https://repo.jespersen.zip/releases")
-                credentials {
-                    username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
-                    password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
-                }
-                authentication {
-                    create<BasicAuthentication>("basic")
-                }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "Reposilite"
+            url = uri("https://repo.jespersen.zip/releases")
+            credentials {
+                username = System.getenv("REPOSILITE_USER") ?: System.getProperty("REPOSILITE_USER") ?: "USERNAME"
+                password = System.getenv("REPOSILITE_TOKEN") ?: System.getProperty("REPOSILITE_TOKEN") ?: "TOKEN"
+            }
+            authentication {
+                create<BasicAuthentication>("basic")
             }
         }
-        publications {
-            create<MavenPublication>("reposilite") {
-                from(components["java"])
-                artifactId = "1_21_11"
-                groupId = group as String
-                version = version
-            }
+    }
+    publications {
+        create<MavenPublication>("reposilite") {
+            from(components["java"])
+            artifactId = "1_21_11"
+            groupId = group as String
+            version = version
         }
     }
 }
