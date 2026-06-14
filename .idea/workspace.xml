@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed building and fixed type conversion.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed gh actions. and building.">
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/traveler/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/traveler/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/velocity/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/velocity/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -648,15 +645,7 @@
       <workItem from="1781045544326" duration="1090000" />
       <workItem from="1781347201356" duration="14562000" />
       <workItem from="1781392488174" duration="1560000" />
-      <workItem from="1781430572604" duration="4859000" />
-    </task>
-    <task id="LOCAL-00068" summary="added cmp function. updated to better yaml library.">
-      <option name="closed" value="true" />
-      <created>1774801061444</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1774801061445</updated>
+      <workItem from="1781430572604" duration="4885000" />
     </task>
     <task id="LOCAL-00069" summary="fixed maven repo">
       <option name="closed" value="true" />
@@ -1042,7 +1031,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781435181686</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="fixed gh actions. and building.">
+      <option name="closed" value="true" />
+      <created>1781435499480</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1781435499480</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1060,7 +1057,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved database and config." />
     <MESSAGE value="Added tests" />
     <MESSAGE value="updated to adventure 5.0.0" />
     <MESSAGE value="updated to adventure 5.0.0." />
@@ -1085,7 +1081,8 @@
     <MESSAGE value="snapshot of the 1.2.7 release." />
     <MESSAGE value="update name from common to traveler" />
     <MESSAGE value="fixed building and fixed type conversion." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed building and fixed type conversion." />
+    <MESSAGE value="fixed gh actions. and building." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed gh actions. and building." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
