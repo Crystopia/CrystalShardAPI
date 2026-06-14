@@ -12,11 +12,11 @@ group = "net.crystopia.crystalshard.paper"
 dependencies {
     paperweight.paperDevBundle("26.1.2.build.+")
 
-    compileOnly(project(":traveler"))
-    compileOnly(project(":paper:core"))
-    compileOnly(project(":dhl"))
-    compileOnly(project(":paper:dhl"))
-    compileOnly(project(":dhl:shared"))
+    api(project(":traveler"))
+    api(project(":paper:core"))
+    api(project(":dhl"))
+    api(project(":paper:dhl"))
+    api(project(":dhl:shared"))
 }
 
 kotlin {

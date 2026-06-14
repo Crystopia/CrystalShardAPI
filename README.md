@@ -21,13 +21,13 @@ Use the packages you need as a Shade-in Library. Crystalshard is builded for Kot
 | Platform | ID                                                                                            | Description                                                             |
 |----------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
 | ALL      | [`traveler`](https://crystopia.github.io/CrystalShardAPI/traveler/html)                       | Extensions API for advanture, etc. and Minecraft+                       |
-| PAPER    | [`paper-core`](https://crystopia.github.io/CrystalShardAPI/paper/paper-core/html)             | Core methods and extensions for PaperMC                                 |
-| PAPER    | [`paper-folia`](https://crystopia.github.io/CrystalShardAPI/paper/paper-folia/html)           | Folia Addon for CrystalShard Paper.                                     |
-| PAPER    | [`paper-box`](https://crystopia.github.io/CrystalShardAPI/paper/paper-box/html)               | Package-based GUI library for PaperMC *(WIP)*                           |
-| PAPER    | [`paper-util`](https://crystopia.github.io/CrystalShardAPI/paper/paper-util/html)             | Utility library for custom elements and enhancements for Paper & Bukkit |
-| PAPER    | [`paper-dhl`](https://crystopia.github.io/CrystalShardAPI/paper/paper-dhl/html)               | Package library with factories and helpers for Minecraft. *(BETA)*      |
-| PAPER    | [`paper-panic`](https://crystopia.github.io/CrystalShardAPI/paper/paper-panic/html)           | Experimental library for unsafe and unstable PaperMC/Bukkit features    |
-| PAPER    | [`paper-simulacrum`](https://crystopia.github.io/CrystalShardAPI/paper/paper-simulacrum/html) | Fancy NPCs, displays, and visual entities                               |
+| PAPER    | [`paper:core`](https://crystopia.github.io/CrystalShardAPI/paper/paper-core/html)             | Core methods and extensions for PaperMC                                 |
+| PAPER    | [`paper:folia`](https://crystopia.github.io/CrystalShardAPI/paper/paper-folia/html)           | Folia Addon for CrystalShard Paper.                                     |
+| PAPER    | [`paper:box`](https://crystopia.github.io/CrystalShardAPI/paper/paper-box/html)               | Package-based GUI library for PaperMC *(WIP)*                           |
+| PAPER    | [`paper:util`](https://crystopia.github.io/CrystalShardAPI/paper/paper-util/html)             | Utility library for custom elements and enhancements for Paper & Bukkit |
+| PAPER    | [`paper:dhl`](https://crystopia.github.io/CrystalShardAPI/paper/paper-dhl/html)               | Package library with factories and helpers for Minecraft. *(BETA)*      |
+| PAPER    | [`paper:panic`](https://crystopia.github.io/CrystalShardAPI/paper/paper-panic/html)           | Experimental library for unsafe and unstable PaperMC/Bukkit features    |
+| PAPER    | [`paper:simulacrum`](https://crystopia.github.io/CrystalShardAPI/paper/paper-simulacrum/html) | Fancy NPCs, displays, and visual entities                               |
 | VELOCITY | [`velocity`](https://crystopia.github.io/CrystalShardAPI/velocity/html)                       | Core utilities and extensions for Velocity                              |
 
 ---
@@ -60,12 +60,22 @@ implementation("net.crystopia.crystalshard.paper:dhl:<version>")
 implementation("net.crystopia.crystalshard.paper:panic:<version>")
 implementation("net.crystopia.crystalshard.paper:simulacrum:<version>")
 
-// Dhl
-implementation("net.crystopia.crystalshard:dhl:<version>")
-
 // Velocity
 implementation("net.crystopia.crystalshard:velocity:<version>")
 ```
+
+<details>
+  <summary>Dhl Releases</summary>
+
+  ```kotlin
+  // Dhl
+implementation("net.crystopia.crystalshard:dhl:<version>")
+implementation("net.crystopia.crystalshard.dhl:shared:<version>")
+// mcVersion: The implementation of the Minecraft Version.
+implementation("net.crystopia.crystalshard.dhl.versions:<mcVersion>:<version>")
+  ```
+
+</details>
 
 ## License
 

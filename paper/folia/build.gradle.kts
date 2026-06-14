@@ -11,7 +11,7 @@ group = "net.crystopia.crystalshard.paper"
 
 dependencies {
     paperweight.paperDevBundle("26.1.2.build.+")
-    implementation(project(":paper:core"))
+    api(project(":paper:core"))
 }
 
 kotlin {

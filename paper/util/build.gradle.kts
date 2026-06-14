@@ -15,7 +15,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("zip.jespersen:Kore.kt:0.1.0")
 
-    implementation(project(":paper:core"))
+    api(project(":paper:core"))
 }
 
 tasks {

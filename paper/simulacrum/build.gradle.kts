@@ -11,14 +11,14 @@ group = "net.crystopia.crystalshard.paper"
 dependencies {
     paperweight.paperDevBundle("26.1.2.build.+")
 
-    implementation(project(":paper:core"))
-    implementation(project(":paper:dhl"))
-    implementation(project(":dhl"))
-    implementation(project(":dhl:shared"))
-    implementation(project(":dhl:implementations:1_21_1"))
-    implementation(project(":dhl:implementations:1_21_9"))
-    implementation(project(":dhl:implementations:1_21_10"))
-    implementation(project(":dhl:implementations:1_21_11"))
+    api(project(":paper:core"))
+    api(project(":paper:dhl"))
+    api(project(":dhl"))
+    api(project(":dhl:shared"))
+    api(project(":dhl:implementations:1_21_1"))
+    api(project(":dhl:implementations:1_21_9"))
+    api(project(":dhl:implementations:1_21_10"))
+    api(project(":dhl:implementations:1_21_11"))
 
 }
 
