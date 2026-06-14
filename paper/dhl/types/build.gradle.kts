@@ -14,14 +14,14 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
 
-    implementation(project(":traveler"))
-    implementation(project(":paper:core"))
-    implementation(project(":dhl"))
-    implementation(project(":dhl:shared"))
-    implementation(project(":dhl:implementations:1_21_1"))
-    implementation(project(":dhl:implementations:1_21_9"))
-    implementation(project(":dhl:implementations:1_21_10"))
-    implementation(project(":dhl:implementations:1_21_11"))
+    compileOnly(project(":traveler"))
+    compileOnly(project(":paper:core"))
+    compileOnly(project(":dhl"))
+    compileOnly(project(":dhl:shared"))
+    compileOnly(project(":dhl:implementations:1_21_1"))
+    compileOnly(project(":dhl:implementations:1_21_9"))
+    compileOnly(project(":dhl:implementations:1_21_10"))
+    compileOnly(project(":dhl:implementations:1_21_11"))
 }
 
 kotlin {

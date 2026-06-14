@@ -13,9 +13,9 @@ group = "net.crystopia.crystalshard.paper.dhl.converter"
 dependencies {
     // Paper
     paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")
-    implementation(project(":dhl:implementations:1_21_10"))
-    implementation(project(":paper:dhl:types"))
-    implementation(project(":dhl:shared"))
+    compileOnly(project(":dhl:implementations:1_21_10"))
+    compileOnly(project(":paper:dhl:types"))
+    compileOnly(project(":dhl:shared"))
 }
 
 tasks {

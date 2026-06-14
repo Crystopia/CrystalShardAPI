@@ -10,7 +10,7 @@ group = "net.crystopia.crystalshard.dhl.versions"
 
 dependencies {
     paperweight.paperDevBundle("1.21.11-R0.1-SNAPSHOT")
-    implementation(project(":dhl:shared"))
+    compileOnly(project(":dhl:shared"))
 }
 
 java {

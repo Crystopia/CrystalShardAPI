@@ -14,19 +14,19 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.9.0")
     implementation("zip.jespersen:Kore.kt:0.1.2")
 
-    implementation(project(":paper:core"))
+    compileOnly(project(":paper:core"))
 
-    implementation(project(":dhl"))
-    implementation(project(":dhl:shared"))
-    implementation(project(":paper:dhl:types"))
-    implementation(project(":dhl:implementations:1_21_1"))
-    implementation(project(":dhl:implementations:1_21_9"))
-    implementation(project(":dhl:implementations:1_21_10"))
-    implementation(project(":dhl:implementations:1_21_11"))
-    implementation(project(":paper:dhl:converter:1_21_1"))
-    implementation(project(":paper:dhl:converter:1_21_9"))
-    implementation(project(":paper:dhl:converter:1_21_10"))
-    implementation(project(":paper:dhl:converter:1_21_11"))
+    compileOnly(project(":dhl"))
+    compileOnly(project(":dhl:shared"))
+    compileOnly(project(":paper:dhl:types"))
+    compileOnly(project(":dhl:implementations:1_21_1"))
+    compileOnly(project(":dhl:implementations:1_21_9"))
+    compileOnly(project(":dhl:implementations:1_21_10"))
+    compileOnly(project(":dhl:implementations:1_21_11"))
+    compileOnly(project(":paper:dhl:converter:1_21_1"))
+    compileOnly(project(":paper:dhl:converter:1_21_9"))
+    compileOnly(project(":paper:dhl:converter:1_21_10"))
+    compileOnly(project(":paper:dhl:converter:1_21_11"))
 }
 
 kotlin {
