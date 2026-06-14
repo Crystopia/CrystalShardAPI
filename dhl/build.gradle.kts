@@ -10,12 +10,6 @@ group = "net.crystopia.crystalshard"
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.+")
-
-    implementation(project(":dhl:implementations:1_21_1"))
-    implementation(project(":dhl:implementations:1_21_9"))
-    implementation(project(":dhl:implementations:1_21_10"))
-    implementation(project(":dhl:implementations:1_21_11"))
-    implementation(project(":dhl:shared"))
 }
 
 kotlin {
