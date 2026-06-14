@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="updated dhl 1.21.1. bump version.">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="bump version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_10/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_11/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_11/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_9/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_10/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_10/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/types/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/types/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/box/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/box/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/panic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/panic/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +32,17 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -291,32 +295,7 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_11:build]">
-    <configuration name="CrystalShardAPI [:paper:box:assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":paper:box:assemble" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [build]">
     <configuration name="CrystalShardAPI [:paper:box:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -417,6 +396,31 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="CrystalShardAPI [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <GradleProfilingDisabled>false</GradleProfilingDisabled>
+      <GradleCoverageDisabled>false</GradleCoverageDisabled>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="CrystalShardAPI.main" />
       <method v="2">
@@ -430,11 +434,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CrystalShardAPI [build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_11:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:buildDependents]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:box:build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:paper:box:assemble]" />
       </list>
     </recent_temporary>
   </component>
@@ -682,23 +686,7 @@
       <workItem from="1781392488174" duration="1560000" />
       <workItem from="1781430572604" duration="12083000" />
       <workItem from="1781442893380" duration="291000" />
-      <workItem from="1781446779119" duration="336000" />
-    </task>
-    <task id="LOCAL-00081" summary="removed todo">
-      <option name="closed" value="true" />
-      <created>1775189089841</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1775189089841</updated>
-    </task>
-    <task id="LOCAL-00082" summary="added extension for locations and so on.">
-      <option name="closed" value="true" />
-      <created>1775247578171</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1775247578172</updated>
+      <workItem from="1781446779119" duration="865000" />
     </task>
     <task id="LOCAL-00083" summary="fixed location extension">
       <option name="closed" value="true" />
@@ -1076,7 +1064,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781442104256</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="updated dhl to compileOnly for better compatibility">
+      <option name="closed" value="true" />
+      <created>1781447194376</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1781447194376</updated>
+    </task>
+    <task id="LOCAL-00131" summary="bump version">
+      <option name="closed" value="true" />
+      <created>1781447213242</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1781447213242</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1094,7 +1098,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added addRecipeBook (todo)." />
     <MESSAGE value="Fixed Recipe stuff. switched to 1.21.1 test" />
     <MESSAGE value="fixed some 1.21.1 packet stuff and moved to type builder for dhl." />
     <MESSAGE value="moved server packet events to ServerPacketBuilder." />
@@ -1107,7 +1110,6 @@
     <MESSAGE value="update name from common to traveler" />
     <MESSAGE value="fixed building and fixed type conversion." />
     <MESSAGE value="fixed gh actions. and building." />
-    <MESSAGE value="bump version" />
     <MESSAGE value="updated paper:folia to java 25" />
     <MESSAGE value="fixed test java version." />
     <MESSAGE value="fixed paper gh action." />
@@ -1119,7 +1121,9 @@
     <MESSAGE value="try to fix dhl 1.21.1." />
     <MESSAGE value="try to fix dhl" />
     <MESSAGE value="updated dhl 1.21.1. bump version." />
-    <option name="LAST_COMMIT_MESSAGE" value="updated dhl 1.21.1. bump version." />
+    <MESSAGE value="updated dhl to compileOnly for better compatibility" />
+    <MESSAGE value="bump version" />
+    <option name="LAST_COMMIT_MESSAGE" value="bump version" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
