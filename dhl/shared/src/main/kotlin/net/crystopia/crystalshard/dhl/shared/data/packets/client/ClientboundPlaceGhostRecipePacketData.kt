@@ -6,11 +6,11 @@ data class ClientboundPlaceGhostRecipePacketData(
     var id: NamespacedKey,
     var containerId: Int,
     /**
-     * RecipeDisplay
+     * 1.21.9-1.21.11 - RecipeDisplay;
      */
     var recipeDisplayEntry: Any?,
     /**
-     * RecipeHolder<*>
+     * 1.21.x RecipeHolder<*>;
      */
     var recipe: Any?
 )

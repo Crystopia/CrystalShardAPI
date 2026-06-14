@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="added missing release.">
-      <change afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_1/data/packets/RecipeEntryBuilder.PAPER_1_21_1(.kt" afterDir="false" />
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="bump version. (pre-release)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_1/data/packets/RecipeEntry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_1/data/packets/RecipeEntry.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_11/RecipeEntryBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_11/RecipeEntryBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_9/RecipeEntryBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/src/main/kotlin/net/crystopia/crystalshard/paper/dhl/converter/v1_21_9/RecipeEntryBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/Others.kt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/papertest/src/main/kotlin/net/crystopia/crystalshard/tests/paper/tests/new/Others.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/packets/client/ClientboundPlaceGhostRecipePacketData.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/packets/client/ClientboundPlaceGhostRecipePacketData.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/recipes/RecipeEntry.kt" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/shared/src/main/kotlin/net/crystopia/crystalshard/dhl/shared/data/recipes/RecipeEntry.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,32 +34,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
-                <item name="papertest" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
-                <item name="papertest" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="tests" type="2d1252cf:ModuleNode" />
-                <item name="papertest" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="run paper" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -693,15 +666,7 @@
       <workItem from="1781392488174" duration="1560000" />
       <workItem from="1781430572604" duration="12083000" />
       <workItem from="1781442893380" duration="291000" />
-      <workItem from="1781446779119" duration="5195000" />
-    </task>
-    <task id="LOCAL-00092" summary="bump version">
-      <option name="closed" value="true" />
-      <created>1776024576602</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1776024576602</updated>
+      <workItem from="1781446779119" duration="11263000" />
     </task>
     <task id="LOCAL-00093" summary="improved client packet factory with extensions.">
       <option name="closed" value="true" />
@@ -1087,7 +1052,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781451342806</updated>
     </task>
-    <option name="localTasksCounter" value="141" />
+    <task id="LOCAL-00141" summary="bump version. (pre-release)">
+      <option name="closed" value="true" />
+      <created>1781452106437</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1781452106437</updated>
+    </task>
+    <option name="localTasksCounter" value="142" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1105,7 +1078,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update name from common to traveler" />
     <MESSAGE value="fixed building and fixed type conversion." />
     <MESSAGE value="fixed gh actions. and building." />
     <MESSAGE value="updated paper:folia to java 25" />
@@ -1130,7 +1102,8 @@
     <MESSAGE value="removed shadowJar from paper:dhl." />
     <MESSAGE value="upgraded paper:dhl:converter to java 25" />
     <MESSAGE value="added missing release." />
-    <option name="LAST_COMMIT_MESSAGE" value="added missing release." />
+    <MESSAGE value="bump version. (pre-release)" />
+    <option name="LAST_COMMIT_MESSAGE" value="bump version. (pre-release)" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
