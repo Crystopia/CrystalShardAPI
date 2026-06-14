@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="bundled dhl in paper:dhl. bump version.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="pre-release for 1.2.7. bump to 1.2.7-SNAPSHOT-26">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/box/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/box/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/folia/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/folia/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/panic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/panic/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/simulacrum/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/simulacrum/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/util/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/util/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -694,15 +687,7 @@
       <workItem from="1781392488174" duration="1560000" />
       <workItem from="1781430572604" duration="12083000" />
       <workItem from="1781442893380" duration="291000" />
-      <workItem from="1781446779119" duration="12219000" />
-    </task>
-    <task id="LOCAL-00094" summary="improved database and config.">
-      <option name="closed" value="true" />
-      <created>1776195056580</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1776195056580</updated>
+      <workItem from="1781446779119" duration="12632000" />
     </task>
     <task id="LOCAL-00095" summary="Added tests">
       <option name="closed" value="true" />
@@ -1088,7 +1073,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781472013243</updated>
     </task>
-    <option name="localTasksCounter" value="143" />
+    <task id="LOCAL-00143" summary="pre-release for 1.2.7. bump to 1.2.7-SNAPSHOT-26">
+      <option name="closed" value="true" />
+      <created>1781472995322</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1781472995322</updated>
+    </task>
+    <option name="localTasksCounter" value="144" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1106,7 +1099,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed gh actions. and building." />
     <MESSAGE value="updated paper:folia to java 25" />
     <MESSAGE value="fixed test java version." />
     <MESSAGE value="fixed paper gh action." />
@@ -1131,7 +1123,8 @@
     <MESSAGE value="added missing release." />
     <MESSAGE value="bump version. (pre-release)" />
     <MESSAGE value="bundled dhl in paper:dhl. bump version." />
-    <option name="LAST_COMMIT_MESSAGE" value="bundled dhl in paper:dhl. bump version." />
+    <MESSAGE value="pre-release for 1.2.7. bump to 1.2.7-SNAPSHOT-26" />
+    <option name="LAST_COMMIT_MESSAGE" value="pre-release for 1.2.7. bump to 1.2.7-SNAPSHOT-26" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

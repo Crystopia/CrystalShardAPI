@@ -49,8 +49,8 @@ maven("https://repo.jespersen.zip/releases")
 
 ![GitHub Tag](https://img.shields.io/github/v/tag/Crystopia/CrystalShardAPI)
 ```kotlin
-// Common
-implementation("net.crystopia.crystalshard:common:<version>")
+// Traveler
+implementation("net.crystopia.crystalshard:traveler:<version>")
 
 // Paper
 implementation("net.crystopia.crystalshard.paper:core:<version>")
