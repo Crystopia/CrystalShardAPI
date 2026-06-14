@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed 1.21.11 building of dhl.">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed building for dhl.">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_10/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_9/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_10/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_10/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/build.gradle.kts" afterDir="false" />
@@ -51,6 +52,32 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="dhl" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+                <item name="dhl" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+                <item name="dhl" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
                 <item name="dhl" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
@@ -283,7 +310,7 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [:dhl:build]">
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [:paper:dhl:build]">
     <configuration name="CrystalShardAPI [:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -334,7 +361,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [:paper:folia:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:paper:dhl:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -345,7 +372,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":paper:folia:build" />
+            <option value=":paper:dhl:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -422,11 +449,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:dhl:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:dhl:implementations:1_21_11:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [clean]" />
         <item itemvalue="Gradle.CrystalShardAPI [:tests:velocitytest:build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:paper:folia:build]" />
       </list>
     </recent_temporary>
   </component>
@@ -672,15 +699,7 @@
       <workItem from="1781045544326" duration="1090000" />
       <workItem from="1781347201356" duration="14562000" />
       <workItem from="1781392488174" duration="1560000" />
-      <workItem from="1781430572604" duration="7554000" />
-    </task>
-    <task id="LOCAL-00075" summary="improved Recipe helper">
-      <option name="closed" value="true" />
-      <created>1774959305895</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1774959305895</updated>
+      <workItem from="1781430572604" duration="7984000" />
     </task>
     <task id="LOCAL-00076" summary="bump version">
       <option name="closed" value="true" />
@@ -1066,7 +1085,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781437939840</updated>
     </task>
-    <option name="localTasksCounter" value="124" />
+    <task id="LOCAL-00124" summary="fixed building for dhl.">
+      <option name="closed" value="true" />
+      <created>1781438222937</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1781438222937</updated>
+    </task>
+    <option name="localTasksCounter" value="125" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1084,7 +1111,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rework dhl for all minecraft platforms. re-code dhl-paper to use crystalshard-dhl." />
     <MESSAGE value="added fabric test mod" />
     <MESSAGE value="Removed respawn and chunk packets. Added tests. Fixed some packet stuff..." />
     <MESSAGE value="fixed some packets and test move minecart packet." />
@@ -1109,7 +1135,8 @@
     <MESSAGE value="fixed paper gh action." />
     <MESSAGE value="fixed dhl building. bump version" />
     <MESSAGE value="fixed 1.21.11 building of dhl." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed 1.21.11 building of dhl." />
+    <MESSAGE value="fixed building for dhl." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed building for dhl." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

@@ -10,8 +10,6 @@ plugins {
 
 group = "net.crystopia.crystalshard.dhl.versions"
 
-paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArtifactConfiguration.MOJANG_PRODUCTION
-
 dependencies {
     // Paper
     paperweight.paperDevBundle("1.21.10-R0.1-SNAPSHOT")

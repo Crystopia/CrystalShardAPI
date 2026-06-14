@@ -31,7 +31,6 @@
             <option value="$PROJECT_DIR$/paper/simulacrum" />
             <option value="$PROJECT_DIR$/paper/util" />
             <option value="$PROJECT_DIR$/tests" />
-            <option value="$PROJECT_DIR$/tests/modfabrictest" />
             <option value="$PROJECT_DIR$/tests/papertest" />
             <option value="$PROJECT_DIR$/tests/velocitytest" />
             <option value="$PROJECT_DIR$/traveler" />
