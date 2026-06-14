@@ -3,6 +3,7 @@ package net.crystopia.crystalshard.dhl.versions.v1_21_1.client
 import net.crystopia.crystalshard.dhl.shared.data.packets.client.ClientboundUpdateAttributesPacketData
 import net.crystopia.crystalshard.dhl.shared.interfaces.packets.IClientPacket
 import net.minecraft.network.protocol.game.ClientboundUpdateAttributesPacket
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.ai.attributes.AttributeInstance
 import net.minecraft.world.entity.ai.attributes.AttributeModifier
 import java.util.function.Consumer
@@ -13,14 +14,21 @@ class Shard_ClientboundUpdateAttributesPacket : IClientPacket<ClientboundUpdateA
         val attributes: MutableList<AttributeInstance> = mutableListOf()
 
         packetObj.attributes.forEach { attribute ->
-            val instance =  AttributeInstance(
+            val instance = AttributeInstance(
                 attribute.id,
                 Consumer { instance -> }
             )
             instance.baseValue = attribute.value
             // TODO: addOrUpdateTransientModifier    addTransientModifier    addOrReplacePermanentModifier
             attribute.modifiers.map { (id, amount, operation) ->
-                instance.addPermanentModifier(AttributeModifier(id, amount, operation))
+                instance.addPermanentModifier(
+                    AttributeModifier(
+                        ResourceLocation.tryBuild(
+                            id.split(":")[0],
+                            id.split(":")[1]
+                        )!!, amount, operation
+                    )
+                )
             }
             attributes.add(instance)
         }
