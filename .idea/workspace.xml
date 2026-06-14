@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="bump version">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed building for box and panic.">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/release-paper.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-paper.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/box/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/box/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/panic/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/panic/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,24 +34,13 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
                 <item name="paper" type="2d1252cf:ModuleNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
                 <item name="paper" type="2d1252cf:ModuleNode" />
-                <item name="dhl" type="2d1252cf:ModuleNode" />
+                <item name="box" type="2d1252cf:ModuleNode" />
               </path>
             </expand>
             <select />
@@ -295,7 +282,7 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [build]">
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [:paper:box:build]">
     <configuration name="CrystalShardAPI [:paper:box:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -434,11 +421,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CrystalShardAPI [:paper:box:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_11:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:buildDependents]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:paper:box:build]" />
       </list>
     </recent_temporary>
   </component>
@@ -686,15 +673,7 @@
       <workItem from="1781392488174" duration="1560000" />
       <workItem from="1781430572604" duration="12083000" />
       <workItem from="1781442893380" duration="291000" />
-      <workItem from="1781446779119" duration="865000" />
-    </task>
-    <task id="LOCAL-00083" summary="fixed location extension">
-      <option name="closed" value="true" />
-      <created>1775247763017</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1775247763017</updated>
+      <workItem from="1781446779119" duration="2035000" />
     </task>
     <task id="LOCAL-00084" summary="fixed smartGUI">
       <option name="closed" value="true" />
@@ -1080,7 +1059,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781447213242</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="fixed building for box and panic.">
+      <option name="closed" value="true" />
+      <created>1781447660155</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1781447660155</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1098,7 +1085,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Recipe stuff. switched to 1.21.1 test" />
     <MESSAGE value="fixed some 1.21.1 packet stuff and moved to type builder for dhl." />
     <MESSAGE value="moved server packet events to ServerPacketBuilder." />
     <MESSAGE value="improved Exception for dhl. updated ClientPacketBuilder." />
@@ -1123,7 +1109,8 @@
     <MESSAGE value="updated dhl 1.21.1. bump version." />
     <MESSAGE value="updated dhl to compileOnly for better compatibility" />
     <MESSAGE value="bump version" />
-    <option name="LAST_COMMIT_MESSAGE" value="bump version" />
+    <MESSAGE value="fixed building for box and panic." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed building for box and panic." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
