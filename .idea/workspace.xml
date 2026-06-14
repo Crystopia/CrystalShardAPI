@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="removed shadowJar from paper:dhl.">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="upgraded paper:dhl:converter to java 25">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/release-paper.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/release-paper.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_1/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_10/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_10/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_11/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/dhl/converter/1_21_9/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +35,28 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="tests" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="tests" type="2d1252cf:ModuleNode" />
+                <item name="papertest" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="tests" type="2d1252cf:ModuleNode" />
+                <item name="papertest" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CrystalShardAPI" type="f1a62948:ProjectNode" />
+                <item name="tests" type="2d1252cf:ModuleNode" />
+                <item name="papertest" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
+                <item name="run paper" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -286,7 +298,7 @@
       <recent name="net.crystopia.crystalshard.dhl.versions.v1_21_11.converter.data.nbt" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.CrystalShardAPI [build]">
+  <component name="RunManager" selected="Gradle.CrystalShardAPI [:tests:papertest:runServer]">
     <configuration name="CrystalShardAPI [:paper:box:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -337,7 +349,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [:paper:dhl:converter:1_21_1:buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:tests:papertest:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -348,7 +360,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":paper:dhl:converter:1_21_1:buildDependents" />
+            <option value=":tests:papertest:build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -362,7 +374,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="CrystalShardAPI [:paper:dhl:converter:1_21_1:build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="CrystalShardAPI [:tests:papertest:runServer]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -373,7 +385,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":paper:dhl:converter:1_21_1:build" />
+            <option value=":tests:papertest:runServer" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -425,11 +437,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.CrystalShardAPI [:tests:papertest:runServer]" />
+        <item itemvalue="Gradle.CrystalShardAPI [:tests:papertest:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:box:build]" />
         <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_11:build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:build]" />
-        <item itemvalue="Gradle.CrystalShardAPI [:paper:dhl:converter:1_21_1:buildDependents]" />
       </list>
     </recent_temporary>
   </component>
@@ -677,15 +689,7 @@
       <workItem from="1781392488174" duration="1560000" />
       <workItem from="1781430572604" duration="12083000" />
       <workItem from="1781442893380" duration="291000" />
-      <workItem from="1781446779119" duration="3801000" />
-    </task>
-    <task id="LOCAL-00090" summary="fixed gh actions">
-      <option name="closed" value="true" />
-      <created>1775687021602</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1775687021602</updated>
+      <workItem from="1781446779119" duration="4556000" />
     </task>
     <task id="LOCAL-00091" summary="fixed entity event packet">
       <option name="closed" value="true" />
@@ -1071,7 +1075,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781450292544</updated>
     </task>
-    <option name="localTasksCounter" value="139" />
+    <task id="LOCAL-00139" summary="upgraded paper:dhl:converter to java 25">
+      <option name="closed" value="true" />
+      <created>1781450601011</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1781450601011</updated>
+    </task>
+    <option name="localTasksCounter" value="140" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1089,7 +1101,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="upgraded to java 25. Added recipe packets... and stuff for recipes." />
     <MESSAGE value="snapshot of the 1.2.7 release." />
     <MESSAGE value="update name from common to traveler" />
     <MESSAGE value="fixed building and fixed type conversion." />
@@ -1114,7 +1125,8 @@
     <MESSAGE value="updated to java 25 in dhl:1.21.1" />
     <MESSAGE value="upgraded dhl to java 25," />
     <MESSAGE value="removed shadowJar from paper:dhl." />
-    <option name="LAST_COMMIT_MESSAGE" value="removed shadowJar from paper:dhl." />
+    <MESSAGE value="upgraded paper:dhl:converter to java 25" />
+    <option name="LAST_COMMIT_MESSAGE" value="upgraded paper:dhl:converter to java 25" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
