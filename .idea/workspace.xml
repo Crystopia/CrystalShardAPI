@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="fixed java version for dhl:1.21.1">
+    <list default="true" id="69198d7b-b644-4c42-9f7f-8e7e52bb0e17" name="Changes" comment="updated to java 25 in dhl:1.21.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_1/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_10/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_10/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_11/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_11/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dhl/implementations/1_21_9/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/dhl/implementations/1_21_9/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -668,15 +670,7 @@
       <workItem from="1781392488174" duration="1560000" />
       <workItem from="1781430572604" duration="12083000" />
       <workItem from="1781442893380" duration="291000" />
-      <workItem from="1781446779119" duration="2926000" />
-    </task>
-    <task id="LOCAL-00087" summary="added better Runnable (credits twilight)&#10;&#10;That will change in time.">
-      <option name="closed" value="true" />
-      <created>1775657860473</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1775657860473</updated>
+      <workItem from="1781446779119" duration="3214000" />
     </task>
     <task id="LOCAL-00088" summary="added folia support. bump version. added Scheduler dsl">
       <option name="closed" value="true" />
@@ -1062,7 +1056,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781449491751</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="updated to java 25 in dhl:1.21.1">
+      <option name="closed" value="true" />
+      <created>1781449723522</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1781449723522</updated>
+    </task>
+    <option name="localTasksCounter" value="137" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1080,7 +1082,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="renamed internal packet holder." />
     <MESSAGE value="renamed general package in dhl-nms to builder." />
     <MESSAGE value="added recipe packets (todo tests). Fixed package structure. Updated test plugin test system. bug fixes." />
     <MESSAGE value="upgraded to java 25. Added recipe packets... and stuff for recipes." />
@@ -1105,7 +1106,8 @@
     <MESSAGE value="added debug in gh action for paper:box" />
     <MESSAGE value="moved error catch for paper gh action." />
     <MESSAGE value="fixed java version for dhl:1.21.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed java version for dhl:1.21.1" />
+    <MESSAGE value="updated to java 25 in dhl:1.21.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated to java 25 in dhl:1.21.1" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

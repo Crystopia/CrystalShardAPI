@@ -18,6 +18,10 @@ java {
     withJavadocJar()
 }
 
+kotlin {
+    jvmToolchain(25)
+}
+
 tasks {
     assemble {
         dependsOn(shadowJar)
