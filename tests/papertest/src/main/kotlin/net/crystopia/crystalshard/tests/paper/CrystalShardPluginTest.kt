@@ -17,6 +17,7 @@ import net.crystopia.crystalshard.paper.util.smart.smartRecipe
 import net.crystopia.crystalshard.tests.paper.tests.new.AdvancementTabTest
 import net.crystopia.crystalshard.tests.paper.tests.new.AdvancementTest
 import net.crystopia.crystalshard.tests.paper.tests.new.RecipeTest
+import net.crystopia.crystalshard.tests.paper.tests.new.UpdateAttributesTest
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.event.player.PlayerJoinEvent
@@ -94,6 +95,7 @@ class CrystalShardPluginTest : JavaPlugin() {
 
         AdvancementTest
         RecipeTest
+        UpdateAttributesTest
         AdvancementTabTest
 
         server.pluginManager.registerEvents(SmartEvents, this)

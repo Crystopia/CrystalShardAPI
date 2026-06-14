@@ -566,7 +566,7 @@ class TeleportEntityTest(name: String, sender: CommandSender, args: CommandArgum
     }
 }
 
-class UpdateAttributesTest(name: String, sender: CommandSender, args: CommandArguments) : Test("no_use") {
+object UpdateAttributesTest : Test("AttributesTest") {
     override fun command() {
         test {
             val player = sender!!as Player
@@ -580,7 +580,6 @@ class UpdateAttributesTest(name: String, sender: CommandSender, args: CommandArg
                     )
                 )
             ) { it.send(mutableListOf(player)) }
-            println("UpdateAttributes OK → Max HP client-seitig auf 20 Herzen")
         }
     }
 }

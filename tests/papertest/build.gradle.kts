@@ -33,12 +33,22 @@ dependencies {
     implementation(project(":paper:folia"))
     implementation(project(":paper:box"))
     implementation(project(":paper:util"))
+
+    implementation(project(":paper:panic"))
+    implementation(project(":paper:simulacrum"))
+
     implementation(project(":dhl"))
     implementation(project(":paper:dhl:types"))
     implementation(project(":dhl:shared"))
     implementation(project(":paper:dhl"))
-    implementation(project(":paper:panic"))
-    implementation(project(":paper:simulacrum"))
+    implementation(project(":dhl:implementations:1_21_1"))
+    implementation(project(":dhl:implementations:1_21_9"))
+    implementation(project(":dhl:implementations:1_21_10"))
+    implementation(project(":dhl:implementations:1_21_11"))
+    implementation(project(":paper:dhl:converter:1_21_1"))
+    implementation(project(":paper:dhl:converter:1_21_9"))
+    implementation(project(":paper:dhl:converter:1_21_10"))
+    implementation(project(":paper:dhl:converter:1_21_11"))
 }
 
 kotlin {

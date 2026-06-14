@@ -1,29 +1,13 @@
 package net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets
 
-import net.crystopia.crystalshard.dhl.shared.builder.RecipeEntryBuilder
-import net.crystopia.crystalshard.dhl.shared.data.custom.NamespacedKey
-import net.crystopia.crystalshard.paper.dhl.converter.v1_21_1.data.packets.types.RecipeEntry
 import net.minecraft.core.NonNullList
-import net.minecraft.world.inventory.RecipeBookType
 import net.minecraft.world.item.crafting.CookingBookCategory
 import net.minecraft.world.item.crafting.Ingredient
 import net.minecraft.world.item.crafting.ShapedRecipePattern
 import org.bukkit.craftbukkit.inventory.*
 import org.bukkit.inventory.*
-import org.bukkit.inventory.recipe.CraftingBookCategory
-import kotlin.experimental.or
 
-fun RecipeEntryBuilder.PAPER_1_21_1(
-    recipe: net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry,
-): RecipeEntry {
-    return RecipeEntry(
-        flags = (recipe.highlight or recipe.showNotification),
-        id = NamespacedKey(recipe.id.namespace, recipe.id.key),
-        recipe = recipe.PAPER_1_21_1()
-    )
-}
-
-private fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.PAPER_1_21_1(): net.minecraft.world.item.crafting.Recipe<*> {
+fun net.crystopia.crystalshard.paper.dhl.types.recipes.RecipeEntry.PAPER_1_21_1(): net.minecraft.world.item.crafting.Recipe<*> {
     return when (val recipe = this.recipe) {
         is ShapedRecipe -> {
             val bukkit = CraftShapedRecipe.fromBukkitRecipe(recipe)
